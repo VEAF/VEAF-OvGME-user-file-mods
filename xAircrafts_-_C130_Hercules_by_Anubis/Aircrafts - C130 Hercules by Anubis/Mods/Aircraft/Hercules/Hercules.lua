@@ -113,7 +113,7 @@ Hercules = {
 				diameter = 1.523,
 				exhaust_length_ab = 11.794,
 				exhaust_length_ab_K = 0.76,
-				smokiness_level = 0.08, 
+				smokiness_level = 1.0, 
 		}, -- end of [1]
 		[2] = -- ENGINE 2
 		{
@@ -131,7 +131,7 @@ Hercules = {
 				diameter = 1.523,
 				exhaust_length_ab =	11.794,
 				exhaust_length_ab_K	= 0.76,
-				smokiness_level = 0.08, 
+				smokiness_level = 1.0, 
 		}, -- end of [3]
 		[4] = -- ENGINE 4
 		{
@@ -140,7 +140,7 @@ Hercules = {
 				diameter = 1.523,
 				exhaust_length_ab = 11.794,
 				exhaust_length_ab_K	= 0.76,
-				smokiness_level = 0.08, 
+				smokiness_level = 1.0, 
 		}, -- end of [4]
 		[5] = -- Rocket 1
 		{
@@ -381,6 +381,7 @@ Hercules = {
                 	{ CLSID = "{A4BCC903-06C8-47bb-9937-A30FEDB4E745}", arg_value = 0.10,	attach_point_position = { -0.085, -0.0740, 0.0} },	 -- Yellow-Smoke
                 	{ CLSID = "{A4BCC903-06C8-47bb-9937-A30FEDB4E746}", arg_value = 0.10,	attach_point_position = { -0.085, -0.0740, 0.0} },	 -- Orange-Smoke
 					-- FUEL TANKS --
+					{ CLSID = "{1C97B4A0-AA3B-43A8-8EE7-D11071457185}", arg_value = 0.10,	attach_point_position = { -0.085, -0.0740, 0.0} },	 -- Orange-Smoke
 					{ CLSID = "Herc_Ext_Fuel_Tank", arg_value = 0.10,	attach_point_position = { -0.200, -0.0850, 0.0} },
 				}
         ),
@@ -398,6 +399,7 @@ Hercules = {
                 	{ CLSID = "{A4BCC903-06C8-47bb-9937-A30FEDB4E745}", arg_value = 0.10,	attach_point_position = { -0.085, -0.0740, 0.0} },	 -- Yellow-Smoke
                 	{ CLSID = "{A4BCC903-06C8-47bb-9937-A30FEDB4E746}", arg_value = 0.10,	attach_point_position = { -0.085, -0.0740, 0.0} },	 -- Orange-Smoke
 					-- FUEL TANKS --
+					{ CLSID = "{1C97B4A0-AA3B-43A8-8EE7-D11071457185}", arg_value = 0.10,	attach_point_position = { -0.085, -0.0740, 0.0} },	 -- Orange-Smoke
 					{ CLSID = "Herc_Ext_Fuel_Tank", arg_value = 0.10,	attach_point_position = { -0.200, -0.0850, 0.0} },
 				}
         ),
@@ -415,6 +417,7 @@ Hercules = {
                 	{ CLSID = "{A4BCC903-06C8-47bb-9937-A30FEDB4E745}", arg_value = 0.10,	attach_point_position = { -0.085, -0.0740, 0.0} },	 -- Yellow-Smoke
                 	{ CLSID = "{A4BCC903-06C8-47bb-9937-A30FEDB4E746}", arg_value = 0.10,	attach_point_position = { -0.085, -0.0740, 0.0} },	 -- Orange-Smoke
 					-- FUEL TANKS --
+					{ CLSID = "{1C97B4A0-AA3B-43A8-8EE7-D11071457185}", arg_value = 0.10,	attach_point_position = { -0.085, -0.0740, 0.0} },	 -- Orange-Smoke
 					{ CLSID = "Herc_Ext_Fuel_Tank", arg_value = 0.10,	attach_point_position = { -0.200, -0.0850, 0.0} },
 				}
         ),
@@ -432,9 +435,10 @@ Hercules = {
                 	{ CLSID = "{A4BCC903-06C8-47bb-9937-A30FEDB4E745}", arg_value = 0.10,	attach_point_position = { -0.085, -0.0740, 0.0} },	 -- Yellow-Smoke
                 	{ CLSID = "{A4BCC903-06C8-47bb-9937-A30FEDB4E746}", arg_value = 0.10,	attach_point_position = { -0.085, -0.0740, 0.0} },	 -- Orange-Smoke
 					-- FUEL TANKS --
+					{ CLSID = "{1C97B4A0-AA3B-43A8-8EE7-D11071457185}", arg_value = 0.10,	attach_point_position = { -0.085, -0.0740, 0.0} },	 -- Orange-Smoke
 					{ CLSID = "Herc_Ext_Fuel_Tank", arg_value = 0.10,	attach_point_position = { -0.200, -0.0850, 0.0} },
 				}
-        ),
+		),
         pylon(6, 0, 0.0, 0.0, 0.0,
             {
   				arg = 316, arg_value = 1.0, connector = "Can1", use_full_connector_position = true, DisplayName = "Can1"
@@ -465,6 +469,7 @@ Hercules = {
 			},
 				{
 					{ CLSID = "Herc_BattleStation", arg_value = 0.10,  attach_point_position = { 0.0, 0.0, 0.0} }, -- Battle_Station_Attachment
+					{ CLSID = "Herc_BattleStation_TGP", arg_value = 0.10,  attach_point_position = { 0.0, 0.0, 0.0} }, -- Battle_Station_Attachment
 				}
         ),
 		pylon(10, 0, 0.0, 0.0, 0.0,
@@ -542,17 +547,29 @@ Hercules = {
 					{ CLSID = "Herc_Ammo_S530D_missiles", arg_value = 0.1, attach_point_position = { 0, -0.1, 0}}, --super530d
 					{ CLSID = "Herc_Ammo_AIM54C_missiles", arg_value = 0.1, attach_point_position = { 0, -0.1, 0}}, --AIM54
 					------------------------------------------VEHICLES------------------------------20000lbmax------------------
-                    { CLSID = "Herc_APC_M1043_HMMWV_Armament", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}},---APC M1043 HMMWV Armament [7023lb]
-                    { CLSID = "Herc_ATGM_M1045_HMMWV_TOW", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --ATGM M1045 HMMWV TOW [7183lb]
-					{ CLSID = "Herc_APC_M1025_HMMWV", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}},	--M1025 HMMWV [6160lb]		
-					{ CLSID = "Herc_SAM_M1097_HMMWV", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --SAM Avenger M1097 [7200lb]
-					{ CLSID = "Herc_APC_COBRA", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --APC Cobra [10912lb]
-					{ CLSID = "Herc_ARV_BRDM_2", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --ARV BRDM-2 [12320lb]
-					{ CLSID = "Herc_TIGR_233036", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --Transport Tigr [15900lb]
-					{ CLSID = "Herc_IFV_BMD1", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --IFV BMD-1 [18040lb]
-					{ CLSID = "Herc_IFV_BTRD", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --IFV BTR-D [18040lb]
-					{ CLSID = "Herc_ART_NONA", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --ART 2S9 NONA [19140lb]
-					{ CLSID = "Herc_GEN_CRATE", arg_value = 0.1, attach_point_position = { 0, 0, 0}}, --Generic
+                    { CLSID = "Herc_APC_M1043_HMMWV_Armament_Air", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}},---APC M1043 HMMWV Armament [7023lb]
+                    { CLSID = "Herc_ATGM_M1045_HMMWV_TOW_Air", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --ATGM M1045 HMMWV TOW [7183lb]
+					{ CLSID = "Herc_APC_M1025_HMMWV_Air", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}},	--M1025 HMMWV [6160lb]		
+					{ CLSID = "Herc_SAM_M1097_HMMWV_Air", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --SAM Avenger M1097 [7200lb]
+					{ CLSID = "Herc_APC_COBRA_Air", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --APC Cobra [10912lb]
+					{ CLSID = "Herc_APC_COBRA_Skid", arg_value = 0.1, attach_point_position = { -0.5, -0.95, 0}}, --APC Cobra [10912lb]
+					{ CLSID = "Herc_ARV_BRDM_2_Air", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --ARV BRDM-2 [12320lb]
+					{ CLSID = "Herc_TIGR_233036_Air", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --Transport Tigr [15900lb]
+					{ CLSID = "Herc_IFV_BMD1_Air", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --IFV BMD-1 [18040lb]
+					{ CLSID = "Herc_IFV_BTRD_Air", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --IFV BTR-D [18040lb]
+					{ CLSID = "Herc_ART_NONA_Air", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --ART 2S9 NONA [19140lb]
+					{ CLSID = "Herc_APC_M1043_HMMWV_Armament_Skid", arg_value = 0.1, attach_point_position = { -0.5, -0.95, 0}},---APC M1043 HMMWV Armament [7023lb]
+					{ CLSID = "Herc_ATGM_M1045_HMMWV_TOW_Skid", arg_value = 0.1, attach_point_position = { -0.5, -0.95, 0}}, --ATGM M1045 HMMWV TOW [7183lb]
+					{ CLSID = "Herc_APC_M1025_HMMWV_Skid", arg_value = 0.1, attach_point_position = { -0.5, -0.95, 0}},	--M1025 HMMWV [6160lb]		
+					{ CLSID = "Herc_SAM_M1097_HMMWV_Skid", arg_value = 0.1, attach_point_position = { -0.5, -0.95, 0}}, --SAM Avenger M1097 [7200lb]
+					{ CLSID = "Herc_ARV_BRDM_2_Skid", arg_value = 0.1, attach_point_position = { -0.5, -0.95, 0}}, --ARV BRDM-2 [12320lb]
+					{ CLSID = "Herc_TIGR_233036_Skid", arg_value = 0.1, attach_point_position = { -0.5, -0.95, 0}}, --Transport Tigr [15900lb]
+					{ CLSID = "Herc_IFV_BMD1_Skid", arg_value = 0.1, attach_point_position = { -0.5, -0.95, 0}}, --IFV BMD-1 [18040lb]
+					{ CLSID = "Herc_IFV_BTRD_Skid", arg_value = 0.1, attach_point_position = { -0.5, -0.95, 0}}, --IFV BTR-D [18040lb]
+					{ CLSID = "Herc_ART_NONA_Skid", arg_value = 0.1, attach_point_position = { -0.5, -0.95, 0}}, --ART 2S9 NONA [19140lb]
+					{ CLSID = "Herc_GEN_CRATE", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --Generic
+					{ CLSID = "Herc_UAZ_469_Air", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --Transport UAZ-469 [3747lb]
+					{ CLSID = "Herc_UAZ_469_Skid", arg_value = 0.1, attach_point_position = { -0.5, -0.95, 0}}, --Transport UAZ-469 [3747lb]
 			}
         ),
 		pylon(11, 0, 0.0, 0.0, 0.0,
@@ -580,7 +597,7 @@ Hercules = {
 					{ CLSID = "Herc_Ammo_S25L_missiles", arg_value = 0.1, attach_point_position = { 0, -0.1, 0}},-----S25L
 					{ CLSID = "Herc_Ammo_TOW_missiles", arg_value = 0.1, attach_point_position = { 0, -0.1, 0}},-----TOW
 					---------------------------------------BOMBS-------------------------------------------------------------
-                    { CLSID = "Herc_GBU-43/B(MOAB)", arg_value = 0.1, attach_point_position = { -0.6, -0.1, 0}}, --GBU-43/B(MOAB)
+                    { CLSID = "Herc_GBU-43/B(MOAB)", arg_value = 0.1, attach_point_position = { -1.2, -0.1, 0}}, --GBU-43/B(MOAB)
                     { CLSID = "Herc_Ammo_GBU_10_bombs", arg_value = 0.1, attach_point_position = { 0, -0.1, 0}}, --GBU10
                     { CLSID = "Herc_Ammo_GBU_12_bombs", arg_value = 0.1, attach_point_position = { 0, -0.1, 0}}, --GBU12
                     { CLSID = "Herc_Ammo_GBU_16_bombs", arg_value = 0.1, attach_point_position = { 0, -0.1, 0}}, --GBU16
@@ -630,17 +647,23 @@ Hercules = {
 					{ CLSID = "Herc_Ammo_S530D_missiles", arg_value = 0.1, attach_point_position = { 0, -0.1, 0}}, --super530d
 					{ CLSID = "Herc_Ammo_AIM54C_missiles", arg_value = 0.1, attach_point_position = { 0, -0.1, 0}}, --AIM54
 					------------------------------------------VEHICLES----------------------unlimited-------------------------
-                    { CLSID = "Herc_APC_M1043_HMMWV_Armament", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}},---APC M1043 HMMWV Armament [7023lb]
-                    { CLSID = "Herc_ATGM_M1045_HMMWV_TOW", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --ATGM M1045 HMMWV TOW [7183lb]
-					{ CLSID = "Herc_AAA_Vulcan_M163", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, -- AAA Vulcan M163 [21666lb]
+					{ CLSID = "Herc_APC_M1043_HMMWV_Armament_Air", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}},---APC M1043 HMMWV Armament [7023lb]
+					{ CLSID = "Herc_APC_M1043_HMMWV_Armament_Skid", arg_value = 0.1, attach_point_position = { -0.5, -0.95, 0}},---APC M1043 HMMWV Armament [7023lb]
+					{ CLSID = "Herc_ATGM_M1045_HMMWV_TOW_Air", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --ATGM M1045 HMMWV TOW [7183lb]
+					{ CLSID = "Herc_ATGM_M1045_HMMWV_TOW_Skid", arg_value = 0.1, attach_point_position = { -0.5, -0.95, 0}}, --ATGM M1045 HMMWV TOW [7183lb]
+					{ CLSID = "Herc_AAA_Vulcan_M163_Air", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, -- AAA Vulcan M163 [21666lb]
+					{ CLSID = "Herc_AAA_Vulcan_M163_Skid", arg_value = 0.1, attach_point_position = { -0.5, -0.95, 0}}, -- AAA Vulcan M163 [21666lb]
 					{ CLSID = "Herc_SPG_M1126_Stryker_ICV", arg_value = 0.1, attach_point_position = { -1.0, -0.95, 0}}, --APC M1126 Stryker ICV [29542lb]
                     { CLSID = "Herc_SPG_M1128_Stryker_MGS", arg_value = 0.1, attach_point_position = { -1.0, -0.95, 0}}, --SPG M1128 Stryker MGS [33036lb]
                     { CLSID = "Herc_ATGM_M1134_Stryker", arg_value = 0.1, attach_point_position = { -1.0, -0.95, 0}}, --ATGM M1134 Stryker [30337lb]
-                    { CLSID = "Herc_APC_LAV_25", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --APC LAV-25 [22514lb]
-					{ CLSID = "Herc_APC_M1025_HMMWV", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}},	--M1025 HMMWV [6160lb]		
-					{ CLSID = "Herc_SAM_M1097_HMMWV", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --SAM Avenger M1097 [7200lb]
-					{ CLSID = "Herc_APC_COBRA", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --APC Cobra [10912lb]
-					{ CLSID = "Herc_APC_M113", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --APC M113 [21624lb]
+                    { CLSID = "Herc_APC_LAV_25_Air", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --APC LAV-25 [22514lb]
+					{ CLSID = "Herc_APC_LAV_25_Skid", arg_value = 0.1, attach_point_position = { -0.5, -0.95, 0}}, --APC LAV-25 [22514lb]
+					{ CLSID = "Herc_SAM_M1097_HMMWV_Air", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --SAM Avenger M1097 [7200lb]
+					{ CLSID = "Herc_SAM_M1097_HMMWV_Skid", arg_value = 0.1, attach_point_position = { -0.5, -0.95, 0}}, --SAM Avenger M1097 [7200lb]
+					{ CLSID = "Herc_APC_COBRA_Air", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --APC Cobra [10912lb]
+					{ CLSID = "Herc_APC_COBRA_Skid", arg_value = 0.1, attach_point_position = { -0.5, -0.95, 0}}, --APC Cobra [10912lb]
+					{ CLSID = "Herc_APC_M113_Air", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --APC M113 [21624lb]
+					{ CLSID = "Herc_APC_M113_Skid", arg_value = 0.1, attach_point_position = { -0.5, -0.95, 0}}, --APC M113 [21624lb]
 					{ CLSID = "Herc_Tanker_HEMTT", arg_value = 0.1, attach_point_position = { -2.5, -1, 0}}, --Tanker M978 HEMTT [34000lb]
 					{ CLSID = "Herc_HEMTT_TFFT", arg_value = 0.1, attach_point_position = { -2.5, -1, 0}}, --HEMTT TFFT [34400lb]
 					{ CLSID = "Herc_IFV_M2A2_Bradley", arg_value = 0.1, attach_point_position = { -0.5, -0.95, 0}}, --IFV M2A2 Bradley [34720lb]
@@ -648,28 +671,36 @@ Hercules = {
 					{ CLSID = "Herc_IFV_BMP_1", arg_value = 0.1, attach_point_position = { -0.5, -0.95, 0}}, --IFV BMP-1 [23232lb]
 					{ CLSID = "Herc_IFV_BMP_2", arg_value = 0.1, attach_point_position = { -0.5, -0.95, 0}}, --IFV BMP-2 [25168lb]
 					{ CLSID = "Herc_IFV_BMP_3", arg_value = 0.1, attach_point_position = { -0.5, -0.95, 0}}, --IFV BMP-3 [32912lb]
-					{ CLSID = "Herc_ARV_BRDM_2", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --ARV BRDM-2 [12320lb]
-					{ CLSID = "Herc_APC_BTR_80", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --APC BTR-80 [23936lb]
+					{ CLSID = "Herc_ARV_BRDM_2_Air", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --ARV BRDM-2 [12320lb]
+					{ CLSID = "Herc_ARV_BRDM_2_Skid", arg_value = 0.1, attach_point_position = { -0.5, -0.95, 0}}, --ARV BRDM-2 [12320lb]
+					{ CLSID = "Herc_APC_BTR_80_Air", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --APC BTR-80 [23936lb]
+					{ CLSID = "Herc_APC_BTR_80_Skid", arg_value = 0.1, attach_point_position = { -0.5, -0.95, 0}}, --APC BTR-80 [23936lb]
 					{ CLSID = "Herc_SAM_ROLAND_ADS", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --SAM ROLAND ADS [34720lb]
 					{ CLSID = "Herc_SAM_ROLAND_LN", arg_value = 0.1, attach_point_position = { -0.850, -0.95, 0}}, --SAM ROLAND LN [34720b]
 					{ CLSID = "Herc_SAM_13", arg_value = 0.1, attach_point_position = { -0.5, -0.95, 0}}, --SAM SA-13 STRELA [21624lb]
 					{ CLSID = "Herc_ZSU_23_4", arg_value = 0.1, attach_point_position = { -0.5, -0.95, 0}}, --AAA ZSU-23-4 Shilka [32912lb]
 					{ CLSID = "Herc_SAM_19", arg_value = 0.1, attach_point_position = { -0.5, -0.95, 0}}, --SAM SA-19 Tunguska 2S6 [34720lb]
-					{ CLSID = "Herc_UAZ_469", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --Transport UAZ-469 [3747lb]
 					{ CLSID = "Herc_URAL_375", arg_value = 0.1, attach_point_position = { -2.8, -1, 0}}, --Transport URAL-375 [14815lb]
 					{ CLSID = "Herc_M_818", arg_value = 0.1, attach_point_position = { -2.9, -1, 0}}, --Transport M818 [16000lb]
-					{ CLSID = "Herc_TIGR_233036", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --Transport Tigr [15900lb]
-					{ CLSID = "Herc_AAA_GEPARD", arg_value = 0.1, attach_point_position = { -0.850, -0.95, 0}}, --AAA GEPARD [34720lb]
-					{ CLSID = "Herc_SAM_CHAPARRAL", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --SAM CHAPARRAL [21624lb]
+					{ CLSID = "Herc_SAM_CHAPARRAL_Air", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --SAM CHAPARRAL [21624lb]
+					{ CLSID = "Herc_SAM_CHAPARRAL_Skid", arg_value = 0.1, attach_point_position = { -0.5, -0.95, 0}}, --SAM CHAPARRAL [21624lb]
 					{ CLSID = "Herc_SAM_LINEBACKER", arg_value = 0.1, attach_point_position = { -0.5, -0.95, 0}}, --SAM LINEBACKER [34720lb]
 					{ CLSID = "Herc_IFV_MARDER", arg_value = 0.1, attach_point_position = { -0.5, -0.95, 0}}, --IFV MARDER [34720lb]
 					{ CLSID = "Herc_IFV_TPZ", arg_value = 0.1, attach_point_position = { -2, -1, 0}}, --IFV TPZ FUCH [33440lb]
-					{ CLSID = "Herc_IFV_BMD1", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --IFV BMD-1 [18040lb]
-					{ CLSID = "Herc_IFV_BTRD", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --IFV BTR-D [18040lb]
-					{ CLSID = "Herc_ART_NONA", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --ART 2S9 NONA [19140lb]
+					{ CLSID = "Herc_IFV_BMD1_Air", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --IFV BMD-1 [18040lb]
+					{ CLSID = "Herc_IFV_BMD1_Skid", arg_value = 0.1, attach_point_position = { -0.5, -0.95, 0}}, --IFV BMD-1 [18040lb]
+					{ CLSID = "Herc_IFV_BTRD_Air", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --IFV BTR-D [18040lb]
+					{ CLSID = "Herc_IFV_BTRD_Skid", arg_value = 0.1, attach_point_position = { -0.5, -0.95, 0}}, --IFV BTR-D [18040lb]
 					{ CLSID = "Herc_ART_GVOZDIKA", arg_value = 0.1, attach_point_position = { -0.850, -0.95, 0}}, --ART GVOZDIKA [34720lb]
-					{ CLSID = "Herc_APC_MTLB", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --APC MTLB [26000lb]
-					{ CLSID = "Herc_GEN_CRATE", arg_value = 0.1, attach_point_position = { 0, 0, 0}}, --Generic
+					{ CLSID = "Herc_ART_NONA_Air", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --ART 2S9 NONA [19140lb]
+					{ CLSID = "Herc_ART_NONA_Skid", arg_value = 0.1, attach_point_position = { -0.5, -0.95, 0}}, --ART 2S9 NONA [19140lb]
+					{ CLSID = "Herc_APC_MTLB_Air", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --APC MTLB [26000lb]
+					{ CLSID = "Herc_APC_MTLB_Skid", arg_value = 0.1, attach_point_position = { -0.5, -0.95, 0}}, --APC MTLB [26000lb]
+					{ CLSID = "Herc_GEN_CRATE", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --Generic
+					{ CLSID = "Herc_EWR_SBORKA_Air", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --EWR SBORKA Air [21624lb]
+					{ CLSID = "Herc_EWR_SBORKA_Skid", arg_value = 0.1, attach_point_position = { -0.5, -0.95, 0}}, --EWR SBORKA Air [21624lb]
+					{ CLSID = "Herc_APC_BTR_82A_Air", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --APC BTR-82A Air [24998lb]
+					{ CLSID = "Herc_APC_BTR_82A_Skid", arg_value = 0.1, attach_point_position = { -0.5, -0.95, 0}}, --APC BTR-82A Skid [24888lb]
             }
         ),
 		pylon(12, 0, 0.0, 0.0, 0.0,
@@ -747,27 +778,46 @@ Hercules = {
 					{ CLSID = "Herc_Ammo_S530D_missiles", arg_value = 0.1, attach_point_position = { 0, -0.1, 0}}, --super530d
 					{ CLSID = "Herc_Ammo_AIM54C_missiles", arg_value = 0.1, attach_point_position = { 0, -0.1, 0}}, --AIM54
 					--------------------------------------------Vechicles-------------------25000lb max----------------------------
-					{ CLSID = "Herc_APC_M1043_HMMWV_Armament", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}},---APC M1043 HMMWV Armament [7023lb]
-                    { CLSID = "Herc_ATGM_M1045_HMMWV_TOW", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --ATGM M1045 HMMWV TOW [7183lb]
-					{ CLSID = "Herc_AAA_Vulcan_M163", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, -- AAA Vulcan M163 [21666lb]
-					{ CLSID = "Herc_APC_LAV_25", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --APC LAV-25 [22514lb]
-					{ CLSID = "Herc_APC_M1025_HMMWV", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}},	--M1025 HMMWV [6160lb]		
-					{ CLSID = "Herc_SAM_M1097_HMMWV", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --SAM Avenger M1097 [7200lb]
-					{ CLSID = "Herc_APC_COBRA", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --APC Cobra [10912lb]
-					{ CLSID = "Herc_APC_M113", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --APC M113 [21624lb]
+					{ CLSID = "Herc_APC_M1043_HMMWV_Armament_Air", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}},---APC M1043 HMMWV Armament [7023lb]
+					{ CLSID = "Herc_APC_M1043_HMMWV_Armament_Skid", arg_value = 0.1, attach_point_position = { -0.5, -0.95, 0}},---APC M1043 HMMWV Armament [7023lb]
+					{ CLSID = "Herc_ATGM_M1045_HMMWV_TOW_Air", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --ATGM M1045 HMMWV TOW [7183lb]
+					{ CLSID = "Herc_ATGM_M1045_HMMWV_TOW_Skid", arg_value = 0.1, attach_point_position = { -0.5, -0.95, 0}}, --ATGM M1045 HMMWV TOW [7183lb]
+					{ CLSID = "Herc_AAA_Vulcan_M163_Air", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, -- AAA Vulcan M163 [21666lb]
+					{ CLSID = "Herc_AAA_Vulcan_M163_Skid", arg_value = 0.1, attach_point_position = { -0.5, -0.95, 0}}, -- AAA Vulcan M163 [21666lb]
+					{ CLSID = "Herc_APC_LAV_25_Air", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --APC LAV-25 [22514lb]
+					{ CLSID = "Herc_APC_LAV_25_Skid", arg_value = 0.1, attach_point_position = { -0.5, -0.95, 0}}, --APC LAV-25 [22514lb]
+					{ CLSID = "Herc_APC_M1025_HMMWV_Air", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}},	--M1025 HMMWV [6160lb]
+					{ CLSID = "Herc_APC_M1025_HMMWV_Skid", arg_value = 0.1, attach_point_position = { -0.5, -0.95, 0}},	--M1025 HMMWV [6160lb]		
+					{ CLSID = "Herc_SAM_M1097_HMMWV_Air", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --SAM Avenger M1097 [7200lb]
+					{ CLSID = "Herc_SAM_M1097_HMMWV_Skid", arg_value = 0.1, attach_point_position = { -0.5, -0.95, 0}}, --SAM Avenger M1097 [7200lb]
+					{ CLSID = "Herc_APC_COBRA_Air", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --APC Cobra [10912lb]
+					{ CLSID = "Herc_APC_COBRA_Skid", arg_value = 0.1, attach_point_position = { -0.5, -0.95, 0}}, --APC Cobra [10912lb]
+					{ CLSID = "Herc_APC_M113_Air", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --APC M113 [21624lb]
+					{ CLSID = "Herc_APC_M113_Skid", arg_value = 0.1, attach_point_position = { -0.5, -0.95, 0}}, --APC M113 [21624lb]
 					{ CLSID = "Herc_IFV_BMP_1", arg_value = 0.1, attach_point_position = { -0.5, -0.95, 0}}, --IFV BMP-1 [23232lb]
-					{ CLSID = "Herc_ARV_BRDM_2", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --ARV BRDM-2 [12320lb]
-					{ CLSID = "Herc_APC_BTR_80", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --APC BTR-80 [23936lb]
+					{ CLSID = "Herc_ARV_BRDM_2_Air", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --ARV BRDM-2 [12320lb]
+					{ CLSID = "Herc_ARV_BRDM_2_Skid", arg_value = 0.1, attach_point_position = { -0.5, -0.95, 0}}, --ARV BRDM-2 [12320lb]
+					{ CLSID = "Herc_APC_BTR_80_Air", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --APC BTR-80 [23936lb]
+					{ CLSID = "Herc_APC_BTR_80_Skid", arg_value = 0.1, attach_point_position = { -0.5, -0.95, 0}}, --APC BTR-80 [23936lb]
 					{ CLSID = "Herc_SAM_13", arg_value = 0.1, attach_point_position = { -0.5, -0.95, 0}}, --SAM SA-13 STRELA [21624lb]
-					{ CLSID = "Herc_UAZ_469", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --Transport UAZ-469 [3747lb]
-					{ CLSID = "Herc_URAL_375", arg_value = 0.1, attach_point_position = { -2.8, -1, 0}}, --Transport URAL-375 [14815lb]
+					{ CLSID = "Herc_UAZ_469_Air", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --Transport UAZ-469 [3747lb]
+					{ CLSID = "Herc_UAZ_469_Skid", arg_value = 0.1, attach_point_position = { -0.5, -0.95, 0}}, --Transport UAZ-469 [3747lb]
 					{ CLSID = "Herc_M_818", arg_value = 0.1, attach_point_position = { -2.9, -1, 0}}, --Transport M818 [16000lb]
-					{ CLSID = "Herc_TIGR_233036", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --Transport Tigr [15900lb]
-					{ CLSID = "Herc_SAM_CHAPARRAL", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --SAM CHAPARRAL [21624lb]
-					{ CLSID = "Herc_IFV_BMD1", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --IFV BMD-1 [18040lb]
-					{ CLSID = "Herc_IFV_BTRD", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --IFV BTR-D [18040lb]
-					{ CLSID = "Herc_ART_NONA", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --ART 2S9 NONA [19140lb]
-					{ CLSID = "Herc_GEN_CRATE", arg_value = 0.1, attach_point_position = { 0, 0, 0}}, --Generic
+					{ CLSID = "Herc_TIGR_233036_Air", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --Transport Tigr [15900lb]
+					{ CLSID = "Herc_TIGR_233036_Skid", arg_value = 0.1, attach_point_position = { -0.5, -0.95, 0}}, --Transport Tigr [15900lb]
+					{ CLSID = "Herc_SAM_CHAPARRAL_Air", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --SAM CHAPARRAL [21624lb]
+					{ CLSID = "Herc_SAM_CHAPARRAL_Skid", arg_value = 0.1, attach_point_position = { -0.5, -0.95, 0}}, --SAM CHAPARRAL [21624lb]
+					{ CLSID = "Herc_IFV_BMD1_Air", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --IFV BMD-1 [18040lb]
+					{ CLSID = "Herc_IFV_BMD1_Skid", arg_value = 0.1, attach_point_position = { -0.5, -0.95, 0}}, --IFV BMD-1 [18040lb]
+					{ CLSID = "Herc_IFV_BTRD_Air", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --IFV BTR-D [18040lb]
+					{ CLSID = "Herc_IFV_BTRD_Skid", arg_value = 0.1, attach_point_position = { -0.5, -0.95, 0}}, --IFV BTR-D [18040lb]
+					{ CLSID = "Herc_ART_NONA_Air", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --ART 2S9 NONA [19140lb]
+					{ CLSID = "Herc_ART_NONA_Skid", arg_value = 0.1, attach_point_position = { -0.5, -0.95, 0}}, --ART 2S9 NONA [19140lb]
+					{ CLSID = "Herc_GEN_CRATE", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --Generic
+					{ CLSID = "Herc_EWR_SBORKA_Air", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --EWR SBORKA Air [21624lb]
+					{ CLSID = "Herc_EWR_SBORKA_Skid", arg_value = 0.1, attach_point_position = { -0.5, -0.95, 0}}, --EWR SBORKA Air [21624lb]					
+					{ CLSID = "Herc_APC_BTR_82A_Air", arg_value = 0.1, attach_point_position = { -0.5, 0, 0}}, --APC BTR-82A Air [24998lb]
+					{ CLSID = "Herc_APC_BTR_82A_Skid", arg_value = 0.1, attach_point_position = { -0.5, -0.95, 0}}, --APC BTR-82A Skid [24888lb]
             }
         ),
     },
@@ -778,7 +828,7 @@ Hercules = {
         aircraft_task(GroundAttack),
     },	
 	DefaultTask = aircraft_task(Transport),
-	Countries = {"Algeria","Australia","Austria","Belgium","Brazil","Bulgaria","Canada","Chile","China","Denmark","Egypt",
+	Countries = {"Algeria","Australia","Austria","Argentina","Belgium","Brazil","Bulgaria","Canada","Chile","China","Denmark","Egypt",
 				 "France","Georgia","Greece","Honduras","India","Indonesia","Insurgents","Iran","Iraq","Israel","Italy",
 				 "Japan","Jordan","Kuwait","Libya","Malaysia","Mexico","Morocco","The Netherlands","Norway","Oman",
                  "Pakistan","Philippines","Poland","Portugal","Romania","Russia","Saudi Arabia","South Africa","South Korea",

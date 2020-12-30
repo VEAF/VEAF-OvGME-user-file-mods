@@ -48,6 +48,7 @@ Position_Control =
 
 ICS_PANEL =
 {
+	ICS_Silence_Keyb = Offset + counter();
 	PILOT_ICS_VOL_KNOB_ROT = Offset + counter();
 	PILOT_ICS_VOL_KNOB_PULL = Offset + counter();
 	COPILOT_ICS_VOL_KNOB_ROT = Offset + counter();
@@ -55,6 +56,7 @@ ICS_PANEL =
 	PILOT_ICS_UNDEF_KNOB_ROT = Offset + counter();
 	COPILOT_ICS_UNDEF_KNOB_ROT = Offset + counter();
 }
+
 
 General_No_Packet_Send =
 {

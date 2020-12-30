@@ -247,4 +247,23 @@ PILOT_AMU002_Waypoints_Select.parent_element = PILOT_AMU002_Waypoints_Select_ori
 PILOT_AMU002_Waypoints_Select.blend_mode 	=  blend_mode.IBM_REGULAR
 AddElement(PILOT_AMU002_Waypoints_Select)
 
+Add_Object_Text(PILOT_Confirm_Del, "PILOT_Confirm_Del", PILOT_AMU002_Waypoints_Select.name, 0,
+					"font_Arial_green",--objectmaterial
+					"LeftCenter",--objectalignment
+					{"Yes"},--format_value
+					{0.007,0.007,  -0.003, 0},--stringdefs_value
+					100.0,--initpixelposx
+					320.0,--initpixelposy
+					{--params
+						"PILOT_AMU_brightness",
+						"",
+						"PILOT_Delete_All_Wpts_Confirm",
+					},
+					{--controllers
+						{"opacity_using_parameter",0},
+						{"text_using_parameter",1,0},
+						{"parameter_in_range",2,0.95,1.05},
+					}
+				)
+
 

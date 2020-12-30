@@ -14,7 +14,7 @@ creators = {}
 -- creators[devices.RWR] = {"avSimpleRWR", LockOn_Options.script_path.."RWR/device/RWR_init.lua"}	
 
 creators[devices.Network_Synchronization] = {"avLuaDevice", LockOn_Options.script_path.."../../Network_Synchronization.lua"}
-creators[devices.Aerodynamic_Factor] = {"avLuaDevice", LockOn_Options.script_path.."Aerodynamic_Factor.lua"}
+creators[devices.Performance_Factors] = {"avLuaDevice", LockOn_Options.script_path.."Performance_Factors.lua"}
 creators[devices.General_Device] = {"avLuaDevice", LockOn_Options.script_path.."general_device.lua"}
 creators[devices.Pylon_Release_System] = {"avSimpleWeaponSystem", LockOn_Options.script_path.."PylonRelease/Pylon_Release_System.lua"}
 creators[devices.Update_Connectors] = {"avLuaDevice", LockOn_Options.script_path.."Update_Connectors.lua"}
@@ -63,14 +63,14 @@ indicators[#indicators + 1] = {"ccIndicator", LockOn_Options.script_path.."Instr
 
 indicators[#indicators + 1] = {"ccIndicator", LockOn_Options.script_path.."LMPanel/init.lua", nil, {{"LMPanel_CENTER_PNT","LMPanel_DOWN_PNT","LMPanel_RIGHT_PNT"}, {}}}
 --------------------------------------------------------------------------------------------------------DEBUG
-creators[devices.Debug] = {"avLuaDevice", LockOn_Options.script_path.."DEBUG/Debug.lua"}
-indicators[#indicators + 1] = {"ccIndicator", LockOn_Options.script_path.."DEBUG/DEBUG7/init.lua", nil, {{"CENTER_DEBUG007_PNT"}, {sw = -0.052, sh = -0.052 }}}
-indicators[#indicators + 1] = {"ccIndicator", LockOn_Options.script_path.."DEBUG/DEBUG1/init.lua", nil, {{"CENTER_DEBUG001_PNT"}, {sw = -0.052, sh = -0.052 }}}
-indicators[#indicators + 1] = {"ccIndicator", LockOn_Options.script_path.."DEBUG/DEBUG2/init.lua", nil, {{"CENTER_DEBUG002_PNT"}, {sw = -0.052, sh = -0.052 }}}
-indicators[#indicators + 1] = {"ccIndicator", LockOn_Options.script_path.."DEBUG/DEBUG3/init.lua", nil, {{"CENTER_DEBUG003_PNT"}, {sw = -0.052, sh = -0.052 }}}
-indicators[#indicators + 1] = {"ccIndicator", LockOn_Options.script_path.."DEBUG/DEBUG4/init.lua", nil, {{"CENTER_DEBUG004_PNT"}, {sw = -0.052, sh = -0.052 }}}
-indicators[#indicators + 1] = {"ccIndicator", LockOn_Options.script_path.."DEBUG/DEBUG5/init.lua", nil, {{"CENTER_DEBUG005_PNT"}, {sw = -0.052, sh = -0.052 }}}
-indicators[#indicators + 1] = {"ccIndicator", LockOn_Options.script_path.."DEBUG/DEBUG6/init.lua", nil, {{"CENTER_DEBUG006_PNT"}, {sw = -0.052, sh = -0.052 }}}
+-- creators[devices.Debug] = {"avLuaDevice", LockOn_Options.script_path.."DEBUG/Debug.lua"}
+-- indicators[#indicators + 1] = {"ccIndicator", LockOn_Options.script_path.."DEBUG/DEBUG7/init.lua", nil, {{"CENTER_DEBUG007_PNT"}, {sw = -0.052, sh = -0.052 }}}
+-- indicators[#indicators + 1] = {"ccIndicator", LockOn_Options.script_path.."DEBUG/DEBUG1/init.lua", nil, {{"CENTER_DEBUG001_PNT"}, {sw = -0.052, sh = -0.052 }}}
+-- indicators[#indicators + 1] = {"ccIndicator", LockOn_Options.script_path.."DEBUG/DEBUG2/init.lua", nil, {{"CENTER_DEBUG002_PNT"}, {sw = -0.052, sh = -0.052 }}}
+-- indicators[#indicators + 1] = {"ccIndicator", LockOn_Options.script_path.."DEBUG/DEBUG3/init.lua", nil, {{"CENTER_DEBUG003_PNT"}, {sw = -0.052, sh = -0.052 }}}
+-- indicators[#indicators + 1] = {"ccIndicator", LockOn_Options.script_path.."DEBUG/DEBUG4/init.lua", nil, {{"CENTER_DEBUG004_PNT"}, {sw = -0.052, sh = -0.052 }}}
+-- indicators[#indicators + 1] = {"ccIndicator", LockOn_Options.script_path.."DEBUG/DEBUG5/init.lua", nil, {{"CENTER_DEBUG005_PNT"}, {sw = -0.052, sh = -0.052 }}}
+-- indicators[#indicators + 1] = {"ccIndicator", LockOn_Options.script_path.."DEBUG/DEBUG6/init.lua", nil, {{"CENTER_DEBUG006_PNT"}, {sw = -0.052, sh = -0.052 }}}
 
 
 ---------------------------------------------

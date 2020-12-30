@@ -974,7 +974,7 @@ Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name, 0,
 					"RightCenter",--objectalignment
 					{"%.0flbs  "},--format_value
 					{0.007,0.007,  -0.0040, 0},--stringdefs_value
-					435,--initpixelposx
+					440,--initpixelposx
 					162,--initpixelposy
 					{--params
 						"COPILOT_CNI_MU_brightness",
@@ -1023,7 +1023,7 @@ Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name, 0,
 					"RightCenter",--objectalignment
 					{"%.0flbs  "},--format_value
 					{0.007,0.007,  -0.0040, 0},--stringdefs_value
-					435,--initpixelposx
+					455,--initpixelposx
 					214,--initpixelposy
 					{--params
 						"COPILOT_CNI_MU_brightness",
@@ -1040,7 +1040,7 @@ Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name, 0,
 					"RightCenter",--objectalignment
 					{"%.0flbs  "},--format_value
 					{0.007,0.007,  -0.0040, 0},--stringdefs_value
-					435,--initpixelposx
+					455,--initpixelposx
 					214,--initpixelposy
 					{--params
 						"COPILOT_CNI_MU_brightness",
@@ -1057,7 +1057,7 @@ Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name, 0,
 					"RightCenter",--objectalignment
 					{"%.0flbs  "},--format_value
 					{0.007,0.007,  -0.0040, 0},--stringdefs_value
-					435,--initpixelposx
+					455,--initpixelposx
 					214,--initpixelposy
 					{--params
 						"COPILOT_CNI_MU_brightness",
@@ -1093,7 +1093,7 @@ Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name, 0,
 					"LeftCenter",--objectalignment
 					{"%.0fft "},--format_value
 					{0.007,0.007,  -0.0040, 0},--stringdefs_value
-					322,--initpixelposx
+					335,--initpixelposx
 					266,--initpixelposy
 					{--params
 						"COPILOT_CNI_MU_brightness",
@@ -1112,7 +1112,7 @@ Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name, 0,
 					"LeftCenter",--objectalignment
 					{"%.0fft "},--format_value
 					{0.007,0.007,  -0.0040, 0},--stringdefs_value
-					322,--initpixelposx
+					335,--initpixelposx
 					266,--initpixelposy
 					{--params
 						"COPILOT_CNI_MU_brightness",
@@ -1149,7 +1149,7 @@ Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name, 0,
 					"LeftCenter",--objectalignment
 					{"%.0fft "},--format_value
 					{0.007,0.007,  -0.0040, 0},--stringdefs_value
-					262,--initpixelposx
+					270,--initpixelposx
 					318,--initpixelposy
 					{--params
 						"COPILOT_CNI_MU_brightness",
@@ -1168,7 +1168,7 @@ Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name, 0,
 					"LeftCenter",--objectalignment
 					{"%.0fft "},--format_value
 					{0.007,0.007,  -0.0040, 0},--stringdefs_value
-					262,--initpixelposx
+					270,--initpixelposx
 					318,--initpixelposy
 					{--params
 						"COPILOT_CNI_MU_brightness",

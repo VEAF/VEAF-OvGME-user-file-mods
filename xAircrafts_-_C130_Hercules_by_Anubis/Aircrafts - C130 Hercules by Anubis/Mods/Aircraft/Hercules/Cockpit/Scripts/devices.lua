@@ -15,7 +15,7 @@ devices["Simple_Intercom"]								= counter()
 devices["Helmet_Device"]						= counter()
 devices["Clock"]								= counter()
 devices["Autopilot"]							= counter()
-devices["Aerodynamic_Factor"]						= counter()
+devices["Performance_Factors"]						= counter()
 devices["HerculesSounds"]						= counter()
 devices["Debug"]						= counter()
 

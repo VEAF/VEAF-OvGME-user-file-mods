@@ -45,6 +45,7 @@ keyCommands = {
 
 -- Flightdeck
 {down = MISCELLANEOUS.Flightdeck_Windows_Toggle, name = _('Flightdeck Windows Toggle Open/Close'), category = _('Flightdeck')},
+{down = ICS_PANEL.ICS_Silence_Keyb, name = _('Silence Alarms Toggle'), category = _('Flightdeck')},
 
 -- Undercarriage
 {down = MISCELLANEOUS.BrakesBothOn, up = MISCELLANEOUS.BrakesBothOff, name = _('Left and Right Toe Brakes On/Off'), category = _('Undercarriage')},
@@ -118,7 +119,7 @@ keyCommands = {
 {pressed = BATTLE_STATION_COMMANDS.Cannon_Slew_LEFT, up = BATTLE_STATION_COMMANDS.Cannon_Slew_RELEASE, name = _('Cannon Slew LEFT'), category = _('Battle Station')},
 {pressed = BATTLE_STATION_COMMANDS.Cannon_Slew_RIGHT, up = BATTLE_STATION_COMMANDS.Cannon_Slew_RELEASE, name = _('Cannon Slew RIGHT'), category = _('Battle Station')},
 
---Counter Measuers
+--Counter measures
 {down = iCommandPlaneDropFlareOnce, name = _('Countermeasures Flares Dispense'), category = _('Countermeasures') , features = {"Countermeasures"}},
 {down = iCommandPlaneDropChaffOnce, name = _('Countermeasures Chaff Dispense'), category = _('Countermeasures') , features = {"Countermeasures"}},
 

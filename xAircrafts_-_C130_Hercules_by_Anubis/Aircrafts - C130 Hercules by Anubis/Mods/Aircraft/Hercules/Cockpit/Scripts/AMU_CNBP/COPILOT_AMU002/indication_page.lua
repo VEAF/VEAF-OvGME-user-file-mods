@@ -212,4 +212,23 @@ COPILOT_AMU002_Waypoints_Select.parent_element = COPILOT_AMU002_Waypoints_Select
 COPILOT_AMU002_Waypoints_Select.blend_mode 	=  blend_mode.IBM_REGULAR
 AddElement(COPILOT_AMU002_Waypoints_Select)
 
+Add_Object_Text(COPILOT_Confirm_Del, "COPILOT_Confirm_Del", COPILOT_AMU002_Waypoints_Select_origin.name, 0,
+					"font_Arial_green",--objectmaterial
+					"LeftCenter",--objectalignment
+					{"Yes"},--format_value
+					{0.007,0.007,  -0.003, 0},--stringdefs_value
+					100.0,--initpixelposx
+					320.0,--initpixelposy
+					{--params
+						"COPILOT_AMU_brightness",
+						"",
+						"COPILOT_Delete_All_Wpts_Confirm",
+					},
+					{--controllers
+						{"opacity_using_parameter",0},
+						{"text_using_parameter",1,0},
+						{"parameter_in_range",2,0.95,1.05},
+					}
+				)
+
 

@@ -31,12 +31,12 @@
 -- Crew member's public IP address (not your own IP !!!!!!!!!!!!): 
 -- Maximum of 15 characters
 -----------"Max   15   char"---------------"000.000.000.000"
-Handle_1 = "Awsome"			 Handle_1_IP = "102.129.61.128"
-Handle_2 = "Knapsak"		 Handle_2_IP = "105.244.73.204"
-Handle_3 = "Knapsak"		 Handle_3_IP = "105.244.73.204"
+Handle_1 = "Anubis"			 Handle_1_IP = "41.190.104.136"
+Handle_2 = "Knapsak"		 Handle_2_IP = "105.243.7.125"
+Handle_3 = "ducklings"		 Handle_3_IP = "105.247.156.216"
 Handle_4 = "Midnight"		 Handle_4_IP = "102.39.122.205"
-Handle_5 = "Gorlow"		     Handle_5_IP = "73.42.117.184"
-Handle_6 = "Sacarino"		 Handle_6_IP = "80.39.43.207"
+Handle_5 = "Anubis1"		 Handle_5_IP = "192.168.179.160"
+Handle_6 = "Anubis2"		 Handle_6_IP = "192.168.179.163"
 
 ---------------------------------------------------------------------------
 

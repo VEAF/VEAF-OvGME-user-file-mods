@@ -8,5 +8,5 @@ cdata =
 	NWS_COUPLED_SEPARATE_INPUT_DEVICE	= _('Nose wheel steering coupled to a separate input device'),
 	-- TextLine6 = 'The turboprop engines burn fuel with hardly any smoke residue.',
 	TextLine7 = 'Tick the box to enable for Steam users.',
-	STEAM_VERSION = _('Steam version enabled'),
+	STEAM_VERSION = _('Steam & Reshade version enabled'),
 }
