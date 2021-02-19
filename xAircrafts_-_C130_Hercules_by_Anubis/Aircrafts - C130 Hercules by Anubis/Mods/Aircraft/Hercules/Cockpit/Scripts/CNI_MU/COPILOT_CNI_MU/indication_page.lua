@@ -529,7 +529,7 @@ Told_INIT_origin.name 		     = "Told_INIT_origin"
 Told_INIT_origin.init_pos        = {0,0}
 Told_INIT_origin.element_params   = {
 								"COPILOT_CNI_MU_Told_INIT",
-								"COPILOT_Network_Sync",
+							     	"COPILOT_Network_Sync",
 										   } 
 Told_INIT_origin.controllers 	   = {
 								{"parameter_in_range",0,0.95,1.05},
@@ -908,7 +908,7 @@ Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name, 0,
 					"RightCenter",--objectalignment
 					{" "},--format_value
 					{0.007,0.020,  0, 0},--stringdefs_value
-					325,--initpixelposx
+					440,--initpixelposx
 					58,--initpixelposy
 					{--params
 						"COCOPILOT_CNI_MU_brightness",
@@ -990,7 +990,7 @@ Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name, 0,
 					"RightCenter",--objectalignment
 					{"  "},--format_value
 					{0.007,0.0165,  0, 0},--stringdefs_value
-					432,--initpixelposx
+					442,--initpixelposx
 					162,--initpixelposy
 					{--params
 						"COCOPILOT_CNI_MU_brightness",
@@ -1273,7 +1273,7 @@ Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
 					"LeftCenter",--objectalignment
 					{"%.0fft "},--format_value
 					{0.007,0.007,  -0.0040, 0},--stringdefs_value
-					220,--initpixelposx
+					230,--initpixelposx
 					58,--initpixelposy
 					{--params
 						"COPILOT_CNI_MU_brightness",
@@ -1289,7 +1289,7 @@ Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
 					"LeftCenter",--objectalignment
 					{" "},--format_value
 					{0.007,0.022,  0, 0},--stringdefs_value
-					225,--initpixelposx
+					235,--initpixelposx
 					58,--initpixelposy
 					{--params
 						"COPILOT_CNI_MU_brightness",
@@ -1602,7 +1602,7 @@ Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
 					"RightCenter",--objectalignment
 					{"oat:"},--format_value
 					{0.007,0.007,  -0.0042, 0},--stringdefs_value
-					435,--initpixelposx
+					415,--initpixelposx
 					162,--initpixelposy
 					{--params
 						"COPILOT_CNI_MU_brightness",
@@ -1750,7 +1750,7 @@ Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
 					"LeftCenter",--objectalignment
 					{"%.0fft "},--format_value
 					{0.007,0.007,  -0.0040, 0},--stringdefs_value
-					322,--initpixelposx
+					332,--initpixelposx
 					266,--initpixelposy
 					{--params
 						"COPILOT_CNI_MU_brightness",
@@ -1769,7 +1769,7 @@ Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
 					"LeftCenter",--objectalignment
 					{"%.0fft "},--format_value
 					{0.007,0.007,  -0.0040, 0},--stringdefs_value
-					322,--initpixelposx
+					332,--initpixelposx
 					266,--initpixelposy
 					{--params
 						"COPILOT_CNI_MU_brightness",
@@ -1806,7 +1806,7 @@ Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
 					"LeftCenter",--objectalignment
 					{"%.0fft "},--format_value
 					{0.007,0.007,  -0.0040, 0},--stringdefs_value
-					262,--initpixelposx
+					272,--initpixelposx
 					318,--initpixelposy
 					{--params
 						"COPILOT_CNI_MU_brightness",
@@ -1825,7 +1825,7 @@ Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
 					"LeftCenter",--objectalignment
 					{"%.0fft "},--format_value
 					{0.007,0.007,  -0.0040, 0},--stringdefs_value
-					262,--initpixelposx
+					272,--initpixelposx
 					318,--initpixelposy
 					{--params
 						"COPILOT_CNI_MU_brightness",

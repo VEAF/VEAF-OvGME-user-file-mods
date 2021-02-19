@@ -1,5 +1,4 @@
 local EngineThrust_factor = get_param_handle("EngineThrust_factor")
-local EngineRamAir_Factor = get_param_handle("EngineRamAir_Factor")
 local EnginePropDiskBrake_factor = get_param_handle("EnginePropDiskBrake_factor")
 
 local C_L_Alpha0_val = get_param_handle("C_L_Alpha0_val")
@@ -47,8 +46,6 @@ local N_trim_rate = get_param_handle("N_trim_rate")
 
 -- thrust per engine
 EngineThrust_factor:set(0.8)--0.95
--- Ram air due to accelerating aircraft make engines more efficient (more thrust)
-EngineRamAir_Factor:set(1.00)--1.0
 -- prop disk braking due to variation in engine spooling (thrust/drag ratio)
 EnginePropDiskBrake_factor:set(0.25)--1.0
 
@@ -78,17 +75,17 @@ C_L_groundeffect_factor:set(0.40)--0.96
 
 --//////////////////////////////////////////////////////////////////////////////////// Drag Coefficients
 
--- Drag at zero angle of attack
-C_D_0_factor:set(1.0)--1.5
+-- Drag coefficient at zero angle of attack
+C_D_0_factor:set(0.1)
 
 -- Drag due to variation in angle of attack
-C_D_alpha_factor:set(1.3)--0.8
+C_D_alpha_factor:set(1.0)--0.8
 
 -- Drag due to variation in sideslip angle
 C_D_beta_factor:set(0.0)--0.5
 
 -- Drag due to variation in flaps deflection
-C_D_delta_f_Factor:set(0.2)--0.1
+C_D_delta_f_Factor:set(0.1)--0.1
 
 -- Drag due to variation in gear extention
 C_D_delta_g_factor:set(0.05)--0.05
@@ -96,8 +93,8 @@ C_D_delta_g_factor:set(0.05)--0.05
 -- Drag due to variation in Paratroop Air Deflector extention
 C_D_delta_Paratroop_Air_Deflector_factor:set(0.01)--0.05
 
--- Increase in drag due to wheel ground interaction (decreased to zero at stall speed and above)
-C_D_WheelGroundInterAction_factor:set(0.5)--
+-- Increase in drag due to wheel ground interaction (decrease to zero at stall speed and above)
+C_D_WheelGroundInterAction_factor:set(0.0)--0.5
 
 --//////////////////////////////////////////////////////////////////////////////////// Side Force Coefficients
 
@@ -157,7 +154,7 @@ N_r_factor:set(40.0)--60.0
 -- Yaw Moment due to variation in aileron deflection
 N_delta_a_factor:set(5.0)-- 15.0
 
--- Yaw Moment due to variation in rudder deflection
+-- Yaw Moment due to variation in rudder deflection, flaps more than 15% double this value
 N_delta_r_factor:set(2.5)--1.0
 
 -- rudder trim rate

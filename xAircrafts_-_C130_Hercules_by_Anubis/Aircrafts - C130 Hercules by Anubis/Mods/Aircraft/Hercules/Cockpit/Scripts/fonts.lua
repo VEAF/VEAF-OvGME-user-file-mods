@@ -2,7 +2,13 @@
 
 fontdescription = {}
 
----------------------------------------------------------------Hercules
+fontdescription["font_Arial_background"] = {
+	texture    = LockOn_Options.script_path.."../Resources/Fonts/Herc_font_arial_Background.dds",
+	size      = {10, 6},
+	resolution = {32, 32},
+	default    = {18, 8},
+	chars	    = {[1] = {32, 4.8, 3.2}} -- [space]
+}
 
 HUD_xsize = 44 * 2
 HUD_ysize = 72.0 * 2 --73.143 * 2
@@ -182,4 +188,183 @@ fontdescription["font_Arial"] = {
 }
 
 
+MPCD_size_mult = 2
+MPCD_xsize = 29 * MPCD_size_mult
+MPCD_ysize = 64 * MPCD_size_mult
+
+
+fontdescription["font_MPCD"] = {
+	texture		= LockOn_Options.script_path.."../Resources/Fonts/Herc_font_TacView_BOLD.dds",
+	size		= {8, 8},
+	resolution	= {1024, 1024},
+	default		= {MPCD_xsize + 6, MPCD_ysize + 6},
+	chars		= {
+		[1]   = {64,  MPCD_xsize, MPCD_ysize}, -- @ == ©
+		[2]   = {18,  MPCD_xsize, MPCD_ysize}, -- ^ == \18
+		[3]   = {20,  MPCD_xsize, MPCD_ysize}, -- ¶ == [] == \20
+		[4]   = {26,  MPCD_xsize, MPCD_ysize}, -- > == -> == \26
+		[5]   = {27,  MPCD_xsize, MPCD_ysize}, -- < == <- == \27
+		[6]   = {31,  MPCD_xsize, MPCD_ysize}, -- SPARE 
+		[7]   = {126, MPCD_xsize, MPCD_ysize}, -- ~
+		[8]   = {32,  MPCD_xsize, MPCD_ysize}, -- [space]
+		[9]   = {33,  MPCD_xsize, MPCD_ysize}, -- !
+		[10]  = {35,  MPCD_xsize, MPCD_ysize}, -- #
+		[11]  = {40,  MPCD_xsize, MPCD_ysize}, -- (
+		[12]  = {41,  MPCD_xsize, MPCD_ysize}, -- )
+		[13]  = {42,  MPCD_xsize, MPCD_ysize}, -- *
+		[14]  = {43,  MPCD_xsize, MPCD_ysize}, -- +
+		[15]  = {45,  MPCD_xsize, MPCD_ysize}, -- -
+		[16]  = {46,  MPCD_xsize, MPCD_ysize}, -- .
+		[17]  = {47,  MPCD_xsize, MPCD_ysize}, -- /
+		[18]  = {48,  MPCD_xsize, MPCD_ysize}, -- 0
+		[19]  = {49,  MPCD_xsize, MPCD_ysize}, -- 1
+		[20]  = {50,  MPCD_xsize, MPCD_ysize}, -- 2
+		[21]  = {51,  MPCD_xsize, MPCD_ysize}, -- 3
+		[22]  = {52,  MPCD_xsize, MPCD_ysize}, -- 4
+		[23]  = {53,  MPCD_xsize, MPCD_ysize}, -- 5
+		[24]  = {54,  MPCD_xsize, MPCD_ysize}, -- 6
+		[25]  = {55,  MPCD_xsize, MPCD_ysize}, -- 7
+		[26]  = {56,  MPCD_xsize, MPCD_ysize}, -- 8
+		[27]  = {57,  MPCD_xsize, MPCD_ysize}, -- 9
+		[28]  = {58,  MPCD_xsize, MPCD_ysize}, -- :
+		[29]  = {61,  MPCD_xsize, MPCD_ysize}, -- =
+		[30]  = {63,  MPCD_xsize, MPCD_ysize}, -- ?
+		[31]  = {65,  MPCD_xsize, MPCD_ysize}, -- A
+		[32]  = {66,  MPCD_xsize, MPCD_ysize}, -- B
+		[33]  = {67,  MPCD_xsize, MPCD_ysize}, -- C
+		[34]  = {68,  MPCD_xsize, MPCD_ysize}, -- D
+		[35]  = {69,  MPCD_xsize, MPCD_ysize}, -- E
+		[36]  = {70,  MPCD_xsize, MPCD_ysize}, -- F
+		[37]  = {71,  MPCD_xsize, MPCD_ysize}, -- G
+		[38]  = {72,  MPCD_xsize, MPCD_ysize}, -- H
+		[39]  = {73,  MPCD_xsize, MPCD_ysize}, -- I
+		[40]  = {74,  MPCD_xsize, MPCD_ysize}, -- J
+		[41]  = {75,  MPCD_xsize, MPCD_ysize}, -- K
+		[42]  = {76,  MPCD_xsize, MPCD_ysize}, -- L
+		[43]  = {77,  MPCD_xsize, MPCD_ysize}, -- M
+		[44]  = {78,  MPCD_xsize, MPCD_ysize}, -- N
+		[45]  = {79,  MPCD_xsize, MPCD_ysize}, -- O
+		[46]  = {80,  MPCD_xsize, MPCD_ysize}, -- P
+		[47]  = {81,  MPCD_xsize, MPCD_ysize}, -- Q
+		[48]  = {82,  MPCD_xsize, MPCD_ysize}, -- R
+		[49]  = {83,  MPCD_xsize, MPCD_ysize}, -- S
+		[50]  = {84,  MPCD_xsize, MPCD_ysize}, -- T
+		[51]  = {85,  MPCD_xsize, MPCD_ysize}, -- U
+		[52]  = {86,  MPCD_xsize, MPCD_ysize}, -- V
+		[53]  = {87,  MPCD_xsize, MPCD_ysize}, -- W
+		[54]  = {88,  MPCD_xsize, MPCD_ysize}, -- X
+		[55]  = {89,  MPCD_xsize, MPCD_ysize}, -- Y
+		[56]  = {90,  MPCD_xsize, MPCD_ysize}, -- Z
+		[57]  = {91,  MPCD_xsize, MPCD_ysize}, -- [
+		[58]  = {93,  MPCD_xsize, MPCD_ysize}, -- ] 
+		[59]  = {124, MPCD_xsize, MPCD_ysize}, -- | == ¦
+		[60]  = {38,  MPCD_xsize, MPCD_ysize}, -- & == +- 
+		[61]  = {59,  MPCD_xsize, MPCD_ysize}, -- ; == ° 
+		[62]  = {95,  MPCD_xsize, MPCD_ysize}, -- _
+		[63]  = {37,  MPCD_xsize, MPCD_ysize},-- %
+	}
+}
+
+
+local hdd_xsizep= 175 --51.2
+local hdd_x_fat = 100
+local hdd_x_thin = -70
+local hdd_ysizep= 270 --51.2
+fontdescription["font_HDD"] = {
+	texture    = LockOn_Options.script_path.."../Resources/Fonts/Herc_Font_HDD.dds",
+	size      = {8, 8},	--{10, 10},
+	resolution = {2160, 2160},
+	default    = {hdd_xsizep, hdd_ysizep},
+	chars	    = {
+		--GIVEN THIS IS NOT A  MONOTYPE FONT, THEN EACH OF THE hdd_xsize variables need flexing to handle the different width of the characters
+		 {48, hdd_xsizep, hdd_ysizep},	-- 0
+		 {49, hdd_xsizep + hdd_x_thin, hdd_ysizep}, -- 1
+		 {50, hdd_xsizep, hdd_ysizep}, -- 2
+		 {51, hdd_xsizep, hdd_ysizep}, -- 3
+		 {52, hdd_xsizep, hdd_ysizep}, -- 4
+		 {53, hdd_xsizep, hdd_ysizep}, -- 5
+		 {54, hdd_xsizep, hdd_ysizep}, -- 6
+		 {55, hdd_xsizep, hdd_ysizep}, -- 7
+		 {56, hdd_xsizep, hdd_ysizep}, -- 8
+		 {57, hdd_xsizep, hdd_ysizep},	-- 9
+		 {65, hdd_xsizep, hdd_ysizep},--A
+		 {66, hdd_xsizep, hdd_ysizep},--B
+		 {67, hdd_xsizep, hdd_ysizep},--C
+		 {68, hdd_xsizep, hdd_ysizep},--D
+		 {69, hdd_xsizep, hdd_ysizep},--E
+		 {70, hdd_xsizep, hdd_ysizep},--F
+		 {71, hdd_xsizep, hdd_ysizep},--G
+		 {72, hdd_xsizep, hdd_ysizep},--H
+		 {73, hdd_xsizep + hdd_x_thin, hdd_ysizep},--I
+		 {74, hdd_xsizep, hdd_ysizep},--J
+		 {75, hdd_xsizep, hdd_ysizep},--K
+		 {76, hdd_xsizep, hdd_ysizep},--L
+		 {77, hdd_xsizep + hdd_x_fat, hdd_ysizep},--M
+		 {78, hdd_xsizep, hdd_ysizep},--N
+		 {79, hdd_xsizep, hdd_ysizep},--O
+		 {80, hdd_xsizep, hdd_ysizep},--P
+		 {81, hdd_xsizep, hdd_ysizep},--Q
+		 {82, hdd_xsizep, hdd_ysizep},--R
+		 {83, hdd_xsizep, hdd_ysizep},--S
+		 {84, hdd_xsizep, hdd_ysizep},--T
+		 {85, hdd_xsizep, hdd_ysizep},--U
+		 {86, hdd_xsizep, hdd_ysizep},--V
+		 {87, hdd_xsizep + hdd_x_fat, hdd_ysizep},--W
+		 {88, hdd_xsizep, hdd_ysizep},--X
+		 {89, hdd_xsizep, hdd_ysizep},--Y
+		 {90, hdd_xsizep, hdd_ysizep},--Z
+		 {46, hdd_xsizep + hdd_x_thin, hdd_ysizep},--PERIOD
+		 {58, hdd_xsizep + hdd_x_thin, hdd_ysizep},--COLON
+		 {0x2D, hdd_xsizep, hdd_ysizep},--MINUS
+	}
+}
+
+fontdescription["font_HDD_MONO"] = {
+	texture    = LockOn_Options.script_path.."../Resources/Fonts/Herc_Font_HDD.dds",
+	size      = {8, 8},	--{10, 10},
+	resolution = {2160, 2160},
+	default    = {hdd_xsizep, hdd_ysizep},
+	chars	    = {
+		--GIVEN THIS IS NOT A  MONOTYPE FONT, THEN EACH OF THE hdd_xsize variables need flexing to handle the different width of the characters
+		 {48, hdd_xsizep, hdd_ysizep},	-- 0
+		 {49, hdd_xsizep, hdd_ysizep}, -- 1
+		 {50, hdd_xsizep, hdd_ysizep}, -- 2
+		 {51, hdd_xsizep, hdd_ysizep}, -- 3
+		 {52, hdd_xsizep, hdd_ysizep}, -- 4
+		 {53, hdd_xsizep, hdd_ysizep}, -- 5
+		 {54, hdd_xsizep, hdd_ysizep}, -- 6
+		 {55, hdd_xsizep, hdd_ysizep}, -- 7
+		 {56, hdd_xsizep, hdd_ysizep}, -- 8
+		 {57, hdd_xsizep, hdd_ysizep},	-- 9
+		 {65, hdd_xsizep, hdd_ysizep},--A
+		 {66, hdd_xsizep, hdd_ysizep},--B
+		 {67, hdd_xsizep, hdd_ysizep},--C
+		 {68, hdd_xsizep, hdd_ysizep},--D
+		 {69, hdd_xsizep, hdd_ysizep},--E
+		 {70, hdd_xsizep, hdd_ysizep},--F
+		 {71, hdd_xsizep, hdd_ysizep},--G
+		 {72, hdd_xsizep, hdd_ysizep},--H
+		 {73, hdd_xsizep, hdd_ysizep},--I
+		 {74, hdd_xsizep, hdd_ysizep},--J
+		 {75, hdd_xsizep, hdd_ysizep},--K
+		 {76, hdd_xsizep, hdd_ysizep},--L
+		 {77, hdd_xsizep, hdd_ysizep},--M
+		 {78, hdd_xsizep, hdd_ysizep},--N
+		 {79, hdd_xsizep, hdd_ysizep},--O
+		 {80, hdd_xsizep, hdd_ysizep},--P
+		 {81, hdd_xsizep, hdd_ysizep},--Q
+		 {82, hdd_xsizep, hdd_ysizep},--R
+		 {83, hdd_xsizep, hdd_ysizep},--S
+		 {84, hdd_xsizep, hdd_ysizep},--T
+		 {85, hdd_xsizep, hdd_ysizep},--U
+		 {86, hdd_xsizep, hdd_ysizep},--V
+		 {87, hdd_xsizep, hdd_ysizep},--W
+		 {88, hdd_xsizep, hdd_ysizep},--X
+		 {89, hdd_xsizep, hdd_ysizep},--Y
+		 {90, hdd_xsizep, hdd_ysizep},--Z
+		 {46, hdd_xsizep, hdd_ysizep},--PERIOD
+		 {58, hdd_xsizep, hdd_ysizep},--COLON
+		 {0x2D, hdd_xsizep, hdd_ysizep},--MINUS
+	}
+}
 

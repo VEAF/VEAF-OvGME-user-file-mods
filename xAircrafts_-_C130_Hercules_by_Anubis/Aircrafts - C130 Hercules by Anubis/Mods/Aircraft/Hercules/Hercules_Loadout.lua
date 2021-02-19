@@ -304,8 +304,8 @@ Cargo_Contents({user_name = _("IFV MCV-80 [34720lb]"), clsid = "Herc_IFV_MCV80_W
 Cargo_Contents({user_name = _("IFV BMP-1 [23232lb]"), clsid = "Herc_IFV_BMP_1", mass = 10560, model = "bmp-1", CargoIcon = "Herc_Mil_Vehicle.png"})--BMP-1
 Cargo_Contents({user_name = _("IFV BMP-2 [25168lb]"), clsid = "Herc_IFV_BMP_2", mass = 11440, model = "bmp-2", CargoIcon = "Herc_Mil_Vehicle.png"}) --BMP-2
 Cargo_Contents({user_name = _("IFV BMP-3 [32912lb]"), clsid = "Herc_IFV_BMP_3", mass = 14960, model = "BMP-3", CargoIcon = "Herc_Mil_Vehicle.png"}) --BMP-3
-Cargo_Contents({user_name = _("ARV BRDM-2 Air [12320lb]"), clsid = "Herc_ARV_BRDM_2_Air", mass = 5600, model = "brdm-2", CargoIcon = "Herc_Container.png"}) --BRDM-2 AIR
-Cargo_Contents({user_name = _("ARV BRDM-2 Skid [12210lb]"), clsid = "Herc_ARV_BRDM_2_Skid", mass = 5550, model = "Hercules_Container_Parachute", CargoIcon = "Herc_Mil_Vehicle.png"}) --BRDM-2 Skid
+Cargo_Contents({user_name = _("ARV BRDM-2 Air [12320lb]"), clsid = "Herc_ARV_BRDM_2_Air", mass = 5600, model = "Hercules_Container_Parachute", CargoIcon = "Herc_Container.png"}) --BRDM-2 AIR
+Cargo_Contents({user_name = _("ARV BRDM-2 Skid [12210lb]"), clsid = "Herc_ARV_BRDM_2_Skid", mass = 5550, model = "brdm-2", CargoIcon = "Herc_Mil_Vehicle.png"}) --BRDM-2 Skid
 Cargo_Contents({user_name = _("APC BTR-80 Air [23936lb]"), clsid = "Herc_APC_BTR_80_Air", mass = 10880, model = "Hercules_Container_Parachute", CargoIcon = "Herc_Container.png"}) --BTR-80 air
 Cargo_Contents({user_name = _("APC BTR-80 Skid [23826lb]"), clsid = "Herc_APC_BTR_80_Skid", mass = 10830, model = "BTR-80", CargoIcon = "Herc_Mil_Vehicle.png"}) --BTR-80 skid
 Cargo_Contents({user_name = _("SAM ROLAND ADS [34720lb]"), clsid = "Herc_SAM_ROLAND_ADS", mass = 15782, model = "Hercules_Container_Parachute", CargoIcon = "Herc_Mil_Vehicle.png"}) --Roland ADS
@@ -321,7 +321,7 @@ Cargo_Contents({user_name = _("Transport Tigr Air [15900lb]"), clsid = "Herc_TIG
 Cargo_Contents({user_name = _("Transport Tigr Skid [15730lb]"), clsid = "Herc_TIGR_233036_Skid", mass = 7150, model = "Tigr_233036", CargoIcon =  "Herc_Mil_Vehicle.png"}) --tigr skid
 Cargo_Contents({user_name = _("AAA GEPARD [34720lb]"), clsid = "Herc_AAA_GEPARD", mass = 15782, model = "Gepard", CargoIcon = "Herc_Mil_Vehicle.png"}) --Geopard
 Cargo_Contents({user_name = _("SAM CHAPARRAL Air [21624lb]"), clsid = "Herc_SAM_CHAPARRAL_Air", mass = 9830, model = "Hercules_Container_Parachute", CargoIcon =  "Herc_Container.png"}) --chaparal air
-Cargo_Contents({user_name = _("SAM CHAPARRAL Skid [21516lb]"), clsid = "Herc_SAM_CHAPARRAL_Skid", mass = 9780, model = "Hercules_Container_Parachute", CargoIcon =  "Herc_Mil_Vehicle.png"}) --chaparal skid
+Cargo_Contents({user_name = _("SAM CHAPARRAL Skid [21516lb]"), clsid = "Herc_SAM_CHAPARRAL_Skid", mass = 9780, model = "M48", CargoIcon =  "Herc_Mil_Vehicle.png"}) --chaparal skid
 Cargo_Contents({user_name = _("SAM LINEBACKER [34720lb]"), clsid = "Herc_SAM_LINEBACKER", mass = 15782, model = "M6", CargoIcon = "Herc_Mil_Vehicle.png"}) --linebacker
 Cargo_Contents({user_name = _("IFV MARDER [34720lb]"), clsid = "Herc_IFV_MARDER", mass = 15782, model = "marder", CargoIcon =  "Herc_Mil_Vehicle.png"}) --Geopard
 Cargo_Contents({user_name = _("IFV TPZ FUCH [33440lb]"), clsid = "Herc_IFV_TPZ", mass = 15200, model = "TPZ", CargoIcon = "Herc_Mil_Vehicle.png"}) --tpz
@@ -336,7 +336,7 @@ Cargo_Contents({user_name = _("APC MTLB Air [26400lb]"), clsid = "Herc_APC_MTLB_
 Cargo_Contents({user_name = _("APC MTLB Skid [26290lb]"), clsid = "Herc_APC_MTLB_Skid", mass = 11950, model = "MTLB", CargoIcon = "Herc_Mil_Vehicle.png"})--MTLB
 Cargo_Contents({user_name = _("Generic Crate [20000lb]"), clsid = "Herc_GEN_CRATE", mass = 9071, model = "Hercules_Container_Parachute", CargoIcon = "Herc_Container.png"}) --Generic
 Cargo_Contents({user_name = _("EWR SBORKA Air [21624lb]"), clsid = "Herc_EWR_SBORKA_Air", mass = 9829, model = "Hercules_Container_Parachute", CargoIcon = "Herc_Container.png"})--sborka air
-Cargo_Contents({user_name = _("EWR SBORKA Skid [21624lb]"), clsid = "Herc_EWR_SBORKA_Skid", mass = 9829, model = "Dog Ear radar", CargoIcon = "Herc_Mil_Vehicle.png"})--sborka air
+Cargo_Contents({user_name = _("EWR SBORKA Skid [21624lb]"), clsid = "Herc_EWR_SBORKA_Skid", mass = 9829, model = "Sborka", CargoIcon = "Herc_Mil_Vehicle.png"})--sborka air
 Cargo_Contents({user_name = _("APC BTR-82A Air [24998lb]"), clsid = "Herc_APC_BTR_82A_Air", mass = 11363, model = "Hercules_Container_Parachute", CargoIcon = "Herc_Container.png"}) --BTR-82A
 Cargo_Contents({user_name = _("APC BTR-82A Skid [24888lb]"), clsid = "Herc_APC_BTR_82A_Skid", mass = 11313, model = "BTR-82A", CargoIcon = "Herc_Mil_Vehicle.png"}) --BTR-82A
 
@@ -426,9 +426,9 @@ declare_loadout(
  		Picture			= "Herc_ExtFuelTank.png",
  		displayName		= _("External Fuel Tank"),
  		-- Weight_Empty	= 94,	-- (207lb empty tank)
- 		Weight_Empty	= 3000,	-- used as a counter weight until we learn how to fill it
+ 		Weight_Empty	= 4131,	-- used as a counter weight until we learn how to fill it
  		Weight			= 4131,	-- (9107lb loaded = 207lb empty tank + 8900lb fuel )
-		Capacity		= 4031,
+		Capacity		= 4031 - 94,
  		Cx_pil			= 0.002,
  		shape_table_data =
  		{
@@ -517,8 +517,7 @@ declare_loadout(
 		CLSID		= "Herc_JATO",
 		Picture		= "Herc_JATO_Rocket_Attachment.png",
 		displayName	= _("JATO"),
-		-- Weight		= 120,
-		Weight		= 0,
+		Weight		= 200,
 		Cx_pil		= 0.0,
  		attribute		=  {wsType_Air,wsType_Free_Fall,wsType_FuelTank,WSTYPE_PLACEHOLDER},
 		shape_table_data =
@@ -582,8 +581,9 @@ declare_loadout(
 		Picture				=	"Herc_105mm_Howitzer.png",
 		attribute			= {wsType_Weapon, wsType_GContainer, wsType_Cannon_Cont, WSTYPE_PLACEHOLDER},
 		-- wsTypeOfWeapon		= {wsType_Weapon, wsType_Shell, wsType_Shell_A, wsTypeVulkan},
-		Weight				= 136 + (300 * 1.533142), -- INCLUDE AMMO FOR FULL WEIGHT
-        Weight_Empty        = 136,
+        -- Weight_Empty        = 1200,
+        Weight_Empty        = 1200,
+		Weight				= 1200 + (300 * 14.7), -- INCLUDE AMMO FOR FULL WEIGHT
 		Cx_pil				= 0.001220703125,
 		kind_of_shipping	= 2,--SOLID_MUNITION
 		gun_mounts			= {
@@ -653,8 +653,8 @@ declare_loadout(
 		Picture				=	"Herc_GAU_23A_Chain_Gun.png",
 		attribute			= {wsType_Weapon, wsType_GContainer, wsType_Cannon_Cont, WSTYPE_PLACEHOLDER},
 		-- wsTypeOfWeapon		= {wsType_Weapon, wsType_Shell, wsType_Shell_A, wsTypeVulkan},
-		Weight				= 136 + (300 * 1.533142), -- INCLUDE AMMO FOR FULL WEIGHT
-        Weight_Empty        = 136,
+        Weight_Empty        = 600,
+		Weight				= 600 + (600 * 0.360), -- INCLUDE AMMO FOR FULL WEIGHT
 		Cx_pil				= 0.001220703125,
 		kind_of_shipping	= 2,--SOLID_MUNITION
 		gun_mounts			= {
@@ -725,8 +725,8 @@ declare_loadout(
 		Picture				=	"Herc_M61_Vulcan_Rotary_Cannon.png",
 		attribute			= {wsType_Weapon, wsType_GContainer, wsType_Cannon_Cont, WSTYPE_PLACEHOLDER},
 		-- wsTypeOfWeapon		= {wsType_Weapon, wsType_Shell, wsType_Shell_A, wsTypeVulkan},
-		Weight				= 136 + (300 * 1.533142), -- INCLUDE AMMO FOR FULL WEIGHT
         Weight_Empty        = 136,
+		Weight				= 136 + (8000 * 0.1), -- INCLUDE AMMO FOR FULL WEIGHT
 		Cx_pil				= 0.001220703125,
 		kind_of_shipping	= 2,--SOLID_MUNITION
 		gun_mounts			= {

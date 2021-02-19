@@ -107,40 +107,114 @@ PILOT_AMU001_Nav_Select.parent_element = PILOT_AMU001_Nav_Select_origin.name
 PILOT_AMU001_Nav_Select.blend_mode 	=  blend_mode.IBM_REGULAR
 AddElement(PILOT_AMU001_Nav_Select)
 
--------------------------------------------------------------------------------PILOT_AMU001_Checklists
+-------------------------------------------------------------------------------PILOT_AMU001_Unit_Settings
 
-local PILOT_AMU001_Checklists_origin	         = CreateElement "ceSimple"
-PILOT_AMU001_Checklists_origin.name 		     = "PILOT_AMU001_Checklists_origin"
-PILOT_AMU001_Checklists_origin.init_pos        = {0,0}
-PILOT_AMU001_Checklists_origin.element_params   = {
-								"PILOT_AMU001_Checklists",
+local PILOT_AMU001_Unit_Settings_origin	         = CreateElement "ceSimple"
+PILOT_AMU001_Unit_Settings_origin.name 		     = "PILOT_AMU001_Unit_Settings_origin"
+PILOT_AMU001_Unit_Settings_origin.init_pos        = {0,0}
+PILOT_AMU001_Unit_Settings_origin.element_params   = {
+								"PILOT_AMU001_Unit_Settings",
 										   } 
-PILOT_AMU001_Checklists_origin.controllers 	   = {
+PILOT_AMU001_Unit_Settings_origin.controllers 	   = {
 								{"parameter_in_range",0,0.95,1.05},
 								}
-PILOT_AMU001_Checklists_origin.collimated 		 = true
-AddElement(PILOT_AMU001_Checklists_origin)
+PILOT_AMU001_Unit_Settings_origin.collimated 		 = true
+AddElement(PILOT_AMU001_Unit_Settings_origin)
 
-local PILOT_AMU001_Checklists	    = CreateElement "ceTexPoly"
-PILOT_AMU001_Checklists.name 		= "PILOT_AMU001_Checklists"
-PILOT_AMU001_Checklists.material   = "AMU001_Checklists"
-PILOT_AMU001_Checklists.vertices 	   = {{-width, height},
+local PILOT_AMU001_Unit_Settings	    = CreateElement "ceTexPoly"
+PILOT_AMU001_Unit_Settings.name 		= "PILOT_AMU001_Unit_Settings"
+PILOT_AMU001_Unit_Settings.material   = "AMU001_Unit_Settings"
+PILOT_AMU001_Unit_Settings.vertices 	   = {{-width, height},
 					  { width, height},
 					  { width,-height},
 					  {-width,-height}}
-PILOT_AMU001_Checklists.indices			= default_box_indices	
-PILOT_AMU001_Checklists.tex_coords = {{0,0},{1,0},{1,1},{0,1}}
-PILOT_AMU001_Checklists.init_pos   = {0,0} 
-PILOT_AMU001_Checklists.element_params   = {
+PILOT_AMU001_Unit_Settings.indices			= default_box_indices	
+PILOT_AMU001_Unit_Settings.tex_coords = {{0,0},{1,0},{1,1},{0,1}}
+PILOT_AMU001_Unit_Settings.init_pos   = {0,0} 
+PILOT_AMU001_Unit_Settings.element_params   = {
 							"PILOT_AMU_brightness",
 						} 
-PILOT_AMU001_Checklists.controllers 	   = {
+PILOT_AMU001_Unit_Settings.controllers 	   = {
 							BCont[1],BCont[2],BCont[3],BCont[4],BCont[5],BCont[6],BCont[7],BCont[8],BCont[9],BCont[10],
 							}
-PILOT_AMU001_Checklists.collimated = true
-PILOT_AMU001_Checklists.parent_element = PILOT_AMU001_Checklists_origin.name
-PILOT_AMU001_Checklists.blend_mode 	=  blend_mode.IBM_REGULAR
-AddElement(PILOT_AMU001_Checklists)
+PILOT_AMU001_Unit_Settings.collimated = true
+PILOT_AMU001_Unit_Settings.parent_element = PILOT_AMU001_Unit_Settings_origin.name
+PILOT_AMU001_Unit_Settings.blend_mode 	=  blend_mode.IBM_REGULAR
+AddElement(PILOT_AMU001_Unit_Settings)
+
+Add_Object_Text(PILOT_Alt_Set, "PILOT_Alt_Set", PILOT_AMU001_Unit_Settings.name, 0,
+					"font_Arial_green",--objectmaterial
+					"LeftCenter",--objectalignment
+					{"feet"},--format_value
+					{0.007,0.007,  -0.003, 0},--stringdefs_value
+					210.0,--initpixelposx
+					73.0,--initpixelposy
+					{--params
+						"PILOT_AMU_brightness",
+						"",
+						"Alt_unit",
+					},
+					{--controllers
+						{"opacity_using_parameter",0},
+						{"text_using_parameter",1,0},
+						{"parameter_in_range",2,-0.05,0.05},
+					}
+				)
+Add_Object_Text(PILOT_Alt_Set, "PILOT_Alt_Set", PILOT_AMU001_Unit_Settings.name, 0,
+					"font_Arial_green",--objectmaterial
+					"LeftCenter",--objectalignment
+					{"meter"},--format_value
+					{0.007,0.007,  -0.003, 0},--stringdefs_value
+					210.0,--initpixelposx
+					73.0,--initpixelposy
+					{--params
+						"PILOT_AMU_brightness",
+						"",
+						"Alt_unit",
+					},
+					{--controllers
+						{"opacity_using_parameter",0},
+						{"text_using_parameter",1,0},
+						{"parameter_in_range",2,0.95,1.05},
+					}
+				)
+
+Add_Object_Text(PILOT_Baro_Set, "PILOT_Baro_Set", PILOT_AMU001_Unit_Settings.name, 0,
+					"font_Arial_green",--objectmaterial
+					"LeftCenter",--objectalignment
+					{"inHg"},--format_value
+					{0.007,0.007,  -0.003, 0},--stringdefs_value
+					150.0,--initpixelposx
+					140.0,--initpixelposy
+					{--params
+						"PILOT_AMU_brightness",
+						"",
+						"Baro_unit",
+					},
+					{--controllers
+						{"opacity_using_parameter",0},
+						{"text_using_parameter",1,0},
+						{"parameter_in_range",2,-0.05,0.05},
+					}
+				)
+Add_Object_Text(PILOT_Baro_Set, "PILOT_Baro_Set", PILOT_AMU001_Unit_Settings.name, 0,
+					"font_Arial_green",--objectmaterial
+					"LeftCenter",--objectalignment
+					{"mbar"},--format_value
+					{0.007,0.007,  -0.003, 0},--stringdefs_value
+					150.0,--initpixelposx
+					140.0,--initpixelposy
+					{--params
+						"PILOT_AMU_brightness",
+						"",
+						"Baro_unit",
+					},
+					{--controllers
+						{"opacity_using_parameter",0},
+						{"text_using_parameter",1,0},
+						{"parameter_in_range",2,0.95,1.05},
+					}
+				)
 
 -------------------------------------------------------------------------------PILOT_AMU001_CAPS
 

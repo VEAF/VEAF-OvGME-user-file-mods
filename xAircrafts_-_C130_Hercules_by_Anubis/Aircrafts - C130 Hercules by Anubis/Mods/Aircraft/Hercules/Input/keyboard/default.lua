@@ -25,16 +25,13 @@ return {
 keyCommands = {
 	
 
---Aircraft station positions
-{combos = {{key = '1'}}, down = iCommandViewCockpitChangeSeat, value_down = 1, up = Position_Control.Pilot_Seat, name = _('Pilot Seat'),	category = _('Station Positions')},
-{combos = {{key = '2'}}, down = iCommandViewCockpitChangeSeat, value_down = 2, up = Position_Control.Copilot_Seat, name = _('Copilot Seat'),	category = _('Station Positions')},
-{combos = {{key = '3'}}, down = Position_Control.Loadmaster_Station, name = _('Loadmaster Station'),	category = _('Station Positions')},
-{combos = {{key = '4'}}, down = Position_Control.CargoRamp_Station, name = _('Cargo Ramp Station'),	category = _('Station Positions')},
-{combos = {{key = '5'}}, down = Position_Control.Cannon_Target_Station, name = _('Cannon Target Station'),	category = _('Station Positions')},
-
--- Radio testing
--- {combos = {{key = '1', reformers = {'LCtrl'}}}, down = 3002, cockpit_device_id  = 12, value_down = 1.0,	 name = _('Battery'), category = _('Right Switch Panel')},
--- {combos = {{key = '2', reformers = {'LCtrl'}}}, down = 3002, cockpit_device_id  = 22, value_down = 1.0, name = _('Radio chanel A'), category = _('VHF Radio')},
+--Station Control
+{combos = {{key = 'J'}}, down = General_Packet_Send.NetCrewRequestControl,	name = _('Request Aircraft Control'),	category = _('Station Control')},
+{combos = {{key = '1'}}, down = iCommandViewCockpitChangeSeat, value_down = 1, up = Position_Control.Pilot_Seat, name = _('Pilot Seat'),	category = _('Station Control')},
+{combos = {{key = '2'}}, down = iCommandViewCockpitChangeSeat, value_down = 2, up = Position_Control.Copilot_Seat, name = _('Copilot Seat'),	category = _('Station Control')},
+{combos = {{key = '3'}}, down = Position_Control.Loadmaster_Station, name = _('Loadmaster Station'),	category = _('Station Control')},
+{combos = {{key = '4'}}, down = Position_Control.CargoRamp_Station, name = _('Cargo Ramp Station'),	category = _('Station Control')},
+{combos = {{key = '5'}}, down = Position_Control.Cannon_Target_Station, name = _('Cannon Target Station'),	category = _('Station Control')},
 
 --Cargo Hold
 {combos = {{key = 'C', reformers = {'LCtrl'}}}, down = MISCELLANEOUS.CargoDoorRampClose, name = _('Cargo Door/Ramp Close'), category = _('Cargo Hold')},
@@ -53,21 +50,14 @@ keyCommands = {
 {combos = {{key = 'D', reformers = {'LShift'}}}, down = MISCELLANEOUS.Flightdeck_Windows_Toggle, name = _('Flightdeck Windows Toggle Open/Close'), category = _('Flightdeck')},
 {combos = {{key = 'S', reformers = {'LShift'}}}, down = ICS_PANEL.ICS_Silence_Keyb, name = _('Silence Alarms Toggle'), category = _('Flightdeck')},
 
--- Undercarriage
-{combos = {{key = 'W'}}, down = MISCELLANEOUS.BrakesBothOn, up = MISCELLANEOUS.BrakesBothOff, name = _('Left and Right Toe Brakes On/Off'), category = _('Undercarriage')},
-{combos = {{key = 'Left', reformers = {'RCtrl'}}}, pressed = MISCELLANEOUS.NWSLeft, up = MISCELLANEOUS.NWSLeftCenter, name = _('Nose Wheel Steering Left'), category = _('Undercarriage')},
-{combos = {{key = 'Right', reformers = {'RCtrl'}}}, pressed = MISCELLANEOUS.NWSRight, up = MISCELLANEOUS.NWSRightCenter, name = _('Nose Wheel Steering Right'), category = _('Undercarriage')},
-{combos = {{key = 'W', reformers = {'LShift'}}}, down = MISCELLANEOUS.Park_Brake_Toggle, name = _('Park Brake Toggle'), category = _('Undercarriage')},
-{combos = {{key = 'G'}}, down = LANDING_GEAR_LIGHTS_PANEL.GearToggle, name = _('Landing Gear Toggle'), category = _('Undercarriage')},
-{combos = {{key = 'G', reformers = {'LAlt'}}}, down = LANDING_GEAR_LIGHTS_PANEL.GearUp, name = _('Landing Gear Up'), category = _('Undercarriage')},
-{combos = {{key = 'G', reformers = {'LCtrl'}}}, down = LANDING_GEAR_LIGHTS_PANEL.GearDown, name = _('Landing Gear Down'), category = _('Undercarriage')},
-
--- Flaps
-{combos = {{key = 'F'}}, down = FLAPS.Down, name = _('Flaps Increment Down'), category = _('Flaps')},
-{combos = {{key = 'F', reformers = {'LShift'}}}, down = FLAPS.Up, name = _('Flaps Increment Up'), category = _('Flaps')},
-{combos = {{key = 'F', reformers = {'LCtrl'}}}, down = FLAPS.Zero_percent, name = _('Flaps 0%'), category = _('Flaps')},
-{combos = {{key = 'F', reformers = {'LAlt'}}}, down = FLAPS.Fifty_percent, name = _('Flaps 50%'), category = _('Flaps')},
-{combos = {{key = 'F', reformers = {'LCtrl', 'LAlt'}}}, down = FLAPS.Hunderd_percent, name = _('Flaps 100%'), category = _('Flaps')},
+-- Ground Control
+{combos = {{key = 'W'}}, down = MISCELLANEOUS.BrakesBothOn, up = MISCELLANEOUS.BrakesBothOff, name = _('Left and Right Toe Brakes On/Off'), category = _('Ground Control')},
+{combos = {{key = 'Left', reformers = {'RCtrl'}}}, pressed = MISCELLANEOUS.NWSLeft, up = MISCELLANEOUS.NWSLeftCenter, name = _('Nose Wheel Steering Left'), category = _('Ground Control')},
+{combos = {{key = 'Right', reformers = {'RCtrl'}}}, pressed = MISCELLANEOUS.NWSRight, up = MISCELLANEOUS.NWSRightCenter, name = _('Nose Wheel Steering Right'), category = _('Ground Control')},
+{combos = {{key = 'W', reformers = {'LShift'}}}, down = MISCELLANEOUS.Park_Brake_Toggle, name = _('Park Brake Toggle'), category = _('Ground Control')},
+{combos = {{key = 'G'}}, down = LANDING_GEAR_LIGHTS_PANEL.GearToggle, name = _('Landing Gear Toggle'), category = _('Ground Control')},
+{combos = {{key = 'G', reformers = {'LAlt'}}}, down = LANDING_GEAR_LIGHTS_PANEL.GearUp, name = _('Landing Gear Up'), category = _('Ground Control')},
+{combos = {{key = 'G', reformers = {'LCtrl'}}}, down = LANDING_GEAR_LIGHTS_PANEL.GearDown, name = _('Landing Gear Down'), category = _('Ground Control')},
 
 --Engine Control Panel
 -- {combos = {{key = 'Home', reformers = {'RAlt'}}}, down = ENGINE_START_PANEL.Engine1_Start, name = _('Engines 1 Start'), category = _('Engine Control Panel')},
@@ -86,27 +76,50 @@ keyCommands = {
 -- Navigation
 {combos = {{key = 'Y', reformers = {'RAlt'}}}, down = General_No_Packet_Send.F10_Map_Waypoint_Create, name = _('F10 map waypoint capture') , category = _('Navigation')},
 
+-- Radio
+-- {combos = {{key = '\\', reformers = {'RCtrl'}}}, down = Keys.radio_ptt, name = _('Radio Push to Talk (PTT)'), category = _('Radio')},
+
+-- Autopilot
+{combos = {{key = 'A'}}, down = Automatic_Flight_Control_System_Panel.AFCS_Autopilot_On, name = _('AP Engage (not realistic)') , category = _('Autopilot')},
+{combos = {{key = 'A', reformers = {'LShift'}}}, down = Automatic_Flight_Control_System_Panel.AFCS_Autopilot_Off, name = _('AP: 1st press - disengage, 2nd press - AP DSNG annunciation off') , category = _('Autopilot')},
+{combos = {{key = 'A', reformers = {'LAlt'}}}, pressed = Automatic_Flight_Control_System_Panel.AFCS_Vert_Ref_Sync_Control_On, up = Automatic_Flight_Control_System_Panel.AFCS_Vert_Ref_Sync_Control_Off, name = _('Vertical Reference Synchronization Control') , category = _('Autopilot')},
+
 -- Flight Control
-{combos = {{key = 'A'}}, down = Automatic_Flight_Control_System_Panel.AFCS_Autopilot_On, name = _('AP Engage (not realistic)') , category = _('Flight Control')},
-{combos = {{key = 'A', reformers = {'LShift'}}}, down = Automatic_Flight_Control_System_Panel.AFCS_Autopilot_Off, name = _('AP: 1st press - disengage, 2nd press - AP DSNG annunciation off') , category = _('Flight Control')},
-{combos = {{key = 'A', reformers = {'LAlt'}}}, pressed = Automatic_Flight_Control_System_Panel.AFCS_Vert_Ref_Sync_Control_On, up = Automatic_Flight_Control_System_Panel.AFCS_Vert_Ref_Sync_Control_Off, name = _('Vertical Reference Synchronization Control') , category = _('Flight Control')},
 {combos = {{key = '.', reformers = {'RCtrl'}}}, pressed = TRIM.Up, up = TRIM.Stop, name = _('Trim: Nose Up'), category = _('Flight Control')},
 {combos = {{key = ';', reformers = {'RCtrl'}}}, pressed = TRIM.Down, up = TRIM.Stop, name = _('Trim: Nose Down'), category = _('Flight Control')},
 {combos = {{key = ',', reformers = {'RCtrl'}}}, pressed = TRIM.Left, up = TRIM.Stop, name = _('Trim: Left Wing Down'), category = _('Flight Control')},
 {combos = {{key = '/', reformers = {'RCtrl'}}}, pressed = TRIM.Right, up = TRIM.Stop, name = _('Trim: Right Wing Down'), category = _('Flight Control')},
 {combos = {{key = 'N', reformers = {'RAlt'}}}, pressed = TRIM.RudderLeft, up = TRIM.Stop, name = _('Trim: Rudder Left'), category = _('Flight Control')},
 {combos = {{key = 'M', reformers = {'RAlt'}}}, pressed = TRIM.RudderRight, up = TRIM.Stop, name = _('Trim: Rudder Right'), category = _('Flight Control')},
-{combos = {{key = 'J'}}, down = General_Packet_Send.NetCrewRequestControl,	name = _('Request Aircraft Control'),	category = _('Flight Control')},
-{combos = {{key = 'B', reformers = {'RAlt'}}}, down = THROTTLES.Full_Reverse, name = _('Throttles Beta Full Reverse'), category = _('Flight Control')},
-{combos = {{key = 'B'}}, down = THROTTLES.Beta, name = _('Throttles Flight/Beta Mode Toggle'), category = _('Flight Control')},
-{combos = {{key = 'P'}}, down = THROTTLES.TO_Power_Toggle, name = _('Throttles Take-off power Toggle On/Off'), category = _('Flight Control')},
-{combos = {{key = 'P', reformers = {'RAlt'}}}, down = THROTTLES.TO_Power_On, name = _('Throttles Take-off power On'), category = _('Flight Control')},
-{combos = {{key = 'P', reformers = {'RCtrl'}}}, down = THROTTLES.TO_Power_Off, name = _('Throttles Take-off power Off'), category = _('Flight Control')},
-{combos = {{key = 'T', reformers = {'LAlt'}}}, down = THROTTLES.ATCS_Autothrottle_Disengage, name = _('ATCS - Autothrottle disengage') , category = _('Flight Control')},
-{combos = {{key = 'P', reformers = {'RShift'}}}, down = THROTTLES.Throttles_To_Idle, name = _('Throttles to Idle') , category = _('Flight Control')},
 {combos = {{key = 'O'}}, down = AERIAL_DELIVERY_PANEL.Air_Deflector_Toggle, name = _('Paratroop Air Deflector Toggle'), category = _('Flight Control')},
 {combos = {{key = 'O', reformers = {'RAlt'}}}, down = AERIAL_DELIVERY_PANEL.Air_Deflector_Extend, name = _('Paratroop Air Deflector Extend'), category = _('Flight Control')},
 {combos = {{key = 'O', reformers = {'RCtrl'}}}, down = AERIAL_DELIVERY_PANEL.Air_Deflector_Retract, name = _('Paratroop Air Deflector Retract'), category = _('Flight Control')},
+{combos = {{key = 'Up'}}, pressed = FLIGHT_CONTROL.PlaneUpStart, up = FLIGHT_CONTROL.PlaneUpStop, name = _('Aircraft Pitch Up'), category = _('Flight Control')},
+{combos = {{key = 'Down'}}, pressed = FLIGHT_CONTROL.PlaneDownStart, up = FLIGHT_CONTROL.PlaneDownStop, name = _('Aircraft Pitch Down'), category = _('Flight Control')},
+{combos = {{key = 'Left'}}, pressed = FLIGHT_CONTROL.PlaneLeftStart, up = FLIGHT_CONTROL.PlaneLeftStop, name = _('Aircraft Bank Left'), category = _('Flight Control')},
+{combos = {{key = 'Right'}}, pressed = FLIGHT_CONTROL.PlaneRightStart, up = FLIGHT_CONTROL.PlaneRightStop, name = _('Aircraft Bank Right'), category = _('Flight Control')},
+{combos = {{key = 'Z'}}, pressed = FLIGHT_CONTROL.PlaneLeftRudderStart, up = FLIGHT_CONTROL.PlaneLeftRudderStop, name = _('Aircraft Rudder Left'), category = _('Flight Control')},
+{combos = {{key = 'X'}}, pressed = FLIGHT_CONTROL.PlaneRightRudderStart, up = FLIGHT_CONTROL.PlaneRightRudderStop, name = _('Aircraft Rudder Right'), category = _('Flight Control')},
+{combos = {{key = 'F'}}, down = FLAPS.Down, name = _('Flaps Increment Down'), category = _('Flight Control')},
+{combos = {{key = 'F', reformers = {'LShift'}}}, down = FLAPS.Up, name = _('Flaps Increment Up'), category = _('Flight Control')},
+{combos = {{key = 'F', reformers = {'LCtrl'}}}, down = FLAPS.Zero_percent, name = _('Flaps 0%'), category = _('Flight Control')},
+{combos = {{key = 'F', reformers = {'LAlt'}}}, down = FLAPS.Fifty_percent, name = _('Flaps 50%'), category = _('Flight Control')},
+{combos = {{key = 'F', reformers = {'LCtrl', 'LAlt'}}}, down = FLAPS.Hunderd_percent, name = _('Flaps 100%'), category = _('Flight Control')},
+
+-- Throttle Control
+{combos = {{key = 'B', reformers = {'RAlt'}}}, down = THROTTLES.Full_Reverse, name = _('Throttles Beta Full Reverse'), category = _('Throttle Control')},
+{combos = {{key = 'B'}}, down = THROTTLES.Beta, name = _('Throttles Flight/Beta Mode Toggle'), category = _('Throttle Control')},
+{combos = {{key = 'P'}}, down = THROTTLES.TO_Power_Toggle, name = _('Throttles Take-off power Toggle On/Off'), category = _('Throttle Control')},
+{combos = {{key = 'P', reformers = {'RAlt'}}}, down = THROTTLES.TO_Power_On, name = _('Throttles Take-off power On'), category = _('Throttle Control')},
+{combos = {{key = 'P', reformers = {'RCtrl'}}}, down = THROTTLES.TO_Power_Off, name = _('Throttles Take-off power Off'), category = _('Throttle Control')},
+{combos = {{key = 'T', reformers = {'LAlt'}}}, down = THROTTLES.ATCS_Autothrottle_Disengage, name = _('ATCS - Autothrottle disengage') , category = _('Throttle Control')},
+{combos = {{key = 'P', reformers = {'RShift'}}}, down = THROTTLES.Throttles_To_Idle, name = _('Throttles to Idle') , category = _('Throttle Control')},
+{combos = {{key = 'PageUp'}}, pressed = THROTTLES.ThrottlesIncrease, up = THROTTLES.ThrottlesStop,	name = _('Throttles all Up'), category = _('Throttle Control')},
+{combos = {{key = 'PageDown'}}, pressed = THROTTLES.ThrottlesDecrease, up = THROTTLES.ThrottlesStop,	name = _('Throttles all Down'), category = _('Throttle Control')},
+{combos = {{key = 'PageUp', reformers = {'LCtrl','LWin'}}}, pressed = THROTTLES.Throttles12Increase, up = THROTTLES.Throttles12Stop, name = _('Throttles 1 and 2 Up'), category = _('Throttle Control')},
+{combos = {{key = 'PageDown', reformers = {'LCtrl','LWin'}}} , pressed = THROTTLES.Throttles12Decrease, up = THROTTLES.Throttles12Stop,	name = _('Throttles 1 and 2 Down'), category = _('Throttle Control')},
+{combos = {{key = 'PageUp', reformers = {'LAlt','LWin'}}}, pressed = THROTTLES.Throttles34Increase, up = THROTTLES.Throttles34Stop, name = _('Throttles 3 and 4 Up'), category = _('Throttle Control')},
+{combos = {{key = 'PageDown', reformers = {'LAlt','LWin'}}}, pressed = THROTTLES.Throttles34Decrease, up = THROTTLES.Throttles34Stop, name = _('Throttles 3 and 4 Down'), category = _('Throttle Control')},
 
 --Night Vision Goggles
 {combos = {{key = 'H', reformers = {'RShift'}}}		   , 	down    = iCommandViewNightVisionGogglesOn   , name = _('Night Vision Goggles')   , category = _('Night Vision Goggles')},
@@ -120,10 +133,10 @@ keyCommands = {
 {combos = {{key = '.'}}, pressed = BATTLE_STATION_COMMANDS.TDC_AFT, up = BATTLE_STATION_COMMANDS.TDC_RELEASE, name = _('TDC Aft'), category = _('Battle Station')},
 {combos = {{key = ','}}, pressed = BATTLE_STATION_COMMANDS.TDC_LEFT, up = BATTLE_STATION_COMMANDS.TDC_RELEASE, name = _('TDC Left'), category = _('Battle Station')},
 {combos = {{key = '/'}}, pressed = BATTLE_STATION_COMMANDS.TDC_RIGHT, up = BATTLE_STATION_COMMANDS.TDC_RELEASE, name = _('TDC Right'), category = _('Battle Station')},
-{combos = {{key = 'Up'}}, pressed = BATTLE_STATION_COMMANDS.Cannon_Slew_UP, up = BATTLE_STATION_COMMANDS.Cannon_Slew_RELEASE, name = _('Cannon Slew UP'), category = _('Battle Station')},
-{combos = {{key = 'Down'}}, pressed = BATTLE_STATION_COMMANDS.Cannon_Slew_DOWN, up = BATTLE_STATION_COMMANDS.Cannon_Slew_RELEASE, name = _('Cannon Slew DOWN'), category = _('Battle Station')},
-{combos = {{key = 'Left'}}, pressed = BATTLE_STATION_COMMANDS.Cannon_Slew_LEFT, up = BATTLE_STATION_COMMANDS.Cannon_Slew_RELEASE, name = _('Cannon Slew LEFT'), category = _('Battle Station')},
-{combos = {{key = 'Right'}}, pressed = BATTLE_STATION_COMMANDS.Cannon_Slew_RIGHT, up = BATTLE_STATION_COMMANDS.Cannon_Slew_RELEASE, name = _('Cannon Slew RIGHT'), category = _('Battle Station')},
+{combos = {{key = 'Up', reformers = {'RAlt'}}}, pressed = BATTLE_STATION_COMMANDS.Cannon_Slew_UP, up = BATTLE_STATION_COMMANDS.Cannon_Slew_RELEASE, name = _('Cannon Slew UP'), category = _('Battle Station')},
+{combos = {{key = 'Down', reformers = {'RAlt'}}}, pressed = BATTLE_STATION_COMMANDS.Cannon_Slew_DOWN, up = BATTLE_STATION_COMMANDS.Cannon_Slew_RELEASE, name = _('Cannon Slew DOWN'), category = _('Battle Station')},
+{combos = {{key = 'Left', reformers = {'RAlt'}}}, pressed = BATTLE_STATION_COMMANDS.Cannon_Slew_LEFT, up = BATTLE_STATION_COMMANDS.Cannon_Slew_RELEASE, name = _('Cannon Slew LEFT'), category = _('Battle Station')},
+{combos = {{key = 'Right', reformers = {'RAlt'}}}, pressed = BATTLE_STATION_COMMANDS.Cannon_Slew_RIGHT, up = BATTLE_STATION_COMMANDS.Cannon_Slew_RELEASE, name = _('Cannon Slew RIGHT'), category = _('Battle Station')},
 
 --Counter measures
 {combos = {{key = 'Delete'}}, down = iCommandPlaneDropFlareOnce, name = _('Countermeasures Flares Dispense'), category = _('Countermeasures') , features = {"Countermeasures"}},

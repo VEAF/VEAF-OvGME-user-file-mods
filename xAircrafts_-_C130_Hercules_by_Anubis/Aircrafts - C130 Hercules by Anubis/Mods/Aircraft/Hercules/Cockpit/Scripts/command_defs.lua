@@ -14,6 +14,7 @@ JOYSTICK =
 	BothThrottles = Offset + counter();
 	LeftThrottle = Offset + counter();
 	RightThrottle = Offset + counter();
+	PedalBothBrake = Offset + counter();
 	PedalLeftBrake = Offset + counter();
 	PedalRightBrake = Offset + counter();
 	NoseWheelSteering = Offset + counter();
@@ -212,11 +213,13 @@ REFERENCE_SET_MODE_SELECT_PANELS =
 	PILOT_altitude_alert_set_knob = Offset + counter();
 	PILOT_altitude_alert_Reset_knob = Offset + counter();
 	PILOT_barometric_set_knob = Offset + counter();
+	PILOT_barometric_standard = Offset + counter();
 	COPILOT_reference_select_switch = Offset + counter();
 	COPILOT_reference_set_knob = Offset + counter();
 	COPILOT_altitude_alert_set_knob = Offset + counter();
 	COPILOT_altitude_alert_Reset_knob = Offset + counter();
 	COPILOT_barometric_set_knob = Offset + counter();
+	COPILOT_barometric_standard = Offset + counter();
 	Altitude_Hold = Offset + counter();
 	Altitude_Select = Offset + counter();
 	Hdg = Offset + counter();
@@ -342,6 +345,7 @@ CNI_MU =
 	pilot_CNI_MU_SelectKey_012 = Offset + counter();
 	pilot_CNI_MU_CommTune = Offset + counter();
 	pilot_CNI_MU_TOLD = Offset + counter();
+	pilot_CNI_MU_NAV_CTRL = Offset + counter();
 	pilot_CNI_MU_INDEX = Offset + counter();
 	pilot_CNI_MU_EXEC = Offset + counter();
 	pilot_CNI_MU_KBD_1 = Offset + counter();
@@ -377,6 +381,7 @@ CNI_MU =
 	copilot_CNI_MU_SelectKey_012 = Offset + counter();
 	copilot_CNI_MU_CommTune = Offset + counter();
 	copilot_CNI_MU_TOLD = Offset + counter();
+	copilot_CNI_MU_NAV_CTRL = Offset + counter();
 	copilot_CNI_MU_INDEX = Offset + counter();
 	copilot_CNI_MU_EXEC = Offset + counter();
 	copilot_CNI_MU_KBD_1 = Offset + counter();
@@ -587,6 +592,22 @@ BATTLE_STATION_COMMANDS =
 	Cannon_Slew_RELEASE = Offset + counter();
 }
 
+FLIGHT_CONTROL =
+{
+	PlaneUpStart = Offset + counter();
+	PlaneUpStop = Offset + counter();
+	PlaneDownStart = Offset + counter();
+	PlaneDownStop = Offset + counter();
+	PlaneLeftStart = Offset + counter();
+	PlaneLeftStop = Offset + counter();
+	PlaneRightStart = Offset + counter();
+	PlaneRightStop = Offset + counter();
+	PlaneLeftRudderStart = Offset + counter();
+	PlaneLeftRudderStop = Offset + counter();
+	PlaneRightRudderStart = Offset + counter();
+	PlaneRightRudderStop = Offset + counter();
+}
+
 TRIM =
 {
 	Up = Offset + counter();
@@ -607,6 +628,15 @@ THROTTLES =
 	TO_Power_On = Offset + counter();
 	TO_Power_Off = Offset + counter();
 	Throttles_To_Idle = Offset + counter();
+	ThrottlesIncrease = Offset + counter();
+	ThrottlesDecrease = Offset + counter();
+	ThrottlesStop = Offset + counter();
+	Throttles12Increase = Offset + counter();
+	Throttles12Decrease = Offset + counter();
+	Throttles12Stop = Offset + counter();
+	Throttles34Increase = Offset + counter();
+	Throttles34Decrease = Offset + counter();
+	Throttles34Stop = Offset + counter();
 }
 
 

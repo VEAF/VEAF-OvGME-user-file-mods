@@ -421,7 +421,7 @@ Add_Image(HUD_Altitude_pointer, "HUD_Altitude_pointer", "HUD_origin",
 Add_Text(HUD_Altitude, "HUD_Altitude", "font_HUD_green", "CenterCenter", "HUD_origin",
 					{--params
 						"PILOT_HudBrightness",
-						"alt_ft",
+						"Baro_alt_ft",
 					},
 					{--controllers
 						{"opacity_using_parameter",0},
@@ -513,6 +513,37 @@ Add_Text(HUD_Ralt, "HUD_Ralt", "font_HUD_green", "LeftCenter", "HUD_origin",
 					{"%.0f"}, {0.0085,0.0085, 0, 0},
 					970,--initpixelposx
 					660--initpixelposy
+					)
+--------------------------------------------------------------------------------------------------------------------------------------Baro_Setting
+Add_Text(HUD_Baro, "HUD_Baro", "font_HUD_green", "LeftCenter", "HUD_origin",
+					{--params
+						"PILOT_HudBrightness",
+						"Baro_unit",
+						"QNH_inHg",
+					},
+					{--controllers
+						{"opacity_using_parameter",0},
+						{"parameter_in_range",1,-0.05,0.05},
+						{"text_using_parameter",2,0},
+					},
+					{"%.2f"}, {0.0065,0.0065, 0, 0},
+					950,--initpixelposx
+					960--initpixelposy
+					)
+Add_Text(HUD_Baro, "HUD_Baro", "font_HUD_green", "LeftCenter", "HUD_origin",
+					{--params
+						"PILOT_HudBrightness",
+						"Baro_unit",
+						"QNH_mbar",
+					},
+					{--controllers
+						{"opacity_using_parameter",0},
+						{"parameter_in_range",1,0.95,1.05},
+						{"text_using_parameter",2,0},
+					},
+					{"%.0f"}, {0.0065,0.0065, 0, 0},
+					950,--initpixelposx
+					960--initpixelposy
 					)
 --------------------------------------------------------------------------------------------------------------------------------------G force
 Add_Text(HUD_G_force, "HUD_G_force", "font_Arial_green", "Center", "HUD_origin",

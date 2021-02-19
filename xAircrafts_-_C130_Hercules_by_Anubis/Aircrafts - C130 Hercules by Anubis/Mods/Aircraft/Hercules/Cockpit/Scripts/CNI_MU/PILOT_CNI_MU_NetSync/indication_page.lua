@@ -224,7 +224,7 @@ Add_Object_Text(Network_Sync, "Network_Sync", Network_Sync_Recall.name, 1,
 					300,--initpixelposx
 					16,--initpixelposy
 					{--params
-						"COPILOT_CNI_MU_brightness",
+						"PILOT_CNI_MU_brightness",
 						"",
 					},
 					{--controllers
@@ -246,7 +246,6 @@ Add_Object_Text(Network_Sync, "Network_Sync", Network_Sync_Recall.name, 1,
 					},
 					{--controllers
 						{"opacity_using_parameter",0},
-						{"parameter_in_range", 1, 0.9, 1.1},
 						{"text_using_parameter",1,0},
 					}
 				)
@@ -263,7 +262,6 @@ Add_Object_Text(Network_Sync, "Network_Sync", Network_Sync_Recall.name, 1,
 					},
 					{--controllers
 						{"opacity_using_parameter",0},
-						{"parameter_in_range", 1, 0.9, 1.1},
 						{"text_using_parameter",1,0},
 					}
 				)
@@ -280,7 +278,6 @@ Add_Object_Text(Network_Sync, "Network_Sync", Network_Sync_Recall.name, 1,
 					},
 					{--controllers
 						{"opacity_using_parameter",0},
-						{"parameter_in_range", 1, 0.9, 1.1},
 						{"text_using_parameter",1,0},
 					}
 				)
@@ -297,7 +294,6 @@ Add_Object_Text(Network_Sync, "Network_Sync", Network_Sync_Recall.name, 1,
 					},
 					{--controllers
 						{"opacity_using_parameter",0},
-						{"parameter_in_range", 1, 0.9, 1.1},
 						{"text_using_parameter",1,0},
 					}
 				)
@@ -314,7 +310,6 @@ Add_Object_Text(Network_Sync, "Network_Sync", Network_Sync_Recall.name, 1,
 					},
 					{--controllers
 						{"opacity_using_parameter",0},
-						{"parameter_in_range", 1, 0.9, 1.1},
 						{"text_using_parameter",1,0},
 					}
 				)
@@ -331,7 +326,6 @@ Add_Object_Text(Network_Sync, "Network_Sync", Network_Sync_Recall.name, 1,
 					},
 					{--controllers
 						{"opacity_using_parameter",0},
-						{"parameter_in_range", 1, 0.9, 1.1},
 						{"text_using_parameter",1,0},
 					}
 				)

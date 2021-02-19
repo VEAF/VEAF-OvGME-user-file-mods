@@ -9,23 +9,20 @@ MainPanel = {"ccMainPanel",LockOn_Options.script_path.."mainpanel_init.lua"}
 			 
 creators = {}
 
--- creators[devices.Simple_Electric_System]= {"avSimpleElectricSystem"}
--- creators[devices.INTERCOM] = {"avIntercom"}
+creators[devices.ELECTRIC_SYSTEM] = {"avSimpleElectricSystem",LockOn_Options.script_path.."Systems/electric_system.lua"}
 -- creators[devices.RWR] = {"avSimpleRWR", LockOn_Options.script_path.."RWR/device/RWR_init.lua"}	
 
 creators[devices.Network_Synchronization] = {"avLuaDevice", LockOn_Options.script_path.."../../Network_Synchronization.lua"}
+creators[devices.F10_Map_Coordinates_Rectangle] = {"avLuaDevice", LockOn_Options.script_path.."../../F10_Map_Coordinates_Rectangle.lua"}
 creators[devices.Performance_Factors] = {"avLuaDevice", LockOn_Options.script_path.."Performance_Factors.lua"}
 creators[devices.General_Device] = {"avLuaDevice", LockOn_Options.script_path.."general_device.lua"}
 creators[devices.Pylon_Release_System] = {"avSimpleWeaponSystem", LockOn_Options.script_path.."PylonRelease/Pylon_Release_System.lua"}
 creators[devices.Update_Connectors] = {"avLuaDevice", LockOn_Options.script_path.."Update_Connectors.lua"}
 
--- creators[devices.INTERCOM] = {"avIntercom", LockOn_Options.script_path.."Comm/Intercom.lua", {devices.UHF_RADIO} }
--- creators[devices.UHF_RADIO] = {"avUHF_ARC_164", LockOn_Options.script_path.."Comm/UHF_radio.lua", {devices.INTERCOM, devices.ELECTRIC_SYSTEM} } 
 -- creators[devices.Autopilot] = {"avLuaDevice", LockOn_Options.script_path.."Autopilot.lua"}
 
-creators[devices.Simple_Intercom] = {"avIntercom"}
--- creators[devices.INTERCOM] = {"avIntercom", LockOn_Options.script_path.."Comm/Intercom.lua", {devices.UHF_RADIO} }
--- creators[devices.UHF_RADIO] = {"avUHF_ARC_164", LockOn_Options.script_path.."Comm/UHF_radio.lua", {devices.INTERCOM, devices.ELECTRIC_SYSTEM} } 
+creators[devices.INTERCOM] = {"avIntercom", LockOn_Options.script_path.."Systems/Intercom.lua", {devices.UHF_Radio} }
+creators[devices.UHF_Radio] = {"avUHF_ARC_164", LockOn_Options.script_path.."Systems/UHF_radio.lua", {devices.INTERCOM, devices.ELECTRIC_SYSTEM} } 
 creators[devices.Helmet_Device]	= {"avNightVisionGoggles"}	
 
 -----------------------------------------------------------------------------------For Steam Users

@@ -36,7 +36,6 @@ COPILOT_AMU002_Main_Menu.collimated = true
 COPILOT_AMU002_Main_Menu.parent_element = COPILOT_AMU002_Main_Menu_origin.name
 COPILOT_AMU002_Main_Menu.blend_mode 	=  blend_mode.IBM_REGULAR
 AddElement(COPILOT_AMU002_Main_Menu)
-
 -------------------------------------------------------------------------------COPILOT_AMU002_Range
 
 local COPILOT_AMU002_Range_origin	         = CreateElement "ceSimple"
@@ -142,42 +141,43 @@ COPILOT_AMU002_HDD_Pos.parent_element = COPILOT_AMU002_HDD_Pos_origin.name
 COPILOT_AMU002_HDD_Pos.blend_mode 	=  blend_mode.IBM_REGULAR
 AddElement(COPILOT_AMU002_HDD_Pos)
 
--------------------------------------------------------------------------------COPILOT_AMU002_HDD_Pos_Checklists
 
-local COPILOT_AMU002_HDD_Pos_Checklists_origin	         = CreateElement "ceSimple"
-COPILOT_AMU002_HDD_Pos_Checklists_origin.name 		     = "COPILOT_AMU002_HDD_Pos_Checklists_origin"
-COPILOT_AMU002_HDD_Pos_Checklists_origin.init_pos        = {0,0}
-COPILOT_AMU002_HDD_Pos_Checklists_origin.element_params   = {
-								"COPILOT_AMU002_HDD_Pos_Checklists",
+-------------------------------------------------------------------------------COPILOT_AMU002_CDI
+
+local COPILOT_AMU002_CDI_origin	         = CreateElement "ceSimple"
+COPILOT_AMU002_CDI_origin.name 		     = "COPILOT_AMU002_CDI_origin"
+COPILOT_AMU002_CDI_origin.init_pos        = {0,0}
+COPILOT_AMU002_CDI_origin.element_params   = {
+								"COPILOT_AMU002_CDI",
 										   } 
-COPILOT_AMU002_HDD_Pos_Checklists_origin.controllers 	   = {
+COPILOT_AMU002_CDI_origin.controllers 	   = {
 								{"parameter_in_range",0,0.95,1.05},
 								}
-COPILOT_AMU002_HDD_Pos_Checklists_origin.collimated 		 = true
-AddElement(COPILOT_AMU002_HDD_Pos_Checklists_origin)
+COPILOT_AMU002_CDI_origin.collimated 		 = true
+AddElement(COPILOT_AMU002_CDI_origin)
 
-local COPILOT_AMU002_HDD_Pos_Checklists	    = CreateElement "ceTexPoly" --this could be the text area on HUD
-COPILOT_AMU002_HDD_Pos_Checklists.name 		= "COPILOT_AMU002_HDD_Pos_Checklists"
-COPILOT_AMU002_HDD_Pos_Checklists.material   = "AMU002_HDD_Pos_Checklists"
-COPILOT_AMU002_HDD_Pos_Checklists.vertices 	   = {{-width, height},
+local COPILOT_AMU002_CDI	    = CreateElement "ceTexPoly" --this could be the text area on HUD
+COPILOT_AMU002_CDI.name 		= "COPILOT_AMU002_CDI"
+COPILOT_AMU002_CDI.material   = "AMU002_CDI"
+COPILOT_AMU002_CDI.vertices 	   = {{-width, height},
 					  { width, height},
 					  { width,-height},
 					  {-width,-height}}
-COPILOT_AMU002_HDD_Pos_Checklists.indices			= default_box_indices	
-COPILOT_AMU002_HDD_Pos_Checklists.tex_coords = {{0,0},{1,0},{1,1},{0,1}}
-COPILOT_AMU002_HDD_Pos_Checklists.init_pos   = {0,0} 
-COPILOT_AMU002_HDD_Pos_Checklists.element_params   = {
+COPILOT_AMU002_CDI.indices			= default_box_indices	
+COPILOT_AMU002_CDI.tex_coords = {{0,0},{1,0},{1,1},{0,1}}
+COPILOT_AMU002_CDI.init_pos   = {0,0} 
+COPILOT_AMU002_CDI.element_params   = {
 							"COPILOT_AMU_brightness",
 						} 
-COPILOT_AMU002_HDD_Pos_Checklists.controllers 	   = {
+COPILOT_AMU002_CDI.controllers 	   = {
 								BCont[1],BCont[2],BCont[3],BCont[4],BCont[5],BCont[6],BCont[7],BCont[8],BCont[9],BCont[10],
 							}
-COPILOT_AMU002_HDD_Pos_Checklists.collimated = true
-COPILOT_AMU002_HDD_Pos_Checklists.parent_element = COPILOT_AMU002_HDD_Pos_Checklists_origin.name
-COPILOT_AMU002_HDD_Pos_Checklists.blend_mode 	=  blend_mode.IBM_REGULAR
-AddElement(COPILOT_AMU002_HDD_Pos_Checklists)
+COPILOT_AMU002_CDI.collimated = true
+COPILOT_AMU002_CDI.parent_element = COPILOT_AMU002_CDI_origin.name
+COPILOT_AMU002_CDI.blend_mode 	=  blend_mode.IBM_REGULAR
+AddElement(COPILOT_AMU002_CDI)
 
--------------------------------------------------------------------------------PILOT_AMU002_Waypoints_Select
+-------------------------------------------------------------------------------COPILOT_AMU002_Waypoints_Select
 
 local COPILOT_AMU002_Waypoints_Select_origin	         = CreateElement "ceSimple"
 COPILOT_AMU002_Waypoints_Select_origin.name 		     = "COPILOT_AMU002_Waypoints_Select_origin"
@@ -212,7 +212,7 @@ COPILOT_AMU002_Waypoints_Select.parent_element = COPILOT_AMU002_Waypoints_Select
 COPILOT_AMU002_Waypoints_Select.blend_mode 	=  blend_mode.IBM_REGULAR
 AddElement(COPILOT_AMU002_Waypoints_Select)
 
-Add_Object_Text(COPILOT_Confirm_Del, "COPILOT_Confirm_Del", COPILOT_AMU002_Waypoints_Select_origin.name, 0,
+Add_Object_Text(COPILOT_Confirm_Del, "COPILOT_Confirm_Del", COPILOT_AMU002_Waypoints_Select.name, 0,
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
 					{"Yes"},--format_value

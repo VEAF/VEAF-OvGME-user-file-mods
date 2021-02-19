@@ -19,16 +19,13 @@ return {
 
 keyCommands = {
 
---Aircraft station positions
-{down = iCommandViewCockpitChangeSeat, value_down = 1, up = Position_Control.Pilot_Seat, name = _('Captain Seat'),	category = _('Station Positions')},
-{down = iCommandViewCockpitChangeSeat, value_down = 2, up = Position_Control.Copilot_Seat, name = _('Copilot Seat'),	category = _('Station Positions')},
-{down = Position_Control.Loadmaster_Station, name = _('Loadmaster Station'),	category = _('Station Positions')},
-{down = Position_Control.CargoRamp_Station, name = _('Cargo Ramp Station'),	category = _('Station Positions')},
-{down = Position_Control.Cannon_Target_Station, name = _('Cannon Target Station'),	category = _('Station Positions')},
-
--- Radio testing
--- {down = 3002, cockpit_device_id  = 12, value_down = 1.0,	 name = _('Battery'), category = _('Right Switch Panel')},
--- {down = 3002, cockpit_device_id  = 22, value_down = 1.0, name = _('Radio chanel A'), category = _('VHF Radio')},
+--Station Control
+{down = General_Packet_Send.NetCrewRequestControl,	name = _('Request Aircraft Control'),	category = _('Station Control')},
+{down = iCommandViewCockpitChangeSeat, value_down = 1, up = Position_Control.Pilot_Seat, name = _('Captain Seat'),	category = _('Station Control')},
+{down = iCommandViewCockpitChangeSeat, value_down = 2, up = Position_Control.Copilot_Seat, name = _('Copilot Seat'),	category = _('Station Control')},
+{down = Position_Control.Loadmaster_Station, name = _('Loadmaster Station'),	category = _('Station Control')},
+{down = Position_Control.CargoRamp_Station, name = _('Cargo Ramp Station'),	category = _('Station Control')},
+{down = Position_Control.Cannon_Target_Station, name = _('Cannon Target Station'),	category = _('Station Control')},
 
 --Cargo Hold
 {down = MISCELLANEOUS.CargoDoorRampClose, name = _('Cargo Door/Ramp Close'), category = _('Cargo Hold')},
@@ -47,21 +44,14 @@ keyCommands = {
 {down = MISCELLANEOUS.Flightdeck_Windows_Toggle, name = _('Flightdeck Windows Toggle Open/Close'), category = _('Flightdeck')},
 {down = ICS_PANEL.ICS_Silence_Keyb, name = _('Silence Alarms Toggle'), category = _('Flightdeck')},
 
--- Undercarriage
-{down = MISCELLANEOUS.BrakesBothOn, up = MISCELLANEOUS.BrakesBothOff, name = _('Left and Right Toe Brakes On/Off'), category = _('Undercarriage')},
-{pressed = MISCELLANEOUS.NWSLeft, up = MISCELLANEOUS.NWSLeftCenter, name = _('Nose Wheel Steering Left'), category = _('Undercarriage')},
-{pressed = MISCELLANEOUS.NWSRight, up = MISCELLANEOUS.NWSRightCenter, name = _('Nose Wheel Steering Right'), category = _('Undercarriage')},
-{down = MISCELLANEOUS.Park_Brake_Toggle, name = _('Park Brake Toggle'), category = _('Undercarriage')},
-{down = LANDING_GEAR_LIGHTS_PANEL.GearToggle, name = _('Landing Gear Toggle'), category = _('Undercarriage')},
-{down = LANDING_GEAR_LIGHTS_PANEL.GearUp, name = _('Landing Gear Up'), category = _('Undercarriage')},
-{down = LANDING_GEAR_LIGHTS_PANEL.GearDown, name = _('Landing Gear Down'), category = _('Undercarriage')},
-
--- Flaps
-{down = FLAPS.Down, name = _('Flaps Increment Down'), category = _('Flaps')},
-{down = FLAPS.Up, name = _('Flaps Increment Up'), category = _('Flaps')},
-{down = FLAPS.Zero_percent, name = _('Flaps 0%'), category = _('Flaps')},
-{down = FLAPS.Fifty_percent, name = _('Flaps 50%'), category = _('Flaps')},
-{down = FLAPS.Hunderd_percent, name = _('Flaps 100%'), category = _('Flaps')},
+-- Ground Control
+{down = MISCELLANEOUS.BrakesBothOn, up = MISCELLANEOUS.BrakesBothOff, name = _('Left and Right Toe Brakes On/Off'), category = _('Ground Control')},
+{pressed = MISCELLANEOUS.NWSLeft, up = MISCELLANEOUS.NWSLeftCenter, name = _('Nose Wheel Steering Left'), category = _('Ground Control')},
+{pressed = MISCELLANEOUS.NWSRight, up = MISCELLANEOUS.NWSRightCenter, name = _('Nose Wheel Steering Right'), category = _('Ground Control')},
+{down = MISCELLANEOUS.Park_Brake_Toggle, name = _('Park Brake Toggle'), category = _('Ground Control')},
+{down = LANDING_GEAR_LIGHTS_PANEL.GearToggle, name = _('Landing Gear Toggle'), category = _('Ground Control')},
+{down = LANDING_GEAR_LIGHTS_PANEL.GearUp, name = _('Landing Gear Up'), category = _('Ground Control')},
+{down = LANDING_GEAR_LIGHTS_PANEL.GearDown, name = _('Landing Gear Down'), category = _('Ground Control')},
 
 --Engine Control Panel
 -- {down = ENGINE_START_PANEL.Engine1_Start, name = _('Engines 1 Start'), category = _('Engine Control Panel')},
@@ -80,27 +70,48 @@ keyCommands = {
 
 -- Navigation
 {down = General_No_Packet_Send.F10_Map_Waypoint_Create, name = _('F10 map waypoint capture') , category = _('Navigation')},
+
+-- Autopilot
+{down = Automatic_Flight_Control_System_Panel.AFCS_Autopilot_On, name = _('AP Engage (not realistic)') , category = _('Autopilot')},
+{down = Automatic_Flight_Control_System_Panel.AFCS_Autopilot_Off, name = _('AP: 1st press - disengage, 2nd press - AP DSNG annunciation off') , category = _('Autopilot')},
+{pressed = Automatic_Flight_Control_System_Panel.AFCS_Vert_Ref_Sync_Control_On, up = Automatic_Flight_Control_System_Panel.AFCS_Vert_Ref_Sync_Control_Off, name = _('Vertical Reference Synchronization Control') , category = _('Autopilot')},
+
 -- Flight Control
-{down = Automatic_Flight_Control_System_Panel.AFCS_Autopilot_On, name = _('AP Engage (not realistic)') , category = _('Flight Control')},
-{down = Automatic_Flight_Control_System_Panel.AFCS_Autopilot_Off, name = _('AP: 1st press - disengage, 2nd press - AP DSNG annunciation off') , category = _('Flight Control')},
-{pressed = Automatic_Flight_Control_System_Panel.AFCS_Vert_Ref_Sync_Control_On, up = Automatic_Flight_Control_System_Panel.AFCS_Vert_Ref_Sync_Control_Off, name = _('Vertical Reference Synchronization Control') , category = _('Flight Control')},
 {pressed = TRIM.Up, up = TRIM.Stop, name = _('Trim: Nose Up'), category = _('Flight Control')},
 {pressed = TRIM.Down, up = TRIM.Stop, name = _('Trim: Nose Down'), category = _('Flight Control')},
 {pressed = TRIM.Left, up = TRIM.Stop, name = _('Trim: Left Wing Down'), category = _('Flight Control')},
 {pressed = TRIM.Right, up = TRIM.Stop, name = _('Trim: Right Wing Down'), category = _('Flight Control')},
 {pressed = TRIM.RudderLeft, up = TRIM.Stop, name = _('Trim: Rudder Left'), category = _('Flight Control')},
 {pressed = TRIM.RudderRight, up = TRIM.Stop, name = _('Trim: Rudder Right'), category = _('Flight Control')},
-{down = General_Packet_Send.NetCrewRequestControl,	name = _('Request Aircraft Control'),	category = _('Flight Control')},
-{down = THROTTLES.Full_Reverse, name = _('Throttles Beta Full Reverse'), category = _('Flight Control')},
-{down = THROTTLES.Beta, name = _('Throttles Flight/Beta Mode Toggle'), category = _('Flight Control')},
-{down = THROTTLES.TO_Power_Toggle, name = _('Throttles Take-off power Toggle On/Off'), category = _('Flight Control')},
-{down = THROTTLES.TO_Power_On, name = _('Throttles Take-off power On'), category = _('Flight Control')},
-{down = THROTTLES.TO_Power_Off, name = _('Throttles Take-off power Off'), category = _('Flight Control')},
-{down = THROTTLES.ATCS_Autothrottle_Disengage, name = _('ATCS - Autothrottle disengage') , category = _('Flight Control')},
-{down = THROTTLES.Throttles_To_Idle, name = _('Throttles to Idle') , category = _('Flight Control')},
 {down = AERIAL_DELIVERY_PANEL.Air_Deflector_Toggle, name = _('Paratroop Air Deflector Toggle'), category = _('Flight Control')},
 {down = AERIAL_DELIVERY_PANEL.Air_Deflector_Extend, name = _('Paratroop Air Deflector Extend'), category = _('Flight Control')},
 {down = AERIAL_DELIVERY_PANEL.Air_Deflector_Retract, name = _('Paratroop Air Deflector Retract'), category = _('Flight Control')},
+{pressed = FLIGHT_CONTROL.PlaneUpStart, up = FLIGHT_CONTROL.PlaneUpStop, name = _('Aircraft Pitch Up'), category = _('Flight Control')},
+{pressed = FLIGHT_CONTROL.PlaneDownStart, up = FLIGHT_CONTROL.PlaneDownStop, name = _('Aircraft Pitch Down'), category = _('Flight Control')},
+{pressed = FLIGHT_CONTROL.PlaneLeftStart, up = FLIGHT_CONTROL.PlaneLeftStop, name = _('Aircraft Bank Left'), category = _('Flight Control')},
+{pressed = FLIGHT_CONTROL.PlaneRightStart, up = FLIGHT_CONTROL.PlaneRightStop, name = _('Aircraft Bank Right'), category = _('Flight Control')},
+{pressed = FLIGHT_CONTROL.PlaneLeftRudderStart, up = FLIGHT_CONTROL.PlaneLeftRudderStop, name = _('Aircraft Rudder Left'), category = _('Flight Control')},
+{pressed = FLIGHT_CONTROL.PlaneRightRudderStart, up = FLIGHT_CONTROL.PlaneRightRudderStop, name = _('Aircraft Rudder Right'), category = _('Flight Control')},
+{down = FLAPS.Down, name = _('Flaps Increment Down'), category = _('Flight Control')},
+{down = FLAPS.Up, name = _('Flaps Increment Up'), category = _('Flight Control')},
+{down = FLAPS.Zero_percent, name = _('Flaps 0%'), category = _('Flight Control')},
+{down = FLAPS.Fifty_percent, name = _('Flaps 50%'), category = _('Flight Control')},
+{down = FLAPS.Hunderd_percent, name = _('Flaps 100%'), category = _('Flight Control')},
+
+-- Throttle Control
+{down = THROTTLES.Full_Reverse, name = _('Throttles Beta Full Reverse'), category = _('Throttle Control')},
+{down = THROTTLES.Beta, name = _('Throttles Flight/Beta Mode Toggle'), category = _('Throttle Control')},
+{down = THROTTLES.TO_Power_Toggle, name = _('Throttles Take-off power Toggle On/Off'), category = _('Throttle Control')},
+{down = THROTTLES.TO_Power_On, name = _('Throttles Take-off power On'), category = _('Throttle Control')},
+{down = THROTTLES.TO_Power_Off, name = _('Throttles Take-off power Off'), category = _('Throttle Control')},
+{down = THROTTLES.ATCS_Autothrottle_Disengage, name = _('ATCS - Autothrottle disengage') , category = _('Throttle Control')},
+{down = THROTTLES.Throttles_To_Idle, name = _('Throttles to Idle') , category = _('Throttle Control')},
+{pressed = THROTTLES.ThrottlesIncrease, up = THROTTLES.ThrottlesStop,	name = _('Throttles all Up'), category = _('Throttle Control')},
+{pressed = THROTTLES.ThrottlesDecrease, up = THROTTLES.ThrottlesStop,	name = _('Throttles all Down'), category = _('Throttle Control')},
+{pressed = THROTTLES.Throttles12Increase, up = THROTTLES.Throttles12Stop, name = _('Throttles 1 and 2 Up'), category = _('Throttle Control')},
+{pressed = THROTTLES.Throttles12Decrease, up = THROTTLES.Throttles12Stop,	name = _('Throttles 1 and 2 Down'), category = _('Throttle Control')},
+{pressed = THROTTLES.Throttles34Increase, up = THROTTLES.Throttles34Stop, name = _('Throttles 3 and 4 Up'), category = _('Throttle Control')},
+{pressed = THROTTLES.Throttles34Decrease, up = THROTTLES.Throttles34Stop, name = _('Throttles 3 and 4 Down'), category = _('Throttle Control')},
 
 --Night Vision Goggles
 {down    = iCommandViewNightVisionGogglesOn   , name = _('Night Vision Goggles')   , category = _('Night Vision Goggles')},
@@ -127,6 +138,7 @@ keyCommands = {
 -------------------------------------------------- common_joystick_binding
 ------------------------------------------------------------------------------------------------------------------------------
 -- Debug
+{	down = ICommandToggleConsole,					name = _('Toggle Console'),		category = _('Debug')},
 {	down = iCommandMissionRestart,					name = _('Restart Mission'),						category = _('Debug')},
 
 -- Gameplay
@@ -346,6 +358,7 @@ axisCommands = {
 {action = JOYSTICK.LeftThrottle			, name = _('Throttle Left')},
 {action = JOYSTICK.RightThrottle			, name = _('Throttle Right')},
 
+{action = JOYSTICK.PedalBothBrake,	name = 'Wheel Brake Both'},
 {action = JOYSTICK.PedalLeftBrake,	name = 'Wheel Brake Left'},
 {action = JOYSTICK.PedalRightBrake,	name = 'Wheel Brake Right'},
 

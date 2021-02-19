@@ -735,7 +735,221 @@ Add_Object_Text(Told_INIT, "Told_INIT", Told_INIT_origin.name, 0,
 					}
 				)
 
--------------------------------------------------------------------------------PILOT_CNI_MU_CommTune
+--------------------------------------------------------------------------------------------------------PILOT_CNI_MU_NAV_CTRL
+
+local NAV_CTRL_origin	         = CreateElement "ceSimple"
+NAV_CTRL_origin.name 		     = "NAV_CTRL_origin"
+NAV_CTRL_origin.init_pos        = {0,0}
+NAV_CTRL_origin.element_params   = {
+								"PILOT_CNI_MU_NAV_CTRL",
+								"PILOT_Network_Sync",
+										   } 
+NAV_CTRL_origin.controllers 	   = {
+								{"parameter_in_range",0,0.95,1.05},
+								{"parameter_in_range",1,-0.1,0.1},
+								}
+NAV_CTRL_origin.collimated 		 = true
+AddElement(NAV_CTRL_origin)
+
+-------------------------------------------------------------------------------- Header
+Add_Object_Text(NAV_CTRL, "NAV_CTRL", NAV_CTRL_origin.name, 0,
+					"font_Bold_Arial_green",--objectmaterial
+					"CenterCenter",--objectalignment
+					{"NAV CONTROL"},--format_value
+					{0.008,0.008,  0.0010, 0},--stringdefs_value
+					300,--initpixelposx
+					16,--initpixelposy
+					{--params
+						"PILOT_CNI_MU_brightness",
+						"",
+					},
+					{--controllers
+						{"opacity_using_parameter",0},
+						{"text_using_parameter",1,0},
+					}
+				)
+-------------------------------------------------------------------------------- Wpt_nr
+Add_Object_Text(Wpt_nr, "Wpt_nr", NAV_CTRL_origin.name, 0,
+					"font_Arial_green",--objectmaterial
+					"LeftCenter",--objectalignment
+					{"< Wpt Nr:"},--format_value
+					{0.007,0.007,  -0.0040, 0},--stringdefs_value
+					10,--initpixelposx
+					58,--initpixelposy
+					{--params
+						"PILOT_CNI_MU_brightness",
+						"",
+					},
+					{--controllers
+						{"opacity_using_parameter",0},
+						{"text_using_parameter",1,0},
+					}
+				)
+Add_Object_Text(Wpt_nr, "Wpt_nr", NAV_CTRL_origin.name, 0,
+					"font_Arial_white",--objectmaterial
+					"LeftCenter",--objectalignment
+					{"%.0f "},--format_value
+					{0.007,0.007,  -0.0040, 0},--stringdefs_value
+					200,--initpixelposx
+					58,--initpixelposy
+					{--params
+						"PILOT_CNI_MU_brightness",
+						"PILOT_CNI_MU_Wpt_nr",
+					},
+					{--controllers
+						{"opacity_using_parameter",0},
+						{"text_using_parameter",1,0},
+					}
+				)
+Add_Object_Text(Wpt_nr, "Wpt_nr", NAV_CTRL_origin.name, 0,
+					"font_Arial_green_background",--objectmaterial
+					"LeftCenter",--objectalignment
+					{" "},--format_value
+					{0.007,0.012,  0, 0},--stringdefs_value
+					195,--initpixelposx
+					58,--initpixelposy
+					{--params
+						"PILOT_CNI_MU_brightness",
+						"",
+					},
+					{--controllers
+						{"opacity_using_parameter",0},
+						{"text_using_parameter",1,0},
+					}
+				)
+-------------------------------------------------------------------------------- Wpt_nr_Inc
+Add_Object_Text(Wpt_nr_Inc, "Wpt_nr_Inc", NAV_CTRL_origin.name, 0,
+					"font_Arial_green",--objectmaterial
+					"LeftCenter",--objectalignment
+					{"Wpt Nr Inc +"},--format_value
+					{0.007,0.007,  -0.0040, 0},--stringdefs_value
+					300,--initpixelposx
+					58,--initpixelposy
+					{--params
+						"PILOT_CNI_MU_brightness",
+						"",
+					},
+					{--controllers
+						{"opacity_using_parameter",0},
+						{"text_using_parameter",1,0},
+					}
+				)
+Add_Object_Text(Wpt_nr_Inc, "Wpt_nr_Inc", NAV_CTRL_origin.name, 0,
+					"font_Arial_green",--objectmaterial
+					"RightCenter",--objectalignment
+					{" >"},--format_value
+					{0.007,0.007,  -0.0040, 0},--stringdefs_value
+					565,--initpixelposx
+					58,--initpixelposy
+					{--params
+						"PILOT_CNI_MU_brightness",
+						"",
+					},
+					{--controllers
+						{"opacity_using_parameter",0},
+						{"text_using_parameter",1,0},
+					}
+				)
+-------------------------------------------------------------------------------- Wpt_nr_Dec
+Add_Object_Text(Wpt_nr_Dec, "Wpt_nr_Dec", NAV_CTRL_origin.name, 0,
+					"font_Arial_green",--objectmaterial
+					"LeftCenter",--objectalignment
+					{"Wpt Nr Dec -"},--format_value
+					{0.007,0.007,  -0.0040, 0},--stringdefs_value
+					300,--initpixelposx
+					110,--initpixelposy
+					{--params
+						"PILOT_CNI_MU_brightness",
+						"",
+					},
+					{--controllers
+						{"opacity_using_parameter",0},
+						{"text_using_parameter",1,0},
+					}
+				)
+Add_Object_Text(Wpt_nr_Dec, "Wpt_nr_Dec", NAV_CTRL_origin.name, 0,
+					"font_Arial_green",--objectmaterial
+					"RightCenter",--objectalignment
+					{" >"},--format_value
+					{0.007,0.007,  -0.0040, 0},--stringdefs_value
+					565,--initpixelposx
+					110,--initpixelposy
+					{--params
+						"PILOT_CNI_MU_brightness",
+						"",
+					},
+					{--controllers
+						{"opacity_using_parameter",0},
+						{"text_using_parameter",1,0},
+					}
+				)
+-------------------------------------------------------------------------------- Wpt_Lat
+Add_Object_Text(Wpt_Lat, "Wpt_Lat", NAV_CTRL_origin.name, 0,
+					"font_Arial_green",--objectmaterial
+					"LeftCenter",--objectalignment
+					{"<"},--format_value
+					{0.007,0.007,  -0.0040, 0},--stringdefs_value
+					10,--initpixelposx
+					214,--initpixelposy
+					{--params
+						"PILOT_CNI_MU_brightness",
+						"",
+					},
+					{--controllers
+						{"opacity_using_parameter",0},
+						{"text_using_parameter",1,0},
+					}
+				)
+Add_Object_Text(Wpt_Lat, "Wpt_Lat", NAV_CTRL_origin.name, 0,
+					"font_Arial_white",--objectmaterial
+					"LeftCenter",--objectalignment
+					{"%s"},--format_value
+					{0.007,0.007,  -0.0040, 0},--stringdefs_value
+					40,--initpixelposx
+					214,--initpixelposy
+					{--params
+						"PILOT_CNI_MU_brightness",
+						"PILOT_CNI_MU_Wpt_Lat",
+					},
+					{--controllers
+						{"opacity_using_parameter",0},
+						{"text_using_parameter",1,0},
+					}
+				)
+-------------------------------------------------------------------------------- Wpt_Name
+Add_Object_Text(Wpt_Name, "Wpt_Name", NAV_CTRL_origin.name, 0,
+					"font_Arial_green",--objectmaterial
+					"LeftCenter",--objectalignment
+					{"<"},--format_value
+					{0.007,0.007,  -0.0040, 0},--stringdefs_value
+					10,--initpixelposx
+					318,--initpixelposy
+					{--params
+						"PILOT_CNI_MU_brightness",
+						"",
+					},
+					{--controllers
+						{"opacity_using_parameter",0},
+						{"text_using_parameter",1,0},
+					}
+				)
+Add_Object_Text(Wpt_Name, "Wpt_Name", NAV_CTRL_origin.name, 0,
+					"font_Arial_white",--objectmaterial
+					"LeftCenter",--objectalignment
+					{"%s"},--format_value
+					{0.007,0.007,  -0.0040, 0},--stringdefs_value
+					40,--initpixelposx
+					318,--initpixelposy
+					{--params
+						"PILOT_CNI_MU_brightness",
+						"PILOT_CNI_MU_Wpt_Name",
+					},
+					{--controllers
+						{"opacity_using_parameter",0},
+						{"text_using_parameter",1,0},
+					}
+				)
+-------------------------------------------------------------------------------------------------------PILOT_CNI_MU_CommTune
 
 local CommTune_origin	         = CreateElement "ceSimple"
 CommTune_origin.name 		     = "CommTune_origin"
@@ -874,7 +1088,7 @@ Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name, 0,
 Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name, 0,
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
-					{"<Fuel pers:"},--format_value
+					{"<Fuel persentage:"},--format_value
 					{0.007,0.007,  -0.0040, 0},--stringdefs_value
 					10,--initpixelposx
 					58,--initpixelposy
@@ -892,7 +1106,7 @@ Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name, 0,
 					"RightCenter",--objectalignment
 					{"%.0f ?  "},--format_value
 					{0.007,0.007,  -0.0040, 0},--stringdefs_value
-					338,--initpixelposx
+					450,--initpixelposx
 					58,--initpixelposy
 					{--params
 						"PILOT_CNI_MU_brightness",
@@ -908,7 +1122,7 @@ Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name, 0,
 					"RightCenter",--objectalignment
 					{" "},--format_value
 					{0.007,0.020,  0, 0},--stringdefs_value
-					325,--initpixelposx
+					440,--initpixelposx
 					58,--initpixelposy
 					{--params
 						"COPILOT_CNI_MU_brightness",
@@ -990,7 +1204,7 @@ Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name, 0,
 					"RightCenter",--objectalignment
 					{"  "},--format_value
 					{0.007,0.0165,  0, 0},--stringdefs_value
-					432,--initpixelposx
+					442,--initpixelposx
 					162,--initpixelposy
 					{--params
 						"COPILOT_CNI_MU_brightness",
@@ -1273,7 +1487,7 @@ Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
 					"LeftCenter",--objectalignment
 					{"%.0fft "},--format_value
 					{0.007,0.007,  -0.0040, 0},--stringdefs_value
-					220,--initpixelposx
+					230,--initpixelposx
 					58,--initpixelposy
 					{--params
 						"PILOT_CNI_MU_brightness",
@@ -1289,7 +1503,7 @@ Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
 					"LeftCenter",--objectalignment
 					{" "},--format_value
 					{0.007,0.022,  0, 0},--stringdefs_value
-					225,--initpixelposx
+					235,--initpixelposx
 					58,--initpixelposy
 					{--params
 						"PILOT_CNI_MU_brightness",
@@ -1602,7 +1816,7 @@ Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
 					"RightCenter",--objectalignment
 					{"oat:"},--format_value
 					{0.007,0.007,  -0.0042, 0},--stringdefs_value
-					435,--initpixelposx
+					415,--initpixelposx
 					162,--initpixelposy
 					{--params
 						"PILOT_CNI_MU_brightness",
@@ -1750,7 +1964,7 @@ Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
 					"LeftCenter",--objectalignment
 					{"%.0fft "},--format_value
 					{0.007,0.007,  -0.0040, 0},--stringdefs_value
-					322,--initpixelposx
+					332,--initpixelposx
 					266,--initpixelposy
 					{--params
 						"PILOT_CNI_MU_brightness",
@@ -1769,7 +1983,7 @@ Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
 					"LeftCenter",--objectalignment
 					{"%.0fft "},--format_value
 					{0.007,0.007,  -0.0040, 0},--stringdefs_value
-					322,--initpixelposx
+					332,--initpixelposx
 					266,--initpixelposy
 					{--params
 						"PILOT_CNI_MU_brightness",
@@ -1806,7 +2020,7 @@ Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
 					"LeftCenter",--objectalignment
 					{"%.0fft "},--format_value
 					{0.007,0.007,  -0.0040, 0},--stringdefs_value
-					262,--initpixelposx
+					272,--initpixelposx
 					318,--initpixelposy
 					{--params
 						"PILOT_CNI_MU_brightness",
@@ -1825,7 +2039,7 @@ Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
 					"LeftCenter",--objectalignment
 					{"%.0fft "},--format_value
 					{0.007,0.007,  -0.0040, 0},--stringdefs_value
-					262,--initpixelposx
+					272,--initpixelposx
 					318,--initpixelposy
 					{--params
 						"PILOT_CNI_MU_brightness",

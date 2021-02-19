@@ -21,11 +21,13 @@ BCont	=
 	[10] = {"change_color_when_parameter_equal_to_number", 0, 0.1, 0.1, 0.1, 0.1},
 }
 						
-function AddElement(object)
+function AddElement(object, level)
     object.use_mipfilter    = true
 	object.additive_alpha   = true
+	-- object.h_clip_relation  = object.h_clip_relation or h_clip_relations.COMPARE
+	object.level			= level or DISPLAY_DEFAULT_LEVEL
 	object.h_clip_relation  = h_clip_relations.COMPARE
-	object.level			= DISPLAY_DEFAULT_LEVEL
+	-- object.level			= DISPLAY_DEFAULT_LEVEL
 	object.blend_mode 	=  blend_mode.IBM_REGULAR
 	object.collimated = true
 	object.indices = default_box_indices	
@@ -148,6 +150,82 @@ function Add_System_Status_Text(object, messagename, material, alignment, parent
 	object.level			= DEFAULT_LEVEL
 	object.parent_element = parent
     Add(object)
+end
+
+function Add_Text(objectname, objectmaterial, objectalignment, objectparent, objectelementparams, objectcontrollers, format_value, stringdefs_value, initpixelposx, initpixelposy, level)
+	local object			= CreateElement "ceStringPoly"
+	object.name				= objectname
+	object.material			= objectmaterial
+	object.element_params	= objectelementparams
+	object.controllers		= objectcontrollers
+	object.init_pos			= {initpixelposx, -initpixelposy}
+
+	object.alignment		= objectalignment
+	if format_value ~= nil then
+		if type(format_value) == "table" then
+			object.formats = format_value
+		else
+			object.value = format_value
+		end
+	end
+	object.stringdefs		= stringdefs_value--VerticalSize, HorizontalSize, HorizontalSpacing, VerticalSpacing
+    object.use_mipfilter    = true
+	object.additive_alpha   = true
+	object.collimated		= true
+	object.h_clip_relation  = h_clip_relations.COMPARE
+	object.level			= level or DISPLAY_DEFAULT_LEVEL
+	-- object.parent_element	= objectparent
+	object.blend_mode		= blend_mode.IBM_REGULAR
+    Add(object)
+end
+
+function Add_Text_With_Level(objectname, objectmaterial, objectalignment, objectparent, objectelementparams, objectcontrollers, format_value, stringdefs_value, initpixelposx, initpixelposy, level)
+	local object			= CreateElement "ceStringPoly"
+	object.name				= objectname
+	object.material			= objectmaterial
+	object.element_params	= objectelementparams
+	object.controllers		= objectcontrollers
+	object.init_pos			= {((initpixelposx - 0) * 1), (-(initpixelposy - 0) * 1)}
+
+	object.alignment		= objectalignment
+	if format_value ~= nil then
+		if type(format_value) == "table" then
+			object.formats = format_value
+		else
+			object.value = format_value
+		end
+	end
+	object.stringdefs		= stringdefs_value--VerticalSize, HorizontalSize, HorizontalSpacing, VerticalSpacing
+    object.use_mipfilter    = true
+	object.additive_alpha   = true
+	object.collimated		= true
+	object.h_clip_relation  = h_clip_relations.COMPARE
+	object.level			= level
+	-- object.parent_element	= objectparent
+	object.blend_mode		= blend_mode.IBM_REGULAR
+    Add(object)
+end
+
+--Add_Thick_Line("Alt_500_Tick", "green", 20, 400, 0.8, alt_tape_base_y - 0.0042 - ((i - 2) * alt_tape_increment), HDD001_PFD_origin.name, {"HDD_ALT_TAPE_Y"}, {"move_up_down_using_parameter", 0, 1.0 })
+function Add_Thick_Line(objectbaseName, objectmaterial, objectIterations, lineLen, initpixelposx, initpixelposy, objectparent, objectelementparams, objectcontrollers, level)
+	for i = 1, objectIterations do
+		local object	    	= CreateElement "ceSimpleLineObject"
+		object.name 			= objectbaseName..i
+		object.primitivetype	= "lines"
+		object.width			= 0.5
+		object.material   		= objectmaterial
+		local y = (0.0001827 * 1) * GetAspect()
+		object.vertices  		= {
+									{                    0, y },
+									{ 0.000244 * lineLen, y }
+								}
+		object.init_pos 		= {initpixelposx, initpixelposy + ((i - 1) * 0.00075)}
+		object.element_params 	= objectelementparams
+		object.controllers 		= objectcontrollers
+		object.h_clip_relation	= h_clip_relations.COMPARE
+		-- object.parent_element	= objectparent
+		AddElement(object, level or DISPLAY_DEFAULT_LEVEL)
+	end
 end
 
 

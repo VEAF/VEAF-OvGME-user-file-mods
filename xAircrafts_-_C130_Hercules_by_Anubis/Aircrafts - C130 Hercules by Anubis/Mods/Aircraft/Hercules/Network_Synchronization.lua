@@ -29,14 +29,13 @@
 ---------------------------------------------------------------------------
 
 -- Crew member's public IP address (not your own IP !!!!!!!!!!!!): 
--- Maximum of 15 characters
------------"Max   15   char"---------------"000.000.000.000"
-Handle_1 = "Anubis"			 Handle_1_IP = "41.190.104.136"
+-----------"__Max 15 char__"---------------"____________Max 40 char_________________"
+Handle_1 = "Kenan"			 Handle_1_IP = "fe80::207:30ee:edcb:d05d"
 Handle_2 = "Knapsak"		 Handle_2_IP = "105.243.7.125"
 Handle_3 = "ducklings"		 Handle_3_IP = "105.247.156.216"
 Handle_4 = "Midnight"		 Handle_4_IP = "102.39.122.205"
-Handle_5 = "Anubis1"		 Handle_5_IP = "192.168.179.160"
-Handle_6 = "Anubis2"		 Handle_6_IP = "192.168.179.163"
+Handle_5 = "Scorpio"		 Handle_5_IP = "62.178.139.207"
+Handle_6 = "Chaos"		 	 Handle_6_IP = "197.245.215.142"
 
 ---------------------------------------------------------------------------
 

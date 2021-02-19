@@ -107,40 +107,114 @@ COPILOT_AMU001_Nav_Select.parent_element = COPILOT_AMU001_Nav_Select_origin.name
 COPILOT_AMU001_Nav_Select.blend_mode 	=  blend_mode.IBM_REGULAR
 AddElement(COPILOT_AMU001_Nav_Select)
 
--------------------------------------------------------------------------------COPILOT_AMU001_Checklists
+-------------------------------------------------------------------------------COPILOT_AMU001_Unit_Settings
 
-local COPILOT_AMU001_Checklists_origin	         = CreateElement "ceSimple"
-COPILOT_AMU001_Checklists_origin.name 		     = "COPILOT_AMU001_Checklists_origin"
-COPILOT_AMU001_Checklists_origin.init_pos        = {0,0}
-COPILOT_AMU001_Checklists_origin.element_params   = {
-								"COPILOT_AMU001_Checklists",
+local COPILOT_AMU001_Unit_Settings_origin	         = CreateElement "ceSimple"
+COPILOT_AMU001_Unit_Settings_origin.name 		     = "COPILOT_AMU001_Unit_Settings_origin"
+COPILOT_AMU001_Unit_Settings_origin.init_pos        = {0,0}
+COPILOT_AMU001_Unit_Settings_origin.element_params   = {
+								"COPILOT_AMU001_Unit_Settings",
 										   } 
-COPILOT_AMU001_Checklists_origin.controllers 	   = {
+COPILOT_AMU001_Unit_Settings_origin.controllers 	   = {
 								{"parameter_in_range",0,0.95,1.05},
 								}
-COPILOT_AMU001_Checklists_origin.collimated 		 = true
-AddElement(COPILOT_AMU001_Checklists_origin)
+COPILOT_AMU001_Unit_Settings_origin.collimated 		 = true
+AddElement(COPILOT_AMU001_Unit_Settings_origin)
 
-local COPILOT_AMU001_Checklists	    = CreateElement "ceTexPoly"
-COPILOT_AMU001_Checklists.name 		= "COPILOT_AMU001_Checklists"
-COPILOT_AMU001_Checklists.material   = "AMU001_Checklists"
-COPILOT_AMU001_Checklists.vertices 	   = {{-width, height},
+local COPILOT_AMU001_Unit_Settings	    = CreateElement "ceTexPoly"
+COPILOT_AMU001_Unit_Settings.name 		= "COPILOT_AMU001_Unit_Settings"
+COPILOT_AMU001_Unit_Settings.material   = "AMU001_Unit_Settings"
+COPILOT_AMU001_Unit_Settings.vertices 	   = {{-width, height},
 					  { width, height},
 					  { width,-height},
 					  {-width,-height}}
-COPILOT_AMU001_Checklists.indices			= default_box_indices	
-COPILOT_AMU001_Checklists.tex_coords = {{0,0},{1,0},{1,1},{0,1}}
-COPILOT_AMU001_Checklists.init_pos   = {0,0} 
-COPILOT_AMU001_Checklists.element_params   = {
+COPILOT_AMU001_Unit_Settings.indices			= default_box_indices	
+COPILOT_AMU001_Unit_Settings.tex_coords = {{0,0},{1,0},{1,1},{0,1}}
+COPILOT_AMU001_Unit_Settings.init_pos   = {0,0} 
+COPILOT_AMU001_Unit_Settings.element_params   = {
 							"COPILOT_AMU_brightness",
 						} 
-COPILOT_AMU001_Checklists.controllers 	   = {
+COPILOT_AMU001_Unit_Settings.controllers 	   = {
 							BCont[1],BCont[2],BCont[3],BCont[4],BCont[5],BCont[6],BCont[7],BCont[8],BCont[9],BCont[10],
 							}
-COPILOT_AMU001_Checklists.collimated = true
-COPILOT_AMU001_Checklists.parent_element = COPILOT_AMU001_Checklists_origin.name
-COPILOT_AMU001_Checklists.blend_mode 	=  blend_mode.IBM_REGULAR
-AddElement(COPILOT_AMU001_Checklists)
+COPILOT_AMU001_Unit_Settings.collimated = true
+COPILOT_AMU001_Unit_Settings.parent_element = COPILOT_AMU001_Unit_Settings_origin.name
+COPILOT_AMU001_Unit_Settings.blend_mode 	=  blend_mode.IBM_REGULAR
+AddElement(COPILOT_AMU001_Unit_Settings)
+
+Add_Object_Text(COPILOT_Alt_Set, "COPILOT_Alt_Set", COPILOT_AMU001_Unit_Settings.name, 0,
+					"font_Arial_green",--objectmaterial
+					"LeftCenter",--objectalignment
+					{"feet"},--format_value
+					{0.007,0.007,  -0.003, 0},--stringdefs_value
+					210.0,--initpixelposx
+					73.0,--initpixelposy
+					{--params
+						"COPILOT_AMU_brightness",
+						"",
+						"Alt_unit",
+					},
+					{--controllers
+						{"opacity_using_parameter",0},
+						{"text_using_parameter",1,0},
+						{"parameter_in_range",2,-0.05,0.05},
+					}
+				)
+Add_Object_Text(COPILOT_Alt_Set, "COPILOT_Alt_Set", COPILOT_AMU001_Unit_Settings.name, 0,
+					"font_Arial_green",--objectmaterial
+					"LeftCenter",--objectalignment
+					{"meter"},--format_value
+					{0.007,0.007,  -0.003, 0},--stringdefs_value
+					210.0,--initpixelposx
+					73.0,--initpixelposy
+					{--params
+						"COPILOT_AMU_brightness",
+						"",
+						"Alt_unit",
+					},
+					{--controllers
+						{"opacity_using_parameter",0},
+						{"text_using_parameter",1,0},
+						{"parameter_in_range",2,0.95,1.05},
+					}
+				)
+
+Add_Object_Text(COPILOT_Baro_Set, "COPILOT_Baro_Set", COPILOT_AMU001_Unit_Settings.name, 0,
+					"font_Arial_green",--objectmaterial
+					"LeftCenter",--objectalignment
+					{"inHg"},--format_value
+					{0.007,0.007,  -0.003, 0},--stringdefs_value
+					150.0,--initpixelposx
+					140.0,--initpixelposy
+					{--params
+						"COPILOT_AMU_brightness",
+						"",
+						"Baro_unit",
+					},
+					{--controllers
+						{"opacity_using_parameter",0},
+						{"text_using_parameter",1,0},
+						{"parameter_in_range",2,-0.05,0.05},
+					}
+				)
+Add_Object_Text(COPILOT_Baro_Set, "COPILOT_Baro_Set", COPILOT_AMU001_Unit_Settings.name, 0,
+					"font_Arial_green",--objectmaterial
+					"LeftCenter",--objectalignment
+					{"mbar"},--format_value
+					{0.007,0.007,  -0.003, 0},--stringdefs_value
+					150.0,--initpixelposx
+					140.0,--initpixelposy
+					{--params
+						"COPILOT_AMU_brightness",
+						"",
+						"Baro_unit",
+					},
+					{--controllers
+						{"opacity_using_parameter",0},
+						{"text_using_parameter",1,0},
+						{"parameter_in_range",2,0.95,1.05},
+					}
+				)
 
 -------------------------------------------------------------------------------COPILOT_AMU001_CAPS
 
@@ -217,7 +291,7 @@ Add_Object_Text(CAPS_wpt, "CAPS_wpt", COPILOT_AMU001_CAPS_Battle_Circle.name, 0,
 					"LeftCenter",--objectalignment
 					{"%.0f"},--format_value
 					{0.007,0.007,  -0.003, 0},--stringdefs_value
-					400.0,--initpixelposx
+					370.0,--initpixelposx
 					31.0,--initpixelposy
 					{--params
 						"COPILOT_AMU_brightness",
@@ -233,8 +307,8 @@ Add_Object_Text(CAPS_Initiate, "CAPS_Initiate", COPILOT_AMU001_CAPS_Battle_Circl
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
 					{"Initiated"},--format_value
-					{0.007,0.007,  -0.003, 0},--stringdefs_value
-					420.0,--initpixelposx
+					{0.007,0.007,  -0.004, 0},--stringdefs_value
+					395.0,--initpixelposx
 					31.0,--initpixelposy
 					{--params
 						"COPILOT_AMU_brightness",
@@ -374,7 +448,7 @@ Add_Object_Text(Wpt1_number_active, "Wpt1_number_active", COPILOT_AMU001_Waypoin
 Add_Object_Text(Wpt1_distance, "Wpt1_distance", COPILOT_AMU001_Waypoint1.name, 0,
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
-					{"%.0f"},--format_value
+					{"%.1f"},--format_value
 					{0.007,0.007,  -0.003, 0},--stringdefs_value
 					350.0,--initpixelposx
 					67.0,--initpixelposy
@@ -532,7 +606,7 @@ Add_Object_Text(Wpt2_number_active, "Wpt2_number_active", COPILOT_AMU001_Waypoin
 Add_Object_Text(Wpt2_distance, "Wpt2_distance", COPILOT_AMU001_Waypoint2.name, 0,
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
-					{"%.0f"},--format_value
+					{"%.1f"},--format_value
 					{0.007,0.007,  -0.003, 0},--stringdefs_value
 					350.0,--initpixelposx
 					67.0,--initpixelposy
@@ -690,7 +764,7 @@ Add_Object_Text(Wpt3_number_active, "Wpt3_number_active", COPILOT_AMU001_Waypoin
 Add_Object_Text(Wpt3_distance, "Wpt3_distance", COPILOT_AMU001_Waypoint3.name, 0,
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
-					{"%.0f"},--format_value
+					{"%.1f"},--format_value
 					{0.007,0.007,  -0.003, 0},--stringdefs_value
 					350.0,--initpixelposx
 					67.0,--initpixelposy
@@ -848,7 +922,7 @@ Add_Object_Text(Wpt4_number_active, "Wpt4_number_active", COPILOT_AMU001_Waypoin
 Add_Object_Text(Wpt4_distance, "Wpt4_distance", COPILOT_AMU001_Waypoint4.name, 0,
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
-					{"%.0f"},--format_value
+					{"%.1f"},--format_value
 					{0.007,0.007,  -0.003, 0},--stringdefs_value
 					350.0,--initpixelposx
 					67.0,--initpixelposy
@@ -1006,7 +1080,7 @@ Add_Object_Text(Wpt5_number_active, "Wpt5_number_active", COPILOT_AMU001_Waypoin
 Add_Object_Text(Wpt5_distance, "Wpt5_distance", COPILOT_AMU001_Waypoint5.name, 0,
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
-					{"%.0f"},--format_value
+					{"%.1f"},--format_value
 					{0.007,0.007,  -0.003, 0},--stringdefs_value
 					350.0,--initpixelposx
 					67.0,--initpixelposy
@@ -1164,7 +1238,7 @@ Add_Object_Text(Wpt6_number_active, "Wpt6_number_active", COPILOT_AMU001_Waypoin
 Add_Object_Text(Wpt6_distance, "Wpt6_distance", COPILOT_AMU001_Waypoint6.name, 0,
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
-					{"%.0f"},--format_value
+					{"%.1f"},--format_value
 					{0.007,0.007,  -0.003, 0},--stringdefs_value
 					350.0,--initpixelposx
 					67.0,--initpixelposy
