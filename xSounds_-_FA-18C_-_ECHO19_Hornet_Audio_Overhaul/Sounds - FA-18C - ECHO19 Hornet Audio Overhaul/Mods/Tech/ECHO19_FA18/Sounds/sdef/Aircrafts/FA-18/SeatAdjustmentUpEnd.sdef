@@ -1,0 +1,3 @@
+inherit = "Aircrafts/FA-18/SeatAdjustmentUp"
+wave = "Effects/Aircrafts/FA-18/SeatAdjustmentUpEnd"
+gain = 0.35

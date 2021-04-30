@@ -1,0 +1,2 @@
+inherit = "Aircrafts/FA-18/ECS_Condition"
+wave = "Effects/Aircrafts/FA-18/ECS_Condition_End"

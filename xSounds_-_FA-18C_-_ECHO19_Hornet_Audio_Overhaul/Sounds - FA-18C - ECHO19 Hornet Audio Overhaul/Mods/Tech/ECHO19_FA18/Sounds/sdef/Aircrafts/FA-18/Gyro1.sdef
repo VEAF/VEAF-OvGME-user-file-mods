@@ -1,0 +1,6 @@
+wave = "Effects/Aircrafts/FA-18/Gyro1"
+inner_radius = 2
+outer_radius = 20
+attack = 0.5
+release = 2
+gain = 0.3

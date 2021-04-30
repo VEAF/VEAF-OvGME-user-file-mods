@@ -1,10 +1,13 @@
 Report bugs to E19 Discord (https://discord.gg/M7G3gja) or ED Forums thread: https://forums.eagle.ru/showthread.php?t=219797
 
-Known issues: some looping errors with one of the rear exit samples after flyby w/no afterburner
-
 Wish list: more flexibility to add additional samples for specific throttle ranges.
 
 CHANGELOG:
+
+v4.0
+
+Complete overhaul of most sounds.
+
 
 v3.10 (14/04/2020)
 

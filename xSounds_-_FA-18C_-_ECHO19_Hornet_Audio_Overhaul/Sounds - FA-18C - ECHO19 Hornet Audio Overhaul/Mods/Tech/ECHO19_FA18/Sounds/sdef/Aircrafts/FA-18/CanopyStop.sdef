@@ -1,0 +1,2 @@
+inherit = "Aircrafts/FA-18/CanopyClose"
+wave = "Effects/Aircrafts/FA-18/CanopyStop"

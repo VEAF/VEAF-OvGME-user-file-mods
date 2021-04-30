@@ -1,0 +1,6 @@
+wave = "Effects/Aircrafts/FA-18/SeatAdjustmentDown"
+inner_radius = 10
+outer_radius = 100
+position = {1.8, 0.0, 0.0}
+release = 0.1
+gain = 0.25

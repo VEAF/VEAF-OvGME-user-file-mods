@@ -1,12 +1,14 @@
 wave = "Effects/Aircrafts/FA-18/Afterburner_v3"
-distance_filter_offset = 400
-inner_radius = 500
-outer_radius = 1800
-cone_inner_angle = 10
-cone_outer_angle = 90
-cone_outer_gain = 0.1
+distance_filter_offset = 100
+silent_radius = 3
+peak_radius = 15
+inner_radius = 100
+outer_radius = 700
+position = {-3.0, 0.0, 0.0}
+cone_inner_angle = 35
+cone_outer_angle = 150
+cone_outer_gain = 0
 direction = {-1, 0, 0}
-release = 1.0
-attack = 0.8
-pitch = 1.15
-gain = 3
+pitch = 0.9
+gain = 2.7
+

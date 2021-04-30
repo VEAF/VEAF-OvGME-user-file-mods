@@ -1,10 +1,10 @@
 wave = "Effects/Aircrafts/FA-18/Screech_Side_var1"
 nodoppler = true
-distance_filter_offset = 300
-silent_radius = 100
+distance_filter_offset = 900
+silent_radius = 160
 peak_radius = 600
-inner_radius = 700
-outer_radius = 2800
+inner_radius = 755
+outer_radius = 10550
 cone_inner_angle = 70
 cone_outer_angle = 170
 cone_outer_gain = 0.2

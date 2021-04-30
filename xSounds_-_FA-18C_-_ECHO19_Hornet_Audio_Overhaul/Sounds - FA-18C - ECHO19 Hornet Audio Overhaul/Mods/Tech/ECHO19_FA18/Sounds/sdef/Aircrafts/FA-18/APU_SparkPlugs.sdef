@@ -1,0 +1,4 @@
+wave = "Effects/Aircrafts/FA-18/APU_SparkPlugs"
+inner_radius = 10
+outer_radius = 100
+gain = 0.9

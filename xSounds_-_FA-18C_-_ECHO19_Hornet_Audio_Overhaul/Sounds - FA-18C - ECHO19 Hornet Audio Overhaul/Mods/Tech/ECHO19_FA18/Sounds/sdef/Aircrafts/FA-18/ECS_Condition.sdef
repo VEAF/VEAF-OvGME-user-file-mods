@@ -1,0 +1,5 @@
+wave = "Effects/Aircrafts/FA-18/ECS_Condition"
+inner_radius = 10
+outer_radius = 30
+release = 1.5
+gain = 0.8

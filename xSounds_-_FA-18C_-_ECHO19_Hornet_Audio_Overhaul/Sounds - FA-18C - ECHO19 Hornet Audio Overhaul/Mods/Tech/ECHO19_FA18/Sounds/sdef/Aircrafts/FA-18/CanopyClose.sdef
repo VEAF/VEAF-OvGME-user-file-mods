@@ -1,0 +1,5 @@
+wave = "Effects/Aircrafts/FA-18/CanopyClose"
+inner_radius = 7
+outer_radius = 50
+release = 0.15
+gain = 0.4
