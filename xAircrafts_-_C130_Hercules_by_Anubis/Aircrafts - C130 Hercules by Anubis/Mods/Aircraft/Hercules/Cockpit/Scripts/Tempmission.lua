@@ -4,7 +4,6 @@ dofile(LockOn_Options.common_script_path.."tools.lua")
 
 local mdir      = lfs.tempdir()
 local cfile     = lfs.writedir()..'Data\\tempMission.lua'
-local dfile     = lfs.writedir()..'Data\\tempMissionDictionary.lua'
 local userPath  = lfs.writedir()..'Data\\'
 
 function scandir(directory)
@@ -44,32 +43,6 @@ function findMissionFile(fileList)
 	
 end
 
-function findMissionDictionaryFile(fileList)
-	local correctFile = 0
-	local newest = 0
-	local file_attr
-
-	for fileNumber, filepath in pairs(fileList) do
-	
-		file = io.open(filepath, "r") 
-	
-		local fLine = file:read()
-		
-		if string.match(fLine, "dictionary") then
-			file_attr = lfs.attributes(filepath)
-			if file_attr.modification > newest then
-				correctFile = filepath
-				newest = file_attr.modification
-			end
-		end
-		if file then
-		file:close()
-		end
-	end
-	return correctFile
-	
-end
-
 function copyFile(fpath, cpath)
 	infile = io.open(fpath, "r")
 	instr = infile:read("*a")
@@ -88,18 +61,6 @@ function load_Tempmission_file()
 	if rf ~= 0 then
 		copyFile(rf, cfile)
 		dofile(userPath..'tempMission.lua')
-	end
-
-
-end
-
-function load_Tempdictionary_file()
-
-	local fList = scandir(mdir)
-	local rf 	= findMissionDictionaryFile(fList)
-	if rf ~= 0 then
-		copyFile(rf, cfile)
-		dofile(userPath..'tempMissionDictionary.lua')
 	end
 
 

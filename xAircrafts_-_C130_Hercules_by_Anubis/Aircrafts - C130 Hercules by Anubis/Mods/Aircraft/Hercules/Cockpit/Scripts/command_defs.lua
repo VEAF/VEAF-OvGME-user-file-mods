@@ -204,6 +204,7 @@ DISPLAY_BRIGHTNESS_CONTROL =
 	CNBP_brightness_control = Offset + counter();
 	pilot_AMU_brightness_control = Offset + counter();
 	copilot_AMU_brightness_control = Offset + counter();
+	NightVisionGogglesOn = Offset + counter();
 }
 
 REFERENCE_SET_MODE_SELECT_PANELS =
@@ -403,6 +404,22 @@ CNI_MU =
 	copilot_CNI_MU_KBD_CLR = Offset + counter();
 	COPILOT_Network_Sync = Offset + counter();
 		------------------------------------------------------------	
+}
+
+CURSOR =
+{
+	Manual_Cursor = Offset + counter();
+	Cursor_Reset = Offset + counter();
+	Ground_Cursor = Offset + counter();
+	Computer_Cursor = Offset + counter();
+	Cursor_Forward = Offset + counter();
+	Cursor_Aft = Offset + counter();
+	Cursor_Left = Offset + counter();
+	Cursor_Right = Offset + counter();
+	Cursor_Release = Offset + counter();
+	Cursor_Next_Target = Offset + counter();
+	Cursor_Previous_Target = Offset + counter();
+	Cursor_Insert = Offset + counter();
 }
 
 FUEL_MANAGEMENT_PANEL =
@@ -623,6 +640,7 @@ THROTTLES =
 {
 	ATCS_Autothrottle_Disengage = Offset + counter();
 	Beta = Offset + counter();
+	Beta_Reverse = Offset + counter();
 	Full_Reverse = Offset + counter();
 	TO_Power_Toggle = Offset + counter();
 	TO_Power_On = Offset + counter();
@@ -630,16 +648,17 @@ THROTTLES =
 	Throttles_To_Idle = Offset + counter();
 	ThrottlesIncrease = Offset + counter();
 	ThrottlesDecrease = Offset + counter();
-	ThrottlesStop = Offset + counter();
 	Throttles12Increase = Offset + counter();
 	Throttles12Decrease = Offset + counter();
-	Throttles12Stop = Offset + counter();
 	Throttles34Increase = Offset + counter();
 	Throttles34Decrease = Offset + counter();
-	Throttles34Stop = Offset + counter();
 }
 
-
+RWR =
+{
+	OnOffSwitch = Offset + counter();
+	Loudness = Offset + counter();
+}
 
 	-- print_message_to_user(string.format("command: %d", KEYBOARD.TrimRightRudder));
 

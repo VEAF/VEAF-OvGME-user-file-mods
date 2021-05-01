@@ -184,6 +184,23 @@ dialog = {
 					},
 					["type"] = "CheckBox",
 				},
+				["nameLabel9"] = {
+					["params"] = {
+						["bounds"] = {
+							["h"] = 18,
+							["w"] = 480,
+							["x"] = 57,
+							["y"] = 310,
+						},
+						["enabled"] = true,
+						["text"] = "$TextLine9",
+						["tooltip"] = "",
+						["visible"] = true,
+						["zindex"] = 0,
+					},
+					["skin"] = TitleSkin,
+					["type"] = "Static",
+				},
 			},
 			["params"] = {
 				["bounds"] = {

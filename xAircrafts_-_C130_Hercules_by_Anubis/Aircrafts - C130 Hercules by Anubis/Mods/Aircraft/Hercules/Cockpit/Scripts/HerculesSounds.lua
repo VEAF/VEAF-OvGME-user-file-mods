@@ -4,7 +4,7 @@ local Steam_Export = get_param_handle("Steam_Export")
 if (get_plugin_option_value("Hercules","Steam_Version") == true) then
 	Steam_Export:set(1.0)
 	print_message_to_user("Steam Version")
-	-- print_message_to_user(string.format("Steam_Export is set to 1"))
+
 else
 	Steam_Export:set(0.0)
 end
@@ -42,7 +42,7 @@ local function onEvent_APU(APU_Start_Sequence_Energized, APU_rpm, APU_stop, Volu
 			StopAPU = false
 			StartAPU = true
 		end
-		if APU_rpm > 0.99 then
+		if APU_rpm > 99.0 then
 			if RunAPU == false then
 				APUstartExt:stop()
 				APUrunExt:play_continue()
@@ -74,6 +74,7 @@ local function InitEng1Sounds ()
 	Eng1LowSpeedMode = get_param_handle("Eng1LowSpeedMode")
 	Eng1HotelMode = get_param_handle("Eng1HotelMode")
 	Eng1GroundRange_Engaged = get_param_handle("Eng1GroundRange_Engaged")
+	Eng1Throttle_Beta_Reverse_Gate = get_param_handle("Eng1Throttle_Beta_Reverse_Gate")
 	Eng1ThrottleInput = get_param_handle("Eng1ThrottleInput")
 	Eng1Volume = get_param_handle("Eng1Volume")
 	Eng1ExtGain = get_param_handle("Eng1ExtGain")
@@ -140,125 +141,73 @@ local function onEvent_Eng1Motoring(Eng1Motoring, Eng1NP, Eng1Volume)
 end
 
 ----------------------------------------------------------------------------------------------------------------------------------------onEvent_Eng1
-local function onEvent_Eng1(Eng1Start, Eng1Started, Eng1Stop, Eng1NP, Eng1NormalSpeedMode, Eng1LowSpeedMode, Eng1HotelMode, Eng1GroundRange_Engaged, Eng1ThrottleInput, Eng1Volume, Eng1ExtGain, Eng1CockpitGain, Eng1Pitch)
+local function onEvent_Eng1(Eng1Start, Eng1Started, Eng1Stop, Eng1NP, Eng1NormalSpeedMode, Eng1LowSpeedMode, Eng1HotelMode, Eng1GroundRange_Engaged, Eng1Throttle_Beta_Reverse_Gate, Eng1ThrottleInput, Eng1Volume, Eng1ExtGain, Eng1CockpitGain, Eng1Pitch)
 	if Eng1NP > 0.0 then
 		if Eng1Start > 0.0 then
             if StartEng1 == false then
-                Eng1EngineStartExt:play_once()
 				StartEng1 = true
 				StartedEng1 = false
 				StopEng1 = false
 				PowRevSwitchEng1 = true
 			end
-			Eng1EngineStartExt:update(Eng1Pitch, Eng1Volume, nil)
-			-- ED_AudioAPI.setSourceGain(Eng1EngineStartExt, Eng1Volume)
-			-- ED_AudioAPI.setSourcePitch(Eng1EngineStartExt, Eng1Pitch)
 		else
 			if Eng1Started > 0.0 then
 				if Eng1NormalSpeedMode > 0.0 and Eng1NP > 0.99 then
                     if StartedEng1 == false then
                         Eng1EngineStartExt:stop()
-
                         Eng1PropPowerCpt:play_continue()
-                        Eng1EngineContExt:play_continue()
-                        Eng1PropReverseExt:play_continue()
-                        Eng1EngineContExt:play_continue()
-
 						StartedEng1 = true
 					end
 				else
 					if Eng1LowSpeedMode > 0.0 and Eng1NP > 0.72 then
                         if StartedEng1 == false then
-                            Eng1EngineStartExt:stop()
-
                             Eng1PropPowerCpt:play_continue()
-                            Eng1EngineContExt:play_continue()
-                            Eng1PropReverseExt:play_continue()
-                            Eng1EngineContExt:play_continue()
 							StartedEng1 = true
 						end
 					else
 						if Eng1HotelMode > 0.0 and Eng1NP > 0.24 then
 							if StartedEng1 == false then
-                                Eng1EngineStartExt:stop()
-
                                 Eng1PropPowerCpt:play_continue()
-                                Eng1EngineContExt:play_continue()
-                                Eng1PropReverseExt:play_continue()
-                                Eng1EngineContExt:play_continue()
                                 StartedEng1 = true
 							end
 						end
 					end
 				end
-				Eng1EngineContExt:update(Eng1Pitch, Eng1Volume, nil)
-				-- ED_AudioAPI.setSourceGain(Eng1EngineContExt, Eng1Volume)
-				-- ED_AudioAPI.setSourcePitch(Eng1EngineContExt, Eng1Pitch)
+
 				if Eng1GroundRange_Engaged > 0.0 then
 					if Eng1HotelMode == 0 then
-						if Eng1ThrottleInput <= 0.1 and Eng1NP > 0.71 then
-							Eng1PropPowerExt:update(Eng1Pitch, Eng1ExtGain, nil)
-							Eng1PropPowerCpt:update(Eng1Pitch, 0.0, nil)
-							Eng1PropReverseExt:update(Eng1Pitch, Eng1ExtGain, nil)
-							-- ED_AudioAPI.setSourceGain(Eng1PropPowerExt, Eng1ExtGain)
-							-- ED_AudioAPI.setSourceGain(Eng1PropPowerCpt, 0.0)
-							-- ED_AudioAPI.setSourceGain(Eng1PropReverseExt, Eng1ExtGain)
+						if Eng1ThrottleInput <= 0.1 and Eng1NP > 0.71 and Eng1Throttle_Beta_Reverse_Gate > 0.0 then
+							Eng1PropPowerCpt:update(Eng1Pitch, Eng1CockpitGain, Eng1Volume)
 							PowRevSwitchEng1 = false
 						else
 							if PowRevSwitchEng1 == false then
-								Eng1PropPowerRevSwitchExt:update(nil, Eng1Volume, nil)
-                                -- ED_AudioAPI.setSourceGain(Eng1PropPowerRevSwitchExt, Eng1Volume)
-                                EngSwitchReverseExt:play_once()
 								PowRevSwitchEng1 = true
 							end
 							if Eng1NP > 0.71 then
-								Eng1PropPowerExt:update(Eng1Pitch, Eng1ExtGain, nil)
-								Eng1PropPowerCpt:update(nil, 0.0, nil)
-								-- ED_AudioAPI.setSourceGain(Eng1PropPowerExt, Eng1ExtGain)
-								-- ED_AudioAPI.setSourceGain(Eng1PropPowerCpt, 0.0)
+								Eng1PropPowerCpt:update(Eng1Pitch, Eng1CockpitGain, Eng1Volume)
 							end
-							Eng1PropReverseExt:update(nil, 0.0, nil)
-							-- ED_AudioAPI.setSourceGain(Eng1PropReverseExt, 0.0)
 						end
 					else
-						Eng1PropPowerExt:update(Eng1Pitch, Eng1ExtGain, nil)
-						Eng1PropPowerCpt:update(Eng1Pitch, Eng1CockpitGain, nil)
-						Eng1PropReverseExt:update(nil, 0.0, nil)
-						-- ED_AudioAPI.setSourceGain(Eng1PropPowerExt, Eng1ExtGain)
-						-- ED_AudioAPI.setSourceGain(Eng1PropPowerCpt, Eng1CockpitGain)
-						-- ED_AudioAPI.setSourceGain(Eng1PropReverseExt, 0.0)
+						Eng1PropPowerCpt:update(Eng1Pitch, Eng1CockpitGain, Eng1Volume)
 					end
 				else
-					Eng1PropPowerExt:update(Eng1Pitch, Eng1ExtGain, nil)
-					Eng1PropPowerCpt:update(Eng1Pitch, Eng1CockpitGain, nil)
-					Eng1PropReverseExt:update(nil, 0.0, nil)
-					-- ED_AudioAPI.setSourceGain(Eng1PropPowerExt, Eng1ExtGain)
-					-- ED_AudioAPI.setSourceGain(Eng1PropPowerCpt, Eng1CockpitGain)
-					-- ED_AudioAPI.setSourceGain(Eng1PropReverseExt, 0.0)
+					Eng1PropPowerCpt:update(Eng1Pitch, Eng1CockpitGain, Eng1Volume)
 					PowRevSwitchEng1 = true
 				end
 			else
 				if Eng1Stop > 0.0 then
 					if StopEng1 == false then
-                        Eng1EngineStartExt:stop()
-                        Eng1PropPowerCpt:stop()
-                        Eng1EngineContExt:stop()
-                        Eng1PropReverseExt:stop()
-                        Eng1EngineContExt:stop()
-                        Eng1EngineStopExt:play_once()
-                        -- ED_AudioAPI.playSourceOnce(Eng1EngineStopExt, (-27.0 * Eng1NP) + 27.0)
 						StartEng1 = false
 						StartedEng1 = false
 						StopEng1 = true
+						Eng1PropPowerCpt:stop()
 					end
-					Eng1EngineStopExt:update(Eng1Pitch, Eng1Volume, nil)
-                    -- ED_AudioAPI.setSourceGain(Eng1EngineStopExt, Eng1Volume)
-					-- ED_AudioAPI.setSourcePitch(Eng1EngineStopExt, Eng1Pitch)
                 end
 			end
 		end
 	end
 end
+
 
 ----------------------------------------------------------------------------------------------------------------------------------------InitEng2Sounds
 local function InitEng2Sounds ()
@@ -270,6 +219,7 @@ local function InitEng2Sounds ()
 	Eng2LowSpeedMode = get_param_handle("Eng2LowSpeedMode")
 	Eng2HotelMode = get_param_handle("Eng2HotelMode")
 	Eng2GroundRange_Engaged = get_param_handle("Eng2GroundRange_Engaged")
+	Eng2Throttle_Beta_Reverse_Gate = get_param_handle("Eng2Throttle_Beta_Reverse_Gate")
 	Eng2ThrottleInput = get_param_handle("Eng2ThrottleInput")
 	Eng2Volume = get_param_handle("Eng2Volume")
 	Eng2ExtGain = get_param_handle("Eng2ExtGain")
@@ -336,120 +286,67 @@ local function onEvent_Eng2Motoring(Eng2Motoring, Eng2NP, Eng2Volume)
 end
 
 ----------------------------------------------------------------------------------------------------------------------------------------onEvent_Eng2
-local function onEvent_Eng2(Eng2Start, Eng2Started, Eng2Stop, Eng2NP, Eng2NormalSpeedMode, Eng2LowSpeedMode, Eng2HotelMode, Eng2GroundRange_Engaged, Eng2ThrottleInput, Eng2Volume, Eng2ExtGain, Eng2CockpitGain, Eng2Pitch)
+local function onEvent_Eng2(Eng2Start, Eng2Started, Eng2Stop, Eng2NP, Eng2NormalSpeedMode, Eng2LowSpeedMode, Eng2HotelMode, Eng2GroundRange_Engaged, Eng2Throttle_Beta_Reverse_Gate, Eng2ThrottleInput, Eng2Volume, Eng2ExtGain, Eng2CockpitGain, Eng2Pitch)
 	if Eng2NP > 0.0 then
 		if Eng2Start > 0.0 then
             if StartEng2 == false then
-                Eng2EngineStartExt:play_once()
 				StartEng2 = true
 				StartedEng2 = false
 				StopEng2 = false
 				PowRevSwitchEng2 = true
 			end
-			Eng2EngineStartExt:update(Eng2Pitch, Eng2Volume, nil)
-			-- ED_AudioAPI.setSourceGain(Eng2EngineStartExt, Eng2Volume)
-			-- ED_AudioAPI.setSourcePitch(Eng2EngineStartExt, Eng2Pitch)
 		else
 			if Eng2Started > 0.0 then
 				if Eng2NormalSpeedMode > 0.0 and Eng2NP > 0.99 then
                     if StartedEng2 == false then
                         Eng2EngineStartExt:stop()
-
                         Eng2PropPowerCpt:play_continue()
-                        Eng2EngineContExt:play_continue()
-                        Eng2PropReverseExt:play_continue()
-                        Eng2EngineContExt:play_continue()
-
 						StartedEng2 = true
 					end
 				else
 					if Eng2LowSpeedMode > 0.0 and Eng2NP > 0.72 then
                         if StartedEng2 == false then
-                            Eng2EngineStartExt:stop()
-
                             Eng2PropPowerCpt:play_continue()
-                            Eng2EngineContExt:play_continue()
-                            Eng2PropReverseExt:play_continue()
-                            Eng2EngineContExt:play_continue()
 							StartedEng2 = true
 						end
 					else
 						if Eng2HotelMode > 0.0 and Eng2NP > 0.24 then
 							if StartedEng2 == false then
-                                Eng2EngineStartExt:stop()
-
                                 Eng2PropPowerCpt:play_continue()
-                                Eng2EngineContExt:play_continue()
-                                Eng2PropReverseExt:play_continue()
-                                Eng2EngineContExt:play_continue()
                                 StartedEng2 = true
 							end
 						end
 					end
 				end
-				Eng2EngineContExt:update(Eng2Pitch, Eng2Volume, nil)
-				-- ED_AudioAPI.setSourceGain(Eng2EngineContExt, Eng2Volume)
-				-- ED_AudioAPI.setSourcePitch(Eng2EngineContExt, Eng2Pitch)
+
 				if Eng2GroundRange_Engaged > 0.0 then
 					if Eng2HotelMode == 0 then
-						if Eng2ThrottleInput <= 0.1 and Eng2NP > 0.71 then
-							Eng2PropPowerExt:update(Eng2Pitch, Eng2ExtGain, nil)
-							Eng2PropPowerCpt:update(Eng2Pitch, 0.0, nil)
-							Eng2PropReverseExt:update(nil, Eng2ExtGain, nil)
-							-- ED_AudioAPI.setSourceGain(Eng2PropPowerExt, Eng2ExtGain)
-							-- ED_AudioAPI.setSourceGain(Eng2PropPowerCpt, 0.0)
-							-- ED_AudioAPI.setSourceGain(Eng2PropReverseExt, Eng2ExtGain)
+						if Eng2ThrottleInput <= 0.1 and Eng2NP > 0.71 and Eng2Throttle_Beta_Reverse_Gate > 0.0 then
+							Eng2PropPowerCpt:update(Eng2Pitch, Eng2CockpitGain, Eng2Volume)
 							PowRevSwitchEng2 = false
 						else
 							if PowRevSwitchEng2 == false then
-								Eng2PropPowerRevSwitchExt:update(nil, Eng2Volume, nil)
-                                -- ED_AudioAPI.setSourceGain(Eng2PropPowerRevSwitchExt, Eng2Volume)
-                                EngSwitchReverseExt:play_once()
 								PowRevSwitchEng2 = true
 							end
 							if Eng2NP > 0.71 then
-								Eng2PropPowerExt:update(Eng2Pitch, Eng2ExtGain, nil)
-								Eng2PropPowerCpt:update(nil, 0.0, nil)
-								-- ED_AudioAPI.setSourceGain(Eng2PropPowerExt, Eng2ExtGain)
-								-- ED_AudioAPI.setSourceGain(Eng2PropPowerCpt, 0.0)
+								Eng2PropPowerCpt:update(Eng2Pitch, Eng2CockpitGain, Eng2Volume)
 							end
-							Eng2PropReverseExt:update(nil, 0.0, nil)
-							-- ED_AudioAPI.setSourceGain(Eng2PropReverseExt, 0.0)
 						end
 					else
-						Eng2PropPowerExt:update(Eng2Pitch, Eng2ExtGain, nil)
-						Eng2PropPowerCpt:update(Eng2Pitch, Eng2CockpitGain, nil)
-						Eng2PropReverseExt:update(nil, 0.0, nil)
-						-- ED_AudioAPI.setSourceGain(Eng2PropPowerExt, Eng2ExtGain)
-						-- ED_AudioAPI.setSourceGain(Eng2PropPowerCpt, Eng2CockpitGain)
-						-- ED_AudioAPI.setSourceGain(Eng2PropReverseExt, 0.0)
+						Eng2PropPowerCpt:update(Eng2Pitch, Eng2CockpitGain, Eng2Volume)
 					end
 				else
-					Eng2PropPowerExt:update(Eng2Pitch, Eng2ExtGain, nil)
-					Eng2PropPowerCpt:update(Eng2Pitch, Eng2CockpitGain, nil)
-					Eng2PropReverseExt:update(nil, 0.0, nil)
-					-- ED_AudioAPI.setSourceGain(Eng2PropPowerExt, Eng2ExtGain)
-					-- ED_AudioAPI.setSourceGain(Eng2PropPowerCpt, Eng2CockpitGain)
-					-- ED_AudioAPI.setSourceGain(Eng2PropReverseExt, 0.0)
+					Eng2PropPowerCpt:update(Eng2Pitch, Eng2CockpitGain, Eng2Volume)
 					PowRevSwitchEng2 = true
 				end
 			else
 				if Eng2Stop > 0.0 then
 					if StopEng2 == false then
-                        Eng2EngineStartExt:stop()
-                        Eng2PropPowerCpt:stop()
-                        Eng2EngineContExt:stop()
-                        Eng2PropReverseExt:stop()
-                        Eng2EngineContExt:stop()
-                        Eng2EngineStopExt:play_once()
-                        -- ED_AudioAPI.playSourceOnce(Eng2EngineStopExt, (-27.0 * Eng2NP) + 27.0)
 						StartEng2 = false
 						StartedEng2 = false
 						StopEng2 = true
+						Eng2PropPowerCpt:stop()
 					end
-					Eng2EngineStopExt:update(Eng2Pitch, Eng2Volume, nil)
-                    -- ED_AudioAPI.setSourceGain(Eng2EngineStopExt, Eng2Volume)
-					-- ED_AudioAPI.setSourcePitch(Eng2EngineStopExt, Eng2Pitch)
                 end
 			end
 		end
@@ -466,6 +363,7 @@ local function InitEng3Sounds ()
 	Eng3LowSpeedMode = get_param_handle("Eng3LowSpeedMode")
 	Eng3HotelMode = get_param_handle("Eng3HotelMode")
 	Eng3GroundRange_Engaged = get_param_handle("Eng3GroundRange_Engaged")
+	Eng3Throttle_Beta_Reverse_Gate = get_param_handle("Eng3Throttle_Beta_Reverse_Gate")
 	Eng3ThrottleInput = get_param_handle("Eng3ThrottleInput")
 	Eng3Volume = get_param_handle("Eng3Volume")
 	Eng3ExtGain = get_param_handle("Eng3ExtGain")
@@ -532,120 +430,67 @@ local function onEvent_Eng3Motoring(Eng3Motoring, Eng3NP, Eng3Volume)
 end
 
 ----------------------------------------------------------------------------------------------------------------------------------------onEvent_Eng3
-local function onEvent_Eng3(Eng3Start, Eng3Started, Eng3Stop, Eng3NP, Eng3NormalSpeedMode, Eng3LowSpeedMode, Eng3HotelMode, Eng3GroundRange_Engaged, Eng3ThrottleInput, Eng3Volume, Eng3ExtGain, Eng3CockpitGain, Eng3Pitch)
+local function onEvent_Eng3(Eng3Start, Eng3Started, Eng3Stop, Eng3NP, Eng3NormalSpeedMode, Eng3LowSpeedMode, Eng3HotelMode, Eng3GroundRange_Engaged, Eng3Throttle_Beta_Reverse_Gate, Eng3ThrottleInput, Eng3Volume, Eng3ExtGain, Eng3CockpitGain, Eng3Pitch)
 	if Eng3NP > 0.0 then
 		if Eng3Start > 0.0 then
             if StartEng3 == false then
-                Eng3EngineStartExt:play_once()
 				StartEng3 = true
 				StartedEng3 = false
 				StopEng3 = false
 				PowRevSwitchEng3 = true
 			end
-			Eng3EngineStartExt:update(Eng3Pitch, Eng3Volume, nil)
-			-- ED_AudioAPI.setSourceGain(Eng3EngineStartExt, Eng3Volume)
-			-- ED_AudioAPI.setSourcePitch(Eng3EngineStartExt, Eng3Pitch)
 		else
 			if Eng3Started > 0.0 then
 				if Eng3NormalSpeedMode > 0.0 and Eng3NP > 0.99 then
                     if StartedEng3 == false then
                         Eng3EngineStartExt:stop()
-
                         Eng3PropPowerCpt:play_continue()
-                        Eng3EngineContExt:play_continue()
-                        Eng3PropReverseExt:play_continue()
-                        Eng3EngineContExt:play_continue()
-
 						StartedEng3 = true
 					end
 				else
 					if Eng3LowSpeedMode > 0.0 and Eng3NP > 0.72 then
                         if StartedEng3 == false then
-                            Eng3EngineStartExt:stop()
-
                             Eng3PropPowerCpt:play_continue()
-                            Eng3EngineContExt:play_continue()
-                            Eng3PropReverseExt:play_continue()
-                            Eng3EngineContExt:play_continue()
 							StartedEng3 = true
 						end
 					else
 						if Eng3HotelMode > 0.0 and Eng3NP > 0.24 then
 							if StartedEng3 == false then
-                                Eng3EngineStartExt:stop()
-
                                 Eng3PropPowerCpt:play_continue()
-                                Eng3EngineContExt:play_continue()
-                                Eng3PropReverseExt:play_continue()
-                                Eng3EngineContExt:play_continue()
                                 StartedEng3 = true
 							end
 						end
 					end
 				end
-				Eng3EngineContExt:update(Eng3Pitch, Eng3Volume, nil)
-				-- ED_AudioAPI.setSourceGain(Eng3EngineContExt, Eng3Volume)
-				-- ED_AudioAPI.setSourcePitch(Eng3EngineContExt, Eng3Pitch)
+
 				if Eng3GroundRange_Engaged > 0.0 then
 					if Eng3HotelMode == 0 then
-						if Eng3ThrottleInput <= 0.1 and Eng3NP > 0.71 then
-							Eng3PropPowerExt:update(Eng3Pitch, Eng3ExtGain, nil)
-							Eng3PropPowerCpt:update(nil, 0.0, nil)
-							Eng3PropReverseExt:update(Eng3Pitch, Eng3ExtGain, nil)
-							-- ED_AudioAPI.setSourceGain(Eng3PropPowerExt, Eng3ExtGain)
-							-- ED_AudioAPI.setSourceGain(Eng3PropPowerCpt, 0.0)
-							-- ED_AudioAPI.setSourceGain(Eng3PropReverseExt, Eng3ExtGain)
+						if Eng3ThrottleInput <= 0.1 and Eng3NP > 0.71 and Eng3Throttle_Beta_Reverse_Gate > 0.0 then
+							Eng3PropPowerCpt:update(Eng3Pitch, Eng3CockpitGain, Eng3Volume)
 							PowRevSwitchEng3 = false
 						else
 							if PowRevSwitchEng3 == false then
-								Eng3PropPowerRevSwitchExt:update(Eng3Pitch, Eng3Volume, nil)
-                                -- ED_AudioAPI.setSourceGain(Eng3PropPowerRevSwitchExt, Eng3Volume)
-                                EngSwitchReverseExt:play_once()
 								PowRevSwitchEng3 = true
 							end
 							if Eng3NP > 0.71 then
-								Eng3PropPowerExt:update(Eng3Pitch, Eng3ExtGain, nil)
-								Eng3PropPowerCpt:update(nil, 0.0, nil)
-								-- ED_AudioAPI.setSourceGain(Eng3PropPowerExt, Eng3ExtGain)
-								-- ED_AudioAPI.setSourceGain(Eng3PropPowerCpt, 0.0)
+								Eng3PropPowerCpt:update(Eng3Pitch, Eng3CockpitGain, Eng3Volume)
 							end
-							Eng3PropReverseExt:update(nil, 0.0, nil)
-							-- ED_AudioAPI.setSourceGain(Eng3PropReverseExt, 0.0)
 						end
 					else
-						Eng3PropPowerExt:update(Eng3Pitch, Eng3ExtGain, nil)
-						Eng3PropPowerCpt:update(Eng3Pitch, Eng3CockpitGain, nil)
-						Eng3PropReverseExt:update(nil, 0.0, nil)
-						-- ED_AudioAPI.setSourceGain(Eng3PropPowerExt, Eng3ExtGain)
-						-- ED_AudioAPI.setSourceGain(Eng3PropPowerCpt, Eng3CockpitGain)
-						-- ED_AudioAPI.setSourceGain(Eng3PropReverseExt, 0.0)
+						Eng3PropPowerCpt:update(Eng3Pitch, Eng3CockpitGain, Eng3Volume)
 					end
 				else
-					Eng3PropPowerExt:update(Eng3Pitch, Eng3ExtGain, nil)
-					Eng3PropPowerCpt:update(Eng3Pitch, Eng3CockpitGain, nil)
-					Eng3PropReverseExt:update(nil, 0.0, nil)
-					-- ED_AudioAPI.setSourceGain(Eng3PropPowerExt, Eng3ExtGain)
-					-- ED_AudioAPI.setSourceGain(Eng3PropPowerCpt, Eng3CockpitGain)
-					-- ED_AudioAPI.setSourceGain(Eng3PropReverseExt, 0.0)
+					Eng3PropPowerCpt:update(Eng3Pitch, Eng3CockpitGain, Eng3Volume)
 					PowRevSwitchEng3 = true
 				end
 			else
 				if Eng3Stop > 0.0 then
 					if StopEng3 == false then
-                        Eng3EngineStartExt:stop()
-                        Eng3PropPowerCpt:stop()
-                        Eng3EngineContExt:stop()
-                        Eng3PropReverseExt:stop()
-                        Eng3EngineContExt:stop()
-                        Eng3EngineStopExt:play_once()
-                        -- ED_AudioAPI.playSourceOnce(Eng3EngineStopExt, (-27.0 * Eng3NP) + 27.0)
 						StartEng3 = false
 						StartedEng3 = false
 						StopEng3 = true
+						Eng3PropPowerCpt:stop()
 					end
-					Eng3EngineStopExt:update(Eng3Pitch, Eng3Volume, nil)
-                    -- ED_AudioAPI.setSourceGain(Eng3EngineStopExt, Eng3Volume)
-					-- ED_AudioAPI.setSourcePitch(Eng3EngineStopExt, Eng3Pitch)
                 end
 			end
 		end
@@ -662,6 +507,7 @@ local function InitEng4Sounds ()
 	Eng4LowSpeedMode = get_param_handle("Eng4LowSpeedMode")
 	Eng4HotelMode = get_param_handle("Eng4HotelMode")
 	Eng4GroundRange_Engaged = get_param_handle("Eng4GroundRange_Engaged")
+	Eng4Throttle_Beta_Reverse_Gate = get_param_handle("Eng4Throttle_Beta_Reverse_Gate")
 	Eng4ThrottleInput = get_param_handle("Eng4ThrottleInput")
 	Eng4Volume = get_param_handle("Eng4Volume")
 	Eng4ExtGain = get_param_handle("Eng4ExtGain")
@@ -678,6 +524,7 @@ local function InitEng4Sounds ()
 	Eng4Motoring_Stop = false
 
 	Eng4PropPowerCpt = sndhost:create_sound("Cockpit/Herc_Eng4PropPowerCpt")
+
 	Eng4EngineStartExt = sndhost:create_sound("External/Herc_Eng4EngineStartExt")
 	Eng4EngineStopExt = sndhost:create_sound("External/Herc_Eng4EngineStopExt")
 	Eng4EngineContExt = sndhost:create_sound("External/Herc_Eng4EngineContExt")
@@ -728,120 +575,67 @@ local function onEvent_Eng4Motoring(Eng4Motoring, Eng4NP, Eng4Volume)
 end
 
 ----------------------------------------------------------------------------------------------------------------------------------------onEvent_Eng4
-local function onEvent_Eng4(Eng4Start, Eng4Started, Eng4Stop, Eng4NP, Eng4NormalSpeedMode, Eng4LowSpeedMode, Eng4HotelMode, Eng4GroundRange_Engaged, Eng4ThrottleInput, Eng4Volume, Eng4ExtGain, Eng4CockpitGain, Eng4Pitch)
+local function onEvent_Eng4(Eng4Start, Eng4Started, Eng4Stop, Eng4NP, Eng4NormalSpeedMode, Eng4LowSpeedMode, Eng4HotelMode, Eng4GroundRange_Engaged, Eng4Throttle_Beta_Reverse_Gate, Eng4ThrottleInput, Eng4Volume, Eng4ExtGain, Eng4CockpitGain, Eng4Pitch)
 	if Eng4NP > 0.0 then
 		if Eng4Start > 0.0 then
             if StartEng4 == false then
-                Eng4EngineStartExt:play_once()
 				StartEng4 = true
 				StartedEng4 = false
 				StopEng4 = false
 				PowRevSwitchEng4 = true
 			end
-			Eng4EngineStartExt:update(Eng4Pitch, Eng4Volume, nil)
-			-- ED_AudioAPI.setSourceGain(Eng4EngineStartExt, Eng4Volume)
-			-- ED_AudioAPI.setSourcePitch(Eng4EngineStartExt, Eng4Pitch)
 		else
 			if Eng4Started > 0.0 then
 				if Eng4NormalSpeedMode > 0.0 and Eng4NP > 0.99 then
                     if StartedEng4 == false then
                         Eng4EngineStartExt:stop()
-
                         Eng4PropPowerCpt:play_continue()
-                        Eng4EngineContExt:play_continue()
-                        Eng4PropReverseExt:play_continue()
-                        Eng4EngineContExt:play_continue()
-
 						StartedEng4 = true
 					end
 				else
 					if Eng4LowSpeedMode > 0.0 and Eng4NP > 0.72 then
                         if StartedEng4 == false then
-                            Eng4EngineStartExt:stop()
-
                             Eng4PropPowerCpt:play_continue()
-                            Eng4EngineContExt:play_continue()
-                            Eng4PropReverseExt:play_continue()
-                            Eng4EngineContExt:play_continue()
 							StartedEng4 = true
 						end
 					else
 						if Eng4HotelMode > 0.0 and Eng4NP > 0.24 then
 							if StartedEng4 == false then
-                                Eng4EngineStartExt:stop()
-
                                 Eng4PropPowerCpt:play_continue()
-                                Eng4EngineContExt:play_continue()
-                                Eng4PropReverseExt:play_continue()
-                                Eng4EngineContExt:play_continue()
                                 StartedEng4 = true
 							end
 						end
 					end
 				end
-				Eng4EngineContExt:update(Eng4Pitch, Eng4Volume, nil)
-				-- ED_AudioAPI.setSourceGain(Eng4EngineContExt, Eng4Volume)
-				-- ED_AudioAPI.setSourcePitch(Eng4EngineContExt, Eng4Pitch)
+
 				if Eng4GroundRange_Engaged > 0.0 then
 					if Eng4HotelMode == 0 then
-						if Eng4ThrottleInput <= 0.1 and Eng4NP > 0.71 then
-							Eng4PropPowerExt:update(Eng4Pitch, Eng4ExtGain, nil)
-							Eng4PropPowerCpt:update(Eng4Pitch, 0.0, nil)
-							Eng4PropReverseExt:update(Eng4Pitch, Eng4ExtGain, nil)
-							-- ED_AudioAPI.setSourceGain(Eng4PropPowerExt, Eng4ExtGain)
-							-- ED_AudioAPI.setSourceGain(Eng4PropPowerCpt, 0.0)
-							-- ED_AudioAPI.setSourceGain(Eng4PropReverseExt, Eng4ExtGain)
+						if Eng4ThrottleInput <= 0.1 and Eng4NP > 0.71 and Eng4Throttle_Beta_Reverse_Gate > 0.0 then
+							Eng4PropPowerCpt:update(Eng4Pitch, Eng4CockpitGain, Eng4Volume)
 							PowRevSwitchEng4 = false
 						else
 							if PowRevSwitchEng4 == false then
-								Eng4PropPowerRevSwitchExt:update(Eng4Pitch, Eng4Volume, nil)
-                                -- ED_AudioAPI.setSourceGain(Eng4PropPowerRevSwitchExt, Eng4Volume)
-                                EngSwitchReverseExt:play_once()
 								PowRevSwitchEng4 = true
 							end
 							if Eng4NP > 0.71 then
-								Eng4PropPowerExt:update(Eng4Pitch, Eng4ExtGain, nil)
-								Eng4PropPowerCpt:update(nil, 0.0, nil)
-								-- ED_AudioAPI.setSourceGain(Eng4PropPowerExt, Eng4ExtGain)
-								-- ED_AudioAPI.setSourceGain(Eng4PropPowerCpt, 0.0)
+								Eng4PropPowerCpt:update(Eng4Pitch, Eng4CockpitGain, Eng4Volume)
 							end
-							Eng4PropReverseExt:update(nil, 0.0, nil)
-							-- ED_AudioAPI.setSourceGain(Eng4PropReverseExt, 0.0)
 						end
 					else
-						Eng4PropPowerExt:update(Eng4Pitch, Eng4ExtGain, nil)
-						Eng4PropPowerCpt:update(Eng4Pitch, Eng4CockpitGain, nil)
-						Eng4PropReverseExt:update(nil, 0.0, nil)
-						-- ED_AudioAPI.setSourceGain(Eng4PropPowerExt, Eng4ExtGain)
-						-- ED_AudioAPI.setSourceGain(Eng4PropPowerCpt, Eng4CockpitGain)
-						-- ED_AudioAPI.setSourceGain(Eng4PropReverseExt, 0.0)
+						Eng4PropPowerCpt:update(Eng4Pitch, Eng4CockpitGain, Eng4Volume)
 					end
 				else
-					Eng4PropPowerExt:update(Eng4Pitch, Eng4ExtGain, nil)
-					Eng4PropPowerCpt:update(Eng4Pitch, Eng4CockpitGain, nil)
-					Eng4PropReverseExt:update(nil, 0.0, nil)
-					-- ED_AudioAPI.setSourceGain(Eng4PropPowerExt, Eng4ExtGain)
-					-- ED_AudioAPI.setSourceGain(Eng4PropPowerCpt, Eng4CockpitGain)
-					-- ED_AudioAPI.setSourceGain(Eng4PropReverseExt, 0.0)
+					Eng4PropPowerCpt:update(Eng4Pitch, Eng4CockpitGain, Eng4Volume)
 					PowRevSwitchEng4 = true
 				end
 			else
 				if Eng4Stop > 0.0 then
 					if StopEng4 == false then
-                        Eng4EngineStartExt:stop()
-                        Eng4PropPowerCpt:stop()
-                        Eng4EngineContExt:stop()
-                        Eng4PropReverseExt:stop()
-                        Eng4EngineContExt:stop()
-                        Eng4EngineStopExt:play_once()
-                        -- ED_AudioAPI.playSourceOnce(Eng4EngineStopExt, (-27.0 * Eng4NP) + 27.0)
 						StartEng4 = false
 						StartedEng4 = false
 						StopEng4 = true
+						Eng4PropPowerCpt:stop()
 					end
-					Eng4EngineStopExt:update(Eng4Pitch, Eng4Volume, nil)
-                    -- ED_AudioAPI.setSourceGain(Eng4EngineStopExt, Eng4Volume)
-					-- ED_AudioAPI.setSourcePitch(Eng4EngineStopExt, Eng4Pitch)
                 end
 			end
 		end
@@ -983,7 +777,7 @@ local function onEvent_Avionics_Fan(AC, Avionics_Fan_Speed, Volume)
 		if Avionics_Fan_Stop == false then
 			Avionics_Fan_StartCpt:stop()
             Avionics_Fan_ContCpt:stop()
-            Avionics_Fan_StartCpt:play_once()
+            -- Avionics_Fan_StartCpt:play_once()
 			-- ED_AudioAPI.playSourceOnce(Avionics_Fan_StopCpt, (-10.0 * Avionics_Fan_Speed) + 10.0)
 			Avionics_Fan_Start = false
 			Avionics_Fan_Cont = false
@@ -1568,7 +1362,7 @@ function post_initialize()
 	if Steam_Export:get() == 1.0 then
 		if Steam_Initialize == false then
 			---------------------------------------------------------------------------------------------------------create_sound_host
-			sndhost = create_sound_host("COCKPIT", "3D", 0, 0, 0)
+			sndhost = create_sound_host("Cockpit", "3D", 0, 0, 0)
 			------------------------------------------------------------------------------------------------------------InitMiscSounds
 			InitMiscSounds()
 			-------------------------------------------------------------------------------------------------------------------InitAPU
@@ -1595,30 +1389,32 @@ function update()
 	if steam_sounds == true then
 		--------------------------------------------------------------------------------------------------------------------APU
 		onEvent_APU(APU_Start_Sequence_Energized:get(), APU_rpm:get(), APU_stop:get(), Volume:get())
-		--------------------------------------------------------------------------------------------------------------------Eng1Motoring
+		------------------------------------------------------------------------------------------------------------------Eng1Motoring
 		onEvent_Eng1Motoring(Eng1Motoring:get(), Eng1NP:get(), Eng1Volume:get())
-		-- --------------------------------------------------------------------------------------------------------------------Eng1
-		onEvent_Eng1(Eng1Start:get(), Eng1Started:get(), Eng1Stop:get(), Eng1NP:get(), Eng1NormalSpeedMode:get(), Eng1LowSpeedMode:get(), Eng1HotelMode:get(), Eng1GroundRange_Engaged:get(), Eng1ThrottleInput:get(), Eng1Volume:get(), Eng1ExtGain:get(), Eng1CockpitGain:get(), Eng1Pitch:get())
-		--------------------------------------------------------------------------------------------------------------------Eng2Motoring
+		-- -- --------------------------------------------------------------------------------------------------------------------Eng1
+		onEvent_Eng1(Eng1Start:get(), Eng1Started:get(), Eng1Stop:get(), Eng1NP:get(), Eng1NormalSpeedMode:get(), Eng1LowSpeedMode:get(),
+			 Eng1HotelMode:get(), Eng1GroundRange_Engaged:get(), Eng1Throttle_Beta_Reverse_Gate:get(), Eng1ThrottleInput:get(),
+			 Eng1Volume:get(), Eng1ExtGain:get(), Eng1CockpitGain:get(), Eng1Pitch:get())
+		-- ------------------------------------------------------------------------------------------------------------------Eng2Motoring
 		onEvent_Eng2Motoring(Eng2Motoring:get(), Eng2NP:get(), Eng2Volume:get())
-		-- --------------------------------------------------------------------------------------------------------------------Eng2
-		onEvent_Eng2(Eng2Start:get(), Eng2Started:get(), Eng2Stop:get(), Eng2NP:get(), Eng2NormalSpeedMode:get(), Eng2LowSpeedMode:get(), Eng2HotelMode:get(), Eng2GroundRange_Engaged:get(), Eng2ThrottleInput:get(), Eng2Volume:get(), Eng2ExtGain:get(), Eng2CockpitGain:get(), Eng2Pitch:get())
-		-- --------------------------------------------------------------------------------------------------------------------Eng3Motoring
+		-- -- --------------------------------------------------------------------------------------------------------------------Eng2
+		onEvent_Eng2(Eng2Start:get(), Eng2Started:get(), Eng2Stop:get(), Eng2NP:get(), Eng2NormalSpeedMode:get(), Eng2LowSpeedMode:get(), Eng2HotelMode:get(), Eng2GroundRange_Engaged:get(), Eng2Throttle_Beta_Reverse_Gate:get(), Eng2ThrottleInput:get(), Eng2Volume:get(), Eng2ExtGain:get(), Eng2CockpitGain:get(), Eng2Pitch:get())
+		-- -- --------------------------------------------------------------------------------------------------------------------Eng3Motoring
 		onEvent_Eng3Motoring(Eng3Motoring:get(), Eng3NP:get(), Eng3Volume:get())
-		-- --------------------------------------------------------------------------------------------------------------------Eng3
-		onEvent_Eng3(Eng3Start:get(), Eng3Started:get(), Eng3Stop:get(), Eng3NP:get(), Eng3NormalSpeedMode:get(), Eng3LowSpeedMode:get(), Eng3HotelMode:get(), Eng3GroundRange_Engaged:get(), Eng3ThrottleInput:get(), Eng3Volume:get(), Eng3ExtGain:get(), Eng3CockpitGain:get(), Eng3Pitch:get())
-		-- --------------------------------------------------------------------------------------------------------------------Eng4Motoring
+		-- -- --------------------------------------------------------------------------------------------------------------------Eng3
+		onEvent_Eng3(Eng3Start:get(), Eng3Started:get(), Eng3Stop:get(), Eng3NP:get(), Eng3NormalSpeedMode:get(), Eng3LowSpeedMode:get(), Eng3HotelMode:get(), Eng3GroundRange_Engaged:get(), Eng3Throttle_Beta_Reverse_Gate:get(), Eng3ThrottleInput:get(), Eng3Volume:get(), Eng3ExtGain:get(), Eng3CockpitGain:get(), Eng3Pitch:get())
+		-- -- --------------------------------------------------------------------------------------------------------------------Eng4Motoring
 		onEvent_Eng4Motoring(Eng4Motoring:get(), Eng4NP:get(), Eng4Volume:get())
 		-- --------------------------------------------------------------------------------------------------------------------Eng4
-		onEvent_Eng4(Eng4Start:get(), Eng4Started:get(), Eng4Stop:get(), Eng4NP:get(), Eng4NormalSpeedMode:get(), Eng4LowSpeedMode:get(), Eng4HotelMode:get(), Eng4GroundRange_Engaged:get(), Eng4ThrottleInput:get(), Eng4Volume:get(), Eng4ExtGain:get(), Eng4CockpitGain:get(), Eng4Pitch:get())
-		-- --------------------------------------------------------------------------------------------------------------------GearOper
+		onEvent_Eng4(Eng4Start:get(), Eng4Started:get(), Eng4Stop:get(), Eng4NP:get(), Eng4NormalSpeedMode:get(), Eng4LowSpeedMode:get(), Eng4HotelMode:get(), Eng4GroundRange_Engaged:get(), Eng4Throttle_Beta_Reverse_Gate:get(), Eng4ThrottleInput:get(), Eng4Volume:get(), Eng4ExtGain:get(), Eng4CockpitGain:get(), Eng4Pitch:get())
+		--------------------------------------------------------------------------------------------------------------------GearOper
 		onEvent_GearOper(GEAR_COMMAND:get(), Gear_PRESS:get(), NWStrutComp:get(), LWStrutComp:get(), RWStrutComp:get(), IAS:get(), Volume:get())
-		---------------------------------------------------------------------------------------DC_OnCpt
+		-------------------------------------------------------------------------------------DC_OnCpt
 		onEvent_DC_On(DC:get(), Volume:get())
 		---------------------------------------------------------------------------------------Avionics_Fan
 		onEvent_Avionics_Fan(AC:get(), Avionics_Fan_Speed:get(), Volume:get())
 		---------------------------------------------------------------------------------------------------------------------------Aux Hyd Pump
-		onEvent_AuxHydPump(AC, ElecHydPump_Switch:get(), ElecHydPump_PressSwitch:get(), Volume:get())
+		onEvent_AuxHydPump(AC:get(), ElecHydPump_Switch:get(), ElecHydPump_PressSwitch:get(), Volume:get())
 		---------------------------------------------------------------------------------------------------------------------------CargoDoorsPump
 		onEvent_CargoDoorsPump(AC:get(), CargoDoorRamp_Operating:get(), HydraulicPress:get(), Volume:get())
 		---------------------------------------------------------------------------------------CargoDownLoadingFWD

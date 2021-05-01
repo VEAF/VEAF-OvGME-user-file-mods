@@ -27,17 +27,17 @@ local Click_Value9_Increment = get_param_handle("Click_Value9_Increment")
 local Click_Value10 = get_param_handle("Click_Value10")
 local Click_Value10_Increment = get_param_handle("Click_Value10_Increment")
 
-Click_Value1:set(0.346)--  3.287
-Click_Value1_Increment:set(0.001)
+Click_Value1:set(1.0)--  3.287
+Click_Value1_Increment:set(1.0)
 
-Click_Value2:set(0.0)--1.0
-Click_Value2_Increment:set(0.1)--
+Click_Value2:set(100000.0)--1.0
+Click_Value2_Increment:set(1.0)--
 
-Click_Value3:set(0.1)--0.1
-Click_Value3_Increment:set(0.01)
+Click_Value3:set(20.0)--0.1
+Click_Value3_Increment:set(1.0)
 
-Click_Value4:set(0.8)--0.0
-Click_Value4_Increment:set(0.1)
+Click_Value4:set(100.0)--0.0
+Click_Value4_Increment:set(1.0)
 
 Click_Value5:set(90)--
 Click_Value5_Increment:set(0.01)

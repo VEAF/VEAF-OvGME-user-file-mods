@@ -2,13 +2,18 @@ dofile(LockOn_Options.script_path.."devices.lua")
 
 local dev = GetSelf()
 local electric_system
-
+local ac_ok = get_param_handle("AC_OK")
 -- local efm_data_bus = get_efm_data_bus()
 
 local update_time_step = 0.02 --EFM rate (0.006 s) or multible of 0.006 s (fastest), 0.012 s, 0.024 s, etc
 make_default_activity(update_time_step)
 
 function update()
+  if electric_system:get_AC_Bus_1_voltage()>0 then
+		ac_ok:set(1)
+	else
+		ac_ok:set(0)
+	end
 	-- print_message_to_user(string.format("DC_Battery_voltage: %.2f", electric_system:get_DC_Bus_1_voltage()))
 	-- print_message_to_user(string.format("AC_Bus_1_voltage: %.2f", electric_system:get_AC_Bus_1_voltage()))
 end
@@ -33,14 +38,14 @@ function SetCommand(command,value)
 
 	-- print_message_to_user(string.format("DC_Battery_voltage: %.2f", electric_system:get_DC_Bus_1_voltage()))
 	-- print_message_to_user(string.format("AC_Bus_1_voltage: %.2f", electric_system:get_AC_Bus_1_voltage()))
-  -- if command == 711 then   
+  -- if command == 711 then
 	-- print_message_to_user(string.format("command: %.2f", command))
 	-- print_message_to_user(string.format("value: %.2f", value))
    -- electric_system:DC_Battery_on(1.0)
    -- electric_system:AC_Generator_1_on(1.0)
    -- electric_system:AC_Generator_2_on(1.0)
   -- end
-  -- if command == 712 then   
+  -- if command == 712 then
 	-- print_message_to_user(string.format("command: %.2f", command))
 	-- print_message_to_user(string.format("value: %.2f", value))
    -- electric_system:DC_Battery_on(0.0)

@@ -14,7 +14,7 @@ page_subsets  = {
 [BASE]    		= LockOn_Options.script_path.."CNI_MU/COPILOT_CNI_MU_NetSync/base_page.lua",
 [INDICATION]    = LockOn_Options.script_path.."CNI_MU/COPILOT_CNI_MU_NetSync/indication_page.lua",
 }
-pages = 
+pages =
 {
 	{
 	 BASE,

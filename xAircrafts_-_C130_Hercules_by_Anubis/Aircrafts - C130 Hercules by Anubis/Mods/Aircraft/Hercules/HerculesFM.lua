@@ -7,6 +7,7 @@ local mainGear = {
 	amortizer_spring_force_factor_rate		= 20.0 * 0.75,
 	amortizer_static_force					= 79379 * 9.81 * 0.75,
 	amortizer_reduce_length					= 0.342,
+	allowable_hard_contact_length			= 0.342,
 	amortizer_direct_damper_force_factor	= 1000000.0 * 0.75,
 	amortizer_back_damper_force_factor		= 1000000.0 * 0.75,
 			
@@ -17,13 +18,12 @@ local mainGear = {
 	anti_skid_improved = true,
 	anti_skid_gain = 200.0,
 
-	allowable_hard_contact_length			= 0.35,
 	wheel_radius					= 1.344,
-	wheel_static_friction_factor	= 0.5,
+	wheel_static_friction_factor	= 1.0,
 	wheel_glide_friction_factor		= 0.5,
 	wheel_side_friction_factor		= 0.5,
 	wheel_roll_friction_factor		= 0.1,
-	wheel_brake_moment_max			= 600000.0,
+	wheel_brake_moment_max			= 800000.0,
 	wheel_kz_factor					= 0.25,
 	noise_k							= 0.2,
 	wheel_damage_force_factor     = 250.0,
@@ -32,7 +32,7 @@ local mainGear = {
 
 HerculesFM = {
 	center_of_mass		= {0.75, -1.5, 0.0},		-- C.G. 25% MAC, {x,y,z}, center of mass position relative to object 3d model center for empty weight aircraft
-	moment_of_inertia 	= {2467589, 1709686, 3877639},	--Ix,Iy,Iz	kilogram meter^2--from Investigation of stability and control characteristics of AC130E aircraft linear models + 30%
+	moment_of_inertia 	= {2467589, 2709686, 4877639},	--Ix,Iy,Iz	kilogram meter^2--from Investigation of stability and control characteristics of AC130E aircraft linear models + 30%
 	--(Ix, Iy, Iz, Ixy) in Conventional axes = (Ix, Iz, Iy, Ixz) in DCS axes
 	
 	zeroize_amortizers_before_collision_check = true,
@@ -52,15 +52,13 @@ HerculesFM = {
 			amortizer_spring_force_factor_rate		= 20.0 * 0.25,
 			amortizer_static_force					= 79379 * 9.81 * 0.25,
 			amortizer_reduce_length					= 0.342,
+			allowable_hard_contact_length			= 0.342,
 			amortizer_direct_damper_force_factor	= 1000000 * 0.25,
 			amortizer_back_damper_force_factor		= 1000000 * 0.25,
 			
-			anti_skid_installed = false,
-
-			allowable_hard_contact_length			= 0.35,
 			wheel_radius					= 0.873,
-			wheel_static_friction_factor	= 0.45,
-			wheel_glide_friction_factor		= 0.5,
+			wheel_static_friction_factor	= 1.0,
+			wheel_glide_friction_factor		= 1.0,
 			wheel_side_friction_factor		= 1.0,
 			wheel_roll_friction_factor		= 0.1,
 			wheel_kz_factor					= 0.3,
@@ -84,9 +82,9 @@ HerculesFM = {
 			amortizer_spring_force_factor_rate		= mainGear.amortizer_spring_force_factor_rate,
 			amortizer_static_force					= mainGear.amortizer_static_force,
 			amortizer_reduce_length					= mainGear.amortizer_reduce_length,
+			allowable_hard_contact_length			= mainGear.allowable_hard_contact_length,
 			amortizer_direct_damper_force_factor	= mainGear.amortizer_direct_damper_force_factor, 
 			amortizer_back_damper_force_factor		= mainGear.amortizer_back_damper_force_factor, 
-			allowable_hard_contact_length			= mainGear.allowable_hard_contact_length,
 
 			anti_skid_installed = mainGear.anti_skid_installed,
 
@@ -122,9 +120,9 @@ HerculesFM = {
 			amortizer_spring_force_factor_rate		= mainGear.amortizer_spring_force_factor_rate,
 			amortizer_static_force					= mainGear.amortizer_static_force,
 			amortizer_reduce_length					= mainGear.amortizer_reduce_length,
+			allowable_hard_contact_length			= mainGear.allowable_hard_contact_length,
 			amortizer_direct_damper_force_factor	= mainGear.amortizer_direct_damper_force_factor, 
 			amortizer_back_damper_force_factor		= mainGear.amortizer_back_damper_force_factor, 
-			allowable_hard_contact_length			= mainGear.allowable_hard_contact_length,
 
 			anti_skid_installed = mainGear.anti_skid_installed,
 

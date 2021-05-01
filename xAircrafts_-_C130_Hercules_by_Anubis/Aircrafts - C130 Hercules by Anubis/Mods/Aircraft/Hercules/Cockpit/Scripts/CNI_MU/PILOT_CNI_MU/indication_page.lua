@@ -1,6 +1,6 @@
 
 
-dofile(LockOn_Options.script_path.."Display_definitions.lua")
+dofile(LockOn_Options.script_path.."CNI_MU/Display_definitions.lua")
 
 -------------------------------------------------------------------------------PILOT_CNI_MU_POWERUP
 
@@ -19,7 +19,7 @@ POWERUP_origin.collimated 		 = true
 AddElement(POWERUP_origin)
 
 -------------------------------------------------------------------------------- Header
-Add_Object_Text(POWERUP, "POWERUP", POWERUP_origin.name, 0,
+Add_Object_Text(POWERUP, "POWERUP", POWERUP_origin.name,
 					"font_Bold_Arial_green",--objectmaterial
 					"CenterCenter",--objectalignment
 					{"POWER UP"},--format_value
@@ -36,7 +36,7 @@ Add_Object_Text(POWERUP, "POWERUP", POWERUP_origin.name, 0,
 					}
 				)
 -------------------------------------------------------------------------------- Left column
-Add_Object_Text(POWERUP, "POWERUP", POWERUP_origin.name, 0,
+Add_Object_Text(POWERUP, "POWERUP", POWERUP_origin.name,
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
 					{" NAV DB Hercules SP SW"},--format_value
@@ -52,7 +52,7 @@ Add_Object_Text(POWERUP, "POWERUP", POWERUP_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(POWERUP, "POWERUP", POWERUP_origin.name, 0,
+Add_Object_Text(POWERUP, "POWERUP", POWERUP_origin.name,
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
 					{" DCS WORLD 678634-345"},--format_value
@@ -68,7 +68,7 @@ Add_Object_Text(POWERUP, "POWERUP", POWERUP_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(POWERUP, "POWERUP", POWERUP_origin.name, 0,
+Add_Object_Text(POWERUP, "POWERUP", POWERUP_origin.name,
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
 					{" 08JAN18FEB21"},--format_value
@@ -84,7 +84,7 @@ Add_Object_Text(POWERUP, "POWERUP", POWERUP_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(POWERUP, "POWERUP", POWERUP_origin.name, 0,
+Add_Object_Text(POWERUP, "POWERUP", POWERUP_origin.name,
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
 					{" 05JAN18MAR21"},--format_value
@@ -100,7 +100,7 @@ Add_Object_Text(POWERUP, "POWERUP", POWERUP_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(POWERUP, "POWERUP", POWERUP_origin.name, 0,
+Add_Object_Text(POWERUP, "POWERUP", POWERUP_origin.name,
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
 					{" ALIGN POS"},--format_value
@@ -116,7 +116,7 @@ Add_Object_Text(POWERUP, "POWERUP", POWERUP_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(POWERUP, "POWERUP", POWERUP_origin.name, 0,
+Add_Object_Text(POWERUP, "POWERUP", POWERUP_origin.name,
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
 					{" S38 28.36"},--format_value
@@ -132,7 +132,7 @@ Add_Object_Text(POWERUP, "POWERUP", POWERUP_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(POWERUP, "POWERUP", POWERUP_origin.name, 0,
+Add_Object_Text(POWERUP, "POWERUP", POWERUP_origin.name,
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
 					{" E144 24.37"},--format_value
@@ -148,7 +148,7 @@ Add_Object_Text(POWERUP, "POWERUP", POWERUP_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(POWERUP, "POWERUP", POWERUP_origin.name, 0,
+Add_Object_Text(POWERUP, "POWERUP", POWERUP_origin.name,
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
 					{" FOM 1"},--format_value
@@ -164,7 +164,7 @@ Add_Object_Text(POWERUP, "POWERUP", POWERUP_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(POWERUP, "POWERUP", POWERUP_origin.name, 0,
+Add_Object_Text(POWERUP, "POWERUP", POWERUP_origin.name,
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
 					{" GPS/LAST/REF"},--format_value
@@ -180,7 +180,7 @@ Add_Object_Text(POWERUP, "POWERUP", POWERUP_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(POWERUP, "POWERUP", POWERUP_origin.name, 0,
+Add_Object_Text(POWERUP, "POWERUP", POWERUP_origin.name,
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
 					{" DATA XFR"},--format_value
@@ -197,7 +197,7 @@ Add_Object_Text(POWERUP, "POWERUP", POWERUP_origin.name, 0,
 					}
 				)
 -------------------------------------------------------------------------------- Right column
-Add_Object_Text(POWERUP, "POWERUP", POWERUP_origin.name, 0,
+Add_Object_Text(POWERUP, "POWERUP", POWERUP_origin.name,
 					"font_Arial_green",--objectmaterial
 					"RightCenter",--objectalignment
 					{"DATE "},--format_value
@@ -213,7 +213,7 @@ Add_Object_Text(POWERUP, "POWERUP", POWERUP_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(POWERUP, "POWERUP", POWERUP_origin.name, 0,
+Add_Object_Text(POWERUP, "POWERUP", POWERUP_origin.name,
 					"font_Arial_green",--objectmaterial
 					"RightCenter",--objectalignment
 					{"26FEB21 "},--format_value
@@ -229,7 +229,7 @@ Add_Object_Text(POWERUP, "POWERUP", POWERUP_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(POWERUP, "POWERUP", POWERUP_origin.name, 0,
+Add_Object_Text(POWERUP, "POWERUP", POWERUP_origin.name,
 					"font_Arial_green",--objectmaterial
 					"RightCenter",--objectalignment
 					{"TIME "},--format_value
@@ -245,7 +245,7 @@ Add_Object_Text(POWERUP, "POWERUP", POWERUP_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(POWERUP, "POWERUP", POWERUP_origin.name, 0,
+Add_Object_Text(POWERUP, "POWERUP", POWERUP_origin.name,
 					"font_Arial_green",--objectmaterial
 					"RightCenter",--objectalignment
 					{"2259:162 "},--format_value
@@ -261,7 +261,7 @@ Add_Object_Text(POWERUP, "POWERUP", POWERUP_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(POWERUP, "POWERUP", POWERUP_origin.name, 0,
+Add_Object_Text(POWERUP, "POWERUP", POWERUP_origin.name,
 					"font_Arial_green",--objectmaterial
 					"RightCenter",--objectalignment
 					{"MSTR AV ON "},--format_value
@@ -277,7 +277,7 @@ Add_Object_Text(POWERUP, "POWERUP", POWERUP_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(POWERUP, "POWERUP", POWERUP_origin.name, 0,
+Add_Object_Text(POWERUP, "POWERUP", POWERUP_origin.name,
 					"font_Arial_green",--objectmaterial
 					"RightCenter",--objectalignment
 					{"AUTONAV "},--format_value
@@ -293,7 +293,7 @@ Add_Object_Text(POWERUP, "POWERUP", POWERUP_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(POWERUP, "POWERUP", POWERUP_origin.name, 0,
+Add_Object_Text(POWERUP, "POWERUP", POWERUP_origin.name,
 					"font_Arial_green",--objectmaterial
 					"RightCenter",--objectalignment
 					{"ROUTE 1 "},--format_value
@@ -327,7 +327,7 @@ TOLD_INDEX_origin.collimated 		 = true
 AddElement(TOLD_INDEX_origin)
 
 -------------------------------------------------------------------------------- Header
-Add_Object_Text(TOLD_INDEX, "TOLD_INDEX", TOLD_INDEX_origin.name, 0,
+Add_Object_Text(TOLD_INDEX, "TOLD_INDEX", TOLD_INDEX_origin.name,
 					"font_Bold_Arial_green",--objectmaterial
 					"CenterCenter",--objectalignment
 					{"TOLD INDEX"},--format_value
@@ -344,7 +344,7 @@ Add_Object_Text(TOLD_INDEX, "TOLD_INDEX", TOLD_INDEX_origin.name, 0,
 					}
 				)
 -------------------------------------------------------------------------------- Left column
-Add_Object_Text(TOLD_INDEX, "TOLD_INDEX", TOLD_INDEX_origin.name, 0,
+Add_Object_Text(TOLD_INDEX, "TOLD_INDEX", TOLD_INDEX_origin.name,
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
 					{"<TOLD INIT"},--format_value
@@ -360,7 +360,7 @@ Add_Object_Text(TOLD_INDEX, "TOLD_INDEX", TOLD_INDEX_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(TOLD_INDEX, "TOLD_INDEX", TOLD_INDEX_origin.name, 0,
+Add_Object_Text(TOLD_INDEX, "TOLD_INDEX", TOLD_INDEX_origin.name,
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
 					{"<T/O DATA"},--format_value
@@ -376,7 +376,7 @@ Add_Object_Text(TOLD_INDEX, "TOLD_INDEX", TOLD_INDEX_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(TOLD_INDEX, "TOLD_INDEX", TOLD_INDEX_origin.name, 0,
+Add_Object_Text(TOLD_INDEX, "TOLD_INDEX", TOLD_INDEX_origin.name,
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
 					{"<LDG DATA"},--format_value
@@ -392,7 +392,7 @@ Add_Object_Text(TOLD_INDEX, "TOLD_INDEX", TOLD_INDEX_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(TOLD_INDEX, "TOLD_INDEX", TOLD_INDEX_origin.name, 0,
+Add_Object_Text(TOLD_INDEX, "TOLD_INDEX", TOLD_INDEX_origin.name,
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
 					{" DRAG INDEX"},--format_value
@@ -408,7 +408,7 @@ Add_Object_Text(TOLD_INDEX, "TOLD_INDEX", TOLD_INDEX_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(TOLD_INDEX, "TOLD_INDEX", TOLD_INDEX_origin.name, 0,
+Add_Object_Text(TOLD_INDEX, "TOLD_INDEX", TOLD_INDEX_origin.name,
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
 					{"  44"},--format_value
@@ -425,7 +425,7 @@ Add_Object_Text(TOLD_INDEX, "TOLD_INDEX", TOLD_INDEX_origin.name, 0,
 					}
 				)
 -------------------------------------------------------------------------------- Right column
-Add_Object_Text(TOLD_INDEX, "TOLD_INDEX", TOLD_INDEX_origin.name, 0,
+Add_Object_Text(TOLD_INDEX, "TOLD_INDEX", TOLD_INDEX_origin.name,
 					"font_Arial_green",--objectmaterial
 					"RightCenter",--objectalignment
 					{"------/--- "},--format_value
@@ -441,7 +441,7 @@ Add_Object_Text(TOLD_INDEX, "TOLD_INDEX", TOLD_INDEX_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(TOLD_INDEX, "TOLD_INDEX", TOLD_INDEX_origin.name, 0,
+Add_Object_Text(TOLD_INDEX, "TOLD_INDEX", TOLD_INDEX_origin.name,
 					"font_Arial_green",--objectmaterial
 					"RightCenter",--objectalignment
 					{"------/--- "},--format_value
@@ -457,7 +457,7 @@ Add_Object_Text(TOLD_INDEX, "TOLD_INDEX", TOLD_INDEX_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(TOLD_INDEX, "TOLD_INDEX", TOLD_INDEX_origin.name, 0,
+Add_Object_Text(TOLD_INDEX, "TOLD_INDEX", TOLD_INDEX_origin.name,
 					"font_Arial_green",--objectmaterial
 					"RightCenter",--objectalignment
 					{"------/--- "},--format_value
@@ -473,7 +473,7 @@ Add_Object_Text(TOLD_INDEX, "TOLD_INDEX", TOLD_INDEX_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(TOLD_INDEX, "TOLD_INDEX", TOLD_INDEX_origin.name, 0,
+Add_Object_Text(TOLD_INDEX, "TOLD_INDEX", TOLD_INDEX_origin.name,
 					"font_Arial_green",--objectmaterial
 					"RightCenter",--objectalignment
 					{"------/--- "},--format_value
@@ -489,7 +489,7 @@ Add_Object_Text(TOLD_INDEX, "TOLD_INDEX", TOLD_INDEX_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(TOLD_INDEX, "TOLD_INDEX", TOLD_INDEX_origin.name, 0,
+Add_Object_Text(TOLD_INDEX, "TOLD_INDEX", TOLD_INDEX_origin.name,
 					"font_Arial_green",--objectmaterial
 					"RightCenter",--objectalignment
 					{"------/--- "},--format_value
@@ -505,7 +505,7 @@ Add_Object_Text(TOLD_INDEX, "TOLD_INDEX", TOLD_INDEX_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(TOLD_INDEX, "TOLD_INDEX", TOLD_INDEX_origin.name, 0,
+Add_Object_Text(TOLD_INDEX, "TOLD_INDEX", TOLD_INDEX_origin.name,
 					"font_Arial_green",--objectmaterial
 					"RightCenter",--objectalignment
 					{"------/--- "},--format_value
@@ -539,7 +539,7 @@ Told_INIT_origin.collimated 		 = true
 AddElement(Told_INIT_origin)
 
 -------------------------------------------------------------------------------- Header
-Add_Object_Text(Told_INIT, "Told_INIT", Told_INIT_origin.name, 0,
+Add_Object_Text(Told_INIT, "Told_INIT", Told_INIT_origin.name,
 					"font_Bold_Arial_green",--objectmaterial
 					"CenterCenter",--objectalignment
 					{"TOLD INIT"},--format_value
@@ -556,7 +556,7 @@ Add_Object_Text(Told_INIT, "Told_INIT", Told_INIT_origin.name, 0,
 					}
 				)
 -------------------------------------------------------------------------------- Left column
-Add_Object_Text(Told_INIT, "Told_INIT", Told_INIT_origin.name, 0,
+Add_Object_Text(Told_INIT, "Told_INIT", Told_INIT_origin.name,
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
 					{"<Aircraft Weight"},--format_value
@@ -572,7 +572,7 @@ Add_Object_Text(Told_INIT, "Told_INIT", Told_INIT_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(Told_INIT, "Told_INIT", Told_INIT_origin.name, 0,
+Add_Object_Text(Told_INIT, "Told_INIT", Told_INIT_origin.name,
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
 					{"<Take-off Rwy Conditions"},--format_value
@@ -588,7 +588,7 @@ Add_Object_Text(Told_INIT, "Told_INIT", Told_INIT_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(Told_INIT, "Told_INIT", Told_INIT_origin.name, 0,
+Add_Object_Text(Told_INIT, "Told_INIT", Told_INIT_origin.name,
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
 					{"<Landing Rwy Conditions"},--format_value
@@ -605,7 +605,7 @@ Add_Object_Text(Told_INIT, "Told_INIT", Told_INIT_origin.name, 0,
 					}
 				)
 ----------------------------------------------------------Local sunrise
-Add_Object_Text(Told_INIT, "Told_INIT", Told_INIT_origin.name, 0,
+Add_Object_Text(Told_INIT, "Told_INIT", Told_INIT_origin.name,
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
 					{"Local sunrise:"},--format_value
@@ -621,7 +621,7 @@ Add_Object_Text(Told_INIT, "Told_INIT", Told_INIT_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(Told_INIT, "Told_INIT", Told_INIT_origin.name, 0,
+Add_Object_Text(Told_INIT, "Told_INIT", Told_INIT_origin.name,
 					"font_Arial_white",--objectmaterial
 					"LeftCenter",--objectalignment
 					{"%.0f"},--format_value
@@ -637,7 +637,7 @@ Add_Object_Text(Told_INIT, "Told_INIT", Told_INIT_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(Told_INIT, "Told_INIT", Told_INIT_origin.name, 0,
+Add_Object_Text(Told_INIT, "Told_INIT", Told_INIT_origin.name,
 					"font_Arial_white",--objectmaterial
 					"LeftCenter",--objectalignment
 					{": "},--format_value
@@ -653,7 +653,7 @@ Add_Object_Text(Told_INIT, "Told_INIT", Told_INIT_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(Told_INIT, "Told_INIT", Told_INIT_origin.name, 0,
+Add_Object_Text(Told_INIT, "Told_INIT", Told_INIT_origin.name,
 					"font_Arial_white",--objectmaterial
 					"LeftCenter",--objectalignment
 					{"%.0f"},--format_value
@@ -670,7 +670,7 @@ Add_Object_Text(Told_INIT, "Told_INIT", Told_INIT_origin.name, 0,
 					}
 				)
 ----------------------------------------------------------Local sunset
-Add_Object_Text(Told_INIT, "Told_INIT", Told_INIT_origin.name, 0,
+Add_Object_Text(Told_INIT, "Told_INIT", Told_INIT_origin.name,
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
 					{"       sunset:"},--format_value
@@ -686,7 +686,7 @@ Add_Object_Text(Told_INIT, "Told_INIT", Told_INIT_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(Told_INIT, "Told_INIT", Told_INIT_origin.name, 0,
+Add_Object_Text(Told_INIT, "Told_INIT", Told_INIT_origin.name,
 					"font_Arial_white",--objectmaterial
 					"LeftCenter",--objectalignment
 					{"%.0f"},--format_value
@@ -702,7 +702,7 @@ Add_Object_Text(Told_INIT, "Told_INIT", Told_INIT_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(Told_INIT, "Told_INIT", Told_INIT_origin.name, 0,
+Add_Object_Text(Told_INIT, "Told_INIT", Told_INIT_origin.name,
 					"font_Arial_white",--objectmaterial
 					"LeftCenter",--objectalignment
 					{": "},--format_value
@@ -718,7 +718,7 @@ Add_Object_Text(Told_INIT, "Told_INIT", Told_INIT_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(Told_INIT, "Told_INIT", Told_INIT_origin.name, 0,
+Add_Object_Text(Told_INIT, "Told_INIT", Told_INIT_origin.name,
 					"font_Arial_white",--objectmaterial
 					"LeftCenter",--objectalignment
 					{"%.0f"},--format_value
@@ -752,7 +752,7 @@ NAV_CTRL_origin.collimated 		 = true
 AddElement(NAV_CTRL_origin)
 
 -------------------------------------------------------------------------------- Header
-Add_Object_Text(NAV_CTRL, "NAV_CTRL", NAV_CTRL_origin.name, 0,
+Add_Object_Text(NAV_CTRL, "NAV_CTRL", NAV_CTRL_origin.name,
 					"font_Bold_Arial_green",--objectmaterial
 					"CenterCenter",--objectalignment
 					{"NAV CONTROL"},--format_value
@@ -769,7 +769,7 @@ Add_Object_Text(NAV_CTRL, "NAV_CTRL", NAV_CTRL_origin.name, 0,
 					}
 				)
 -------------------------------------------------------------------------------- Wpt_nr
-Add_Object_Text(Wpt_nr, "Wpt_nr", NAV_CTRL_origin.name, 0,
+Add_Object_Text(Wpt_nr, "Wpt_nr", NAV_CTRL_origin.name,
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
 					{"< Wpt Nr:"},--format_value
@@ -785,7 +785,7 @@ Add_Object_Text(Wpt_nr, "Wpt_nr", NAV_CTRL_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(Wpt_nr, "Wpt_nr", NAV_CTRL_origin.name, 0,
+Add_Object_Text(Wpt_nr, "Wpt_nr", NAV_CTRL_origin.name,
 					"font_Arial_white",--objectmaterial
 					"LeftCenter",--objectalignment
 					{"%.0f "},--format_value
@@ -794,14 +794,14 @@ Add_Object_Text(Wpt_nr, "Wpt_nr", NAV_CTRL_origin.name, 0,
 					58,--initpixelposy
 					{--params
 						"PILOT_CNI_MU_brightness",
-						"PILOT_CNI_MU_Wpt_nr",
+						"Wpt_index_nr",
 					},
 					{--controllers
 						{"opacity_using_parameter",0},
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(Wpt_nr, "Wpt_nr", NAV_CTRL_origin.name, 0,
+Add_Object_Text(Wpt_nr, "Wpt_nr", NAV_CTRL_origin.name,
 					"font_Arial_green_background",--objectmaterial
 					"LeftCenter",--objectalignment
 					{" "},--format_value
@@ -817,13 +817,62 @@ Add_Object_Text(Wpt_nr, "Wpt_nr", NAV_CTRL_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
--------------------------------------------------------------------------------- Wpt_nr_Inc
-Add_Object_Text(Wpt_nr_Inc, "Wpt_nr_Inc", NAV_CTRL_origin.name, 0,
+-------------------------------------------------------------------------------- Wpt_Name
+Add_Object_Text(Wpt_Name, "Wpt_Name", NAV_CTRL_origin.name,
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
-					{"Wpt Nr Inc +"},--format_value
+					{"<"},--format_value
 					{0.007,0.007,  -0.0040, 0},--stringdefs_value
-					300,--initpixelposx
+					10,--initpixelposx
+					110,--initpixelposy
+					{--params
+						"PILOT_CNI_MU_brightness",
+						"",
+					},
+					{--controllers
+						{"opacity_using_parameter",0},
+						{"text_using_parameter",1,0},
+					}
+				)
+Add_Object_Text(Wpt_Name, "Wpt_Name", NAV_CTRL_origin.name,
+					"font_Arial_white",--objectmaterial
+					"LeftCenter",--objectalignment
+					{"%s"},--format_value
+					{0.007,0.009,  -0.0040, 0},--stringdefs_value
+					40,--initpixelposx
+					110,--initpixelposy
+					{--params
+						"PILOT_CNI_MU_brightness",
+						"PILOT_CNI_MU_Wpt_Name",
+					},
+					{--controllers
+						{"opacity_using_parameter",0},
+						{"text_using_parameter",1,0},
+					}
+				)
+Add_Object_Text(Wpt_nr, "Wpt_nr", NAV_CTRL_origin.name,
+					"font_Arial_green_background",--objectmaterial
+					"LeftCenter",--objectalignment
+					{"    "},--format_value
+					{0.007,0.012,  0, 0},--stringdefs_value
+					40,--initpixelposx
+					110,--initpixelposy
+					{--params
+						"PILOT_CNI_MU_brightness",
+						"",
+					},
+					{--controllers
+						{"opacity_using_parameter",0},
+						{"text_using_parameter",1,0},
+					}
+				)
+-------------------------------------------------------------------------------- Wpt_nr_Inc
+Add_Object_Text(Wpt_nr_Inc, "Wpt_nr_Inc", NAV_CTRL_origin.name,
+					"font_Arial_green",--objectmaterial
+					"LeftCenter",--objectalignment
+					{"Inc +"},--format_value
+					{0.007,0.007,  -0.0040, 0},--stringdefs_value
+					450,--initpixelposx
 					58,--initpixelposy
 					{--params
 						"PILOT_CNI_MU_brightness",
@@ -834,7 +883,7 @@ Add_Object_Text(Wpt_nr_Inc, "Wpt_nr_Inc", NAV_CTRL_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(Wpt_nr_Inc, "Wpt_nr_Inc", NAV_CTRL_origin.name, 0,
+Add_Object_Text(Wpt_nr_Inc, "Wpt_nr_Inc", NAV_CTRL_origin.name,
 					"font_Arial_green",--objectmaterial
 					"RightCenter",--objectalignment
 					{" >"},--format_value
@@ -851,12 +900,12 @@ Add_Object_Text(Wpt_nr_Inc, "Wpt_nr_Inc", NAV_CTRL_origin.name, 0,
 					}
 				)
 -------------------------------------------------------------------------------- Wpt_nr_Dec
-Add_Object_Text(Wpt_nr_Dec, "Wpt_nr_Dec", NAV_CTRL_origin.name, 0,
+Add_Object_Text(Wpt_nr_Dec, "Wpt_nr_Dec", NAV_CTRL_origin.name,
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
-					{"Wpt Nr Dec -"},--format_value
+					{"Dec -"},--format_value
 					{0.007,0.007,  -0.0040, 0},--stringdefs_value
-					300,--initpixelposx
+					450,--initpixelposx
 					110,--initpixelposy
 					{--params
 						"PILOT_CNI_MU_brightness",
@@ -867,7 +916,7 @@ Add_Object_Text(Wpt_nr_Dec, "Wpt_nr_Dec", NAV_CTRL_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(Wpt_nr_Dec, "Wpt_nr_Dec", NAV_CTRL_origin.name, 0,
+Add_Object_Text(Wpt_nr_Dec, "Wpt_nr_Dec", NAV_CTRL_origin.name,
 					"font_Arial_green",--objectmaterial
 					"RightCenter",--objectalignment
 					{" >"},--format_value
@@ -883,11 +932,44 @@ Add_Object_Text(Wpt_nr_Dec, "Wpt_nr_Dec", NAV_CTRL_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
--------------------------------------------------------------------------------- Wpt_Lat
-Add_Object_Text(Wpt_Lat, "Wpt_Lat", NAV_CTRL_origin.name, 0,
+-------------------------------------------------------------------------------- Wpt_Horz_Dist
+Add_Object_Text(Wpt_Horz_Dist, "Wpt_Horz_Dist", NAV_CTRL_origin.name,
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
-					{"<"},--format_value
+					{"Dist:"},--format_value
+					{0.007,0.007,  -0.0040, 0},--stringdefs_value
+					10,--initpixelposx
+					162,--initpixelposy
+					{--params
+						"PILOT_CNI_MU_brightness",
+						"",
+					},
+					{--controllers
+						{"opacity_using_parameter",0},
+						{"text_using_parameter",1,0},
+					}
+				)
+Add_Object_Text(Wpt_Horz_Dist, "Wpt_Horz_Dist", NAV_CTRL_origin.name,
+					"font_Arial_white",--objectmaterial
+					"LeftCenter",--objectalignment
+					{"%.1f "},--format_value
+					{0.007,0.009,  -0.0040, 0},--stringdefs_value
+					110,--initpixelposx
+					162,--initpixelposy
+					{--params
+						"PILOT_CNI_MU_brightness",
+						"PILOT_CNI_MU_Wpt_Horz_Dist",
+					},
+					{--controllers
+						{"opacity_using_parameter",0},
+						{"text_using_parameter",1,0},
+					}
+				)
+------------------------------------------------------------------------------ Wpt_Bearing
+Add_Object_Text(Wpt_Bearing, "Wpt_Bearing", NAV_CTRL_origin.name,
+					"font_Arial_green",--objectmaterial
+					"LeftCenter",--objectalignment
+					{"Bear:"},--format_value
 					{0.007,0.007,  -0.0040, 0},--stringdefs_value
 					10,--initpixelposx
 					214,--initpixelposy
@@ -900,24 +982,73 @@ Add_Object_Text(Wpt_Lat, "Wpt_Lat", NAV_CTRL_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(Wpt_Lat, "Wpt_Lat", NAV_CTRL_origin.name, 0,
+Add_Object_Text(Wpt_Bearing, "Wpt_Bearing", NAV_CTRL_origin.name,
 					"font_Arial_white",--objectmaterial
 					"LeftCenter",--objectalignment
-					{"%s"},--format_value
-					{0.007,0.007,  -0.0040, 0},--stringdefs_value
-					40,--initpixelposx
+					{"%.1f "},--format_value
+					{0.007,0.009,  -0.0040, 0},--stringdefs_value
+					110,--initpixelposx
 					214,--initpixelposy
 					{--params
 						"PILOT_CNI_MU_brightness",
-						"PILOT_CNI_MU_Wpt_Lat",
+						"PILOT_CNI_MU_Wpt_Bearing",
 					},
 					{--controllers
 						{"opacity_using_parameter",0},
 						{"text_using_parameter",1,0},
 					}
 				)
--------------------------------------------------------------------------------- Wpt_Name
-Add_Object_Text(Wpt_Name, "Wpt_Name", NAV_CTRL_origin.name, 0,
+-------------------------------------------------------------------------------- Wpt_Lat_dmm
+Add_Object_Text(Wpt_Lat_dmm, "Wpt_Lat_dmm", NAV_CTRL_origin.name,
+					"font_Arial_green",--objectmaterial
+					"LeftCenter",--objectalignment
+					{"<"},--format_value
+					{0.007,0.007,  -0.0040, 0},--stringdefs_value
+					10,--initpixelposx
+					266,--initpixelposy
+					{--params
+						"PILOT_CNI_MU_brightness",
+						"",
+					},
+					{--controllers
+						{"opacity_using_parameter",0},
+						{"text_using_parameter",1,0},
+					}
+				)
+Add_Object_Text(Wpt_Lat_dmm, "Wpt_Lat_dmm", NAV_CTRL_origin.name,
+					"font_Arial_white",--objectmaterial
+					"LeftCenter",--objectalignment
+					{"%s"},--format_value
+					{0.007,0.009,  -0.0040, 0},--stringdefs_value
+					40,--initpixelposx
+					266,--initpixelposy
+					{--params
+						"PILOT_CNI_MU_brightness",
+						"PILOT_CNI_MU_Wpt_Lat_dmm",
+					},
+					{--controllers
+						{"opacity_using_parameter",0},
+						{"text_using_parameter",1,0},
+					}
+				)
+Add_Object_Text(Wpt_Lat_dmm, "Wpt_Lat_dmm", NAV_CTRL_origin.name,
+					"font_Arial_green_background",--objectmaterial
+					"LeftCenter",--objectalignment
+					{"         "},--format_value
+					{0.007,0.009,  0, 0},--stringdefs_value
+					40,--initpixelposx
+					266,--initpixelposy
+					{--params
+						"PILOT_CNI_MU_brightness",
+						"",
+					},
+					{--controllers
+						{"opacity_using_parameter",0},
+						{"text_using_parameter",1,0},
+					}
+				)
+-------------------------------------------------------------------------------- Wpt_Lon_dmm
+Add_Object_Text(Wpt_Lon_dmm, "Wpt_Lon_dmm", NAV_CTRL_origin.name,
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
 					{"<"},--format_value
@@ -933,16 +1064,32 @@ Add_Object_Text(Wpt_Name, "Wpt_Name", NAV_CTRL_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(Wpt_Name, "Wpt_Name", NAV_CTRL_origin.name, 0,
+Add_Object_Text(Wpt_Lon_dmm, "Wpt_Lon_dmm", NAV_CTRL_origin.name,
 					"font_Arial_white",--objectmaterial
 					"LeftCenter",--objectalignment
 					{"%s"},--format_value
-					{0.007,0.007,  -0.0040, 0},--stringdefs_value
+					{0.007,0.009,  -0.0040, 0},--stringdefs_value
 					40,--initpixelposx
 					318,--initpixelposy
 					{--params
 						"PILOT_CNI_MU_brightness",
-						"PILOT_CNI_MU_Wpt_Name",
+						"PILOT_CNI_MU_Wpt_Lon_dmm",
+					},
+					{--controllers
+						{"opacity_using_parameter",0},
+						{"text_using_parameter",1,0},
+					}
+				)
+Add_Object_Text(Wpt_Lon_dmm, "Wpt_Lon_dmm", NAV_CTRL_origin.name,
+					"font_Arial_green_background",--objectmaterial
+					"LeftCenter",--objectalignment
+					{"         "},--format_value
+					{0.007,0.009,  0, 0},--stringdefs_value
+					40,--initpixelposx
+					318,--initpixelposy
+					{--params
+						"PILOT_CNI_MU_brightness",
+						"",
 					},
 					{--controllers
 						{"opacity_using_parameter",0},
@@ -966,7 +1113,7 @@ CommTune_origin.collimated 		 = true
 AddElement(CommTune_origin)
 
 -------------------------------------------------------------------------------- Header
-Add_Object_Text(CommTune, "CommTune", CommTune_origin.name, 0,
+Add_Object_Text(CommTune, "CommTune", CommTune_origin.name,
 					"font_Bold_Arial_green",--objectmaterial
 					"CenterCenter",--objectalignment
 					{"COMM INDEX"},--format_value
@@ -983,7 +1130,7 @@ Add_Object_Text(CommTune, "CommTune", CommTune_origin.name, 0,
 					}
 				)
 -------------------------------------------------------------------------------- Left column
-Add_Object_Text(CommTune, "CommTune", CommTune_origin.name, 0,
+Add_Object_Text(CommTune, "CommTune", CommTune_origin.name,
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
 					{"<UHF"},--format_value
@@ -999,7 +1146,7 @@ Add_Object_Text(CommTune, "CommTune", CommTune_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(CommTune, "CommTune", CommTune_origin.name, 0,
+Add_Object_Text(CommTune, "CommTune", CommTune_origin.name,
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
 					{"<VHF"},--format_value
@@ -1015,7 +1162,7 @@ Add_Object_Text(CommTune, "CommTune", CommTune_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(CommTune, "CommTune", CommTune_origin.name, 0,
+Add_Object_Text(CommTune, "CommTune", CommTune_origin.name,
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
 					{"<HF"},--format_value
@@ -1048,7 +1195,7 @@ AC_WEIGHT_origin.collimated 		 = true
 AddElement(AC_WEIGHT_origin)
 
 -------------------------------------------------------------------------------- Header
-Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name, 0,
+Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name,
 					"font_Bold_Arial_green",--objectmaterial
 					"CenterCenter",--objectalignment
 					{"AIRCRAFT WGT EXT DATA"},--format_value
@@ -1066,7 +1213,7 @@ Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name, 0,
 						{"text_using_parameter",2,0},
 					}
 				)
-Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name, 0,
+Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name,
 					"font_Bold_Arial_cyan",--objectmaterial
 					"CenterCenter",--objectalignment
 					{"AIRCRAFT WGT CALC DATA"},--format_value
@@ -1085,7 +1232,7 @@ Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name, 0,
 					}
 				)
 -------------------------------------------------------------------------------- FuellingPersentage
-Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name, 0,
+Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name,
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
 					{"<Fuel persentage:"},--format_value
@@ -1101,7 +1248,7 @@ Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name, 0,
+Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name,
 					"font_Arial_white",--objectmaterial
 					"RightCenter",--objectalignment
 					{"%.0f ?  "},--format_value
@@ -1117,7 +1264,7 @@ Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name, 0,
+Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name,
 					"font_Arial_green_background",--objectmaterial
 					"RightCenter",--objectalignment
 					{" "},--format_value
@@ -1134,7 +1281,7 @@ Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name, 0,
 					}
 				)
 -------------------------------------------------------------------------------- Fuel weight
-Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name, 0,
+Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name,
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
 					{" Fuel weight:"},--format_value
@@ -1150,7 +1297,7 @@ Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name, 0,
+Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name,
 					"font_Arial_white",--objectmaterial
 					"RightCenter",--objectalignment
 					{"%.0flbs  "},--format_value
@@ -1167,7 +1314,7 @@ Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name, 0,
 					}
 				)
 -------------------------------------------------------------------------------- Cargo_Weight
-Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name, 0,
+Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name,
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
 					{"<Cargo weight:"},--format_value
@@ -1183,7 +1330,7 @@ Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name, 0,
+Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name,
 					"font_Arial_white",--objectmaterial
 					"RightCenter",--objectalignment
 					{"%.0flbs  "},--format_value
@@ -1199,7 +1346,7 @@ Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name, 0,
+Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name,
 					"font_Arial_green_background",--objectmaterial
 					"RightCenter",--objectalignment
 					{"  "},--format_value
@@ -1216,7 +1363,7 @@ Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name, 0,
 					}
 				)
 --------------------------------------------------------------------------------Grossweight
-Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name, 0,
+Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name,
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
 					{" Gross weight:"},--format_value
@@ -1232,7 +1379,7 @@ Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name, 0,
+Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name,
 					"font_Arial_white",--objectmaterial
 					"RightCenter",--objectalignment
 					{"%.0flbs  "},--format_value
@@ -1249,7 +1396,7 @@ Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name, 0,
+Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name,
 					"font_Arial_amber",--objectmaterial
 					"RightCenter",--objectalignment
 					{"%.0flbs  "},--format_value
@@ -1266,7 +1413,7 @@ Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name, 0,
+Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name,
 					"font_Arial_red",--objectmaterial
 					"RightCenter",--objectalignment
 					{"%.0flbs  "},--format_value
@@ -1285,7 +1432,7 @@ Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name, 0,
 				)
 				
 --------------------------------------------------------------------------------Critical Field Length
-Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name, 0,
+Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name,
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
 					{" Crit field length:"},--format_value
@@ -1302,7 +1449,7 @@ Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name, 0,
 					}
 				)
 -------------------------------------------------------------------
-Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name, 0,
+Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name,
 					"font_Arial_white",--objectmaterial
 					"LeftCenter",--objectalignment
 					{"%.0fft "},--format_value
@@ -1321,7 +1468,7 @@ Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name, 0,
 					}
 				)
 				
-Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name, 0,
+Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name,
 					"font_Arial_red",--objectmaterial
 					"LeftCenter",--objectalignment
 					{"%.0fft "},--format_value
@@ -1341,7 +1488,7 @@ Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name, 0,
 				)
 				
 --------------------------------------------------------------------------------Take-off distance
-Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name, 0,
+Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name,
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
 					{" Take-off dist:"},--format_value
@@ -1358,7 +1505,7 @@ Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name, 0,
 					}
 				)
 -------------------------------------------------------------------
-Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name, 0,
+Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name,
 					"font_Arial_white",--objectmaterial
 					"LeftCenter",--objectalignment
 					{"%.0fft "},--format_value
@@ -1377,7 +1524,7 @@ Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name, 0,
 					}
 				)
 				
-Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name, 0,
+Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name,
 					"font_Arial_red",--objectmaterial
 					"LeftCenter",--objectalignment
 					{"%.0fft "},--format_value
@@ -1396,7 +1543,7 @@ Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name, 0,
 					}
 				)
 -------------------------------------------------------------------------------- Ext Data Recall
-Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name, 0,
+Add_Object_Text(AC_WEIGHT, "AC_WEIGHT", AC_WEIGHT_origin.name,
 					"font_Arial_green",--objectmaterial
 					"RightCenter",--objectalignment
 					{"Ext Data>"},--format_value
@@ -1429,7 +1576,7 @@ TO_RWY_COND_origin.collimated 		 = true
 AddElement(TO_RWY_COND_origin)
 
 -------------------------------------------------------------------------------- Header
-Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
+Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name,
 					"font_Bold_Arial_green",--objectmaterial
 					"CenterCenter",--objectalignment
 					{"TO RWY COND EXT DATA"},--format_value
@@ -1447,7 +1594,7 @@ Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
 						{"text_using_parameter",2,0},
 					}
 				)
-Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
+Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name,
 					"font_Bold_Arial_cyan",--objectmaterial
 					"CenterCenter",--objectalignment
 					{"TO RWY COND CALC DATA"},--format_value
@@ -1466,7 +1613,7 @@ Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
 					}
 				)
 -------------------------------------------------------------------------------- Length
-Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
+Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name,
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
 					{"<Rwy Length:"},--format_value
@@ -1482,7 +1629,7 @@ Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
+Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name,
 					"font_Arial_white",--objectmaterial
 					"LeftCenter",--objectalignment
 					{"%.0fft "},--format_value
@@ -1498,7 +1645,7 @@ Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
+Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name,
 					"font_Arial_green_background",--objectmaterial
 					"LeftCenter",--objectalignment
 					{" "},--format_value
@@ -1515,7 +1662,7 @@ Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
 					}
 				)
 --------------------------------------------------------------------------------Flap extension
-Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
+Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name,
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
 					{"Flaps"},--format_value
@@ -1531,7 +1678,7 @@ Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
+Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name,
 					"font_Arial_white",--objectmaterial
 					"RightCenter",--objectalignment
 					{"%.0f ?  "},--format_value
@@ -1547,7 +1694,7 @@ Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
+Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name,
 					"font_Arial_green_background",--objectmaterial
 					"RightCenter",--objectalignment
 					{" "},--format_value
@@ -1563,7 +1710,7 @@ Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
+Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name,
 					"font_Arial_green",--objectmaterial
 					"RightCenter",--objectalignment
 					{" >"},--format_value
@@ -1580,7 +1727,7 @@ Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
 					}
 				)
 -------------------------------------------------------------------------------- RWY ELEV
-Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
+Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name,
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
 					{"<Rwy Elev:"},--format_value
@@ -1596,7 +1743,7 @@ Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
+Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name,
 					"font_Arial_white",--objectmaterial
 					"LeftCenter",--objectalignment
 					{"%.0fft "},--format_value
@@ -1612,7 +1759,7 @@ Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
+Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name,
 					"font_Arial_green_background",--objectmaterial
 					"LeftCenter",--objectalignment
 					{" "},--format_value
@@ -1629,7 +1776,7 @@ Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
 					}
 				)
 -------------------------------------------------------------------------------- Anti_skid
-Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
+Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name,
 					"font_Arial_green",--objectmaterial
 					"RightCenter",--objectalignment
 					{">"},--format_value
@@ -1645,7 +1792,7 @@ Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
+Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name,
 					"font_Arial_white",--objectmaterial
 					"RightCenter",--objectalignment
 					{"on"},--format_value
@@ -1663,7 +1810,7 @@ Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
 						{"text_using_parameter",2,0},
 					}
 				)
-Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
+Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name,
 					"font_Arial_white",--objectmaterial
 					"RightCenter",--objectalignment
 					{"off"},--format_value
@@ -1681,7 +1828,7 @@ Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
 						{"text_using_parameter",2,0},
 					}
 				)
-Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
+Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name,
 					"font_Arial_green_background",--objectmaterial
 					"RightCenter",--objectalignment
 					{" "},--format_value
@@ -1697,7 +1844,7 @@ Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
+Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name,
 					"font_Arial_green",--objectmaterial
 					"RightCenter",--objectalignment
 					{"Anti-skid"},--format_value
@@ -1714,7 +1861,7 @@ Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
 					}
 				)
 -------------------------------------------------------------------------------- RWY HDG
-Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
+Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name,
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
 					{"<Rwy hdg:"},--format_value
@@ -1730,7 +1877,7 @@ Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
+Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name,
 					"font_Arial_white",--objectmaterial
 					"LeftCenter",--objectalignment
 					{"%.0f$"},--format_value
@@ -1746,7 +1893,7 @@ Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
+Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name,
 					"font_Arial_green_background",--objectmaterial
 					"LeftCenter",--objectalignment
 					{" "},--format_value
@@ -1763,7 +1910,7 @@ Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
 					}
 				)
 -------------------------------------------------------------------------------- RWY OAT
-Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
+Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name,
 					"font_Arial_green",--objectmaterial
 					"RightCenter",--objectalignment
 					{">"},--format_value
@@ -1779,7 +1926,7 @@ Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
+Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name,
 					"font_Arial_white",--objectmaterial
 					"RightCenter",--objectalignment
 					{"%.1f$C  "},--format_value
@@ -1795,7 +1942,7 @@ Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
+Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name,
 					"font_Arial_green_background",--objectmaterial
 					"RightCenter",--objectalignment
 					{" "},--format_value
@@ -1811,7 +1958,7 @@ Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
+Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name,
 					"font_Arial_green",--objectmaterial
 					"RightCenter",--objectalignment
 					{"oat:"},--format_value
@@ -1828,7 +1975,7 @@ Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
 					}
 				)
 -------------------------------------------------------------------------------- Surface Wind
-Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
+Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name,
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
 					{"<Wind hdg:"},--format_value
@@ -1844,7 +1991,7 @@ Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
+Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name,
 					"font_Arial_white",--objectmaterial
 					"LeftCenter",--objectalignment
 					{"%.0f$"},--format_value
@@ -1860,7 +2007,7 @@ Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
+Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name,
 					"font_Arial_green_background",--objectmaterial
 					"LeftCenter",--objectalignment
 					{" "},--format_value
@@ -1876,7 +2023,7 @@ Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
+Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name,
 					"font_Arial_green",--objectmaterial
 					"RightCenter",--objectalignment
 					{">"},--format_value
@@ -1892,7 +2039,7 @@ Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
+Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name,
 					"font_Arial_white",--objectmaterial
 					"RightCenter",--objectalignment
 					{"%.0f kt "},--format_value
@@ -1908,7 +2055,7 @@ Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
+Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name,
 					"font_Arial_green_background",--objectmaterial
 					"RightCenter",--objectalignment
 					{" "},--format_value
@@ -1924,7 +2071,7 @@ Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
+Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name,
 					"font_Arial_green",--objectmaterial
 					"RightCenter",--objectalignment
 					{"Wind spd:"},--format_value
@@ -1942,7 +2089,7 @@ Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
 				)
 				
 --------------------------------------------------------------------------------Critical Field Length
-Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
+Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name,
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
 					{" Crit Field Length:"},--format_value
@@ -1959,7 +2106,7 @@ Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
 					}
 				)
 -------------------------------------------------------------------
-Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
+Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name,
 					"font_Arial_white",--objectmaterial
 					"LeftCenter",--objectalignment
 					{"%.0fft "},--format_value
@@ -1978,7 +2125,7 @@ Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
 					}
 				)
 				
-Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
+Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name,
 					"font_Arial_red",--objectmaterial
 					"LeftCenter",--objectalignment
 					{"%.0fft "},--format_value
@@ -1998,7 +2145,7 @@ Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
 				)
 				
 --------------------------------------------------------------------------------Take-off distance
-Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
+Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name,
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
 					{" Take-off Dist:"},--format_value
@@ -2015,7 +2162,7 @@ Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
 					}
 				)
 -------------------------------------------------------------------
-Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
+Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name,
 					"font_Arial_white",--objectmaterial
 					"LeftCenter",--objectalignment
 					{"%.0fft "},--format_value
@@ -2034,7 +2181,7 @@ Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
 					}
 				)
 				
-Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
+Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name,
 					"font_Arial_red",--objectmaterial
 					"LeftCenter",--objectalignment
 					{"%.0fft "},--format_value
@@ -2054,7 +2201,7 @@ Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
 				)
 				
 ----------------------------------------------------------------------------------------------------Ext Data
-Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name, 0,
+Add_Object_Text(TO_RWY_COND, "TO_RWY_COND", TO_RWY_COND_origin.name,
 					"font_Arial_green",--objectmaterial
 					"RightCenter",--objectalignment
 					{"Ext Data>"},--format_value
@@ -2088,7 +2235,7 @@ LND_RWY_COND_origin.collimated 		 = true
 AddElement(LND_RWY_COND_origin)
 
 -------------------------------------------------------------------------------- Header
-Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
+Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name,
 					"font_Bold_Arial_green",--objectmaterial
 					"CenterCenter",--objectalignment
 					{"LND RWY COND EXT DATA"},--format_value
@@ -2106,7 +2253,7 @@ Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
 						{"text_using_parameter",2,0},
 					}
 				)
-Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
+Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name,
 					"font_Bold_Arial_cyan",--objectmaterial
 					"CenterCenter",--objectalignment
 					{"LND RWY COND CALC DATA"},--format_value
@@ -2125,7 +2272,7 @@ Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
 					}
 				)
 -------------------------------------------------------------------------------- Length
-Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
+Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name,
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
 					{"<Rwy Length:"},--format_value
@@ -2141,7 +2288,7 @@ Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
+Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name,
 					"font_Arial_white",--objectmaterial
 					"LeftCenter",--objectalignment
 					{"%.0fft "},--format_value
@@ -2157,7 +2304,7 @@ Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
+Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name,
 					"font_Arial_green_background",--objectmaterial
 					"LeftCenter",--objectalignment
 					{" "},--format_value
@@ -2174,7 +2321,7 @@ Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
 					}
 				)
 --------------------------------------------------------------------------------Flap extension
-Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
+Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name,
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
 					{"Flaps"},--format_value
@@ -2190,7 +2337,7 @@ Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
+Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name,
 					"font_Arial_white",--objectmaterial
 					"RightCenter",--objectalignment
 					{"%.0f ?  "},--format_value
@@ -2206,7 +2353,7 @@ Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
+Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name,
 					"font_Arial_green_background",--objectmaterial
 					"RightCenter",--objectalignment
 					{" "},--format_value
@@ -2222,7 +2369,7 @@ Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
+Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name,
 					"font_Arial_green",--objectmaterial
 					"RightCenter",--objectalignment
 					{" >"},--format_value
@@ -2239,7 +2386,7 @@ Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
 					}
 				)
 -------------------------------------------------------------------------------- RWY ELEV
-Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
+Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name,
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
 					{"<Rwy Elev:"},--format_value
@@ -2255,7 +2402,7 @@ Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
+Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name,
 					"font_Arial_white",--objectmaterial
 					"LeftCenter",--objectalignment
 					{"%.0fft "},--format_value
@@ -2271,7 +2418,7 @@ Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
+Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name,
 					"font_Arial_green_background",--objectmaterial
 					"LeftCenter",--objectalignment
 					{" "},--format_value
@@ -2288,7 +2435,7 @@ Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
 					}
 				)
 -------------------------------------------------------------------------------- Anti_skid
-Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
+Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name,
 					"font_Arial_green",--objectmaterial
 					"RightCenter",--objectalignment
 					{">"},--format_value
@@ -2304,7 +2451,7 @@ Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
+Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name,
 					"font_Arial_white",--objectmaterial
 					"RightCenter",--objectalignment
 					{"on"},--format_value
@@ -2322,7 +2469,7 @@ Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
 						{"text_using_parameter",2,0},
 					}
 				)
-Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
+Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name,
 					"font_Arial_white",--objectmaterial
 					"RightCenter",--objectalignment
 					{"off"},--format_value
@@ -2340,7 +2487,7 @@ Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
 						{"text_using_parameter",2,0},
 					}
 				)
-Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
+Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name,
 					"font_Arial_green_background",--objectmaterial
 					"RightCenter",--objectalignment
 					{" "},--format_value
@@ -2356,7 +2503,7 @@ Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
+Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name,
 					"font_Arial_green",--objectmaterial
 					"RightCenter",--objectalignment
 					{"Anti-skid"},--format_value
@@ -2373,7 +2520,7 @@ Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
 					}
 				)
 -------------------------------------------------------------------------------- RWY HDG
-Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
+Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name,
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
 					{"<Rwy hdg:"},--format_value
@@ -2389,7 +2536,7 @@ Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
+Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name,
 					"font_Arial_white",--objectmaterial
 					"LeftCenter",--objectalignment
 					{"%.0f$"},--format_value
@@ -2405,7 +2552,7 @@ Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
+Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name,
 					"font_Arial_green_background",--objectmaterial
 					"LeftCenter",--objectalignment
 					{" "},--format_value
@@ -2422,7 +2569,7 @@ Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
 					}
 				)
 -------------------------------------------------------------------------------- RWY OAT
-Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
+Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name,
 					"font_Arial_green",--objectmaterial
 					"RightCenter",--objectalignment
 					{">"},--format_value
@@ -2438,7 +2585,7 @@ Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
+Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name,
 					"font_Arial_white",--objectmaterial
 					"RightCenter",--objectalignment
 					{"%.1f$C  "},--format_value
@@ -2454,7 +2601,7 @@ Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
+Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name,
 					"font_Arial_green_background",--objectmaterial
 					"RightCenter",--objectalignment
 					{" "},--format_value
@@ -2470,7 +2617,7 @@ Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
+Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name,
 					"font_Arial_green",--objectmaterial
 					"RightCenter",--objectalignment
 					{"oat:"},--format_value
@@ -2487,7 +2634,7 @@ Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
 					}
 				)
 -------------------------------------------------------------------------------- Surface Wind
-Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
+Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name,
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
 					{"<Wind hdg:"},--format_value
@@ -2503,7 +2650,7 @@ Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
+Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name,
 					"font_Arial_white",--objectmaterial
 					"LeftCenter",--objectalignment
 					{"%.0f$"},--format_value
@@ -2519,7 +2666,7 @@ Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
+Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name,
 					"font_Arial_green_background",--objectmaterial
 					"LeftCenter",--objectalignment
 					{" "},--format_value
@@ -2535,7 +2682,7 @@ Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
+Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name,
 					"font_Arial_green",--objectmaterial
 					"RightCenter",--objectalignment
 					{">"},--format_value
@@ -2551,7 +2698,7 @@ Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
+Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name,
 					"font_Arial_white",--objectmaterial
 					"RightCenter",--objectalignment
 					{"%.0f kt "},--format_value
@@ -2567,7 +2714,7 @@ Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
+Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name,
 					"font_Arial_green_background",--objectmaterial
 					"RightCenter",--objectalignment
 					{" "},--format_value
@@ -2583,7 +2730,7 @@ Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
+Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name,
 					"font_Arial_green",--objectmaterial
 					"RightCenter",--objectalignment
 					{"Wind spd:"},--format_value
@@ -2600,7 +2747,7 @@ Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
 					}
 				)
 --------------------------------------------------------------------------------Landing Ground Roll
-Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
+Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name,
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
 					{" Landing Ground Roll:"},--format_value
@@ -2617,7 +2764,7 @@ Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
 					}
 				)
 -------------------------------------------------------------------
-Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
+Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name,
 					"font_Arial_white",--objectmaterial
 					"LeftCenter",--objectalignment
 					{"%.0fft "},--format_value
@@ -2636,7 +2783,7 @@ Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
 					}
 				)
 				
-Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
+Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name,
 					"font_Arial_red",--objectmaterial
 					"LeftCenter",--objectalignment
 					{"%.0fft "},--format_value
@@ -2656,7 +2803,7 @@ Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
 				)
 				
 -------------------------------------------------------------------------------- Beta_Reverse
-Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
+Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name,
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
 					{"<Beta Reverse:"},--format_value
@@ -2672,7 +2819,7 @@ Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
+Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name,
 					"font_Arial_white",--objectmaterial
 					"LeftCenter",--objectalignment
 					{"on"},--format_value
@@ -2690,7 +2837,7 @@ Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
 						{"text_using_parameter",2,0},
 					}
 				)
-Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
+Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name,
 					"font_Arial_white",--objectmaterial
 					"LeftCenter",--objectalignment
 					{"off"},--format_value
@@ -2708,7 +2855,7 @@ Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
 						{"text_using_parameter",2,0},
 					}
 				)
-Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
+Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name,
 					"font_Arial_green_background",--objectmaterial
 					"LeftCenter",--objectalignment
 					{" "},--format_value
@@ -2725,7 +2872,7 @@ Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
 					}
 				)
 ----------------------------------------------------------------------------------------------------Ext Data
-Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name, 0,
+Add_Object_Text(LND_RWY_COND, "LND_RWY_COND", LND_RWY_COND_origin.name,
 					"font_Arial_green",--objectmaterial
 					"RightCenter",--objectalignment
 					{"Ext Data>"},--format_value
@@ -2758,7 +2905,7 @@ TO_DATA_origin.collimated 		 = true
 AddElement(TO_DATA_origin)
 
 -------------------------------------------------------------------------------- Header
-Add_Object_Text(TO_DATA, "TO_DATA", TO_DATA_origin.name, 0,
+Add_Object_Text(TO_DATA, "TO_DATA", TO_DATA_origin.name,
 					"font_Bold_Arial_green",--objectmaterial
 					"CenterCenter",--objectalignment
 					{"TAKE-OFF EXT DATA"},--format_value
@@ -2776,7 +2923,7 @@ Add_Object_Text(TO_DATA, "TO_DATA", TO_DATA_origin.name, 0,
 						{"text_using_parameter",2,0},
 					}
 				)
-Add_Object_Text(TO_DATA, "TO_DATA", TO_DATA_origin.name, 0,
+Add_Object_Text(TO_DATA, "TO_DATA", TO_DATA_origin.name,
 					"font_Bold_Arial_cyan",--objectmaterial
 					"CenterCenter",--objectalignment
 					{"TAKE-OFF CALC DATA"},--format_value
@@ -2795,7 +2942,7 @@ Add_Object_Text(TO_DATA, "TO_DATA", TO_DATA_origin.name, 0,
 					}
 				)
 --------------------------------------------------------------------------------V1 (refusal)
-Add_Object_Text(TO_DATA, "TO_DATA", TO_DATA_origin.name, 0,
+Add_Object_Text(TO_DATA, "TO_DATA", TO_DATA_origin.name,
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
 					{" V1 (refusal)"},--format_value
@@ -2811,7 +2958,7 @@ Add_Object_Text(TO_DATA, "TO_DATA", TO_DATA_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(TO_DATA, "TO_DATA", TO_DATA_origin.name, 0,
+Add_Object_Text(TO_DATA, "TO_DATA", TO_DATA_origin.name,
 					"font_Arial_white",--objectmaterial
 					"RightCenter",--objectalignment
 					{"%.0f knots  "},--format_value
@@ -2828,7 +2975,7 @@ Add_Object_Text(TO_DATA, "TO_DATA", TO_DATA_origin.name, 0,
 					}
 				)
 --------------------------------------------------------------------------------Vr (rotate)
-Add_Object_Text(TO_DATA, "TO_DATA", TO_DATA_origin.name, 0,
+Add_Object_Text(TO_DATA, "TO_DATA", TO_DATA_origin.name,
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
 					{" Vr (rotate)"},--format_value
@@ -2844,7 +2991,7 @@ Add_Object_Text(TO_DATA, "TO_DATA", TO_DATA_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(TO_DATA, "TO_DATA", TO_DATA_origin.name, 0,
+Add_Object_Text(TO_DATA, "TO_DATA", TO_DATA_origin.name,
 					"font_Arial_white",--objectmaterial
 					"RightCenter",--objectalignment
 					{"%.0f knots  "},--format_value
@@ -2861,7 +3008,7 @@ Add_Object_Text(TO_DATA, "TO_DATA", TO_DATA_origin.name, 0,
 					}
 				)
 --------------------------------------------------------------------------------V2 (climb)
-Add_Object_Text(TO_DATA, "TO_DATA", TO_DATA_origin.name, 0,
+Add_Object_Text(TO_DATA, "TO_DATA", TO_DATA_origin.name,
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
 					{" V2 (climb)"},--format_value
@@ -2877,7 +3024,7 @@ Add_Object_Text(TO_DATA, "TO_DATA", TO_DATA_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(TO_DATA, "TO_DATA", TO_DATA_origin.name, 0,
+Add_Object_Text(TO_DATA, "TO_DATA", TO_DATA_origin.name,
 					"font_Arial_white",--objectmaterial
 					"RightCenter",--objectalignment
 					{"%.0f knots  "},--format_value
@@ -2894,7 +3041,7 @@ Add_Object_Text(TO_DATA, "TO_DATA", TO_DATA_origin.name, 0,
 					}
 				)
 --------------------------------------------------------------------------------Flap extension
-Add_Object_Text(TO_DATA, "TO_DATA", TO_DATA_origin.name, 0,
+Add_Object_Text(TO_DATA, "TO_DATA", TO_DATA_origin.name,
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
 					{" Flap extension"},--format_value
@@ -2910,7 +3057,7 @@ Add_Object_Text(TO_DATA, "TO_DATA", TO_DATA_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(TO_DATA, "TO_DATA", TO_DATA_origin.name, 0,
+Add_Object_Text(TO_DATA, "TO_DATA", TO_DATA_origin.name,
 					"font_Arial_white",--objectmaterial
 					"RightCenter",--objectalignment
 					{"%.0f ?  "},--format_value
@@ -2926,7 +3073,7 @@ Add_Object_Text(TO_DATA, "TO_DATA", TO_DATA_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(TO_DATA, "TO_DATA", TO_DATA_origin.name, 0,
+Add_Object_Text(TO_DATA, "TO_DATA", TO_DATA_origin.name,
 					"font_Arial_green_background",--objectmaterial
 					"RightCenter",--objectalignment
 					{" "},--format_value
@@ -2942,7 +3089,7 @@ Add_Object_Text(TO_DATA, "TO_DATA", TO_DATA_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(TO_DATA, "TO_DATA", TO_DATA_origin.name, 0,
+Add_Object_Text(TO_DATA, "TO_DATA", TO_DATA_origin.name,
 					"font_Arial_green",--objectmaterial
 					"RightCenter",--objectalignment
 					{" >"},--format_value
@@ -2959,7 +3106,7 @@ Add_Object_Text(TO_DATA, "TO_DATA", TO_DATA_origin.name, 0,
 					}
 				)
 --------------------------------------------------------------------------------Wind component knts
-Add_Object_Text(TO_DATA, "TO_DATA", TO_DATA_origin.name, 0,
+Add_Object_Text(TO_DATA, "TO_DATA", TO_DATA_origin.name,
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
 					{" X wind component"},--format_value
@@ -2975,7 +3122,7 @@ Add_Object_Text(TO_DATA, "TO_DATA", TO_DATA_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(TO_DATA, "TO_DATA", TO_DATA_origin.name, 0,
+Add_Object_Text(TO_DATA, "TO_DATA", TO_DATA_origin.name,
 					"font_Arial_white",--objectmaterial
 					"RightCenter",--objectalignment
 					{"%.0f knots "},--format_value
@@ -2992,7 +3139,7 @@ Add_Object_Text(TO_DATA, "TO_DATA", TO_DATA_origin.name, 0,
 					}
 				)
 --------------------------------------------------------------------------------Recall Ext Data
-Add_Object_Text(TO_DATA, "TO_DATA", TO_DATA_origin.name, 0,
+Add_Object_Text(TO_DATA, "TO_DATA", TO_DATA_origin.name,
 					"font_Arial_green",--objectmaterial
 					"RightCenter",--objectalignment
 					{"Ext Data>"},--format_value
@@ -3025,7 +3172,7 @@ LND_DATA_origin.collimated 		 = true
 AddElement(LND_DATA_origin)
 
 -------------------------------------------------------------------------------- Header
-Add_Object_Text(LND_DATA, "LND_DATA", LND_DATA_origin.name, 0,
+Add_Object_Text(LND_DATA, "LND_DATA", LND_DATA_origin.name,
 					"font_Bold_Arial_green",--objectmaterial
 					"CenterCenter",--objectalignment
 					{"LANDING EXT DATA"},--format_value
@@ -3043,7 +3190,7 @@ Add_Object_Text(LND_DATA, "LND_DATA", LND_DATA_origin.name, 0,
 						{"text_using_parameter",2,0},
 					}
 				)
-Add_Object_Text(LND_DATA, "LND_DATA", LND_DATA_origin.name, 0,
+Add_Object_Text(LND_DATA, "LND_DATA", LND_DATA_origin.name,
 					"font_Bold_Arial_cyan",--objectmaterial
 					"CenterCenter",--objectalignment
 					{"LANDING CALC DATA"},--format_value
@@ -3062,7 +3209,7 @@ Add_Object_Text(LND_DATA, "LND_DATA", LND_DATA_origin.name, 0,
 					}
 				)
 -------------------------------------------------------------------------------- V Approach
-Add_Object_Text(LND_DATA, "LND_DATA", LND_DATA_origin.name, 0,
+Add_Object_Text(LND_DATA, "LND_DATA", LND_DATA_origin.name,
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
 					{" Approach speed"},--format_value
@@ -3078,7 +3225,7 @@ Add_Object_Text(LND_DATA, "LND_DATA", LND_DATA_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(LND_DATA, "LND_DATA", LND_DATA_origin.name, 0,
+Add_Object_Text(LND_DATA, "LND_DATA", LND_DATA_origin.name,
 					"font_Arial_white",--objectmaterial
 					"RightCenter",--objectalignment
 					{"%.0f knots  "},--format_value
@@ -3095,7 +3242,7 @@ Add_Object_Text(LND_DATA, "LND_DATA", LND_DATA_origin.name, 0,
 					}
 				)
 -------------------------------------------------------------------------------- V Threshold
-Add_Object_Text(LND_DATA, "LND_DATA", LND_DATA_origin.name, 0,
+Add_Object_Text(LND_DATA, "LND_DATA", LND_DATA_origin.name,
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
 					{" Threshold speed"},--format_value
@@ -3111,7 +3258,7 @@ Add_Object_Text(LND_DATA, "LND_DATA", LND_DATA_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(LND_DATA, "LND_DATA", LND_DATA_origin.name, 0,
+Add_Object_Text(LND_DATA, "LND_DATA", LND_DATA_origin.name,
 					"font_Arial_white",--objectmaterial
 					"RightCenter",--objectalignment
 					{"%.0f knots  "},--format_value
@@ -3128,7 +3275,7 @@ Add_Object_Text(LND_DATA, "LND_DATA", LND_DATA_origin.name, 0,
 					}
 				)
 -------------------------------------------------------------------------------- V Touchdown
-Add_Object_Text(LND_DATA, "LND_DATA", LND_DATA_origin.name, 0,
+Add_Object_Text(LND_DATA, "LND_DATA", LND_DATA_origin.name,
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
 					{" Touchdown speed"},--format_value
@@ -3144,7 +3291,7 @@ Add_Object_Text(LND_DATA, "LND_DATA", LND_DATA_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(LND_DATA, "LND_DATA", LND_DATA_origin.name, 0,
+Add_Object_Text(LND_DATA, "LND_DATA", LND_DATA_origin.name,
 					"font_Arial_white",--objectmaterial
 					"RightCenter",--objectalignment
 					{"%.0f knots  "},--format_value
@@ -3161,7 +3308,7 @@ Add_Object_Text(LND_DATA, "LND_DATA", LND_DATA_origin.name, 0,
 					}
 				)
 --------------------------------------------------------------------------------Flap extension
-Add_Object_Text(LND_DATA, "LND_DATA", LND_DATA_origin.name, 0,
+Add_Object_Text(LND_DATA, "LND_DATA", LND_DATA_origin.name,
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
 					{" Flap extension"},--format_value
@@ -3177,7 +3324,7 @@ Add_Object_Text(LND_DATA, "LND_DATA", LND_DATA_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(LND_DATA, "LND_DATA", LND_DATA_origin.name, 0,
+Add_Object_Text(LND_DATA, "LND_DATA", LND_DATA_origin.name,
 					"font_Arial_white",--objectmaterial
 					"RightCenter",--objectalignment
 					{"%.0f ?  "},--format_value
@@ -3193,7 +3340,7 @@ Add_Object_Text(LND_DATA, "LND_DATA", LND_DATA_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(LND_DATA, "LND_DATA", LND_DATA_origin.name, 0,
+Add_Object_Text(LND_DATA, "LND_DATA", LND_DATA_origin.name,
 					"font_Arial_green_background",--objectmaterial
 					"RightCenter",--objectalignment
 					{" "},--format_value
@@ -3209,7 +3356,7 @@ Add_Object_Text(LND_DATA, "LND_DATA", LND_DATA_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(LND_DATA, "LND_DATA", LND_DATA_origin.name, 0,
+Add_Object_Text(LND_DATA, "LND_DATA", LND_DATA_origin.name,
 					"font_Arial_green",--objectmaterial
 					"RightCenter",--objectalignment
 					{" >"},--format_value
@@ -3226,7 +3373,7 @@ Add_Object_Text(LND_DATA, "LND_DATA", LND_DATA_origin.name, 0,
 					}
 				)
 --------------------------------------------------------------------------------Wind component knts
-Add_Object_Text(LND_DATA, "LND_DATA", LND_DATA_origin.name, 0,
+Add_Object_Text(LND_DATA, "LND_DATA", LND_DATA_origin.name,
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
 					{" X wind component"},--format_value
@@ -3242,7 +3389,7 @@ Add_Object_Text(LND_DATA, "LND_DATA", LND_DATA_origin.name, 0,
 						{"text_using_parameter",1,0},
 					}
 				)
-Add_Object_Text(LND_DATA, "LND_DATA", LND_DATA_origin.name, 0,
+Add_Object_Text(LND_DATA, "LND_DATA", LND_DATA_origin.name,
 					"font_Arial_white",--objectmaterial
 					"RightCenter",--objectalignment
 					{"%.0f knots "},--format_value
@@ -3260,7 +3407,7 @@ Add_Object_Text(LND_DATA, "LND_DATA", LND_DATA_origin.name, 0,
 				)
 				
 --------------------------------------------------------------------------------Recall Ext Data
-Add_Object_Text(LND_DATA, "LND_DATA", LND_DATA_origin.name, 0,
+Add_Object_Text(LND_DATA, "LND_DATA", LND_DATA_origin.name,
 					"font_Arial_green",--objectmaterial
 					"RightCenter",--objectalignment
 					{"Ext Data>"},--format_value
@@ -3284,7 +3431,7 @@ KBD_origin.init_pos        = {0,0}
 KBD_origin.collimated 		 = true
 AddElement(KBD_origin)
 
-Add_Object_Text(KBD, "KBD", KBD_origin.name, 0,
+Add_Object_Text(KBD, "KBD", KBD_origin.name,
 					"font_Arial_white",--objectmaterial
 					"LeftCenter",--objectalignment
 					{"%s"},--format_value

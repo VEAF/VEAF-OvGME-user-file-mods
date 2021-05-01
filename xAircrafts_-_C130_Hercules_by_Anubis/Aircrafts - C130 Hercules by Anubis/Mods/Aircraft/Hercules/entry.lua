@@ -10,20 +10,20 @@ installed 	 = true, -- if false that will be place holder , or advertising
 dirName	  	 = current_mod_path,
 fileMenuName = _("Hercules"),
 update_id     =   "Anubis Hercules",
-version		 = "Beta ver 6.3",		 
+version		 = "Beta ver 6.7",		 
 state		 = "installed",
 info		 = _("Hercules."),
 encyclopedia_path = current_mod_path..'/Encyclopedia',
 binaries 	 =
 {
 	"Hercules.dll",
-	"jpeg62.dll",
-	"leptonica-1.78.0.dll",
-	"libpng16.dll",
-	"lzma.dll",
-	"tiff.dll",
-	"webp.dll",
-	"zlib1.dll",
+	-- "jpeg62.dll",
+	-- "leptonica-1.78.0.dll",
+	-- "libpng16.dll",
+	-- "lzma.dll",
+	-- "tiff.dll",
+	-- "webp.dll",
+	-- "zlib1.dll",
 },
 InputProfiles =
 {

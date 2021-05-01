@@ -1,5 +1,5 @@
 
-shape_name   = "Herculus_Cockpit"
+shape_name   = "Hercules_Cockpit"
 
 ambient_light    = {255,255,255}
 ambient_color_day_texture    = {72, 100, 160}

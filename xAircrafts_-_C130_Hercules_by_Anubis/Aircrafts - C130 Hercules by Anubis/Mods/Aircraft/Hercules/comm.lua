@@ -54,19 +54,19 @@ utils.verifyChunk(utils.loadfileIn('Scripts/UI/RadioCommandDialogPanel/Config/Lo
 --utils.verifyChunk(utils.loadfileIn('Scripts/UI/RadioCommandDialogPanel/Config/Common/Ground Crew.lua', getfenv()))(8)
 
 -- Wheel Chocks
-menus['Wheel chocks'] = {
-	name = _('Wheel chocks'),
+menus['Ground air supply'] = {
+	name = _('Ground air supply'),
 	items = {
 		[1] = {
-			name = _('Place_'), 		
-			command = sendMessage.new(Message.wMsgLeaderGroundToggleWheelChocks, true)
+			name = _('Connect air'), 		
+			command = sendMessage.new(Message.wMsgLeaderGroundToggleAir, true)
 		},
 		[2] = {
-			name = _('Remove_'),
-			command = sendMessage.new(Message.wMsgLeaderGroundToggleWheelChocks, false)
+			name = _('Disconnect air'),
+			command = sendMessage.new(Message.wMsgLeaderGroundToggleAir, false)
 		}
 	}
 }
-menus['Ground Crew'].items[4] = { name = _('Wheel chocks'), submenu = menus['Wheel chocks']}
+menus['Ground Crew'].items[4] = { name = _('Ground air supply'), submenu = menus['Ground air supply']}
 -- menus['Ground Crew'].items[5] = { name = _('Salute!'), command = sendMessage.new(Message.wMsgLeaderGroundGestureSalut, true)}
 -- menus['Ground Crew'].items[6] = { name = _('Request Launch'), command = sendMessage.new(Message.wMsgLeaderGroundRequestLaunch, true)}

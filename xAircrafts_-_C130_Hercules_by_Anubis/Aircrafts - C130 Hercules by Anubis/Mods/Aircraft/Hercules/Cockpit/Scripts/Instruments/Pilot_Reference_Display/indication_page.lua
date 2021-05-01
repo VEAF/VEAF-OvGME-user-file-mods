@@ -1,59 +1,45 @@
-
-
-dofile(LockOn_Options.script_path.."Display_definitions.lua")
--- dofile(LockOn_Options.script_path.."symbols.lua")
-
-	-- IBM_NO_WRITECOLOR						= 0, -- element will be rendered only to stencil buffer
-	-- IBM_REGULAR								= 1, -- regular work with write mask set to RGBA
-	-- IBM_REGULAR_ADDITIVE_ALPHA				= 2, -- regular work with write mask set to RGBA , additive alpha for HUD 
-	-- IBM_REGULAR_RGB_ONLY					= 3, -- regular work with write mask set to RGB (without alpha)
-	-- IBM_REGULAR_RGB_ONLY_ADDITIVE_ALPHA		= 4, -- regular work with write mask set to RGB (without alpha) , additive alpha for HUD 
-	-- IBM_ONLY_ALPHA							= 5, -- write mask set only for alpha
-
--- alignment options:
---"RightBottom"
---"LeftTop"
---"RightTop"
---"LeftCenter"
---"RightCenter"
---"CenterBottom"
---"CenterTop"
---"CenterCenter"
---"LeftBottom"
---[[
-SetScale  have generalized form input value : 
-SetScale(MILLYRADIANS)
+dofile(LockOn_Options.common_script_path.."elements_defs.lua")
 SetScale(FOV)
-SetScale(METERS)
 
-in case of FOV , GetScale()  will return half width of your indicator 
+DISPLAY_DEFAULT_LEVEL = 4
 
-MILLYRADIANS :  0.001 * viewDistance , where viewDistance is default distance from pilot eye to indicator projection plane
+						
 
-]]--
--------MATERIALS-------
--- materials = {}   
--- materials["WHITE"]  = {255, 255, 255, 255}
--- materials["GREEN"]   = {0, 255, 0, 255}
--- materials["YELLOW"]   = {243, 116, 13, 255}
--- materials["RED"]    = {255, 0, 0, 255}
--- materials["BLACK"]    = {0, 0, 0, 255}
--- materials["AMBER"]    = {255, 194, 0, 255}
+function Add_Object_Text(object, objectname, objectparent, objectmaterial, objectalignment, format_value, stringdefs_value, initpixelposx, initpixelposy, objectelementparams, objectcontrollers)
+	local object           = CreateElement "ceStringPoly"
+	object.name            = objectname
+	object.material        = objectmaterial
+	object.element_params = objectelementparams
+	object.controllers = objectcontrollers
+	object.init_pos = {(0.003333 * initpixelposx) - 1, ((-0.005 * initpixelposy) + 1) * GetAspect()}
+	object.alignment		= objectalignment
+	if format_value ~= nil then
+		if type(format_value) == "table" then
+			object.formats = format_value
+		else
+			object.value = format_value
+		end
+	end
+	object.stringdefs		= stringdefs_value--VerticalSize, HorizontalSize, HorizontalSpacing, VerticalSpacing
+    object.use_mipfilter    = true
+	object.additive_alpha   = true
+	object.collimated		= false
+	object.h_clip_relation  = h_clip_relations.COMPARE
+	object.level			= DISPLAY_DEFAULT_LEVEL
+	object.parent_element = objectparent
+    Add(object)
+end
 
---------------------------------------------------------------------------------------------------------------------------------------------Engine_Status
+local PILOT_RefAirspeedVal_origin	         = CreateElement "ceSimple"
+PILOT_RefAirspeedVal_origin.name 		     = "PILOT_RefAirspeedVal_origin"
+PILOT_RefAirspeedVal_origin.init_pos        = {0,0}
+PILOT_RefAirspeedVal_origin.use_mipfilter    = true
+PILOT_RefAirspeedVal_origin.additive_alpha   = true
+PILOT_RefAirspeedVal_origin.h_clip_relation  = h_clip_relations.COMPARE
+PILOT_RefAirspeedVal_origin.level			= DISPLAY_DEFAULT_LEVEL
+Add(PILOT_RefAirspeedVal_origin)
 
-local REFSETAirspeed001_origin	         = CreateElement "ceSimple"
-REFSETAirspeed001_origin.name 		     = "REFSETAirspeed001_origin"
-REFSETAirspeed001_origin.init_pos        = {0,0}
-REFSETAirspeed001_origin.element_params   = {
-								"PILOT_REF_MODE",
-										   } 
-REFSETAirspeed001_origin.controllers 	   = {
-								{"parameter_in_range",0,-0.1,0.1},
-								}
-AddElement(REFSETAirspeed001_origin)
-
-Add_Object_Text(REFSETAirspeed001, "REFSETAirspeed001", REFSETAirspeed001_origin.name, 0,
+Add_Object_Text(PILOT_RefAirspeedVal, "PILOT_RefAirspeedVal", PILOT_RefAirspeedVal_origin.name,
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
 					{"%.0f"},--format_value
@@ -70,18 +56,18 @@ Add_Object_Text(REFSETAirspeed001, "REFSETAirspeed001", REFSETAirspeed001_origin
 					}
 				)
 
--- local REFSETAltitude001_origin	         = CreateElement "ceSimple"
--- REFSETAltitude001_origin.name 		     = "REFSETAltitude001_origin"
--- REFSETAltitude001_origin.init_pos        = {0,0}
--- REFSETAltitude001_origin.element_params   = {
+-- local REFSETAltitude002_origin	         = CreateElement "ceSimple"
+-- REFSETAltitude002_origin.name 		     = "REFSETAltitude002_origin"
+-- REFSETAltitude002_origin.init_pos        = {0,0}
+-- REFSETAltitude002_origin.element_params   = {
 								-- "PILOT_REF_MODE",
 										   -- } 
--- REFSETAltitude001_origin.controllers 	   = {
+-- REFSETAltitude002_origin.controllers 	   = {
 								-- {"parameter_in_range",0,1.1874,1.1876},
 								-- }
--- AddElement(REFSETAltitude001_origin)
+-- AddElement(REFSETAltitude002_origin)
 
--- Add_Object_Text(REFSETAltitude001, "REFSETAltitude001", "REFSETAltitude001_origin",
+-- Add_Object_Text(REFSETAltitude002, "REFSETAltitude002", "REFSETAltitude002_origin",
 					-- "font_Arial_green",--objectmaterial
 					-- "RightCenter",--objectalignment
 					-- {"%.0f"},--format_value

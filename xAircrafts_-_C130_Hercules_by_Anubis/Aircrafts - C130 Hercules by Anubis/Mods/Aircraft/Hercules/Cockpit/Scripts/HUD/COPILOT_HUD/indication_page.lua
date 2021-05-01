@@ -909,7 +909,7 @@ Add_Text(HUD_Heading_bracket_value, "HUD_Heading_bracket_value", "font_HUD_green
 						{"opacity_using_parameter",0},
 						{"text_using_parameter",1,0},
 					},
-					{"%.0f"}, {0.0065,0.0065, 0, 0},
+					{"%03.0f"}, {0.0065,0.0065, 0, 0},
 					512.0,--initpixelposx
 					43.5--initpixelposy
 					)
@@ -937,7 +937,7 @@ Add_Text(HUD_HDG_Selector_value, "HUD_HDG_Selector_value", "font_HUD_green", "Ri
 						{"opacity_using_parameter",0},
 						{"text_using_parameter",1,0},
 					},
-					{"%.0f"}, {0.0050,0.0050, 0, 0},
+					{"%03.0f"}, {0.0050,0.0050, 0, 0},
 					420,--initpixelposx
 					43.5--initpixelposy
 					)
@@ -965,7 +965,7 @@ Add_Text(HUD_CRS_Selector_value, "HUD_CRS_Selector_value", "font_HUD_green", "Ri
 						{"opacity_using_parameter",0},
 						{"text_using_parameter",1,0},
 					},
-					{"%.0f"}, {0.0050,0.0050, 0, 0},
+					{"%03.0f"}, {0.0050,0.0050, 0, 0},
 					696,--initpixelposx
 					43.5--initpixelposy
 					)
@@ -2152,8 +2152,8 @@ Add_Clip_Rectangular(Ref_Airspeed_Error_Cue_clip, "Ref_Airspeed_Error_Cue_clip",
 					MakeMaterial(nil,{255,0,0,50}),--red,--invisible, any material will do
 					16,--imagepixelsizex
 					80,--imagepixelsizey
-					512-38,--initpixelposx
-					512-43,--initpixelposy
+					474,--initpixelposx
+					470,--initpixelposy
 					{--params
 						"COPILOT_HudBrightness",
 						"COPILOT_Ref_Airspeed_Error_Cue_clip_move",
@@ -2168,8 +2168,8 @@ Add_Image(Ref_Airspeed_Error_Cue, "Ref_Airspeed_Error_Cue", "HUD_CDM",
 					"Ref_Airspeed_Error_Cue",
 					16,--imagepixelsizex
 					80,--imagepixelsizey
-					512-38,--initpixelposx
-					512-42,--initpixelposy
+					474,--initpixelposx
+					554,--initpixelposy
 					{--params
 						"COPILOT_HudBrightness",
 						"COPILOT_Ref_Airspeed_Error_Cue_rotate",
@@ -2186,8 +2186,8 @@ Add_Clip_Rectangular(Ref_Airspeed_Error_Cue_clip, "Ref_Airspeed_Error_Cue_clip",
 					MakeMaterial(nil,{255,0,0,50}),--red,--invisible, any material will do
 					16,--imagepixelsizex
 					80,--imagepixelsizey
-					512-38,--initpixelposx
-					512-43,--initpixelposy
+					474,--initpixelposx
+					470,--initpixelposy
 					{--params
 						"COPILOT_HudBrightness",
 						"COPILOT_Ref_Airspeed_Error_Cue_clip_move",
@@ -2201,8 +2201,8 @@ Add_Image(Ref_Airspeed_Error_Cue, "Ref_Airspeed_Error_Cue", "HUD_CDM_Inactive",
 					"Ref_Airspeed_Error_Cue",
 					16,--imagepixelsizex
 					80,--imagepixelsizey
-					512-38,--initpixelposx
-					512-42,--initpixelposy
+					474,--initpixelposx
+					554,--initpixelposy
 					{--params
 						"COPILOT_HudBrightness",
 						"COPILOT_Ref_Airspeed_Error_Cue_rotate",

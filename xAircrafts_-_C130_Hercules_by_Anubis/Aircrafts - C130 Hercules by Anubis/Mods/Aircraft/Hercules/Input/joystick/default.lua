@@ -70,6 +70,17 @@ keyCommands = {
 
 -- Navigation
 {down = General_No_Packet_Send.F10_Map_Waypoint_Create, name = _('F10 map waypoint capture') , category = _('Navigation')},
+{down = CURSOR.Manual_Cursor, name = _('Manual Cursor'), category = _('Common Cursor Control')},
+{down = CURSOR.Cursor_Reset, name = _('Cursor Reset'), category = _('Common Cursor Control')},
+{down = CURSOR.Ground_Cursor, name = _('Ground Cursor'), category = _('Common Cursor Control')},
+{down = CURSOR.Computer_Cursor, name = _('Computer Cursor'), category = _('Common Cursor Control')},
+{pressed = CURSOR.Cursor_Forward, up = CURSOR.Cursor_Release, name = _('Cursor Forward'), category = _('Common Cursor Control')},
+{pressed = CURSOR.Cursor_Aft, up = CURSOR.Cursor_Release, name = _('Cursor Aft'), category = _('Common Cursor Control')},
+{pressed = CURSOR.Cursor_Left, up = CURSOR.Cursor_Release, name = _('Cursor Left'), category = _('Common Cursor Control')},
+{pressed = CURSOR.Cursor_Right, up = CURSOR.Cursor_Release, name = _('Cursor Right'), category = _('Common Cursor Control')},
+{down = CURSOR.Cursor_Next_Target, name = _('Cursor Next Target'), category = _('Common Cursor Control')},
+{down = CURSOR.Cursor_Previous_Target, name = _('Cursor Previous Target'), category = _('Common Cursor Control')},
+{down = CURSOR.Cursor_Insert, name = _('Cursor Insert/Update'), category = _('Common Cursor Control')},
 
 -- Autopilot
 {down = Automatic_Flight_Control_System_Panel.AFCS_Autopilot_On, name = _('AP Engage (not realistic)') , category = _('Autopilot')},
@@ -99,24 +110,26 @@ keyCommands = {
 {down = FLAPS.Hunderd_percent, name = _('Flaps 100%'), category = _('Flight Control')},
 
 -- Throttle Control
-{down = THROTTLES.Full_Reverse, name = _('Throttles Beta Full Reverse'), category = _('Throttle Control')},
-{down = THROTTLES.Beta, name = _('Throttles Flight/Beta Mode Toggle'), category = _('Throttle Control')},
+{down = THROTTLES.Beta, name = _('Throttles Beta Mode'), category = _('Throttle Control')},
+{down = THROTTLES.Beta_Reverse, name = _('Throttles Beta Reverse'), category = _('Throttle Control')},
+{down = THROTTLES.Full_Reverse, name = _('Throttles Flight to Beta Full Reverse'), category = _('Throttle Control')},
 {down = THROTTLES.TO_Power_Toggle, name = _('Throttles Take-off power Toggle On/Off'), category = _('Throttle Control')},
 {down = THROTTLES.TO_Power_On, name = _('Throttles Take-off power On'), category = _('Throttle Control')},
 {down = THROTTLES.TO_Power_Off, name = _('Throttles Take-off power Off'), category = _('Throttle Control')},
 {down = THROTTLES.ATCS_Autothrottle_Disengage, name = _('ATCS - Autothrottle disengage') , category = _('Throttle Control')},
 {down = THROTTLES.Throttles_To_Idle, name = _('Throttles to Idle') , category = _('Throttle Control')},
-{pressed = THROTTLES.ThrottlesIncrease, up = THROTTLES.ThrottlesStop,	name = _('Throttles all Up'), category = _('Throttle Control')},
-{pressed = THROTTLES.ThrottlesDecrease, up = THROTTLES.ThrottlesStop,	name = _('Throttles all Down'), category = _('Throttle Control')},
-{pressed = THROTTLES.Throttles12Increase, up = THROTTLES.Throttles12Stop, name = _('Throttles 1 and 2 Up'), category = _('Throttle Control')},
-{pressed = THROTTLES.Throttles12Decrease, up = THROTTLES.Throttles12Stop,	name = _('Throttles 1 and 2 Down'), category = _('Throttle Control')},
-{pressed = THROTTLES.Throttles34Increase, up = THROTTLES.Throttles34Stop, name = _('Throttles 3 and 4 Up'), category = _('Throttle Control')},
-{pressed = THROTTLES.Throttles34Decrease, up = THROTTLES.Throttles34Stop, name = _('Throttles 3 and 4 Down'), category = _('Throttle Control')},
+{pressed = THROTTLES.ThrottlesIncrease, name = _('Throttles all Up'), category = _('Throttle Control')},
+{pressed = THROTTLES.ThrottlesDecrease, name = _('Throttles all Down'), category = _('Throttle Control')},
+{pressed = THROTTLES.Throttles12Increase, name = _('Throttles 1 and 2 Up'), category = _('Throttle Control')},
+{pressed = THROTTLES.Throttles12Decrease, name = _('Throttles 1 and 2 Down'), category = _('Throttle Control')},
+{pressed = THROTTLES.Throttles34Increase, name = _('Throttles 3 and 4 Up'), category = _('Throttle Control')},
+{pressed = THROTTLES.Throttles34Decrease, name = _('Throttles 3 and 4 Down'), category = _('Throttle Control')},
 
 --Night Vision Goggles
-{down    = iCommandViewNightVisionGogglesOn   , name = _('Night Vision Goggles')   , category = _('Night Vision Goggles')},
+{down    = iCommandViewNightVisionGogglesOn, name = _('Night Vision Goggles')   , category = _('Night Vision Goggles')},
 {pressed = iCommandPlane_Helmet_Brightess_Up  , name = _('Night Vision Goggles Gain Up')  , category = _('Night Vision Goggles')},
 {pressed = iCommandPlane_Helmet_Brightess_Down, name = _('Night Vision Goggles Gain Down'), category = _('Night Vision Goggles')},
+{down = DISPLAY_BRIGHTNESS_CONTROL.NightVisionGogglesOn, name = _('Cockpit Lights NVG Adapt') , category = _('Night Vision Goggles')},
 
 --- Battle Station
 {down = BATTLE_STATION_COMMANDS.Cannon_Release_Keyb_On, up = BATTLE_STATION_COMMANDS.Cannon_Release_Keyb_Off, name = _('Trigger: Fire Cannons'), category = _('Battle Station')},

@@ -490,11 +490,11 @@ function Hercules_Cargo.Cargo_Initialize(initiator, Cargo_Contents, Cargo_Type_n
 							Herc_Cargo[Herc_j].all_cargo_survive_to_the_ground = true
 						else
 				------------------------------------------------------------------------------
-							if Hercules_Cargo.Calculate_Object_Height_AGL(Cargo_Drop_initiator) < 100.0 then--aircraft more than 10m but less than 100m above ground
+							if Hercules_Cargo.Calculate_Object_Height_AGL(Cargo_Drop_initiator) < 152.4 then--aircraft more than 30ft but less than 500ft above ground
 								Herc_Cargo[Herc_j].all_cargo_gets_destroyed = true
 							else
 				------------------------------------------------------------------------------
-								Herc_Cargo[Herc_j].destroy_cargo_dropped_without_parachute = true--aircraft more than 100m above ground
+								Herc_Cargo[Herc_j].destroy_cargo_dropped_without_parachute = true--aircraft more than 152.4m (500ft)above ground
 							end
 						end
 					end

@@ -1,6 +1,9 @@
 dofile(LockOn_Options.script_path.."command_defs.lua")
 dofile(LockOn_Options.script_path.."devices.lua")
 
+-- log("LogBookGui: Some helpfull text")
+-- log("LogBookGui: Some variables:".. VAR .."x")
+
 ------------------------------------------------------------------------ NWS_Coupled_Separate_Input_Device
 local NWS_Coupled_Separate_Input_Device = get_param_handle("NWS_Coupled_Separate_Input_Device")
 if (get_plugin_option_value("Hercules","NWS_Coupled_Separate_Input_Device") == true) then
@@ -35,7 +38,7 @@ end
 
 	----------------------------------------------------------------- Kneeboard
 local Self_lat_deg = get_param_handle("Self_lat_deg")
-local Self_long_deg = get_param_handle("Self_long_deg")
+local Self_lon_deg = get_param_handle("Self_lon_deg")
 local Self_NorthCorrection_rad = get_param_handle("Self_NorthCorrection_rad")
 local self_latlong
 local NorthCorrection
@@ -53,55 +56,38 @@ local self_loc_x_old, self_loc_z_old
 local WaypointName = ""
 local missionroute
 local MissionrouteLenth = get_param_handle("MissionrouteLenth")
-local Fpl_Wpnt_index = get_param_handle("Fpl_Wpnt_index")
-local Fpl_Wpnt_name = get_param_handle("Fpl_Wpnt_name")
-local Fpl_Wpnt_lat_deg = get_param_handle("Fpl_Wpnt_lat_deg")
-local Fpl_Wpnt_lon_deg = get_param_handle("Fpl_Wpnt_lon_deg")
-local Fpl_Wpnt_alt = get_param_handle("Fpl_Wpnt_alt")
-
-function Tempdictionary(Fpl_index)
-	local status, result = pcall(
-		function()
-		local next = next
-		if next(dictionary) ~= nil then
-			if Fpl_index == 1 then
-				if dictionary[missionroute[Fpl_index].name] == "" then
-					Fpl_Wpnt_name:set("INIT POS")
-				else
-					Fpl_Wpnt_name:set(dictionary[missionroute[Fpl_index].name])
-				end
-			else
-				if dictionary[missionroute[Fpl_index].name] == "" then
-					Fpl_Wpnt_name:set("WAYPOINT "..(Fpl_index - 1))
-				else
-					Fpl_Wpnt_name:set(dictionary[missionroute[Fpl_index].name])
-				end
-			end
-		end
-	end) -- pcall
-	if not status then
-		print_message_to_user(string.format("Tempdictionary for wpt export did not load"))
-		-- env.error(string.format("dictionary: %s", result))
-	else
-		return result
-	end
-end
+local Fpl_Wpt_index = get_param_handle("Fpl_Wpt_index")
+local Fpl_Wpt_name = get_param_handle("Fpl_Wpt_name")
+local Fpl_Wpt_lat_geo = get_param_handle("Fpl_Wpt_lat_geo")
+local Fpl_Wpt_lat_deg = get_param_handle("Fpl_Wpt_lat_deg")
+local Fpl_Wpt_lon_geo = get_param_handle("Fpl_Wpt_lon_geo")
+local Fpl_Wpt_lon_deg = get_param_handle("Fpl_Wpt_lon_deg")
+local Fpl_Wpt_alt = get_param_handle("Fpl_Wpt_alt")
 
 function Flightplan_route()
-	if (Fpl_Wpnt_index:get() > 0 and Fpl_Wpnt_index:get() < #missionroute + 1) then
-		if Fpl_Wpnt_index:get() == 1 then
-			Fpl_Wpnt_name:set("INIT POS")
+	if (Fpl_Wpt_index:get() > 0 and Fpl_Wpt_index:get() < #missionroute + 1) then
+		if Fpl_Wpt_index:get() <= 10 then
+			Fpl_Wpt_name:set("WPT0"..(Fpl_Wpt_index:get() - 1))
 		else
-			Fpl_Wpnt_name:set("WAYPOINT "..(Fpl_Wpnt_index:get() - 1))
+			Fpl_Wpt_name:set("WPT1"..(Fpl_Wpt_index:get() - 1))
 		end
-		Tempdictionary(Fpl_Wpnt_index:get())
-		local coord = lo_to_geo_coords(missionroute[Fpl_Wpnt_index:get()].x, missionroute[Fpl_Wpnt_index:get()].y)
-		Fpl_Wpnt_lat_deg:set(coord.lat)
-		Fpl_Wpnt_lon_deg:set(coord.lon)
-		if get_option_value("difficulty.units","local") == "metric" then
-			Fpl_Wpnt_alt:set(math.floor(missionroute[Fpl_Wpnt_index:get()].alt))
+		local coord = lo_to_geo_coords(missionroute[Fpl_Wpt_index:get()].x, missionroute[Fpl_Wpt_index:get()].y)
+		if coord.lat >= 0 then
+			Fpl_Wpt_lat_geo:set(1)--"N"
 		else
-			Fpl_Wpnt_alt:set(math.floor(missionroute[Fpl_Wpnt_index:get()].alt * 3.28084))
+			Fpl_Wpt_lat_geo:set(0)--"S"
+		end
+		Fpl_Wpt_lat_deg:set(coord.lat)
+		if coord.lon >= 0 then
+			Fpl_Wpt_lon_geo:set(1)--"E"
+		else
+			Fpl_Wpt_lon_geo:set(0)--"W"
+		end
+		Fpl_Wpt_lon_deg:set(coord.lon)
+		if get_option_value("difficulty.units","local") == "metric" then
+			Fpl_Wpt_alt:set(math.floor(missionroute[Fpl_Wpt_index:get()].alt))
+		else
+			Fpl_Wpt_alt:set(math.floor(missionroute[Fpl_Wpt_index:get()].alt * 3.28084))
 		end
 	end
 end
@@ -132,9 +118,11 @@ local General_system = GetSelf()
 -- cockpit_release
 
 local GroundPower_param = get_param_handle("Ground_Power")
+local GroundAir_param = get_param_handle("Ground_Air")
 General_system:listen_event("GroundPowerOn")
 General_system:listen_event("GroundPowerOff")
-General_system:listen_event("cockpit_release")
+General_system:listen_event("GroundAirOn")
+General_system:listen_event("GroundAirOff")
 
 function CockpitEvent(event,params)
 	if event == "GroundPowerOn" then
@@ -143,10 +131,12 @@ function CockpitEvent(event,params)
 	if event == "GroundPowerOff" then
 		GroundPower_param:set(0)
 	end
-	-- if event == "cockpit_release" then
-		-- print_message_to_user(string.format("event: %s", event))
-		-- print_message_to_user(string.format("params: %s", params))
-	-- end
+	if event == "GroundAirOn" then
+		GroundAir_param:set(1)
+	end
+	if event == "GroundAirOff" then
+		GroundAir_param:set(0)
+	end
 end
 
 -- function SetEvent(event,params)
@@ -207,299 +197,33 @@ function SetCommand(command,value)
 	-- end
 end
 
---parameter for HDD001 and HDD004
---ADI PARAMETERS
-local HDD_PITCH	= get_param_handle("HDD_PITCH")
-local HDD_ROLL = get_param_handle("HDD_ROLL")
-local HDD_BANK = get_param_handle("HDD_BANK")
-local HDD_BANK_FILL = get_param_handle("HDD_BANK_FILL")
-local HDD_HEADING = get_param_handle("HDD_HEADING")
-local HDD_HDG_IND = get_param_handle("HDD_HDG_IND")
-local HDD_FPM_HORZ = get_param_handle("HDD_FPM_HORZ")
-
-
---AIRSPEED INDICATOR PARAMS
-local HDD_IAS_KTS = get_param_handle("IAS")
-local HDD_IAS_HUNDYS = get_param_handle("HDD_IAS_HUNDYS")
-local HDD_IAS_ONES = {}
-for i = 1, 4 do
-	HDD_IAS_ONES[i] = get_param_handle("HDD_IAS_ONES" .. i)
-end
-local HDD_IAS_ONES_Y = get_param_handle("HDD_IAS_ONES_Y")
-
---AIRSPEED TAPE PARAMS
-local HDD_IAS_TAPE_SHIFT = get_param_handle("HDD_IAS_TAPE_SHIFT")
-
-local HDD_IAS_TAPE_MAX = get_param_handle("HDD_IAS_TAPE_MAX")
-local HDD_IAS_TAPE = {}
-for i = 1, 7 do
-	HDD_IAS_TAPE[i] = get_param_handle("HDD_IAS_TAPE" .. i)
-end
-
---ALTITUDE INDICATOR PARAMS
-local Baro_alt_ft = get_param_handle("Baro_alt_ft")
-local HDD_ALT = get_param_handle("HDD_ALT")
-local HDD_ALT_GRANDS = get_param_handle("HDD_ALT_GRANDS")
-local HDD_ALT_HUNDYS = get_param_handle("HDD_ALT_HUNDYS")
-local HDD_ALT_TAPE_Y = get_param_handle("HDD_ALT_TAPE_Y")
-
-local HDD_ALT_TWENTIES = {}
-for i = 1, 4 do
-	HDD_ALT_TWENTIES[i] = get_param_handle("HDD_ALT_TWENTIES" .. i)
-end
-local HDD_ALT_TWENTIES_Y = get_param_handle("HDD_ALT_TWENTIES_Y")
-
---ALTITUDE TAPE PARAMETERS
---need 4 numeric indicators for the tape
--- proportion of tape distance (500 altitude) to whole scale: 4:15
-local HDD_ALT_TAPE = {}
-local HDD_ALT_TAPE_HUNDYS = {}
-local HDD_ALT_TAPE_THOUSANDS = {}
-for i = 1, 4 do
-	HDD_ALT_TAPE[i] = get_param_handle("HDD_ALT_TAPE" .. i)
-	HDD_ALT_TAPE_HUNDYS[i] = get_param_handle("HDD_ALT_TAPE_HUNDYS" .. i)
-	HDD_ALT_TAPE_THOUSANDS[i] = get_param_handle("HDD_ALT_TAPE_THOUSANDS" .. i)
-end
-
---VVI PARAMETERS
-local HDD_VVI = get_param_handle("HDD_VVI")
-local HDD_VVI_UP = get_param_handle("HDD_VVI_UP")
-local HDD_VVI_DN = get_param_handle("HDD_VVI_DN")
-local HDD_VVI_INDEXER = get_param_handle("HDD_VVI_INDEXER")
-
-local hdd_001_brightness = get_param_handle("hdd_001_brightness")
-
--- radar altitude
-local HDD_AGL = get_param_handle("HDD_AGL")
-
--- barometric pressure
-local QNH_inHg = get_param_handle("QNH_inHg")
-
---add update counter for intermittent logging
-local update_counter = 0
-local update_interval = 500
-
-local function rad_to_deg(rad)
-	return rad / (math.pi * 2) * 360
-end
-
-local function deg_to_rad(deg)
-	return deg / 360 * (math.pi * 2)
-end
-
-local function ms_to_kts(ms)
-	return ms * 1.943844
-end
-
-local function m_to_ft(m)
-	return m * 3.28084
-end
-
--- current_Ralt:set(0)
--- current_hdg:set(0)
--- MachNumber_param:set(0)
-
--- Self_lat_deg:set(0)
--- Self_long_deg:set(0)
--- Self_NorthCorrection_rad:set(0)
 
 local update_time_step = 0.006 --EFM rate (0.006 s) or multible of 0.006 s (fastest), 0.012 s, 0.024 s, etc
 make_default_activity(update_time_step)
 local sensor_data = get_base_data()
 
--- local tpod_tgt_hgt = get_param_handle("tpod_tgt_hgt")
--- local tpod_tgt_hgt = {{tonumber("tpod_tgt_hgt")}}
-
-local update_interval = 360
+-- local update_counter = 0 --for logging
+-- local PILOT_CNI_MU_Wpt_Name = get_param_handle("PILOT_CNI_MU_Wpt_Name")
+-- local PILOT_CNI_MU_Wpt_Lat_dmm = get_param_handle("PILOT_CNI_MU_Wpt_Lat_dmm")
+-- local PILOT_CNI_MU_Wpt_Lon_dmm = get_param_handle("PILOT_CNI_MU_Wpt_Lon_dmm")
+-- local PILOT_CNI_MU_Wpt_Horz_Dist = get_param_handle("PILOT_CNI_MU_Wpt_Horz_Dist")
+-- local PILOT_CNI_MU_Wpt_Bearing = get_param_handle("PILOT_CNI_MU_Wpt_Bearing")
+-- local PILOT_CNI_MU_Wpt_Alt = get_param_handle("PILOT_CNI_MU_Wpt_Alt")
 
 function update()
 	-- print_message_to_user(string.format("General device"))
 	-- print_message_to_user("tpod_tgt_hgt: "..string.format("%d",tpod_tgt_hgt.aaa))
 	-- print_message_to_user(string.format("tpod_tgt_hgt = %s", tpod_tgt_hgt:get()))
 	-- print_message_to_user(string.format("CompassRose_Rotate: %.2f", CompassRose_Rotate:get()))
-	--increment counter
-	update_counter = update_counter + 1
-
-	--SET FIXED PITCH ITERATOR
-	local fixedVal = 20
-	local pitch
-	if update_counter % update_interval >= update_interval * 2 / 3 then
-		pitch = deg_to_rad(fixedVal)
-	elseif update_counter % update_interval >= update_interval / 3 then
-		pitch = deg_to_rad(0)
-	else
-		pitch = deg_to_rad(-fixedVal)
-	end
-	
-	--GET DCS VARIABLES FOR PFD
-	local pitch = sensor_data.getPitch() -- in range -Pi/2 to +Pi/2
-	local roll = sensor_data.getRoll() -- roll angle in radians
-	local aoa = sensor_data.getAngleOfAttack() --angle of attack in radians
-	local ias = HDD_IAS_KTS:get() --indicated airspeed - from Anubis dll in kts
-	local tas = sensor_data.getTrueAirSpeed() -- true airspeed - uom = m/s
-	local compassHeading = sensor_data.getMagneticHeading()
-	local headingDeg = rad_to_deg(compassHeading)
-
-	--ADI=================================================================================
-	local pitch_scale = 0.07945
-	HDD_PITCH:set(pitch * pitch_scale)
-	HDD_ROLL:set(roll) -- sensor_data.getRoll() in range -180 degrees to 180 degrees in radians
-
-	--ROLL INDICATOR======================================================================
-	--handle fill and clamp at +/-60 degress of roll/bank
-	local bankAngleFill = false
-	if math.abs(rad_to_deg(roll)) > 60 then
-		bankAngleFill = true
-	end
-	if bankAngleFill then
-		HDD_BANK_FILL:set(1)
-		local rollClamp = deg_to_rad(roll)
-		if rollClamp < 0 then
-			--handle -60
-			HDD_BANK:set(deg_to_rad(-60) * 0.95) --to get +/-60 to match the end of the curve
-		else
-			--handle +60
-			HDD_BANK:set(deg_to_rad(60) * 0.95)
-		end
-	else
-		HDD_BANK:set(roll * 0.95)
-		HDD_BANK_FILL:set(0)
-	end
-
-	--COMPASS ROSE======================================================================
-	HDD_HEADING:set(compassHeading)
-	HDD_HDG_IND:set((headingDeg + 360) % 360)
-	--FLIGHT PATH MARKER================================================================
-	HDD_FPM_HORZ:set((pitch - aoa) * pitch_scale) --does the vertical only, no sideslip
-
-		--AIRSPEED TAPE=====================================================================
-	--ias locals
-	--local iasKts = 200
-	local iasKts = ias
-	local iasHundreds = math.floor(iasKts / 10)
-	local iasOnes = math.floor(iasKts % 10)
-	local iasOnesY = iasKts % 1
-	--deriving the numbers for the tape
-	local tapeNumber = math.floor(iasKts / 20) * 20 --ias rounded down to nearest 20kts
-	--deriving the shift of the tape
-	local tapeShift = (iasKts - tapeNumber) / 20 --sets the shift according to the middle number but only runs between 0.2-0.8 as viewable area is 80% of total dds
-	local tapeShiftScaled = tapeShift * -0.0145 -- this is a random number to make the scale conform
-
-	--set parameters for airspeed tape
-	--numeric indicator
-	HDD_IAS_HUNDYS:set(iasHundreds)
-	local ias_ones_below_base = 1
-	for i = 1, 4 do
-		HDD_IAS_ONES[i]:set((iasOnes - ias_ones_below_base + i - 1) % 10)
-	end
-	HDD_IAS_ONES_Y:set(-(iasOnesY * 0.00710))
-	
-	--numbers alongside the tape
-	HDD_IAS_TAPE_SHIFT:set(tapeShiftScaled)
-	if tapeShift > 0.45 then
-		HDD_IAS_TAPE_MAX:set(tapeNumber + 80)
-	else
-		HDD_IAS_TAPE_MAX:set(tapeNumber + 60)
-	end
-
-	-- Set 7 IAS tape numbers (in increments of 20 kts).
-	local ias_tape_numbers_below_base = 3
-	for i = 1, 7 do
-		HDD_IAS_TAPE[i]:set(tapeNumber + (i - 1 - ias_tape_numbers_below_base) * 20)
-	end
-
-	--ALTITUDE TAPE=====================================================================
-	--altitude locals
-	local baroAltFt = Baro_alt_ft:get()
-	--altitude indicator locals
-	local altThousands = math.floor(baroAltFt / 1000)
-	local altHundreds = math.floor(baroAltFt / 100) % 10
-	local altTwentiesY = baroAltFt % 20 / 20
-	local alt500s = math.floor(baroAltFt / 500) * 500
-	local alt500sY = baroAltFt % 500 / 500
-	--altitude tape locals
-	--need 6 levels, two numbers for each hundreds and twenties
-	local alt500sBelowMiddle = 1
-	for i = 1, 4 do
-		local tapeNumber = alt500s + (500 * (i - 1 - alt500sBelowMiddle))
-		HDD_ALT_TAPE[i]:set(tapeNumber)
-		HDD_ALT_TAPE_HUNDYS[i]:set(math.floor(tapeNumber % 1000))
-		HDD_ALT_TAPE_THOUSANDS[i]:set(math.floor(tapeNumber / 1000))
-	end
-	HDD_ALT_TAPE_Y:set(-(alt500sY * 0.0235))
-
-	--set parameters for altitude indicator
-	--numeric indicator
-	HDD_ALT:set(baroAltFt)
-	HDD_ALT_GRANDS:set(altThousands)
-	HDD_ALT_HUNDYS:set(altHundreds)
-	
-	-- Set the numbers for the rolling indicator showing the altitude in feet to the nearest twenty.
-	local altTwenties = (math.floor(baroAltFt / 20) * 20) % 100
-	local twenties_below_base = 1
-	for i = 1, 4 do
-		HDD_ALT_TWENTIES[i]:set((altTwenties + (i - 1 - twenties_below_base) * 20) % 100)
-	end
-	HDD_ALT_TWENTIES_Y:set(-(altTwentiesY * 0.0054))
-
-	--set parameters for VVI
-	local raw_VVI = sensor_data.getVerticalVelocity() --uom meters per second
-	local fpm_VVI = raw_VVI * 196.85 --convert to feet per minute
-	local vviPositive = 0
-	--set parameters for arrow opacity
-	if fpm_VVI > 0.5 then
-		HDD_VVI_UP:set(1)
-		HDD_VVI_DN:set(0)
-		vviPositive = 1
-	else
-		HDD_VVI_UP:set(0)
-		HDD_VVI_DN:set(1)
-		vviPositive = -1
-	end
-	--set parameter for VVI Indexer - returns +1 at 3000fpm or above and -1 at 3000fpm or below, with twice the resolution betweeen +1000/-1000 fpm
-	local vviIndex = 0
-	--handle the edge cases
-	if math.abs(fpm_VVI) >= 3000 then
-		vviIndex = 1 * vviPositive
-	end
-	if vviIndex == 0 then
-		if math.abs(fpm_VVI) >= 1000 then
-			--using the outer scale resolution
-			vviIndex = (0.5 + ((math.abs(fpm_VVI) - 1000)/4000)) * vviPositive
-		else
-			--using the inner scale resolution
-			vviIndex = math.abs(fpm_VVI)/2000 * vviPositive
-		end
-	end
-	--set the parameter
-	HDD_VVI_INDEXER:set(vviIndex/25) --random constant to reset the -1 -> +1 scaling to work as move up down parameter
-
-	--set the AGL at ~83hz
-	if update_counter % 2 == 0 then
-		HDD_AGL:set(m_to_ft(sensor_data:getRadarAltitude()))
-	end
-	--print logger
-	if update_counter % 360 == 0 then
-		--local msg = string.format("Pitch: %.8f", rad_to_deg(pitch))
-		--local msg = string.format("Pitch: %.8f AoA: %8f", rad_to_deg(pitch), rad_to_deg(aoa))
-		--local msg = string.format("Roll: %.8f", rad_to_deg(roll))
-		--local msg = string.format("Heading: %.8f", 360 - rad_to_deg(compassHeading))
-		--local msg = string.format("VelvecH: %.8f", velvecH)
-		--local msg = string.format("WoW: %.8f", weightOnWheels)
-		--local msg = string.format("IAS: %.8f UP1: %i UP2: %i DN1: %i DN2: %i", iasKts, iasOnesUp2, iasOnesUp1, iasOnesDn1, iasOnesDn2)
-		--local msg = string.format("TapeShift: %i", (100 * tapeShift))
-		--local msg = string.format("IAS: %.2f //TapeBase: %i", iasKts, tapeNumber)
-		--local msg = string.format("AltHundys: %.i" , altHundreds)
-		--local msg = string.format("BaroAltFt: %.8f AltTwentiesUp1: %i" , baroAltFt, altTwentiesUp1)
-		--local msg = string.format("IAS: %.2f //TapeBase: %i", iasKts, tapeNumber)
-		--local msg = string.format("BaroAltFt: %.8f Alt500's: %i", baroAltFt, alt500s)
-		--local msg = string.format("VS-fpm: %.2f //VVI_Index %.2f", fpm_VVI, vviIndex)
-		--local msg = string.format("RAWHDG: %.2f //HDG_IND %.2f", compassHeading, headingDeg)
-		--local msg = "HELLO FROM HDD_LOGGER!"
-		--print_message_to_user(msg)
-	end
-	--END HDD AMENDMENTS
-	
+	-- update_counter = update_counter + 1 --increment counter
+    -- if update_counter % 20 == 0 then
+		-- print_message_to_user(string.format("PILOT_CNI_MU_Wpt_Name: %s", PILOT_CNI_MU_Wpt_Name:get()))
+		-- print_message_to_user(string.format("PILOT_CNI_MU_Wpt_Lat_dmm: %s", PILOT_CNI_MU_Wpt_Lat_dmm:get()))
+		-- print_message_to_user(string.format("PILOT_CNI_MU_Wpt_Lon_dmm: %s", PILOT_CNI_MU_Wpt_Lon_dmm:get()))
+		-- print_message_to_user(string.format("PILOT_CNI_MU_Wpt_Horz_Dist: %.2f", PILOT_CNI_MU_Wpt_Horz_Dist:get()))
+		-- print_message_to_user(string.format("PILOT_CNI_MU_Wpt_Bearing: %.2f", PILOT_CNI_MU_Wpt_Bearing:get()))
+		-- print_message_to_user(string.format("PILOT_CNI_MU_Wpt_Alt: %.2f", PILOT_CNI_MU_Wpt_Alt:get()))
+	-- end
 	
 ------------------------------------------------------------------------ Clock
     local hours12 = get_absolute_model_time() / 3600.0
@@ -522,7 +246,7 @@ function update()
 	self_loc_x , own_alt, self_loc_z = sensor_data.getSelfCoordinates()	
 	self_latlong = lo_to_geo_coords(self_loc_x, self_loc_z)
 	Self_lat_deg:set(self_latlong.lat)
-	Self_long_deg:set(self_latlong.lon)
+	Self_lon_deg:set(self_latlong.lon)
 	NorthCorrection = geo_to_lo_coords(self_latlong.lat + 30, self_latlong.lon)
 	Self_NorthCorrection_rad:set(math.atan2(NorthCorrection.z - self_loc_z, NorthCorrection.x - self_loc_x))
 	
@@ -596,76 +320,79 @@ function update()
 	
 end
 
------------------------------ for sunset/sunrise calculations
-local Birth_Lat = get_param_handle("Birth_Lat")
-local Birth_Long = get_param_handle("Birth_Long")
-local Birth_Year = get_param_handle("Birth_Year")
-local Birth_Month = get_param_handle("Birth_Month")
-local Birth_Day = get_param_handle("Birth_Day")
-local Birth_Time = get_param_handle("Birth_Time")
-local Birth_Map = get_param_handle("Birth_Map")
-local qnh = get_param_handle("QNH")
-
 function Tempmission()
 	local status, result = pcall(
 		function()
 		local next = next
 		if next(mission) ~= nil then
-			self_loc_x , own_alt, self_loc_z = sensor_data.getSelfCoordinates()	
-			self_latlong = lo_to_geo_coords(self_loc_x, self_loc_z)
-			Birth_Lat:set(self_latlong.lat)
-			Birth_Long:set(self_latlong.lon)
-			Birth_Year:set(mission.date.Year)
-			Birth_Month:set(mission.date.Month)
-			Birth_Day:set(mission.date.Day)
-			Birth_Time:set(get_absolute_model_time() / 3600.0)--time in hours
-			if (mission.theatre == "Caucasus") then
-				Birth_Map:set(1)
-			else
-				if (mission.theatre == "Normandy") then
-					Birth_Map:set(2)
-				else
-					if (mission.theatre == "PersianGulf") then
-						Birth_Map:set(3)
-					else
-						if (mission.theatre == "Nevada") then
-							Birth_Map:set(4)
-						else
-							if (mission.theatre == "Syria") then
-								Birth_Map:set(5)
-							else
-								Birth_Map:set(6)
-							end
-						end
-					end
-				end
-			end
+			local qnh = get_param_handle("QNH")
 			qnh:set(mission.weather.qnh)
 		end
 	end) -- pcall
 	if not status then
-		print_message_to_user(string.format("Tempmission for sunset/sunrise did not load"))
-		-- env.error(string.format("mission: %s", result))
+		qnh:set(760.0)
+		print_message_to_user(string.format("Tempmission did not load"))
 	else
 		return result
 	end
 end
 
 function post_initialize()
-	dofile(LockOn_Options.script_path.."Tempmission.lua")
-	load_Tempmission_file() 
-	load_Tempdictionary_file() 
+	----------------------------- for sunset/sunrise calculations
+	local Birth_Lat = get_param_handle("Birth_Lat")
+	local Birth_Long = get_param_handle("Birth_Long")
+	local Birth_Year = get_param_handle("Birth_Year")
+	local Birth_Month = get_param_handle("Birth_Month")
+	local Birth_Day = get_param_handle("Birth_Day")
+	local Birth_Time = get_param_handle("Birth_Time")
+	local Birth_Map = get_param_handle("Birth_Map")
 	missionroute = get_mission_route()
 	MissionrouteLenth:set(#missionroute)
+	self_loc_x , own_alt, self_loc_z = sensor_data.getSelfCoordinates()	
+	self_latlong = lo_to_geo_coords(self_loc_x, self_loc_z)
+	Birth_Lat:set(self_latlong.lat)
+	Birth_Long:set(self_latlong.lon)
+	Birth_Year:set(LockOn_Options.date.year)
+	Birth_Month:set(LockOn_Options.date.month)
+	Birth_Day:set(LockOn_Options.date.day)
+	Birth_Time:set(get_absolute_model_time() / 3600.0)--time in hours
+	if (get_terrain_related_data("name") == "Caucasus") then
+		Birth_Map:set(1)
+	else
+		if (get_terrain_related_data("name") == "Normandy") then
+			Birth_Map:set(2)
+		else
+			if (get_terrain_related_data("name") == "PersianGulf") then
+				Birth_Map:set(3)
+			else
+				if (get_terrain_related_data("name") == "Nevada") then
+					Birth_Map:set(4)
+				else
+					if (get_terrain_related_data("name") == "Syria") then
+						Birth_Map:set(5)
+					else
+						Birth_Map:set(6)
+					end
+				end
+			end
+		end
+	end
+	dofile(LockOn_Options.script_path.."Tempmission.lua")
+	load_Tempmission_file() 
 	Tempmission()
- ------------------------------------------------------------------------ Flight_Plan_Route
-   -- cpt_mech         = GetDevice(devices.FLIGHTCONTROLS)
-	-- local aa = GetSelf()
-	-- print_message_to_user(string.format("event: %s", aa));
-	-- print_message_to_user(string.format("value: %d", aa));
-   
 end
 
+--".....function at line 385 [update()] has more than 60 upvalues"
+-- local params = setmetatable({}, {
+    -- __index = function(self, param_name)
+        -- local handle = get_param_handle(param_name)
+        -- self[param_name] = handle
+        -- return handle
+    -- end,
+-- })
+-- local params = ...
+-- local _1 = params.whatever -- __index metamethod sets `params["whatever"] = get_param_handle("whatever")` and returns param handle so `_1` contains param handle
+-- local _2 = params.whatever -- table has param handle in it so just a normal table access not going through the __index metamethod
 
 
 -- get_aircraft_type
@@ -719,6 +446,19 @@ end
 -- getWOW_LeftMainLandingGear
 -- getWOW_NoseLandingGear
 -- getWOW_RightMainLandingGear
+
+
+-- {"change_color_when_parameter_equal_to_number", param_nr, number, red, green, blue}
+-- {"text_using_parameter", param_nr, format_nr}
+-- {"move_left_right_using_parameter", param_nr, gain}
+-- {"move_up_down_using_parameter", param_nr, gain}
+-- {"opacity_using_parameter", param_nr}
+-- {"rotate_using_parameter", param_nr, gain}
+-- {"compare_parameters", param1_nr, param2_nr} -- if param1 == param2 then visible
+-- {"parameter_in_range", param_nr, greaterthanvalue, lessthanvalue} -- if greaterthanvalue < param < lessthanvalue then visible
+-- {"parameter_compare_with_number", param_nr, number} -- if param == number then visible
+-- {"draw_argument_in_range", arg_nr, greaterthanvalue, lessthanvalue} -- if greaterthanvalue < arg < lessthanvalue then visible
+-- {"line_object_set_point_using_parameters", point_nr, param_x, param_y, gain_x, gain_y} -- applies to ceSimpleLineObject at least
 
 -- output of dump("_G",_G) (some introspection into all global symbols available inside this avLuaDevice)
 --[[
@@ -1439,3 +1179,89 @@ data[1]["channels"][19] = 266
 data[1]["channels"][17] = 251
 data[1]["channels"][20] = 252
 --]]
+
+-- trigger.action.outTextForCoalition(coalition.side.BLUE, string.format("Cargo_Drop_Event.weapon: %s", Weapon.getDesc(Cargo_Drop_Event.weapon).typeName), 10)
+-- trigger.action.outTextForCoalition(coalition.side.BLUE, tostring('Calculate_Object_Height_AGL: ' .. aaaaa), 10)
+-- trigger.action.outTextForCoalition(coalition.side.BLUE, string.format("Speed: %.2f", Calculate_Object_Speed(Cargo_Drop_initiator)), 10)
+-- trigger.action.outTextForCoalition(coalition.side.BLUE, string.format("Russian Interceptor Patrol scrambled from Nalchik"), 10)
+
+-- function basicSerialize(var)
+	-- if var == nil then
+		-- return "\"\""
+	-- else
+		-- if ((type(var) == 'number') or
+				-- (type(var) == 'boolean') or
+				-- (type(var) == 'function') or
+				-- (type(var) == 'table') or
+				-- (type(var) == 'userdata') ) then
+			-- return tostring(var)
+		-- else
+			-- if type(var) == 'string' then
+				-- var = string.format('%q', var)
+				-- return var
+			-- end
+		-- end
+	-- end
+-- end
+	
+-- function tableShow(tbl, loc, indent, tableshow_tbls) --based on serialize_slmod, this is a _G serialization
+	-- tableshow_tbls = tableshow_tbls or {} --create table of tables
+	-- loc = loc or ""
+	-- indent = indent or ""
+	-- if type(tbl) == 'table' then --function only works for tables!
+		-- tableshow_tbls[tbl] = loc
+		-- local tbl_str = {}
+		-- tbl_str[#tbl_str + 1] = indent .. '{\n'
+		-- for ind,val in pairs(tbl) do -- serialize its fields
+			-- if type(ind) == "number" then
+				-- tbl_str[#tbl_str + 1] = indent
+				-- tbl_str[#tbl_str + 1] = loc .. '['
+				-- tbl_str[#tbl_str + 1] = tostring(ind)
+				-- tbl_str[#tbl_str + 1] = '] = '
+			-- else
+				-- tbl_str[#tbl_str + 1] = indent
+				-- tbl_str[#tbl_str + 1] = loc .. '['
+				-- tbl_str[#tbl_str + 1] = basicSerialize(ind)
+				-- tbl_str[#tbl_str + 1] = '] = '
+			-- end
+			-- if ((type(val) == 'number') or (type(val) == 'boolean')) then
+				-- tbl_str[#tbl_str + 1] = tostring(val)
+				-- tbl_str[#tbl_str + 1] = ',\n'
+			-- elseif type(val) == 'string' then
+				-- tbl_str[#tbl_str + 1] = basicSerialize(val)
+				-- tbl_str[#tbl_str + 1] = ',\n'
+			-- elseif type(val) == 'nil' then -- won't ever happen, right?
+				-- tbl_str[#tbl_str + 1] = 'nil,\n'
+			-- elseif type(val) == 'table' then
+				-- if tableshow_tbls[val] then
+					-- tbl_str[#tbl_str + 1] = tostring(val) .. ' already defined: ' .. tableshow_tbls[val] .. ',\n'
+				-- else
+					-- tableshow_tbls[val] = loc ..	'[' .. basicSerialize(ind) .. ']'
+					-- tbl_str[#tbl_str + 1] = tostring(val) .. ' '
+					-- tbl_str[#tbl_str + 1] = tableShow(val,	loc .. '[' .. basicSerialize(ind).. ']', indent .. '		', tableshow_tbls)
+					-- tbl_str[#tbl_str + 1] = ',\n'
+				-- end
+			-- elseif type(val) == 'function' then
+				-- if debug and debug.getinfo then
+					-- local fcnname = tostring(val)
+					-- local info = debug.getinfo(val, "S")
+					-- if info.what == "C" then
+						-- tbl_str[#tbl_str + 1] = string.format('%q', fcnname .. ', C function') .. ',\n'
+					-- else
+						-- if (string.sub(info.source, 1, 2) == [[./]]) then
+							-- tbl_str[#tbl_str + 1] = string.format('%q', fcnname .. ', defined in (' .. info.linedefined .. '-' .. info.lastlinedefined .. ')' .. info.source) ..',\n'
+						-- else
+							-- tbl_str[#tbl_str + 1] = string.format('%q', fcnname .. ', defined in (' .. info.linedefined .. '-' .. info.lastlinedefined .. ')') ..',\n'
+						-- end
+					-- end
+				-- else
+					-- tbl_str[#tbl_str + 1] = 'a function,\n'
+				-- end
+			-- else
+				-- tbl_str[#tbl_str + 1] = 'unable to serialize value type ' .. basicSerialize(type(val)) .. ' at index ' .. tostring(ind)
+			-- end
+		-- end
+		-- tbl_str[#tbl_str + 1] = indent .. '}'
+		-- return table.concat(tbl_str)
+	-- end
+-- end

@@ -1,58 +1,45 @@
-
-
-dofile(LockOn_Options.script_path.."Display_definitions.lua")
--- dofile(LockOn_Options.script_path.."symbols.lua")
-
-	-- IBM_NO_WRITECOLOR						= 0, -- element will be rendered only to stencil buffer
-	-- IBM_REGULAR								= 1, -- regular work with write mask set to RGBA
-	-- IBM_REGULAR_ADDITIVE_ALPHA				= 2, -- regular work with write mask set to RGBA , additive alpha for HUD 
-	-- IBM_REGULAR_RGB_ONLY					= 3, -- regular work with write mask set to RGB (without alpha)
-	-- IBM_REGULAR_RGB_ONLY_ADDITIVE_ALPHA		= 4, -- regular work with write mask set to RGB (without alpha) , additive alpha for HUD 
-	-- IBM_ONLY_ALPHA							= 5, -- write mask set only for alpha
-
--- alignment options:
---"RightBottom"
---"LeftTop"
---"RightTop"
---"LeftCenter"
---"RightCenter"
---"CenterBottom"
---"CenterTop"
---"CenterCenter"
---"LeftBottom"
---[[
-SetScale  have generalized form input value : 
-SetScale(MILLYRADIANS)
+dofile(LockOn_Options.common_script_path.."elements_defs.lua")
 SetScale(FOV)
-SetScale(METERS)
 
-in case of FOV , GetScale()  will return half width of your indicator 
+DISPLAY_DEFAULT_LEVEL = 4
 
-MILLYRADIANS :  0.001 * viewDistance , where viewDistance is default distance from pilot eye to indicator projection plane
 
-]]--
--------MATERIALS-------
--- materials = {}   
--- materials["WHITE"]  = {255, 255, 255, 255}
--- materials["GREEN"]   = {0, 255, 0, 255}
--- materials["YELLOW"]   = {243, 116, 13, 255}
--- materials["RED"]    = {255, 0, 0, 255}
--- materials["BLACK"]    = {0, 0, 0, 255}
--- materials["AMBER"]    = {255, 194, 0, 255}
-
+function Add_Object_Text(object, objectname, objectparent, objectmaterial, objectalignment, format_value, stringdefs_value, initpixelposx, initpixelposy, objectelementparams, objectcontrollers)
+	local object           = CreateElement "ceStringPoly"
+	object.name            = objectname
+	object.material        = objectmaterial
+	object.element_params = objectelementparams
+	object.controllers = objectcontrollers
+	object.init_pos = {(0.003333 * initpixelposx) - 1, ((-0.005 * initpixelposy) + 1) * GetAspect()}
+	object.alignment		= objectalignment
+	if format_value ~= nil then
+		if type(format_value) == "table" then
+			object.formats = format_value
+		else
+			object.value = format_value
+		end
+	end
+	object.stringdefs		= stringdefs_value--VerticalSize, HorizontalSize, HorizontalSpacing, VerticalSpacing
+    object.use_mipfilter    = true
+	object.additive_alpha   = true
+	object.collimated		= false
+	object.h_clip_relation  = h_clip_relations.COMPARE
+	object.level			= DISPLAY_DEFAULT_LEVEL
+	object.parent_element = objectparent
+    Add(object)
+end
 
 local APU_rpm_origin	         = CreateElement "ceSimple"
 APU_rpm_origin.name 		     = "APU_rpm_origin"
 APU_rpm_origin.init_pos        = {0,0}
--- APU_rpm_origin.element_params   = {
-								-- "Occupy_Battle_Station",
-										   -- } 
--- APU_rpm_origin.controllers 	   = {
-								-- {"parameter_in_range",0,-0.1,0.1},
-								-- }
-AddElement(APU_rpm_origin)
+APU_rpm_origin.use_mipfilter    = true
+APU_rpm_origin.additive_alpha   = true
+APU_rpm_origin.h_clip_relation  = h_clip_relations.COMPARE
+APU_rpm_origin.level			= DISPLAY_DEFAULT_LEVEL
+Add(APU_rpm_origin)
 
-Add_Object_Text(APU_rpm, "APU_rpm", APU_rpm_origin.name, 0,
+
+Add_Object_Text(APU_rpm, "APU_rpm", APU_rpm_origin.name,
 					"font_Arial_green",--objectmaterial
 					"LeftCenter",--objectalignment
 					{"%.0f"},--format_value
@@ -60,7 +47,7 @@ Add_Object_Text(APU_rpm, "APU_rpm", APU_rpm_origin.name, 0,
 					-30.0,--initpixelposx
 					200.0,--initpixelposy
 					{--params
-						"APU_RPM",
+						"APU_rpm",
 					},
 					{--controllers
 						{"text_using_parameter",0,0},

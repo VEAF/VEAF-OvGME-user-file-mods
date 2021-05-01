@@ -1,6 +1,6 @@
 
 
-dofile(LockOn_Options.script_path.."Display_definitions.lua")
+dofile(LockOn_Options.script_path.."AMU_CNBP/Display_definitions.lua")
 
 -------------------------------------------------------------------------------CNBP_CB
 
@@ -16,7 +16,7 @@ CNBP_CB_origin.controllers 	   = {
 CNBP_CB_origin.collimated 		 = true
 AddElement(CNBP_CB_origin)
 
-local CNBP_CB	    = CreateElement "ceTexPoly" --this could be the text area on HUD
+local CNBP_CB	    = CreateElement "ceTexPoly" 
 CNBP_CB.name 		= "CNBP_CB"
 CNBP_CB.material   = "CNBP_CB_page"
 CNBP_CB.vertices 	   = {{-width, height},
@@ -30,7 +30,7 @@ CNBP_CB.element_params   = {
 							"CNBP_brightness",
 						} 
 CNBP_CB.controllers 	   = {
-							BCont[1],BCont[2],BCont[3],BCont[4],BCont[5],BCont[6],BCont[7],BCont[8],BCont[9],BCont[10],
+							BCont[1],BCont[2],BCont[3],BCont[4],BCont[5],BCont[6],BCont[7],BCont[8],BCont[9],BCont[10],BCont[11],BCont[12],BCont[13],BCont[14],BCont[15],
 							}
 CNBP_CB.collimated = true
 CNBP_CB.parent_element = CNBP_CB_origin.name
@@ -51,7 +51,7 @@ CNBP_Comm_origin.controllers 	   = {
 CNBP_Comm_origin.collimated 		 = true
 AddElement(CNBP_Comm_origin)
 
-local CNBP_Comm	    = CreateElement "ceTexPoly" --this could be the text area on HUD
+local CNBP_Comm	    = CreateElement "ceTexPoly" 
 CNBP_Comm.name 		= "CNBP_Comm"
 CNBP_Comm.material   = "CNBP_Comm_page"
 CNBP_Comm.vertices 	   = {{-width, height},
@@ -65,7 +65,7 @@ CNBP_Comm.element_params   = {
 							"CNBP_brightness",
 						} 
 CNBP_Comm.controllers 	   = {
-							BCont[1],BCont[2],BCont[3],BCont[4],BCont[5],BCont[6],BCont[7],BCont[8],BCont[9],BCont[10],
+							BCont[1],BCont[2],BCont[3],BCont[4],BCont[5],BCont[6],BCont[7],BCont[8],BCont[9],BCont[10],BCont[11],BCont[12],BCont[13],BCont[14],BCont[15],
 							}
 CNBP_Comm.collimated = true
 CNBP_Comm.parent_element = CNBP_Comm_origin.name
@@ -86,7 +86,7 @@ CNBP_NAV_origin.controllers 	   = {
 CNBP_NAV_origin.collimated 		 = true
 AddElement(CNBP_NAV_origin)
 
-local CNBP_NAV	    = CreateElement "ceTexPoly" --this could be the text area on HUD
+local CNBP_NAV	    = CreateElement "ceTexPoly" 
 CNBP_NAV.name 		= "CNBP_NAV"
 CNBP_NAV.material   = "CNBP_NAV_page"
 CNBP_NAV.vertices 	   = {{-width, height},
@@ -100,7 +100,7 @@ CNBP_NAV.element_params   = {
 							"CNBP_brightness",
 						} 
 CNBP_NAV.controllers 	   = {
-							BCont[1],BCont[2],BCont[3],BCont[4],BCont[5],BCont[6],BCont[7],BCont[8],BCont[9],BCont[10],
+							BCont[1],BCont[2],BCont[3],BCont[4],BCont[5],BCont[6],BCont[7],BCont[8],BCont[9],BCont[10],BCont[11],BCont[12],BCont[13],BCont[14],BCont[15],
 							}
 CNBP_NAV.collimated = true
 CNBP_NAV.parent_element = CNBP_NAV_origin.name

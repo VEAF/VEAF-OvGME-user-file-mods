@@ -518,7 +518,7 @@ local StartEng1 = false
 local StartedEng1 = false
 local StopEng1 = false
 local PowRevSwitchEng1 = false
-function onEvent_Eng1(Eng1Start, Eng1Started, Eng1Stop, Eng1NP, Eng1NormalSpeedMode, Eng1LowSpeedMode, Eng1HotelMode, Eng1GroundRange_Engaged, Eng1ThrottleInput, Eng1Volume, Eng1ExtGain, Eng1CockpitGain, Eng1Pitch)
+function onEvent_Eng1(Eng1Start, Eng1Started, Eng1Stop, Eng1NP, Eng1NormalSpeedMode, Eng1LowSpeedMode, Eng1HotelMode, Eng1GroundRange_Engaged, Eng1Throttle_Beta_Reverse_Gate, Eng1ThrottleInput, Eng1Volume, Eng1ExtGain, Eng1CockpitGain, Eng1Pitch)
 	if Eng1NP > 0.0 then
 		if Eng1Start > 0.0 then
 			if StartEng1 == false then					
@@ -568,7 +568,7 @@ function onEvent_Eng1(Eng1Start, Eng1Started, Eng1Stop, Eng1NP, Eng1NormalSpeedM
 				ED_AudioAPI.setSourcePitch(Eng1EngineContExt, Eng1Pitch)
 				if Eng1GroundRange_Engaged > 0.0 then
 					if Eng1HotelMode == 0 then					
-						if Eng1ThrottleInput <= 0.1 and Eng1NP > 0.71 then
+						if Eng1ThrottleInput <= 0.1 and Eng1NP > 0.71 and Eng1Throttle_Beta_Reverse_Gate > 0.0 then
 							ED_AudioAPI.setSourceGain(Eng1PropPowerExt, Eng1ExtGain)
 							ED_AudioAPI.setSourceGain(Eng1PropPowerCpt, 0.0)
 							ED_AudioAPI.setSourceGain(Eng1PropReverseExt, Eng1ExtGain)
@@ -663,7 +663,7 @@ local StartEng2 = false
 local StartedEng2 = false
 local StopEng2 = false
 local PowRevSwitchEng2 = false
-function onEvent_Eng2(Eng2Start, Eng2Started, Eng2Stop, Eng2NP, Eng2NormalSpeedMode, Eng2LowSpeedMode, Eng2HotelMode, Eng2GroundRange_Engaged, Eng2ThrottleInput, Eng2Volume, Eng2ExtGain, Eng2CockpitGain, Eng2Pitch)
+function onEvent_Eng2(Eng2Start, Eng2Started, Eng2Stop, Eng2NP, Eng2NormalSpeedMode, Eng2LowSpeedMode, Eng2HotelMode, Eng2GroundRange_Engaged, Eng2Throttle_Beta_Reverse_Gate, Eng2ThrottleInput, Eng2Volume, Eng2ExtGain, Eng2CockpitGain, Eng2Pitch)
 	if Eng2NP > 0.0 then
 		if Eng2Start > 0.0 then
 			if StartEng2 == false then					
@@ -713,7 +713,7 @@ function onEvent_Eng2(Eng2Start, Eng2Started, Eng2Stop, Eng2NP, Eng2NormalSpeedM
 				ED_AudioAPI.setSourcePitch(Eng2EngineContExt, Eng2Pitch)
 				if Eng2GroundRange_Engaged > 0.0 then
 					if Eng2HotelMode == 0 then					
-						if Eng2ThrottleInput <= 0.1 and Eng2NP > 0.71 then
+						if Eng2ThrottleInput <= 0.1 and Eng2NP > 0.71 and Eng2Throttle_Beta_Reverse_Gate > 0.0 then
 							ED_AudioAPI.setSourceGain(Eng2PropPowerExt, Eng2ExtGain)
 							ED_AudioAPI.setSourceGain(Eng2PropPowerCpt, 0.0)
 							ED_AudioAPI.setSourceGain(Eng2PropReverseExt, Eng2ExtGain)
@@ -808,7 +808,7 @@ local StartEng3 = false
 local StartedEng3 = false
 local StopEng3 = false
 local PowRevSwitchEng3 = false
-function onEvent_Eng3(Eng3Start, Eng3Started, Eng3Stop, Eng3NP, Eng3NormalSpeedMode, Eng3LowSpeedMode, Eng3HotelMode, Eng3GroundRange_Engaged, Eng3ThrottleInput, Eng3Volume, Eng3ExtGain, Eng3CockpitGain, Eng3Pitch)
+function onEvent_Eng3(Eng3Start, Eng3Started, Eng3Stop, Eng3NP, Eng3NormalSpeedMode, Eng3LowSpeedMode, Eng3HotelMode, Eng3GroundRange_Engaged, Eng3Throttle_Beta_Reverse_Gate, Eng3ThrottleInput, Eng3Volume, Eng3ExtGain, Eng3CockpitGain, Eng3Pitch)
 	if Eng3NP > 0.0 then
 		if Eng3Start > 0.0 then
 			if StartEng3 == false then					
@@ -858,7 +858,7 @@ function onEvent_Eng3(Eng3Start, Eng3Started, Eng3Stop, Eng3NP, Eng3NormalSpeedM
 				ED_AudioAPI.setSourcePitch(Eng3EngineContExt, Eng3Pitch)
 				if Eng3GroundRange_Engaged > 0.0 then
 					if Eng3HotelMode == 0 then					
-						if Eng3ThrottleInput <= 0.1 and Eng3NP > 0.71 then
+						if Eng3ThrottleInput <= 0.1 and Eng3NP > 0.71 and Eng3Throttle_Beta_Reverse_Gate > 0.0 then
 							ED_AudioAPI.setSourceGain(Eng3PropPowerExt, Eng3ExtGain)
 							ED_AudioAPI.setSourceGain(Eng3PropPowerCpt, 0.0)
 							ED_AudioAPI.setSourceGain(Eng3PropReverseExt, Eng3ExtGain)
@@ -953,7 +953,7 @@ local StartEng4 = false
 local StartedEng4 = false
 local StopEng4 = false
 local PowRevSwitchEng4 = false
-function onEvent_Eng4(Eng4Start, Eng4Started, Eng4Stop, Eng4NP, Eng4NormalSpeedMode, Eng4LowSpeedMode, Eng4HotelMode, Eng4GroundRange_Engaged, Eng4ThrottleInput, Eng4Volume, Eng4ExtGain, Eng4CockpitGain, Eng4Pitch)
+function onEvent_Eng4(Eng4Start, Eng4Started, Eng4Stop, Eng4NP, Eng4NormalSpeedMode, Eng4LowSpeedMode, Eng4HotelMode, Eng4GroundRange_Engaged, Eng4Throttle_Beta_Reverse_Gate, Eng4ThrottleInput, Eng4Volume, Eng4ExtGain, Eng4CockpitGain, Eng4Pitch)
 	if Eng4NP > 0.0 then
 		if Eng4Start > 0.0 then
 			if StartEng4 == false then					
@@ -1003,7 +1003,7 @@ function onEvent_Eng4(Eng4Start, Eng4Started, Eng4Stop, Eng4NP, Eng4NormalSpeedM
 				ED_AudioAPI.setSourcePitch(Eng4EngineContExt, Eng4Pitch)
 				if Eng4GroundRange_Engaged > 0.0 then
 					if Eng4HotelMode == 0 then					
-						if Eng4ThrottleInput <= 0.1 and Eng4NP > 0.71 then
+						if Eng4ThrottleInput <= 0.1 and Eng4NP > 0.71 and Eng4Throttle_Beta_Reverse_Gate > 0.0 then
 							ED_AudioAPI.setSourceGain(Eng4PropPowerExt, Eng4ExtGain)
 							ED_AudioAPI.setSourceGain(Eng4PropPowerCpt, 0.0)
 							ED_AudioAPI.setSourceGain(Eng4PropReverseExt, Eng4ExtGain)

@@ -1,27 +1,8 @@
 dofile(LockOn_Options.common_script_path.."KNEEBOARD/indicator/definitions.lua")
-dofile(LockOn_Options.script_path.."Nav/NAV_util.lua")
-
-dofile(LockOn_Options.script_path.."Tempmission.lua")
-load_Tempdictionary_file() 
+dofile(LockOn_Options.script_path.."Systems/Nav/NAV_util.lua")
 
 local missionroute = get_mission_route()
 local WaypointName = ""
-
-function Tempdictionary(NameWaypoint)
-	local status, result = pcall(
-		function()
-		local next = next
-		if next(dictionary) ~= nil then
-			WaypointName = dictionary[NameWaypoint]
-		end
-	end) -- pcall
-	if not status then
-		print_message_to_user(string.format("Tempdictionary for wpt kneeboard did not load"))
-		-- env.error(string.format("dictionary: %s", result))
-	else
-		return result
-	end
-end
 
 SetScale(FOV)
 
@@ -36,7 +17,6 @@ function AddElement(object)
     Add(object)
 end
 	
-
 
 -- fonts
 FontSizeX1	= 0.0075
@@ -83,8 +63,6 @@ local function parse_waypoint_data(waypoint)
 		parsed_waypoint_data.alt = ""..math.floor(waypoint.alt * 3.28084)--Meter to foot conversion factor
 	end
 	
-	Tempdictionary(waypoint.name)
-		
     return parsed_waypoint_data
 end
 
@@ -117,17 +95,9 @@ end
 
 local function waypoint_name(waypoint_index)
     if waypoint_index == 1 then
-		if WaypointName == "" then
-			return "INIT POS"
-		else
-			 return WaypointName
-		end
+		return "INIT POS"
     else
- 		if WaypointName == "" then
-			return "WAYPOINT "..(waypoint_index - 1)
-		else
-			 return WaypointName
-		end
+		return "WAYPOINT "..(waypoint_index - 1)
 	end
 end
 

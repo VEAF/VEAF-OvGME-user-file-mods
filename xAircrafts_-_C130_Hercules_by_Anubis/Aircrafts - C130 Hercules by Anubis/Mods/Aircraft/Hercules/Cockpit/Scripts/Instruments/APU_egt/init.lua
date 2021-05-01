@@ -12,7 +12,7 @@ BASE    = 1
 INDICATION = 2
 
 page_subsets  = {
-[BASE]    		= LockOn_Options.script_path.."Display_DC_base_page.lua",
+[BASE]    		= LockOn_Options.script_path.."Instruments/APU_egt/DC_base_page.lua",
 [INDICATION]    = LockOn_Options.script_path.."Instruments/APU_egt/indication_page.lua",
 }
 pages = 

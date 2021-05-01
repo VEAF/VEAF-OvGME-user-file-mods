@@ -11,7 +11,7 @@ BASE    = 1
 INDICATION = 2
 
 page_subsets  = {
-[BASE]    		= LockOn_Options.script_path.."Display_AC_base_page.lua",
+[BASE]    		= LockOn_Options.script_path.."AMU_CNBP/CNBP/AC_base_page.lua",
 [INDICATION]    = LockOn_Options.script_path.."AMU_CNBP/CNBP/indication_page.lua",
 }
 pages = 
