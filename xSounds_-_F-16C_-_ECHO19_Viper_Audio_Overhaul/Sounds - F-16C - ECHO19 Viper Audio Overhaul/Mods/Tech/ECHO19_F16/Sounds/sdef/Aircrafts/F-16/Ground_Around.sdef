@@ -1,0 +1,9 @@
+wave = "Effects/Aircrafts/F-16/Ground_Around"
+distance_filter_offset = 25
+inner_radius = 50
+outer_radius = 1200
+cone_inner_angle = 95
+cone_outer_angle = 130
+cone_outer_gain = 0.4
+direction = {1, 0, 0}
+gain = 2.0

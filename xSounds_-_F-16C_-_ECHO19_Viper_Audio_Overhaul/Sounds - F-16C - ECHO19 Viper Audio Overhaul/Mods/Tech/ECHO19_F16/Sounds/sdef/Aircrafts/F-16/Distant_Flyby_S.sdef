@@ -1,0 +1,13 @@
+wave = "Effects/Aircrafts/F-16/Distant_Flyby_S"
+auto_width = false
+nodoppler = true
+distance_filter_offset = 150
+silent_radius = 10
+peak_radius = 300
+inner_radius = 200
+outer_radius = 1600
+cone_inner_angle = 90
+cone_outer_angle = 45
+cone_outer_gain = 0
+direction = {-0, 0, 0}
+gain = 4.6

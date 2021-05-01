@@ -1,0 +1,8 @@
+wave = "Effects/Aircrafts/F-16/F110GE129_RPM2_Side"
+inner_radius = 40
+outer_radius = 600
+cone_inner_angle = 80
+cone_outer_angle = 30
+cone_outer_gain = 0.4
+direction = {1, 0, 0}
+gain = 1.4

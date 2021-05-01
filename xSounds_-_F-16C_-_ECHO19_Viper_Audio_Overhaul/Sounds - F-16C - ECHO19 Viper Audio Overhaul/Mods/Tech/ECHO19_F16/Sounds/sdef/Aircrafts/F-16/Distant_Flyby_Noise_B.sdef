@@ -1,0 +1,14 @@
+wave = "Effects/Aircrafts/F-16/Distant_Flyby_Noise_B-F16"
+auto_width = false
+distance_filter_offset = 130
+silent_radius = 3
+peak_radius = 5
+inner_radius = 150
+outer_radius = 1300
+cone_inner_angle = 30
+cone_outer_angle = 80
+cone_outer_gain = 0.10
+direction = {-1, 0, 0}
+position = {-3.0, 0.0, 0.0}
+pitch = 1.0
+gain = 3.5

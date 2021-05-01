@@ -1,0 +1,5 @@
+inherit = "Aircrafts/F-16/F110GE129_JFS"
+wave = "Effects/Aircrafts/F-16/F110GE129_JFS_End"
+attack = 0
+release = 3
+gain = 0.6

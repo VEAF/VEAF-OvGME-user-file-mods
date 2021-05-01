@@ -1,0 +1,16 @@
+wave = "Effects/Aircrafts/F-16/Flyby_Afterburner"
+auto_width = false
+nodoppler = true
+distance_filter_offset = 100
+silent_radius = 40
+peak_radius = 600
+inner_radius = 300
+outer_radius = 1800
+cone_inner_angle = 75
+cone_outer_angle = 135
+cone_outer_gain = 0
+direction = {-1, 0, 0}
+attack = 0.7
+release = 0.9
+pitch = 1.1
+gain = 5.4

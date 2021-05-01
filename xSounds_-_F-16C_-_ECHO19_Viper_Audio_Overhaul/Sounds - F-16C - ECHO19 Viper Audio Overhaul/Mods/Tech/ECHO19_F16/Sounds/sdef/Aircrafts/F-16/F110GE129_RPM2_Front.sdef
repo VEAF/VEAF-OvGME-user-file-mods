@@ -1,0 +1,10 @@
+wave = "Effects/Aircrafts/F-16/F110GE129_RPM2_Front"
+auto_width = false
+distance_filter_offset = 10
+inner_radius = 40
+outer_radius = 750
+cone_inner_angle = 40
+cone_outer_angle = 110
+cone_outer_gain = 0.1
+direction = {1, 0, 0}
+gain = 1.5

@@ -1,0 +1,16 @@
+wave = "Effects/Aircrafts/F-16/Distant_Side"
+auto_width = false
+nodoppler = true
+distance_filter_offset = 1000
+silent_radius = 100
+peak_radius = 500
+inner_radius = 200
+outer_radius = 1690
+cone_inner_angle = 80
+cone_outer_angle = 45
+cone_outer_gain = 0
+direction = {1, 0, 0}
+release = 0.6
+attack = 0.7
+pitch = 1.3
+gain = 4.3

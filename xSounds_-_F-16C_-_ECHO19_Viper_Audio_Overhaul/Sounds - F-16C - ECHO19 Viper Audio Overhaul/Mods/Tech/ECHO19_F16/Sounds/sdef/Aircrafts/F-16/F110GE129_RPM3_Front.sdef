@@ -1,0 +1,11 @@
+wave = "Effects/Aircrafts/F-16/F110GE129_RPM3_Front"
+lowpass = 1000.0
+distance_filter_offset = 20
+peak_radius = 10
+inner_radius = 10
+outer_radius = 310
+cone_inner_angle = 20
+cone_outer_angle = 165
+position = {-5.0, 0.0, 0.0}
+pitch = 0.9
+gain = 1.6

@@ -1,0 +1,2 @@
+inherit = "Aircrafts/F-16/ECS"
+wave = "Effects/Aircrafts/F-16/ECS_End"

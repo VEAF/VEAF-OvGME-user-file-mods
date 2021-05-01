@@ -1,0 +1,6 @@
+wave = "Effects/Aircrafts/F-16/F110GE129_Shutdown"
+inner_radius = 30
+outer_radius = 900
+attack = 6
+release = 3
+gain = 0.8

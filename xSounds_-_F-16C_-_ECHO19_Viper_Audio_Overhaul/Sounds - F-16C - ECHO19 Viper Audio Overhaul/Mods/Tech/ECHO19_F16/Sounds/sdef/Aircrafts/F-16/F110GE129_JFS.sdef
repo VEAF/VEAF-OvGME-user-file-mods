@@ -1,0 +1,6 @@
+wave = "Effects/Aircrafts/F-16/F110GE129_JFS"
+inner_radius = 30
+outer_radius = 1000
+attack = 0.6
+release = 1
+gain = 0.9

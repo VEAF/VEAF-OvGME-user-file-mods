@@ -1,0 +1,14 @@
+wave = {"Effects/Aircrafts/F-16/Distant_Flyby_B", "Effects/Aircrafts/F-16/Distant_Flyby_B_2B"}
+listmode = ASR
+auto_width = false
+distance_filter_offset = 460
+silent_radius = 50
+peak_radius = 5
+inner_radius = 400
+outer_radius = 1100
+cone_inner_angle = 30
+cone_outer_angle = 80
+cone_outer_gain = 0
+direction = {-1, 0, 0}
+position = {-3.0, 0.0, 0.0}
+gain = 2.9

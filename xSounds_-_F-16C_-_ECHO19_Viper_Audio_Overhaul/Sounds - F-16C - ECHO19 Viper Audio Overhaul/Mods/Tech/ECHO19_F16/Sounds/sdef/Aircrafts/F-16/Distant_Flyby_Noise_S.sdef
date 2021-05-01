@@ -1,0 +1,14 @@
+wave = "Effects/Aircrafts/F-16/Distant_Flyby_Noise"
+nodoppler = true
+peak_radius = 250
+inner_radius = 250
+outer_radius = 800
+cone_inner_angle = 80
+cone_outer_angle = 100
+cone_outer_gain = 0.3
+direction = {1, 0, 0}
+position = {-3.0, 0.0, 0.0}
+pitch = 0.8
+attack = 0.5
+release = 1
+gain = 3.2

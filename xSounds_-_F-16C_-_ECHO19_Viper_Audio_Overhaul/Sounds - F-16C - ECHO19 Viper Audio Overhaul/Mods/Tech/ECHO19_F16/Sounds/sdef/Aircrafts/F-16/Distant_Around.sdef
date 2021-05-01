@@ -1,0 +1,13 @@
+wave = "Effects/Aircrafts/F-16/Distant_Around"
+nodoppler = true
+distance_filter_offset = 900
+silent_radius = 600
+peak_radius = 600
+inner_radius = 755
+outer_radius = 10550
+cone_inner_angle = 70
+cone_outer_angle = 170
+cone_outer_gain = 0.2
+direction = {-1, 0, 0}
+position = {-3.0, 0.0, 0.0}
+gain = 3.1

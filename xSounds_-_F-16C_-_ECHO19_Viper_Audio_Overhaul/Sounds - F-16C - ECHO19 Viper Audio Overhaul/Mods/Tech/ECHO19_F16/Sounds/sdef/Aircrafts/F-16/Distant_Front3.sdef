@@ -1,0 +1,15 @@
+wave = {"Effects/Aircrafts/F-16/Distant_Front3", "Effects/Aircrafts/F-16/RoarFrontF16", "Effects/Aircrafts/F-16/Distant_Front_Approuch F16 var-4"}
+listmode = ASR
+nodoppler = true
+distance_filter_offset = 400
+silent_radius = 10
+inner_radius = 450
+outer_radius = 800
+cone_inner_angle = 20
+cone_outer_angle = 110
+cone_outer_gain = 0.5
+attack = 0.3
+release = 0.4
+direction = {1, 0, 0}
+position = {-2.0, 0.0, 0.0}
+gain = 5

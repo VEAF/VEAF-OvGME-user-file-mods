@@ -1,0 +1,14 @@
+wave = "Effects/Aircrafts/F-16/Distant_Back"
+auto_width = false
+distance_filter_offset = 800
+silent_radius = 200
+peak_radius = 50
+inner_radius = 700
+outer_radius = 8500
+cone_inner_angle = 40
+cone_outer_angle = 85
+cone_outer_gain = 0
+direction = {-1, 0, 0}
+position = {-3.0, 0.0, 0.0}
+pitch = 1.3
+gain = 4.8

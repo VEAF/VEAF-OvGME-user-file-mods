@@ -1,0 +1,4 @@
+wave = "Effects/Aircrafts/Cockpits/GBreath_End"
+inner_radius = 10
+outer_radius = 100
+gain = 0.8

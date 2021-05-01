@@ -1,0 +1,5 @@
+inherit = "Aircrafts/F-16/Cockpit/F110GE129_RPM2_InL"
+position = {0.5, 1, 0.5}
+wave = "Effects/Aircrafts/F-16/Cockpit/F110GE129_RPM2_InR"
+gain = 1.5
+pitch = 0.8

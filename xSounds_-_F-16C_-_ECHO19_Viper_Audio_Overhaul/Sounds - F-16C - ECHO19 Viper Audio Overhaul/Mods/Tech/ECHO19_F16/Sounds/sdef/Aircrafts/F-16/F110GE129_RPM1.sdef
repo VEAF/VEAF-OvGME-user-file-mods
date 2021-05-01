@@ -1,0 +1,5 @@
+wave = "Effects/Aircrafts/F-16/F110GE129_RPM1"
+distance_filter_offset = 25
+inner_radius = 20
+outer_radius = 1000
+gain = 1.8

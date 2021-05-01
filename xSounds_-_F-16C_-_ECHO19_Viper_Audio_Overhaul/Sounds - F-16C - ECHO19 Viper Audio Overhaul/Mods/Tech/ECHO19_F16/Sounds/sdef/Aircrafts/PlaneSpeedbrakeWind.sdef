@@ -1,0 +1,11 @@
+wave = "Effects/Aircrafts/PlaneSpeedbrakeWind"
+nodoppler = true
+inner_radius = 60
+outer_radius = 1350
+cone_inner_angle = 60
+cone_outer_angle = 160
+cone_outer_gain = 0
+direction = {1, 0, 0}
+gain = 4.38
+pitch = 0.80
+attack = 5.0

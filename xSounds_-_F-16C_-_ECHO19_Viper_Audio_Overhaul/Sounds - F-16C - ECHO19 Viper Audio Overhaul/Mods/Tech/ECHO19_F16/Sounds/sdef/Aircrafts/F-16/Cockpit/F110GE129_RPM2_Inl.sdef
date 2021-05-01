@@ -1,0 +1,6 @@
+wave = "Effects/Aircrafts/F-16/Cockpit/F110GE129_RPM2_InL"
+inner_radius = 10
+outer_radius = 100
+position = {0.5, 1, -0.5}
+gain = 1.5
+pitch = 0.8

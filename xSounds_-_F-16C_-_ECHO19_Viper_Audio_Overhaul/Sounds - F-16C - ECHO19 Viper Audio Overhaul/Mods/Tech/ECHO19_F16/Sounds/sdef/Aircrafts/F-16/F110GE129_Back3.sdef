@@ -1,0 +1,13 @@
+wave = "Effects/Aircrafts/F-16/F110GE129_Back3"
+distance_filter_offset = 100
+silent_radius = 1
+peak_radius = 30
+inner_radius = 100
+outer_radius = 700
+position = {-3.0, 0.0, 0.0}
+cone_inner_angle = 35
+cone_outer_angle = 150
+cone_outer_gain = 0
+direction = {-1, 0, 0}
+pitch = 0.9
+gain = 3.2

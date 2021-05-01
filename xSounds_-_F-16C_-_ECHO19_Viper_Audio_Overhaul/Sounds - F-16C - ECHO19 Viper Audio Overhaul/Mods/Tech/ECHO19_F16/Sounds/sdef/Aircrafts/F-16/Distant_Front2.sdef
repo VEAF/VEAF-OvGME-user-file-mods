@@ -1,0 +1,14 @@
+wave = {"Effects/Aircrafts/F-16/Distant_Front2" , "Effects/Aircrafts/F-16/Distant_Front-app-F16"}
+listmode = ASR
+auto_width = false
+nodoppler = true
+distance_filter_offset = 1200
+silent_radius = 30
+peak_radius = 800
+inner_radius = 1660
+outer_radius = 4790
+cone_inner_angle = 35
+cone_outer_angle = 114
+cone_outer_gain = 0.15
+direction = {1, 0, 0}
+gain = 2.4
