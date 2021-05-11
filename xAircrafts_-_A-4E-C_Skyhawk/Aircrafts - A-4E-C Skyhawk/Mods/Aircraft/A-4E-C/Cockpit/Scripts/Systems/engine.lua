@@ -5,6 +5,7 @@ dofile(LockOn_Options.script_path.."command_defs.lua")
 dofile(LockOn_Options.script_path.."Systems/electric_system_api.lua")
 dofile(LockOn_Options.script_path.."utils.lua")
 dofile(LockOn_Options.script_path.."EFM_Data_Bus.lua")
+dofile(LockOn_Options.script_path.."sound_params.lua")
 
 function debug_print(x)
     --print_message_to_user(x)
@@ -53,6 +54,9 @@ local throttle_state = THROTTLE_ADJUST
 
 local manual_fuel_control_mode = 1
 local manual_fuel_control_mode_sw = 0
+
+local igniter_timer = 0
+local igniter_max = 400 -- set timer maximum in seconds * 20
 
 ------------------------------------------------
 ----------------  CONSTANTS  -------------------
@@ -246,7 +250,7 @@ function SetCommand(command,value)
             --dispatch_action(nil, iCommandPlaneFuelOff)
         end
     elseif command == device_commands.ENGINE_fuel_control_sw then
-        -- print_message_to_user("Fuel Control Switch: "..value)
+        --print_message_to_user("Fuel Control Switch: "..value)
         if value == 1 then
             -- position: manual
             manual_fuel_control_mode_sw = 1
@@ -255,7 +259,7 @@ function SetCommand(command,value)
             manual_fuel_control_mode_sw = 0
         end
     elseif command == device_commands.ENGINE_drop_tanks_sw then
-        -- print_message_to_user("Drop Tanks Switch: "..value)
+        --print_message_to_user("Drop Tanks Switch: "..value)
         if value == 1 then
             -- position: off
             -- TODO implement logic
@@ -309,8 +313,37 @@ function update_egt()
     egt_c:set(egt_c_val:get_WMA(output_egt))
 end
 
-
-
+function update_igniter() 
+    -- this is just sound code and does not affect engine operation in any way
+    -- as-is, you have 20 seconds of sparks total once you move into IGN, 
+    -- If you move into ADJUST earlor if it's sparked for a total of 20 seconds, 
+    -- the throttle must be returned to the OFF position for this sound to play again.
+    -- Once an ignition hook from the EFM is complete, this code can go away with a clear and simple hook.
+    local igniter_countup = igniter_timer
+    if throttle_state==THROTTLE_OFF then -- throttle OFF, reset system for a new startup attempt
+        sound_params.snd_inst_engine_igniter_whirr:set(0.0)
+        sound_params.snd_alws_engine_igniter_spark:set(0.0)
+        igniter_timer = 0
+    elseif throttle_state==THROTTLE_IGN and get_elec_primary_ac_ok() and get_elec_primary_dc_ok() then
+        if igniter_timer == 0 then
+            igniter_timer = 1  -- start ignition timer
+            sound_params.snd_inst_engine_igniter_whirr:set(1.0)
+        elseif igniter_timer >= 1 then
+            if igniter_timer < igniter_max then -- set above
+                sound_params.snd_alws_engine_igniter_spark:set(1.0)
+                sound_params.snd_inst_engine_igniter_whirr:set(1.0) -- play initial sound again returning from ADJ
+                igniter_timer = igniter_countup + 1 -- count it up
+            else -- timer maximum, disable igniter sounds
+               sound_params.snd_inst_engine_igniter_whirr:set(0.0)
+               sound_params.snd_alws_engine_igniter_spark:set(0.0)
+            end
+        end
+    elseif throttle_state==THROTTLE_ADJUST then -- throttle in run, disable igniter sounds
+        sound_params.snd_inst_engine_igniter_whirr:set(0.0)
+        sound_params.snd_alws_engine_igniter_spark:set(0.0)
+        igniter_timer = igniter_max
+    end
+end
 
 local rpm_deci = get_param_handle("RPM_DECI")
 
@@ -325,7 +358,35 @@ function update_rpm()
     rpm_deci:set(rpm)
 end
 
-
+function update_engine_noise()
+    -- airway valve opens to allow huffer air for the first time
+    local rpm = sensor_data.getEngineLeftRPM()
+    if rpm > 1 then
+        sound_params.snd_inst_engine_wind_up:set(1.0)
+    else
+        sound_params.snd_inst_engine_wind_up:set(0.0)
+    end
+    -- engine continuous sounds share the following properties:
+    -- pitch 0.0 at 0% rpm
+    -- pitch 1.0 at 55% rpm (not sure how best to curve this change out)
+    -- pitch 1.235 at 100% rpm (this change seems more or less linear)
+    -- is there a way to smooth out pitch changes? i noice some jets are granular to the rpm percentage.
+    -- engine sound volumes are different depending on rpm.
+    -- we will likely want to be able to tune these numbers individually.
+    -- there may be a need to add one more sound to sweeten everything if it's sounding too tinny (e.g. a continuous low rumble).
+    -- engine turbine turning, audible by 5-10% rpm
+        -- sound_params.snd_alwys_engine_wind_on:set(1.0)
+        -- sound_params.snd_alwys_engine_wind_on:set(0.0)
+    -- engine operation low rpm, audible by 20-25% rpm
+        -- sound_params.snd_alws_engine_operation_lo:set(1.0)
+        -- sound_params.snd_alws_engine_operation_lo:set(0.0)
+    -- engine operation high rpm, audible by 75-80% rpm
+        -- sound_params.snd_alws_engine_operation_hi:set(1.0)
+       -- sound_params.snd_alws_engine_operation_hi:set(0.0)
+    -- engine turbine spool-down (depending on how these other sounds shake out, this might not be needed)
+        -- sound_params.snd_inst_engine_wind_down:set(1.0)
+        -- sound_params.snd_inst_engine_wind_down:set(0.0)
+end
 
 local oil_pressure_psi=WMA(0.15,0)
 --[[
@@ -465,8 +526,9 @@ function update()
     local throttle = sensor_data.getThrottleLeftPosition()
     local gear = get_aircraft_draw_argument_value(0) -- nose gear
 
-
+    update_igniter()
     update_rpm()
+    update_engine_noise()
     update_oil_pressure()
     update_pressure_ratio()
     update_egt()

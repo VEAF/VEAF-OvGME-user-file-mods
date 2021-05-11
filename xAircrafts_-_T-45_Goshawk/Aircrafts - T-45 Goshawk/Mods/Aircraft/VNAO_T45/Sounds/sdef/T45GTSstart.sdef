@@ -1,0 +1,7 @@
+wave = "Effects/T45GTSstart"
+inner_radius = 50
+outer_radius = 150
+gain = 2.0
+pitch = 1.0
+detached = true
+

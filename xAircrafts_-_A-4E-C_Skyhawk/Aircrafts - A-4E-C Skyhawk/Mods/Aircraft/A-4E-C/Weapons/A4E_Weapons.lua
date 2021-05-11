@@ -131,6 +131,127 @@ declare_loadout(	--150 gal tank
 	}
 )
 
+---------EMPTY FUEL TANKS-----------
+declare_loadout(	--400 gal tank
+	{
+		category		= CAT_FUEL_TANKS,
+		CLSID			= "{DFT-400gal_EMPTY}",
+		attribute		=  {wsType_Air,wsType_Free_Fall,wsType_FuelTank,WSTYPE_PLACEHOLDER},
+		Picture			= "fuel400.png",
+		displayName		= _("Fuel Tank 400 gallons (EMPTY)"),
+		Weight_Empty	= 240*POUNDS_TO_KG,                         -- "bobtail" configuration
+		Weight			= 240*POUNDS_TO_KG + 400*GALLON_TO_KG,
+		Cx_pil			= 0.0020,
+		shape_table_data =
+		{
+			{
+				name 	= "DFT_400_GAL_A4E_EMPTY",
+				file	= "DFT_400gal_a4e";
+				life	= 1;
+				fire	= { 0, 1};
+				username	= "DFT_400_GAL_A4E_EMPTY";
+				index	= WSTYPE_PLACEHOLDER;
+			},
+		},
+		Elements	=
+		{
+			{
+				ShapeName	= "DFT_400_GAL_A4E",
+			},
+		},
+	}
+)
+
+declare_loadout(	--300 gal tank
+	{
+		category		= CAT_FUEL_TANKS,
+		CLSID			= "{DFT-300gal_EMPTY}",
+		attribute		=  {wsType_Air,wsType_Free_Fall,wsType_FuelTank,WSTYPE_PLACEHOLDER},
+		Picture			= "fuel300.png",
+		displayName		= _("Fuel Tank 300 gallons (EMPTY)"),
+		Weight_Empty	= 183*POUNDS_TO_KG,                       -- 2 fin configuration
+		Weight			= 183*POUNDS_TO_KG + 300*GALLON_TO_KG,
+		Cx_pil			= 0.0015,
+		shape_table_data =
+		{
+			{
+				name 	= "DFT_300_GAL_A4E_EMPTY",
+				file	= "DFT_300gal_a4e_C";
+				life	= 1;
+				fire	= { 0, 1};
+				username	= "DFT_300_GAL_A4E_EMPTY";
+				index	= WSTYPE_PLACEHOLDER;
+			},
+		},
+		Elements	=
+		{
+			{
+				ShapeName	= "DFT_300_GAL_A4E",
+			},
+		},
+	}
+)
+
+declare_loadout(	--300 gal tank LEFT RIGHT
+	{
+		category		= CAT_FUEL_TANKS,
+		CLSID			= "{DFT-300gal_LR_EMPTY}",
+		attribute		=  {wsType_Air,wsType_Free_Fall,wsType_FuelTank,WSTYPE_PLACEHOLDER},
+		Picture			= "fuel300.png",
+		displayName		= _("Fuel Tank 300 gallons (EMPTY)"),
+		Weight_Empty	= 199*POUNDS_TO_KG,                       -- 2 fin configuration
+		Weight			= 199*POUNDS_TO_KG + 300*GALLON_TO_KG,
+		Cx_pil			= 0.0014,
+		shape_table_data =
+		{
+			{
+				name 	= "DFT_300_GAL_A4E_LR_EMPTY",
+				file	= "DFT_300gal_a4e_LR";
+				life	= 1;
+				fire	= { 0, 1};
+				username	= "DFT_300_GAL_A4E_LR_EMPTY";
+				index	= WSTYPE_PLACEHOLDER;
+			},
+		},
+		Elements	=
+		{
+			{
+				ShapeName	= "DFT_300_GAL_A4E_LR",
+			},
+		},
+	}
+)
+
+declare_loadout(	--150 gal tank
+	{
+		category		= CAT_FUEL_TANKS,
+		CLSID			= "{DFT-150gal_EMPTY}",
+		attribute		=  {wsType_Air,wsType_Free_Fall,wsType_FuelTank,WSTYPE_PLACEHOLDER},
+		Picture			= "fuel150.png",
+		displayName		= _("Fuel Tank 150 gallons (EMPTY)"),
+		Weight_Empty	= 136*POUNDS_TO_KG,
+		Weight			= 136*POUNDS_TO_KG + 150*GALLON_TO_KG,
+		Cx_pil			= 0.0010,
+		shape_table_data =
+		{
+			{
+				name 	= "DFT_150_GAL_A4E_EMPTY",
+				file	= "DFT_150gal_a4e";
+				life	= 1;
+				fire	= { 0, 1};
+				username	= "DFT_150_GAL_A4E_EMPTY";
+				index	= WSTYPE_PLACEHOLDER;
+			},
+		},
+		Elements	=
+		{
+			{
+				ShapeName	= "DFT_150_GAL_A4E",
+			},
+		},
+	}
+)
+
 
 declare_loadout(	--D-704 BUDDY POD
 	{
@@ -1073,7 +1194,7 @@ BLU_3B = {
     mass            = 1.75 * POUNDS_TO_KG * cbu_mult,
     hMin            = 500.0,
     hMax            = 12000.0,
-    Cx              = 0.00005,
+    Cx              = 0.0, --this is the drag taken off the pod (must be zero since these bomblets are not in the airflow (mostly)).
     VyHold          = -100.0,
     Ag              = -1.23,
     fm              = {
@@ -1139,7 +1260,7 @@ BLU_4B = {
     mass            = 1.2 * POUNDS_TO_KG * cbu_mult,
     hMin            = 500.0,
     hMax            = 12000.0,
-    Cx              = 0.00005,
+    Cx              = 0.0, --this is the drag taken off the pod (must be zero since these bomblets are not in the airflow (mostly)).
     VyHold          = -100.0,
     Ag              = -1.23,
     fm              = {

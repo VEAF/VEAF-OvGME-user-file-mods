@@ -24,9 +24,12 @@
 #include "Interface.h"
 #include "AircraftState.h"
 #include "Radio.h"
+#include "FuelSystem2.h"
 #include "Maths.h"
 #include "LuaVM.h"
 #include "LERX.h"
+#include "ILS.h"
+#include "Commands.h"
 
 //============================= Statics ===================================//
 static Scooter::AircraftState* s_state = NULL;
@@ -37,22 +40,35 @@ static Scooter::Airframe* s_airframe = NULL;
 static Scooter::FlightModel* s_fm = NULL;
 static Scooter::Avionics* s_avionics = NULL;
 static Scooter::Radio* s_radio = NULL;
+static Scooter::FuelSystem2* s_fuelSystem = NULL;
 static LuaVM* s_luaVM = NULL;
+static Scooter::ILS* s_ils = NULL;
 
 static std::vector<LERX> s_splines;
 
 //========================== Static Functions =============================//
-static void init();
+static void init( const char* config );
 static void cleanup();
 static inline double rawAOAToUnits( double rawAOA );
 
 //=========================================================================//
 
+//Courtesy of SilentEagle
+static inline int decodeClick( float& value )
+{
+	float deviceID;
+	float normalised = modf( value, &deviceID );
+	value = normalised * 8.0f - 2.0f;
+	return (int)deviceID;
+}
+
 void init(const char* config)
 {
-	
 	s_luaVM = new LuaVM;
-	s_luaVM->dofile( config );
+
+	char configFile[200];
+	sprintf_s( configFile, 200, "%s/Config/config.lua", config );
+	s_luaVM->dofile( configFile );
 	s_luaVM->getSplines( "splines", s_splines );
 
 	s_state = new Scooter::AircraftState;
@@ -63,6 +79,9 @@ void init(const char* config)
 	s_avionics = new Scooter::Avionics( *s_input, *s_state );
 	s_fm = new Scooter::FlightModel( *s_state, *s_input, *s_airframe, *s_engine, *s_interface, s_splines );
 	s_radio = new Scooter::Radio(*s_interface);
+	s_ils = new Scooter::ILS(*s_interface);
+	s_fuelSystem = new Scooter::FuelSystem2( *s_engine, *s_state );
+	
 }
 
 void cleanup()
@@ -76,6 +95,8 @@ void cleanup()
 	delete s_avionics;
 	delete s_fm;
 	delete s_radio;
+	delete s_ils;
+	delete s_fuelSystem;
 
 	s_luaVM = NULL;
 	s_state = NULL;
@@ -86,6 +107,8 @@ void cleanup()
 	s_avionics = NULL;
 	s_fm = NULL;
 	s_radio = NULL;
+	s_ils = NULL;
+	s_fuelSystem = NULL;
 
 	s_splines.clear();
 }
@@ -135,6 +158,10 @@ void ed_fm_simulate(double dt)
 	//Pre update
 	if ( s_interface->getAvionicsAlive() )
 	{
+		//s_sidewinder->init();
+		//s_sidewinder->update();
+		//s_ils->test();
+		//s_ils->update();
 		s_state->setRadarAltitude( s_interface->getRadarAltitude() );
 		s_avionics->setYawDamperPower( s_interface->getYawDamper() > 0.5 );
 		s_fm->setCockpitShakeModifier( s_interface->getCockpitShake() );
@@ -144,9 +171,8 @@ void ed_fm_simulate(double dt)
 		s_airframe->setGearLPosition( s_interface->getGearLeft() );
 		s_airframe->setGearRPosition( s_interface->getGearRight() );
 		s_airframe->setGearNPosition( s_interface->getGearNose() );
-		s_airframe->setDumpingFuel( s_interface->getDumpingFuel() );
 
-		s_airframe->setFuelCapacity( 
+		s_fuelSystem->setFuelCapacity( 
 			s_interface->getLTankCapacity(),
 			s_interface->getCTankCapacity(),
 			s_interface->getRTankCapacity() 
@@ -154,6 +180,7 @@ void ed_fm_simulate(double dt)
 
 		s_avionics->getComputer().setGunsightAngle( s_interface->getGunsightAngle() );
 		s_avionics->getComputer().setTarget( s_interface->getSetTarget(), s_interface->getSlantRange() );
+		s_avionics->getComputer().setPower( s_interface->getCP741Power() );
 
 		s_input->pitchTrim() = s_interface->getPitchTrim();
 		s_input->rollTrim() = s_interface->getRollTrim();
@@ -164,6 +191,10 @@ void ed_fm_simulate(double dt)
 		s_engine->setThrottle( s_interface->getEngineThrottlePosition() );
 		s_engine->setBleedAir( s_interface->getBleedAir() > 0.1 );
 		s_engine->setIgnitors( s_interface->getIgnition() > 0.1 );
+
+		s_state->setGForce( s_interface->getGForce() );
+
+		s_fuelSystem->setBoostPumpPower( s_interface->getElecMonitoredAC() );
 	}
 
 	//Update
@@ -171,6 +202,7 @@ void ed_fm_simulate(double dt)
 	s_radio->update();
 	s_engine->updateEngine(dt);
 	s_airframe->airframeUpdate(dt);
+	s_fuelSystem->update( dt );
 	s_avionics->updateAvionics(dt);
 	s_fm->calculateAero(dt);
 
@@ -186,16 +218,24 @@ void ed_fm_simulate(double dt)
 	s_interface->setStickInputPitch( s_input->pitch() );
 	s_interface->setStickInputRoll( s_input->roll() );
 
-	s_interface->setInternalFuel(s_airframe->getFuelQty(Scooter::Airframe::Tank::INTERNAL));
-	s_interface->setExternalFuel(s_airframe->getFuelQtyExternal());
+	s_interface->setInternalFuel( s_fuelSystem->getFuelQtyInternal() );
+	s_interface->setExternalFuel( s_fuelSystem->getFuelQtyExternal() );
 	s_interface->setAOA( s_state->getAOA() );
 	s_interface->setBeta( s_state->getBeta() );
 	s_interface->setAOAUnits( rawAOAToUnits(s_state->getAOA()) );
 	s_interface->setValidSolution( s_avionics->getComputer().getSolution() );
 	s_interface->setTargetSet( s_avionics->getComputer().getTargetSet() );
+	s_interface->setInRange( s_avionics->getComputer().inRange() );
 
 	s_interface->setLeftSlat( s_airframe->getSlatLPosition() );
 	s_interface->setRightSlat( s_airframe->getSlatRPosition() );
+
+	s_interface->setUsingFFB( s_input->getFFBEnabled() );
+
+	//Starting to try to move some of these tests into the cpp. Make it less spaghetti.
+	//Ultimately we should move this into the avionics class.
+	s_interface->setFuelTransferCaution( s_interface->getElecPrimaryAC() && (s_interface->getMasterTest() || s_fuelSystem->getFuelTransferCaution()) );
+	s_interface->setFuelBoostCaution( s_interface->getElecPrimaryAC() && (s_interface->getMasterTest() || s_fuelSystem->getFuelBoostCaution()) );
 }
 
 void ed_fm_set_atmosphere(
@@ -226,6 +266,7 @@ void ed_fm_set_current_mass_state
 	double moment_of_inertia_z
 )
 {
+	//printf( "Mass: %lf\n", mass );
 	s_airframe->setMass(mass);
 	Vec3 com = Vec3( center_of_mass_x, center_of_mass_y, center_of_mass_z );
 	s_state->setCOM( com );
@@ -351,9 +392,10 @@ void ed_fm_set_command
 	case Scooter::Control::RIGHT_BRAKE:
 		s_input->brakeRight( value );
 		break;
-	/*case Scooter::Control::HOOK_TOGGLE:
-		s_input->hook() = !s_input->hook();
-		break;*/
+	case DEVICE_COMMANDS_WHEELBRAKE_AXIS:
+		s_input->brakeLeft( value );
+		s_input->brakeRight( value );
+		break;
 	case Scooter::Control::RUDDER_LEFT_START:
 		s_input->yawAxis().keyDecrease();
 		break;
@@ -382,13 +424,13 @@ void ed_fm_set_command
 		s_input->pitchAxis().keyDecrease();
 		break;
 	case Scooter::Control::PITCH_DOWN_STOP:
-		s_input->pitchAxis().reset();
+		s_input->pitchAxis().stop();
 		break;
 	case Scooter::Control::PITCH_UP_START:
 		s_input->pitchAxis().keyIncrease();
 		break;
 	case Scooter::Control::PITCH_UP_STOP:
-		s_input->pitchAxis().reset();
+		s_input->pitchAxis().stop();
 		break;
 	case Scooter::Control::THROTTLE_DOWN_START:
 		//Throttle is inverted for some reason in DCS
@@ -400,32 +442,54 @@ void ed_fm_set_command
 	case Scooter::Control::THROTTLE_UP_START:
 		s_input->throttleAxis().keyDecrease();
 		break;
-	case Scooter::Control::BRAKE_ALL_START:
+	case KEYS_BRAKESON:
 		s_input->leftBrakeAxis().keyIncrease();
 		s_input->rightBrakeAxis().keyIncrease();
 		break;
-	case Scooter::Control::BRAKE_ALL_STOP:
+	case KEYS_BRAKESOFF:
 		s_input->leftBrakeAxis().reset();
 		s_input->rightBrakeAxis().reset();
 		break;
 
-	case Scooter::Control::BRAKE_LEFT_START:
+	case KEYS_BRAKESONLEFT:
 		s_input->leftBrakeAxis().keyIncrease();
 		break;
-	case Scooter::Control::BRAKE_LEFT_STOP:
+	case KEYS_BRAKESOFFLEFT:
 		s_input->leftBrakeAxis().reset();
 		break;
-	case Scooter::Control::BRAKE_RIGHT_START:
+	case KEYS_BRAKESONRIGHT:
 		s_input->rightBrakeAxis().keyIncrease();
 		break;
-	case Scooter::Control::BRAKE_RIGHT_STOP:
+	case KEYS_BRAKESOFFRIGHT:
 		s_input->rightBrakeAxis().reset();
 		break;
-	case Scooter::Control::RADIO_PTT:
+	case KEYS_RADIO_PTT:
 		s_radio->toggleRadioMenu();
 		break;
+	case KEYS_TOGGLESLATSLOCK:
+		//Weight on wheels plus lower than 50 kts.
+		if ( s_airframe->getNoseCompression() > 0.01 && magnitude(s_state->getLocalSpeed()) < 25.0 )
+			s_airframe->toggleSlatsLocked();
+		break;
 	default:
-		; //printf( "number %d: %lf\n", command, value );
+		;// printf( "number %d: %lf\n", command, value );
+	}
+
+	if ( command >= 3000 && command < 4000 )
+	{
+		int deviceId = decodeClick( value );
+
+		//Do this when we have more than one device to check.
+		/*switch ( deviceId )
+		{
+
+		}*/
+
+		if ( s_fuelSystem->handleInput( command, value ) )
+			return;
+
+		if ( s_avionics->handleInput( command, value ) )
+			return;
 	}
 }
 
@@ -459,23 +523,26 @@ bool ed_fm_change_mass  (double & delta_mass,
 						double & delta_mass_moment_of_inertia_z
 						)
 {
-	Scooter::Airframe::Tank tank = s_airframe->getSelectedTank();
-	if ( tank == Scooter::Airframe::Tank::DONT_TOUCH )
+	Scooter::FuelSystem2::Tank tank = s_fuelSystem->getSelectedTank();
+	if ( tank == Scooter::FuelSystem2::NUMBER_OF_TANKS )
 	{
-		s_airframe->setSelectedTank( Scooter::Airframe::Tank::INTERNAL );
+		s_fuelSystem->setSelectedTank( Scooter::FuelSystem2::TANK_FUSELAGE );
 		return false;
 	}
 
-	Vec3 pos = s_airframe->getFuelPos(tank);
+	Vec3 pos = s_fuelSystem->getFuelPos(tank);
 	//Vec3 r = pos - s_state->getCOM();
 	
-	delta_mass = s_airframe->getFuelQtyDelta(tank);
-	s_airframe->setFuelPrevious( tank );
+	delta_mass = s_fuelSystem->getFuelQtyDelta(tank);
+	s_fuelSystem->setFuelPrevious( tank );
+
+	//printf( "Tank %d, Pos: %lf, %lf, %lf, dm: %lf\n", tank, pos.x, pos.y, pos.z, delta_mass );
+
 	delta_mass_pos_x = pos.x;
 	delta_mass_pos_y = pos.y;
 	delta_mass_pos_z = pos.z;
 
-	s_airframe->setSelectedTank((Scooter::Airframe::Tank)((int)tank + 1));
+	s_fuelSystem->setSelectedTank((Scooter::FuelSystem2::Tank)((int)tank + 1));
 	return true;
 }
 /*
@@ -484,12 +551,15 @@ bool ed_fm_change_mass  (double & delta_mass,
 */
 void ed_fm_set_internal_fuel(double fuel)
 {
-	s_airframe->setFuelState(Scooter::Airframe::Tank::INTERNAL, s_state->getCOM(), fuel);
+	//printf( "Set internal fuel: %lf\n", fuel );
+	s_fuelSystem->setInternal( fuel );
 }
 
 void ed_fm_refueling_add_fuel( double fuel )
 {
-	s_airframe->addFuel( fuel );
+	//printf( "Add fuel: %lf\n", fuel);
+	bool airborne = ! (s_airframe->getNoseCompression() > 0.0) ;
+	s_fuelSystem->addFuel( fuel, airborne );
 }
 
 /*
@@ -497,8 +567,9 @@ void ed_fm_refueling_add_fuel( double fuel )
 */
 double ed_fm_get_internal_fuel()
 {
-	return s_airframe->getFuelQty(Scooter::Airframe::Tank::INTERNAL);
+	return s_fuelSystem->getFuelQtyInternal();
 }
+
 /*
 	set external fuel volume for each payload station , called for weapon init and on reload
 */
@@ -509,14 +580,14 @@ void  ed_fm_set_external_fuel (int	 station,
 								double z)
 {
 	//printf( "Station: %d, Fuel: %lf, Z: %lf, COM %lf\n", station, fuel, z, s_state->getCOM().z );
-	s_airframe->setFuelState((Scooter::Airframe::Tank)station, Vec3(x, y, z), fuel);
+	s_fuelSystem->setFuelQty( (Scooter::FuelSystem2::Tank)(station + 1), Vec3( x, y, z ), fuel );
 }
 /*
 	get external fuel volume 
 */
 double ed_fm_get_external_fuel ()
 {
-	return s_airframe->getFuelQty(Scooter::Airframe::Tank::LEFT_EXT) + s_airframe->getFuelQty(Scooter::Airframe::Tank::CENTRE_EXT) + s_airframe->getFuelQty(Scooter::Airframe::Tank::RIGHT_EXT);
+	return s_fuelSystem->getFuelQtyExternal();
 }
 
 void ed_fm_set_draw_args (EdDrawArgument * drawargs,size_t size)
@@ -590,10 +661,10 @@ double ed_fm_get_param(unsigned index)
 		return 600.0;
 
 	case ED_FM_OXYGEN_SUPPLY:
-		return 101000.0;
+		return s_avionics->getOxygen() ? 101000.0 : 0.0;
 
 	case ED_FM_FLOW_VELOCITY:
-		return 1.0;
+		return s_avionics->getOxygen() ? 1.0 : 0.0;
 
 	case ED_FM_ENGINE_1_FUEL_FLOW:
 		return s_engine->getFuelFlow();
@@ -616,9 +687,10 @@ double ed_fm_get_param(unsigned index)
 	case ED_FM_SUSPENSION_0_WHEEL_SELF_ATTITUDE:
 		return s_interface->getNWS() > 0.5 ? 0.0 : 1.0;
 	case ED_FM_SUSPENSION_0_WHEEL_YAW:
-		return s_interface->getNWS() > 0.5 ? -s_input->yaw()/4.0 : 0.0;
+		return s_interface->getNWS() > 0.5 ? -s_input->yaw() * 0.5 : 0.0; //rotation to 45 degrees, half 90 (range of the wheel)
 	case ED_FM_STICK_FORCE_CENTRAL_PITCH:  // i.e. trimmered position where force feeled by pilot is zero
-		return s_input->pitchTrim();
+		s_input->setFFBEnabled(true);
+		return s_airframe->getElevatorZeroForceDeflection();
 	case ED_FM_STICK_FORCE_FACTOR_PITCH:
 		return s_input->getFFBPitchFactor();
 	//case ED_FM_STICK_FORCE_SHAKE_AMPLITUDE_PITCH:
@@ -708,6 +780,7 @@ void ed_fm_cold_start()
 	s_engine->coldInit();
 	s_avionics->coldInit();
 	s_state->coldInit();
+	s_fuelSystem->coldInit();
 }
 
 void ed_fm_hot_start()
@@ -718,6 +791,7 @@ void ed_fm_hot_start()
 	s_engine->hotInit();
 	s_avionics->hotInit();
 	s_state->hotInit();
+	s_fuelSystem->hotInit();
 }
 
 void ed_fm_hot_start_in_air()
@@ -728,6 +802,7 @@ void ed_fm_hot_start_in_air()
 	s_engine->airborneInit();
 	s_avionics->airborneInit();
 	s_state->airborneInit();
+	s_fuelSystem->airborneInit();
 }
 
 void ed_fm_repair()
@@ -792,10 +867,7 @@ void ed_fm_set_plugin_data_install_path ( const char* path )
 	LOG( "Begin Log, %s\n", srcvers );
 	LOG( "Initialising Components...\n" );
 
-	char configFile[200];
-	sprintf_s( configFile, 200, "%s/Config/config.lua", path );
-
-	init(configFile);
+	init(path);
 
 	g_safeToRun = isSafeContext();
 }
@@ -834,4 +906,10 @@ bool ed_fm_LERX_vortex_update( unsigned idx, LERX_vortex& out )
 	}
 
 	return false;
+}
+
+void ed_fm_set_immortal( bool value )
+{
+	if ( value )
+		printf( "Nice try!\n" );
 }

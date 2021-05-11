@@ -13,10 +13,24 @@ dev:listen_command(device_commands.arc51_xmitmode)
 dev:listen_command(device_commands.arc51_volume)
 dev:listen_command(device_commands.arc51_squelch)
 dev:listen_command(device_commands.arc51_freq_preset)
-dev:listen_command(device_commands.arc51_freq_XXxxx)
-dev:listen_command(device_commands.arc51_freq_xxXxx)
-dev:listen_command(device_commands.arc51_freq_xxxXX)
+dev:listen_command(device_commands.arc51_freq_XXooo)
+dev:listen_command(device_commands.arc51_freq_ooXoo)
+dev:listen_command(device_commands.arc51_freq_oooXX)
 --dev:listen_command(Keys.radio_ptt)
+--plusnine uhf frequency keybinds
+dev:listen_command(Keys.UHFModeInc)
+dev:listen_command(Keys.UHFModeDec)
+dev:listen_command(Keys.UHF10MHzInc)
+dev:listen_command(Keys.UHF10MHzDec)
+dev:listen_command(Keys.UHF1MHzInc)
+dev:listen_command(Keys.UHF1MHzDec)
+dev:listen_command(Keys.UHF50kHzInc)
+dev:listen_command(Keys.UHF50kHzDec)
+dev:listen_command(Keys.UHFVolumeInc)
+dev:listen_command(Keys.UHFVolumeDec)
+dev:listen_command(Keys.UHFVolumeStartUp)
+dev:listen_command(Keys.UHFVolumeStartDown)
+dev:listen_command(Keys.UHFVolumeStop)
 
 efm_data_bus = get_efm_data_bus()
 
@@ -52,6 +66,7 @@ local arc51_preset = 0
 local arc51_frequency = 256E6
 local arc51_change = false
 local arc51_volume = 0
+local arc51_volume_moving = 0
 local arc51_squelch = 0
 
 local arc51_freq_XXxxx = 0
@@ -73,7 +88,9 @@ end
 
 function post_initialize()
     uhf_radio_device = GetDevice(devices.UHF_RADIO)
+	arc51_set_knobs_to_frequency(arc51_radio_presets[1])
 
+	dev:performClickableAction(device_commands.arc51_volume, 0.7, false)
     local birth = LockOn_Options.init_conditions.birth_place
 
     if birth == "GROUND_HOT" or birth == "AIR_HOT" then
@@ -102,8 +119,9 @@ function fnc_arc51_volume(value)
         dev:performClickableAction(device_commands.arc51_volume, 0.2, false)
     elseif value > 0.8 then
         dev:performClickableAction(device_commands.arc51_volume, 0.8, false)
+
     else
-        arc51_value = value
+        arc51_volume = value
     end
 end
 
@@ -138,14 +156,45 @@ local command_table = {
     [device_commands.arc51_volume] = fnc_arc51_volume,
     [device_commands.arc51_squelch] = fnc_arc51_squelch,
     [device_commands.arc51_freq_preset] = fnc_arc51_freq_preset,
-    [device_commands.arc51_freq_XXxxx] = fnc_arc51_freq_XXxxx,
-    [device_commands.arc51_freq_xxXxx] = fnc_arc51_freq_xxXxx,
-    [device_commands.arc51_freq_xxxXX] = fnc_arc51_freq_xxxXX,
+    [device_commands.arc51_freq_XXooo] = fnc_arc51_freq_XXxxx,
+    [device_commands.arc51_freq_ooXoo] = fnc_arc51_freq_xxXxx,
+    [device_commands.arc51_freq_oooXX] = fnc_arc51_freq_xxxXX,
 }
 
 function SetCommand(command,value)
     if command_table[command] ~= nil then
         command_table[command](value)
+    --ARC-51 UHF keybinds added by plusnine
+    elseif command == Keys.UHFModeInc and arc51_mode < 3 then
+        dev:performClickableAction(device_commands.arc51_mode, clamp(arc51_mode / 10 + 0.1, 0, 0.3), false)
+    elseif command == Keys.UHFModeDec and arc51_mode > 0 then
+        dev:performClickableAction(device_commands.arc51_mode, clamp(arc51_mode / 10 - 0.1, 0, 0.3), false)
+    elseif command == Keys.UHF10MHzInc and arc51_freq_XXxxx < 0.85 then
+        dev:performClickableAction(device_commands.arc51_freq_XXooo, arc51_freq_XXxxx + 0.05,false)
+    elseif command == Keys.UHF10MHzDec and arc51_freq_XXxxx > 0 then
+        dev:performClickableAction(device_commands.arc51_freq_XXooo, arc51_freq_XXxxx - 0.05,false)
+    elseif command == Keys.UHF10MHzInc and arc51_freq_XXxxx < 0.85 then
+        dev:performClickableAction(device_commands.arc51_freq_XXooo, arc51_freq_XXxxx + 0.05,false)
+    elseif command == Keys.UHF10MHzDec and arc51_freq_XXxxx > 0 then
+        dev:performClickableAction(device_commands.arc51_freq_XXooo, arc51_freq_XXxxx - 0.05,false)
+    elseif command == Keys.UHF1MHzInc and arc51_freq_xxXxx < 0.9 then
+        dev:performClickableAction(device_commands.arc51_freq_ooXoo, arc51_freq_xxXxx + 0.10,false)
+    elseif command == Keys.UHF1MHzDec and arc51_freq_xxXxx > 0 then
+        dev:performClickableAction(device_commands.arc51_freq_ooXoo, arc51_freq_xxXxx - 0.10,false)
+    elseif command == Keys.UHF50kHzInc and arc51_freq_xxxXX < 0.95 then
+        dev:performClickableAction(device_commands.arc51_freq_oooXX, arc51_freq_xxxXX + 0.05,false)
+    elseif command == Keys.UHF50kHzDec and arc51_freq_xxxXX > 0 then
+        dev:performClickableAction(device_commands.arc51_freq_oooXX, arc51_freq_xxxXX - 0.05,false)
+    elseif command == Keys.UHFVolumeInc and arc51_volume < 0.8 then
+        dev:performClickableAction(device_commands.arc51_volume, arc51_volume + 0.02,false)
+    elseif command == Keys.UHFVolumeDec and arc51_volume > 0.2 then
+        dev:performClickableAction(device_commands.arc51_volume, arc51_volume - 0.02,false)
+    elseif command == Keys.UHFVolumeStartUp then
+        arc51_volume_moving = 1
+    elseif command == Keys.UHFVolumeStartDown then
+        arc51_volume_moving = -1
+    elseif command == Keys.UHFVolumeStop then
+        arc51_volume_moving = 0
     end
 end
 
@@ -163,6 +212,24 @@ function arc51_get_current_state()
             return ARC_STATE_ON_GUARD
         end
     end
+end
+
+function arc51_set_knobs_to_frequency(value)
+	value = value - 220
+	
+	--I absolutely fucking hate floats.
+	--This should be entirely represented by
+	--integers but NOOOO lua doesn't need integers
+	--because everything is just a magical number.
+	--TODO clean my conscience
+	XXxxx = math.floor(value / 10)
+	xxXxx = math.floor(value % 10)
+	xxxXX = round( (value % 1) * 100 )
+	
+	
+	dev:performClickableAction(device_commands.arc51_freq_XXooo, XXxxx / 20, false)
+	dev:performClickableAction(device_commands.arc51_freq_ooXoo, xxXxx / 10, false)
+	dev:performClickableAction(device_commands.arc51_freq_oooXX, xxxXX / 100, false)
 end
 
 function arc51_update_frequency()
@@ -201,7 +268,6 @@ function arc51_update()
         arc51_change = false
     end
 
-    
     if arc51_state == ARC51_STATE_ON_PRESET or arc51_state == ARC51_STATE_ON_MANUAL or arc51_state == ARC51_STATE_ON_GUARD then
         efm_data_bus.fm_setRadioPower(1.0)
         --print_message_to_user("Power ON "..tostring(uhf_radio_device:is_on()))
@@ -209,12 +275,15 @@ function arc51_update()
     else
         efm_data_bus.fm_setRadioPower(0.0)
     end
-    
 
 end
 
 function update()
     arc51_update()
+
+    if arc51_volume_moving ~= 0 then
+        dev:performClickableAction(device_commands.arc51_volume, clamp(arc51_volume + 0.03 * arc51_volume_moving, 0.2, 0.8), false)
+    end
 end
 
 need_to_be_closed = false -- close lua state after initialization

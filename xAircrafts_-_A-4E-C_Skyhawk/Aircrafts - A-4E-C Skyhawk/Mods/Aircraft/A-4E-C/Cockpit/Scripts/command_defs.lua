@@ -67,6 +67,21 @@ Keys =
     PlaneChgTargetPrev              = 1315,   -- iCommandPlaneUFC_STEER_DOWN
 
     -- add custom commands here --
+    --EFM SPECIFIC BINDS
+	nws_engage						 = __custom_counter(),
+	nws_disengage					 = __custom_counter(),
+    radio_ptt						 = __custom_counter(),
+    BrakesOnLeft                   = __custom_counter(),
+    BrakesOffLeft                  = __custom_counter(),
+    BrakesOnRight                  = __custom_counter(),
+    BrakesOffRight                 = __custom_counter(),
+    BrakesOn                        = __custom_counter(),
+    BrakesOff                       = __custom_counter(),
+    ToggleSlatsLock                = __custom_counter(),
+	--END EFM SPECIFIC BINDS
+
+
+
     PlaneFlapsStop                  = __custom_counter(),
     PlaneFlapsUpHotas               = __custom_counter(),
     PlaneFlapsDownHotas             = __custom_counter(),
@@ -127,29 +142,17 @@ Keys =
     NavILSNext                      = __custom_counter(),
     NavILSPrev                      = __custom_counter(),
 
-    NavPPosLatInc                   = __custom_counter(),  -- increment present position latitude (north)
-    NavPPosLatDec                   = __custom_counter(),
-    NavPPosLonInc                   = __custom_counter(),  -- increment present position longitude (east)
-    NavPPosLonDec                   = __custom_counter(),
-    NavDestLatInc                   = __custom_counter(),  -- increment destination latitude (north)
-    NavDestLatDec                   = __custom_counter(),
-    NavDestLonInc                   = __custom_counter(),  -- increment destination longitude (east)
-    NavDestLonDec                   = __custom_counter(),
-
-    NavDopplerOff                   = __custom_counter(),
-    NavDopplerStandby               = __custom_counter(),
-    NavDopplerLand                  = __custom_counter(),
-    NavDopplerSea                   = __custom_counter(),
-    NavDopplerTest                  = __custom_counter(),
+    NavPPosLatInc                   = __custom_counter(),  -- no longer used. ready for removal
+    NavPPosLatDec                   = __custom_counter(),  -- no longer used. ready for removal
+    NavPPosLonInc                   = __custom_counter(),  -- no longer used. ready for removal
+    NavPPosLonDec                   = __custom_counter(),  -- no longer used. ready for removal
+    NavDestLatInc                   = __custom_counter(),  -- no longer used. ready for removal
+    NavDestLatDec                   = __custom_counter(),  -- no longer used. ready for removal
+    NavDestLonInc                   = __custom_counter(),  -- no longer used. ready for removal
+    NavDestLonDec                   = __custom_counter(),  -- no longer used. ready for removal
 
     NavDopplerCW                    = __custom_counter(),
     NavDopplerCCW                   = __custom_counter(),
-
-    NavSelectTest                   = __custom_counter(),
-    NavSelectOff                    = __custom_counter(),
-    NavSelectStandby                = __custom_counter(),
-    NavSelectD1                     = __custom_counter(),
-    NavSelectD2                     = __custom_counter(),
 
     NavSelectCW                     = __custom_counter(),
     NavSelectCCW                    = __custom_counter(),
@@ -235,11 +238,6 @@ Keys =
     AFCSHotasAlt                    = __custom_counter(),  -- for warthog hotas
     AFCSHotasEngage                 = __custom_counter(),  -- for warthog hotas
 
-	--EFM SPECIFIC BINDS
-    BrakesOn                        = __custom_counter(),
-    BrakesOff                       = __custom_counter(),
-	--END EFM SPECIFIC BINDS
-
     Tune1                           = __custom_counter(),
     Tune2                           = __custom_counter(),
     Tune3                           = __custom_counter(),
@@ -292,15 +290,59 @@ Keys =
     AWRSModeSelCCW                  = __custom_counter(),
     AWRSModeSelCW                   = __custom_counter(),
 	
-	--EFM SPECIFIC BINDS
-	nws_engage						 = __custom_counter(),
-	nws_disengage					 = __custom_counter(),
-    radio_ptt						 = __custom_counter(),
-    BrakesOnLeft                   = __custom_counter(),
-    BrakesOffLeft                  = __custom_counter(),
-    BrakesOnRight                  = __custom_counter(),
-    BrakesOffRight                 = __custom_counter(),
-	--END EFM SPECIFIC BINDS
+    AFCSStabAugToggle              = __custom_counter(),
+    OxygenToggle                   = __custom_counter(),
+    RadarAltToggle                 = __custom_counter(),
+    RadarAltWarningStartUp         = __custom_counter(),
+    RadarAltWarningStartDown       = __custom_counter(),
+    RadarAltWarningStop            = __custom_counter(),
+    UHFModeInc                     = __custom_counter(),
+    UHFModeDec                     = __custom_counter(),
+    UHF10MHzInc                    = __custom_counter(),
+    UHF10MHzDec                    = __custom_counter(),
+    UHF1MHzInc                     = __custom_counter(),
+    UHF1MHzDec                     = __custom_counter(),
+    UHF50kHzInc                    = __custom_counter(),
+    UHF50kHzDec                    = __custom_counter(),
+    UHFVolumeInc                   = __custom_counter(),
+    UHFVolumeDec                   = __custom_counter(),
+    UHFVolumeStartUp               = __custom_counter(),
+    UHFVolumeStartDown             = __custom_counter(),
+    UHFVolumeStop                  = __custom_counter(),
+    TacanVolumeStartUp             = __custom_counter(),
+    TacanVolumeStartDown           = __custom_counter(),
+    TacanVolumeStop                = __custom_counter(),
+    ecm_select_cw                  = __custom_counter();
+    ecm_select_ccw                 = __custom_counter();
+    ecm_InnerKnobInc               = __custom_counter();
+    ecm_InnerKnobDec               = __custom_counter();
+    ecm_InnerKnobStartUp           = __custom_counter();
+    ecm_InnerKnobStartDown         = __custom_counter();
+    ecm_InnerKnobStop              = __custom_counter();
+    ecm_OuterKnobInc               = __custom_counter();
+    ecm_OuterKnobDec               = __custom_counter();
+    ecm_OuterKnobStartUp           = __custom_counter();
+    ecm_OuterKnobStartDown         = __custom_counter();
+    ecm_OuterKnobStop              = __custom_counter();
+    GunsightElevationInc           = __custom_counter();
+    GunsightElevationDec           = __custom_counter();
+    GunsightElevationStartUp       = __custom_counter();
+    GunsightElevationStartDown     = __custom_counter();
+    GunsightElevationStop          = __custom_counter();
+    GunsightBrightnessInc          = __custom_counter();
+    GunsightBrightnessDec          = __custom_counter();
+    GunsightBrightnessStartUp      = __custom_counter();
+    GunsightBrightnessStartDown    = __custom_counter();
+    GunsightBrightnessStop         = __custom_counter();
+    GunsightDayNightToggle         = __custom_counter();
+    MissileVolumeInc               = __custom_counter();
+    MissileVolumeDec               = __custom_counter();
+    MissileVolumeStartUp           = __custom_counter();
+    MissileVolumeStartDown         = __custom_counter();
+    MissileVolumeStop              = __custom_counter();
+    AltPressureStartUp             = __custom_counter();
+    AltPressureStartDown           = __custom_counter();
+    AltPressureStop                = __custom_counter();
 }
 
 start_command   = 3000
@@ -421,9 +463,9 @@ device_commands =
     arc51_volume                    = __counter(),
     arc51_squelch                   = __counter(),
     arc51_freq_preset               = __counter(),
-    arc51_freq_XXxxx                = __counter(),
-    arc51_freq_xxXxx                = __counter(),
-    arc51_freq_xxxXX                = __counter(),
+    arc51_freq_XXooo                = __counter(),
+    arc51_freq_ooXoo                = __counter(),
+    arc51_freq_oooXX                = __counter(),
 
     clock_stopwatch                 = __counter(),
 
@@ -506,4 +548,7 @@ device_commands =
     right_wheelbrake_AXIS           = __counter(),
 
     AOA_dimming_wheel_AXIS          = __counter(),
+
+    dest_lat_slew                   = __counter(),
+    dest_lon_slew                   = __counter(),
 }

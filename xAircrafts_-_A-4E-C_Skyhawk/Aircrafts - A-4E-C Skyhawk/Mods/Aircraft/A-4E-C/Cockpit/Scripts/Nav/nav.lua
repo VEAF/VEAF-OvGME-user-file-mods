@@ -105,6 +105,10 @@ local asn41_magvar_push_state = 0
 local asn41_windspeed_push_state = 0
 local asn41_winddir_push_state = 0
 
+local dest_lat_slew_state = 0
+local dest_lon_slew_state = 0
+local asn41_slew_rate = 1
+
 -- asn-41 shared output data
 local asn41_valid = get_param_handle("ASN41-VALID")
 local asn41_bearing = get_param_handle("ASN41-BEARING")     -- calculated magnetic bearing to target
@@ -185,6 +189,7 @@ local bdhi_dme_xxX = get_param_handle("BDHI_DME_xxX")
 tacan_modelist = {"OFF", "REC", "T/R", "ILS"}
 local tacan_mode = "OFF"
 local tacan_volume = 0
+local tacan_volume_moving = 0
 local tacan_ch_major = 0
 local tacan_ch_minor = 1
 local tacan_channel = 1
@@ -232,8 +237,23 @@ dev:listen_command(Keys.NavReset)
 --dev:listen_command(Keys.NavTCNPrev)
 dev:listen_command(Keys.NavNDBNext)
 dev:listen_command(Keys.NavNDBPrev)
+dev:listen_command(Keys.NavSelectCW)
+dev:listen_command(Keys.NavSelectCCW)
+dev:listen_command(Keys.NavDopplerCW)
+dev:listen_command(Keys.NavDopplerCCW)
 dev:listen_command(Keys.PlaneChgTargetNext)
 dev:listen_command(Keys.PlaneChgTargetPrev)
+dev:listen_command(Keys.TacanModeInc)
+dev:listen_command(Keys.TacanModeDec)
+dev:listen_command(Keys.TacanChMajorInc)
+dev:listen_command(Keys.TacanChMajorDec)
+dev:listen_command(Keys.TacanChMinorInc)
+dev:listen_command(Keys.TacanChMinorDec)
+dev:listen_command(Keys.TacanVolumeInc)
+dev:listen_command(Keys.TacanVolumeDec)
+dev:listen_command(Keys.TacanVolumeStartUp)
+dev:listen_command(Keys.TacanVolumeStartDown)
+dev:listen_command(Keys.TacanVolumeStop)
 dev:listen_command(device_commands.doppler_select)
 dev:listen_command(device_commands.doppler_memory_test)
 dev:listen_command(device_commands.nav_select)
@@ -422,7 +442,27 @@ function SetCommand(command,value)
         asn41_input = asn41_inputlist[ round((value*10)+1,0) ]
     elseif command == device_commands.bdhi_mode then
         bdhi_mode = bdhi_modelist[ value+2 ]   -- -1,0,1
-
+    --plusnine added mode switch (could probably be more efficient, but it works)
+    elseif command == Keys.NavDopplerCW then
+        if apn153_input == "OFF" then
+            dev:performClickableAction(device_commands.doppler_select, 0.1, false) -- set STBY
+        elseif apn153_input == "STBY" then
+            dev:performClickableAction(device_commands.doppler_select, 0.2, false) -- set LAND
+        elseif apn153_input == "LAND" then
+            dev:performClickableAction(device_commands.doppler_select, 0.3, false) -- set SEA
+        elseif apn153_input == "SEA" then
+            dev:performClickableAction(device_commands.doppler_select, 0.4, false) -- set TEST
+        end
+    elseif command == Keys.NavDopplerCCW then
+        if apn153_input == "TEST" then
+            dev:performClickableAction(device_commands.doppler_select, 0.3, false) -- set SEA
+        elseif apn153_input == "SEA" then
+            dev:performClickableAction(device_commands.doppler_select, 0.2, false) -- set LAND
+        elseif apn153_input == "LAND" then
+            dev:performClickableAction(device_commands.doppler_select, 0.1, false) -- set STBY
+        elseif apn153_input == "STBY" then
+            dev:performClickableAction(device_commands.doppler_select, 0.0, false) -- set OFF
+        end
 
     ----------------------------------
     -- NAV panel knob pushstates
@@ -460,27 +500,31 @@ function SetCommand(command,value)
     -- NAV panel knobs
     ----------------------------------
     elseif command == device_commands.ppos_lat then
+        value = round(value, 3) -- round the returned value. smallest increment is 0.015
         if asn41_state ~= "asn41-test" and ppos_lat_push_state == 1 then
             -- gain 0.1 so 0.015 per "tick", we want increments of 0.01 or less
             -- divide by 15 = 0.001 per tick, then multiply by 10
             asn41_ppos_lat_offset = asn41_ppos_lat_offset + (value*10/15)
         end
     elseif command == device_commands.ppos_lon then
+        value = round(value, 3) -- round the returned value. smallest increment is 0.015
         if asn41_state ~= "asn41-test" and ppos_lon_push_state == 1 then
             asn41_ppos_lon_offset = asn41_ppos_lon_offset - (value*10/15) -- "positive" input = west which is negative lon
         end
     elseif command == device_commands.dest_lat then
-        if dest_lat_push_state == 1 and asn41_state == "asn41-off" or asn41_state == "asn41-stby" or asn41_state == "asn41-d1" then
+        value = round(value, 3) -- round the returned value. smallest increment is 0.015
+        if dest_lat_push_state == 1 and (asn41_state == "asn41-off" or asn41_state == "asn41-stby") then
             asn41_d1_lat_offset = asn41_d1_lat_offset + (value*10/15)
-        elseif asn41_state == "asn41-d2" and dest_lat_push_state == 1 then
-            asn41_d2_lat_offset = asn41_d2_lat_offset + (value*10/15)
         end
     elseif command == device_commands.dest_lon then
-        if dest_lon_push_state == 1 and asn41_state == "asn41-off" or asn41_state == "asn41-stby" or asn41_state == "asn41-d1" then
+        value = round(value, 3) -- round the returned value. smallest increment is 0.015
+        if dest_lon_push_state == 1 and (asn41_state == "asn41-off" or asn41_state == "asn41-stby") then
             asn41_d1_lon_offset = asn41_d1_lon_offset - (value*10/15) -- "positive" input = west which is negative lon
-        elseif asn41_state == "asn41-d2" and dest_lon_push_state == 1 then
-            asn41_d2_lon_offset = asn41_d2_lon_offset - (value*10/15) -- "positive" input = west which is negative lon
         end
+    elseif command == device_commands.dest_lat_slew then
+        dest_lat_slew_state = value
+    elseif command == device_commands.dest_lon_slew then
+        dest_lon_slew_state = value
     elseif command == device_commands.asn41_magvar then
         if asn41_state ~= "asn41-test" and asn41_magvar_push_state == 1 then
             asn41_magvar_offset = asn41_magvar_offset + (value*100/15) -- 0.015 per click * 100/15 = ~0.1
@@ -509,7 +553,27 @@ function SetCommand(command,value)
             mridx = #mr
         end
         set_d1_xy(mr[mridx].x, mr[mridx].y)
-
+    --plusnine added mode switch (could probably be more efficient, but it works)
+    elseif command == Keys.NavSelectCW then
+        if asn41_input == "TEST" then
+            dev:performClickableAction(device_commands.nav_select, 0.1, false) -- set OFF
+        elseif asn41_input == "OFF" then
+            dev:performClickableAction(device_commands.nav_select, 0.2, false) -- set STBY
+        elseif asn41_input == "STBY" then
+            dev:performClickableAction(device_commands.nav_select, 0.3, false) -- set D1
+        elseif asn41_input == "D1" then
+            dev:performClickableAction(device_commands.nav_select, 0.4, false) -- set D2
+        end
+    elseif command == Keys.NavSelectCCW then
+        if asn41_input == "D2" then
+            dev:performClickableAction(device_commands.nav_select, 0.3, false) -- set D1
+        elseif asn41_input == "D1" then
+            dev:performClickableAction(device_commands.nav_select, 0.2, false) -- set STBY
+        elseif asn41_input == "STBY" then
+            dev:performClickableAction(device_commands.nav_select, 0.1, false) -- set OFF
+        elseif asn41_input == "OFF" then
+            dev:performClickableAction(device_commands.nav_select, 0.0, false) -- set TEST
+        end
     ---------------------------------------------
     -- ARN-52(V) TACAN BEARING-DISTANCE EQUIPMENT
     ---------------------------------------------
@@ -533,6 +597,41 @@ function SetCommand(command,value)
             morse_dot_snd:update(nil,tacan_volume,nil)
             morse_dash_snd:update(nil,tacan_volume,nil)
         end
+    --plusnine added mode switch (could probably be more efficient, but it works)
+    elseif command == Keys.TacanModeInc then
+        if tacan_mode == "OFF" then
+            dev:performClickableAction(device_commands.tacan_mode, 0.1, false) -- set REC
+        elseif tacan_mode == "REC" then
+            dev:performClickableAction(device_commands.tacan_mode, 0.2, false) -- set T/R
+        elseif tacan_mode == "T/R" then
+            dev:performClickableAction(device_commands.tacan_mode, 0.3, false) -- set ILS
+        end
+    elseif command == Keys.TacanModeDec then
+        if tacan_mode == "ILS" then
+            dev:performClickableAction(device_commands.tacan_mode, 0.2, false) -- set T/R
+        elseif tacan_mode == "T/R" then
+            dev:performClickableAction(device_commands.tacan_mode, 0.1, false) -- set REC
+        elseif tacan_mode == "REC" then
+            dev:performClickableAction(device_commands.tacan_mode, 0.0, false) -- set OFF
+        end
+    elseif command == Keys.TacanChMajorInc then
+        dev:performClickableAction(device_commands.tacan_ch_major, clamp(tacan_ch_major / 20 + 0.05, 0, 0.6), false) -- increment as as per amounts and limits set above
+    elseif command == Keys.TacanChMajorDec then
+        dev:performClickableAction(device_commands.tacan_ch_major, clamp(tacan_ch_major / 20 - 0.05, 0, 0.6), false) -- decrement as as per amounts and limits set above
+    elseif command == Keys.TacanChMinorInc then
+        dev:performClickableAction(device_commands.tacan_ch_minor, clamp(tacan_ch_minor / 10 + 0.10, 0, 0.9), false) -- increment as as per amounts and limits set above
+    elseif command == Keys.TacanChMinorDec then
+        dev:performClickableAction(device_commands.tacan_ch_minor, clamp(tacan_ch_minor / 10 - 0.10, 0, 0.9), false) -- decrement as as per amounts and limits set above
+    elseif command == Keys.TacanVolumeInc then
+        dev:performClickableAction(device_commands.tacan_volume, clamp(tacan_volume + 0.03, 0.2, 0.8), false)
+    elseif command == Keys.TacanVolumeDec then
+        dev:performClickableAction(device_commands.tacan_volume, clamp(tacan_volume - 0.03, 0.2, 0.8), false)
+    elseif command == Keys.TacanVolumeStartUp then
+        tacan_volume_moving = 1
+    elseif command == Keys.TacanVolumeStartDown then
+        tacan_volume_moving = -1
+    elseif command == Keys.TacanVolumeStop then
+        tacan_volume_moving = 0
     end
 end
 
@@ -736,6 +835,44 @@ function set_d2_xy(x, y)
     asn41_d2_lon_offset = 0
     asn41_d2_lat = geopos.lat
     asn41_d2_lon = geopos.lon
+end
+
+local function asn41_slew(lat_to_update, lon_to_update)
+
+    local function ramp_slew_rate(slew_rate)
+        return slew_rate * (1 + (0.1* update_time_step)) -- maybe there should be a max slew rate?
+    end
+
+    -- check if slews are active
+    if dest_lat_slew_state == 0 and dest_lon_slew_state == 0 then
+        asn41_slew_rate = 1
+        return lat_to_update, lon_to_update
+    end
+
+    -- check if ASN-41 is in correct mode for slew
+    if asn41_state == "asn41-off" or asn41_state == "asn41-test" then
+        dest_lat_slew_state = 0
+        dest_lon_slew_state = 0
+        asn41_slew_rate = 1
+        return lat_to_update, lon_to_update
+    end
+
+    if dest_lat_slew_state == 1 then
+        lat_to_update = lat_to_update + (0.005 * asn41_slew_rate)
+    elseif dest_lat_slew_state == -1 then
+        lat_to_update = lat_to_update - (0.005 * asn41_slew_rate)
+    end
+
+    if dest_lon_slew_state == 1 then
+        lon_to_update = lon_to_update - (0.005 * asn41_slew_rate)
+    elseif dest_lon_slew_state == -1 then
+        lon_to_update = lon_to_update + (0.005 * asn41_slew_rate)
+    end
+
+    asn41_slew_rate = ramp_slew_rate(asn41_slew_rate)
+
+    return lat_to_update, lon_to_update
+
 end
 
 --[[
@@ -944,6 +1081,7 @@ function update_asn41()
             asn41_bearing:set(0)
             asn41_track:set(0)
             -- asn41-stby draw
+            asn41_d1_lat_offset, asn41_d1_lon_offset = asn41_slew(asn41_d1_lat_offset, asn41_d1_lon_offset)
             asn41_draw_windspeed( asn41_windspeed_offset )
             asn41_draw_winddir( asn41_winddir_offset )
             asn41_draw_magvar( asn41_magvar_offset )
@@ -959,6 +1097,7 @@ function update_asn41()
             end
         else
             -- asn41-d1 output
+            asn41_d1_lat_offset, asn41_d1_lon_offset = asn41_slew(asn41_d1_lat_offset, asn41_d1_lon_offset)
             asn41_update_range_and_bearing(1)
             -- asn41-d1 draw
             -- asn41_draw_windspeed( asn41_windspeed_offset )
@@ -978,6 +1117,7 @@ function update_asn41()
             end
         else
             -- asn41-d2 output
+            asn41_d2_lat_offset, asn41_d2_lon_offset = asn41_slew(asn41_d2_lat_offset, asn41_d2_lon_offset)
             asn41_update_range_and_bearing(2)
             -- asn41-d2 draw
             -- asn41_draw_windspeed( asn41_windspeed_offset )
@@ -1942,6 +2082,10 @@ function update()
     if tacan_audio_active then
         --update_morse_playback()
         update_morse_playback_2()
+    end
+
+    if tacan_volume_moving ~= 0 then
+        dev:performClickableAction(device_commands.tacan_volume, clamp(tacan_volume + 0.01 * tacan_volume_moving, 0.2, 0.8), false)
     end
 end
 

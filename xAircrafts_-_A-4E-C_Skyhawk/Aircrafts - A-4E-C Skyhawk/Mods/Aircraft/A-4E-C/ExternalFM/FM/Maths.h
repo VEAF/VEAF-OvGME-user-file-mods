@@ -25,6 +25,8 @@
 namespace Scooter
 {
 
+extern const Vec3 rotate( const Vec3& v, const double pitch, const double yaw );
+extern const Vec3 rotateVectorIntoXYPlane( const Vec3& v );
 extern const Vec3 windAxisToBody(const Vec3& force, const double& alpha, const double& beta);
 extern const Vec3 directionVector( const double pitch, const double yaw );
 
@@ -43,4 +45,10 @@ static inline double toRad(double degrees)
 static inline double clamp( double value, double min, double max )
 {
 	return std::max( std::min( value, max ), min );
+}
+
+//Weight goes from 0 -> 1
+static inline double lerpWeight( double v0, double v1, double w )
+{
+	return v0 + w * (v1 - v0);
 }

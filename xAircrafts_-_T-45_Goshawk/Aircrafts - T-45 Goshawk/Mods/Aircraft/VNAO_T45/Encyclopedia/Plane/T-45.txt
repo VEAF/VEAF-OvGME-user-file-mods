@@ -1,0 +1,21 @@
+T-45
+Plane/T-45.png
+T-45
+
+Name: T-45C
+Type: Trainer
+Crew: 2
+Length: 39'4" (12 m)
+Wing span: 30'10" (9.4 m)
+Height: 13'6" (4.11 m)
+Wing area: 190.1ft^2 (17.66 m^2)
+Weight Empty: 9,394 lb (4,261 kg)
+Max Takeoff Weight: 13,500 lb (6,123 kg)
+Internal Fuel: 3,159 lb (2437 kg)
+Max Mach at altitude: 0.84
+Service ceiling: 42,500' (13,000 m)
+Maximum range: 700 nmi (1300 km)
+G limit: +5/-3.0 g
+Powerplant: 1 Rolls-Royce Turbomeca F405-RR-401 turbofan engine, 5,527 lbf (24.59 kN)
+
+The McDonnell Douglas T-45 Goshawk is a highly modified version of the British BAE Systems Hawk land-based training jet aircraft. Manufactured by McDonnell Douglas and British Aerospace (now BAE Systems), the T-45 is used by the United States Navy as an aircraft carrier-capable trainer.

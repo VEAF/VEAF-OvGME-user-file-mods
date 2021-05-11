@@ -13,13 +13,19 @@ dev:listen_command(device_commands.arc51_xmitmode)
 dev:listen_command(device_commands.arc51_volume)
 dev:listen_command(device_commands.arc51_squelch)
 dev:listen_command(device_commands.arc51_freq_preset)
-dev:listen_command(device_commands.arc51_freq_XXxxx)
-dev:listen_command(device_commands.arc51_freq_xxXxx)
-dev:listen_command(device_commands.arc51_freq_xxxXX)
+dev:listen_command(device_commands.arc51_freq_XXooo)
+dev:listen_command(device_commands.arc51_freq_ooXoo)
+dev:listen_command(device_commands.arc51_freq_oooXX)
 --dev:listen_command(Keys.radio_ptt)
+--plusnine uhf frequency keybinds
+dev:listen_command(Keys.UHF10MHzInc)
+dev:listen_command(Keys.UHF10MHzDec)
+dev:listen_command(Keys.UHF1MHzInc)
+dev:listen_command(Keys.UHF1MHzDec)
+dev:listen_command(Keys.UHF50kHzInc)
+dev:listen_command(Keys.UHF50kHzDec)
 
 efm_data_bus = get_efm_data_bus()
-
 
 -- arc-51 state and input processing
 arc51_inputlist = {"OFF", "T/R", "T/R+G", "ADF"}
@@ -85,12 +91,25 @@ function SetCommand(command,value)
         arc51_squelch = value
     elseif command == device_commands.arc51_freq_preset then
         arc51_freq_preset = value
-    elseif command == device_commands.arc51_freq_XXxxx then
+    elseif command == device_commands.arc51_freq_XXooo then
         arc51_freq_XXxxx = value
-    elseif command == device_commands.arc51_freq_xxXxx then
+    elseif command == device_commands.arc51_freq_ooXoo then
         arc51_freq_xxXxx = value
-    elseif command == device_commands.arc51_freq_xxxXX then
+    elseif command == device_commands.arc51_freq_oooXX then
         arc51_freq_xxxXX = value
+    --manual frequency keybinds
+    elseif command == Keys.UHF10MHzInc then
+        print_message_to_user('ARC-51 UHF 10 MHz inc')
+    elseif command == Keys.UHF10MHzDec then
+        print_message_to_user('ARC-51 UHF 10 MHz dec')
+    elseif command == Keys.UHF1MHzInc then
+        print_message_to_user('ARC-51 UHF 1 MHz inc')
+    elseif command == Keys.UHF1MHzDec then
+        print_message_to_user('ARC-51 UHF 1 MHz dec')
+    elseif command == Keys.UHF50kHzInc then
+        print_message_to_user('ARC-51 UHF 50 kHz inc')
+    elseif command == Keys.UHF50kHzDec then
+        print_message_to_user('ARC-51 UHF 50 kHz dec')
     end
 
     arc51_freq_last = arc51_frequency

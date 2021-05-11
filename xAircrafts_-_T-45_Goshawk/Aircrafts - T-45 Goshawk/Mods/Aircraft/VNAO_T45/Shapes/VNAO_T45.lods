@@ -1,0 +1,11 @@
+model = {
+	lods = {
+		 {"VNAO_T45.edm",30.000000},
+		 {"VNAO_T45.edm",75.000000},		
+		 {"VNAO_T45.edm",350.000000},
+		 {"VNAO_T45.edm",700.000000},
+		 {"VNAO_T45.edm",2000.000000},
+		 {"VNAO_T45.edm",50000.000000},	
+	};
+	collision_shell = "VNAO_T45-collision.edm";
+}

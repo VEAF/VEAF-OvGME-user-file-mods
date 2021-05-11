@@ -1,0 +1,6 @@
+wave = "Effects/T45EngineStart"
+inner_radius = 60
+outer_radius = 150
+gain = 2.0
+pitch = 1.0
+detached = true

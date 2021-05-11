@@ -11,6 +11,8 @@ _ = gettext.translate
 
 elements = {}
 
+--THESE SOUNDS ARE DEFINED BY /Cockpit/Scripts/sounds.lua
+
 -- Mirrors
 elements["PNT_MIRROR_LEFT"]  = default_2_position_tumb("Toggle Mirrors", 0, 1625, nil)
 elements["PNT_MIRROR_RIGHT"] = default_2_position_tumb("Toggle Mirrors", 0, 1625, nil)
@@ -36,15 +38,15 @@ elements["PNT_84"] = default_2_position_tumb("Spoiler Arm Switch",devices.SPOILE
 elements["PNT_133"] = default_2_position_tumb("JATO ARM-OFF Switch",devices.AVIONICS, device_commands.JATO_arm,133,TOGGLECLICK_LEFT_MID)
 elements["PNT_134"] = default_2_position_tumb("JATO JETTISON-SAFE Switch",devices.AVIONICS, device_commands.JATO_jettison,134,TOGGLECLICK_LEFT_MID)
 --Speedbrake
-elements["PNT_85"] = default_2_position_tumb("Speedbrake switch",devices.AIRBRAKES, device_commands.speedbrake,85,TOGGLECLICK_LEFT_MID)
+elements["PNT_85"] = default_2_position_tumb("Speedbrake switch",devices.AIRBRAKES, device_commands.speedbrake,85,SPEEDBRAKE_SWITCH)
 elements["PNT_128"] = default_3_position_tumb("Speedbrake emergency",devices.AIRBRAKES, device_commands.speedbrake_emer,128)
 
 -- canopy lever
 elements["PNT_129"] = default_2_position_tumb("Canopy", devices.CANOPY, Keys.Canopy, 0)
-elements["PNT_129"].sound = {{CANOPY_LEVER_OPEN, CANOPY_LEVER_CLOSE}}
+elements["PNT_129"].sound = {{CANOPY_LEVER_OPEN,CANOPY_LEVER_CLOSE}}
 
 elements["PNT_132"] = multiposition_switch_limited("Flaps Lever", devices.FLAPS, device_commands.flaps, 132, 3, 1, false, -1.0)
-
+elements["PNT_132"].sound = {{FLAPS_LEVER}}
 -- THROTTLE PANEL
 elements["PNT_80"] 	= default_3_position_tumb("Throttle", devices.ENGINE, device_commands.throttle_click,0, false, true)
 elements["PNT_80"].sound = {{THROTTLE_DETENT}}
@@ -63,7 +65,7 @@ elements["PNT_131"] = default_2_position_tumb("Manual Fuel Shutoff Catch",device
 --elements["PNT_201"] = default_3_position_tumb("Throttle cutoff",devices.ENGINE, device_commands.throttle,201,false)
 
 -- OXYGEN and ANTI-G PANEL
-elements["PNT_125"] = default_2_position_tumb("Oxygen Switch",devices.AVIONICS, device_commands.oxygen_switch, 125, TOGGLECLICK_LEFT_MID)
+elements["PNT_125"] = default_2_position_tumb("Oxygen Switch", devices.AVIONICS, device_commands.oxygen_switch, 125, TOGGLECLICK_LEFT_MID)
 
 -- RADAR CONTROL PANEL #6
 elements["PNT_120"] = multiposition_switch_limited( "Radar Mode", devices.RADAR, device_commands.radar_mode, 120, 5, 0.10, nil, nil, KNOBCLICK_LEFT_MID )
@@ -90,7 +92,7 @@ elements["PNT_161"] = default_2_position_tumb("AFCS engage",devices.AFCS, device
 elements["PNT_162"] = default_2_position_tumb("AFCS preselect heading",devices.AFCS, device_commands.afcs_hdg_sel,162, TOGGLECLICK_LEFT_AFT)
 elements["PNT_163"] = default_2_position_tumb("AFCS altitude hold",devices.AFCS, device_commands.afcs_alt,163, TOGGLECLICK_LEFT_AFT)
 elements["PNT_164"] = default_axis_limited( "AFCS heading selector", devices.AFCS, device_commands.afcs_hdg_set, 164, 0.0, 0.3, false, true, {0,1} )
-elements["PNT_165"] = default_2_position_tumb("AFCS stability aug (unimplemented)",devices.AFCS, device_commands.afcs_stab_aug,165, TOGGLECLICK_LEFT_AFT)
+elements["PNT_165"] = default_2_position_tumb("AFCS stability aug",devices.AFCS, device_commands.afcs_stab_aug,165, TOGGLECLICK_LEFT_AFT)
 elements["PNT_166"] = default_2_position_tumb("AFCS aileron trim (unimplemented)",devices.AFCS, device_commands.afcs_ail_trim,166, TOGGLECLICK_LEFT_AFT)
 
 -- RADAR SCOPE #20
@@ -100,8 +102,9 @@ elements["PNT_402"] = default_axis_limited("Radar Detail", devices.RADAR, device
 elements["PNT_403"] = default_axis_limited("Radar Gain", devices.RADAR, device_commands.radar_gain, 403, 0.0, 0.3, false, false, {-1,1})
 elements["PNT_404"] = default_axis_limited("Radar Reticle", devices.RADAR, device_commands.radar_reticle, 404, 0.0, 0.3, false, false, {-1,1})
 elements["PNT_405"] = default_2_position_tumb("Radar Filter Plate", devices.RADAR, device_commands.radar_filter, 405)
-elements["PNT_405"].animated        = {true, true}
+elements["PNT_405"].animated = {true, true}
 elements["PNT_405"].animation_speed = {4, 4}  -- animation duration = 1/value.  4 means animates in .25 seconds.
+elements["PNT_405"].sound = {{RADAR_FILTER_DOWN}, {RADAR_FILTER_UP}}
 
 elements["PNT_390"] = multiposition_switch_limited("GunPods: Charge/Off/Clear", devices.WEAPON_SYSTEM, device_commands.gunpod_chargeclear, 390, 3, 1, false, -1, TOGGLECLICK_LEFT_FWD)
 elements["PNT_391"] = default_2_position_tumb("GunPods: Left Enable", devices.WEAPON_SYSTEM, device_commands.gunpod_l, 391, TOGGLECLICK_LEFT_FWD)
@@ -150,7 +153,7 @@ elements["PNT_704"] = default_2_position_tumb("Station 2 select",devices.WEAPON_
 elements["PNT_705"] = default_2_position_tumb("Station 3 select",devices.WEAPON_SYSTEM, device_commands.arm_station3,705,TOGGLECLICK_MID_FWD)
 elements["PNT_706"] = default_2_position_tumb("Station 4 select",devices.WEAPON_SYSTEM, device_commands.arm_station4,706,TOGGLECLICK_MID_FWD)
 elements["PNT_707"] = default_2_position_tumb("Station 5 select",devices.WEAPON_SYSTEM, device_commands.arm_station5,707,TOGGLECLICK_MID_FWD)
-elements["PNT_708"] = multiposition_switch_limited("Function selector",devices.WEAPON_SYSTEM, device_commands.arm_func_selector,708,6,0.1,false,nil,KNOBCLICK_MID_FWD, 2)
+elements["PNT_708"] = multiposition_switch_limited("Function selector",devices.WEAPON_SYSTEM, device_commands.arm_func_selector,708,7,0.1,false,nil,KNOBCLICK_MID_FWD, 2)
 
 --elements["PNT_708"].animated        = {true, true}
 --elements["PNT_708"].animation_speed = {2, 2}
@@ -173,7 +176,7 @@ elements["PNT_744"] = multiposition_switch_limited("AWRS mode",devices.WEAPON_SY
 elements["PNT_720"] = default_button("Show EXT Fuel", devices.AVIONICS, device_commands.FuelGaugeExtButton, 720)
 elements["PNT_723"] = default_button("Master test", devices.AVIONICS, device_commands.master_test, 723)
 elements["PNT_725"] = multiposition_switch_limited( "Shrike Selector Knob", devices.WEAPON_SYSTEM, device_commands.shrike_selector, 725, 5, 0.1, false, nil, KNOBCLICK_MID_FWD, 2)
-elements["PNT_726"] = default_axis_limited( "Sidewinder Volume Knob", devices.WEAPON_SYSTEM, device_commands.shrike_sidewinder_volume, 726, 0, 0.1, false, false, {-1.0,1.0} )
+elements["PNT_726"] = default_axis_limited( "Missile Volume Knob", devices.WEAPON_SYSTEM, device_commands.shrike_sidewinder_volume, 726, 0, 0.1, false, false, {-1.0,1.0} )
 
 
 -- ALTIMETER PANEL #41
@@ -207,30 +210,38 @@ elements["PNT_247"] = default_button("APN-153 Memory Light Test", devices.NAV, d
 elements["PNT_176"] = multiposition_switch_limited("ASN-41 Function Selector Switch",devices.NAV, device_commands.nav_select,176,5,0.1,false,nil, KNOBCLICK_RIGHT_FWD)
 elements["PNT_176"].animated        = {true, true}
 elements["PNT_176"].animation_speed = {4, 4}  -- multiply these numbers by the base 1.0 second animation speed to get final speed.  4 means animates in 0.25 seconds.
+
 elements["PNT_177"] = default_button_axis("ASN-41 Present Position - Latitude Knob", devices.NAV, device_commands.ppos_lat_push, device_commands.ppos_lat, 236, 177, 1, 1)
 elements["PNT_177"].relative[2] = true
 elements["PNT_177"].arg_value[2] = 1
 elements["PNT_177"].animated = {true, false}
 elements["PNT_177"].animation_speed = {16.0, 0}
 elements["PNT_177"].sound = {{KNOBCLICK_RIGHT_FWD}, {KNOBCLICK_RIGHT_MID}}
+
 elements["PNT_183"] = default_button_axis("ASN-41 Present Position - Longitude Knob", devices.NAV, device_commands.ppos_lon_push, device_commands.ppos_lon, 237, 183, 1, 1)
 elements["PNT_183"].relative[2] = true
 elements["PNT_183"].arg_value[2] = 1
 elements["PNT_183"].animated = {true, false}
 elements["PNT_183"].animation_speed = {16.0, 0}
 elements["PNT_183"].sound = {{KNOBCLICK_RIGHT_FWD}, {KNOBCLICK_RIGHT_MID}}
+
 elements["PNT_190"] = default_button_axis("ASN-41 Destination - Latitude Knob", devices.NAV, device_commands.dest_lat_push, device_commands.dest_lat, 238, 190, 1, 1)
 elements["PNT_190"].relative[2] = true
 elements["PNT_190"].arg_value[2] = 1
 elements["PNT_190"].animated = {true, false}
 elements["PNT_190"].animation_speed = {16.0, 0}
 elements["PNT_190"].sound = {{KNOBCLICK_RIGHT_FWD}, {KNOBCLICK_RIGHT_MID}}
+
+elements["PNT_248"] = springloaded_3_pos_tumb("ASN-41 Destination - Latitude Slew", devices.NAV, device_commands.dest_lat_slew, 248, true, KNOBCLICK_RIGHT_MID)
+
 elements["PNT_196"] = default_button_axis("ASN-41 Destination - Longitude Knob", devices.NAV, device_commands.dest_lon_push, device_commands.dest_lon, 239, 196, 1, 1)
 elements["PNT_196"].relative[2] = true
 elements["PNT_196"].arg_value[2] = 1
 elements["PNT_196"].animated = {true, false}
 elements["PNT_196"].animation_speed = {16.0, 0}
 elements["PNT_196"].sound = {{KNOBCLICK_RIGHT_FWD}, {KNOBCLICK_RIGHT_MID}}
+
+elements["PNT_249"] = springloaded_3_pos_tumb("ASN-41 Destination - Longitude Slew", devices.NAV, device_commands.dest_lon_slew, 249, true, KNOBCLICK_RIGHT_MID)
 
 elements["PNT_203"] = default_button_axis("ASN-41 Magnetic Variation Knob", devices.NAV, device_commands.asn41_magvar_push, device_commands.asn41_magvar, 240, 203, 1, 1)
 elements["PNT_203"].relative[2] = true
@@ -269,14 +280,16 @@ elements["PNT_106"] = default_axis_limited( "Instrument Lighting", devices.AVION
 elements["PNT_107"] = default_axis_limited( "Console Lighting", devices.AVIONICS, device_commands.intlight_console, 107, 0.0, 0.3, false, false, {0,1} )
 elements["PNT_108"] = multiposition_switch_limited("Console Light Intensity", devices.AVIONICS, device_commands.intlight_brightness, 108, 3, 1, true, -1.0, TOGGLECLICK_RIGHT_AFT)
 elements["PNT_110"] = default_axis_limited( "White Floodlight Control", devices.AVIONICS, device_commands.intlight_whiteflood, 110, 0.0, 0.3, false, false, {0,1} )
+-- TODO: trigger at or leave 0 ?
+elements["PNT_405"].sound = {{COCKPIT_ILLUM_POT, COCKPIT_ILLUM_POT}}
 
 -- AN/ARC-51 UHF RADIO #67
 elements["PNT_361"] = multiposition_switch_limited("ARC-51 UHF Preset Channel", devices.RADIO, device_commands.arc51_freq_preset, 361, 20, 0.05, false, 0.00, KNOBCLICK_RIGHT_MID)
 elements["PNT_365"] = default_axis_limited("ARC-51 UHF Volume", devices.RADIO, device_commands.arc51_volume, 365, 0.5, 0.3, false, false, {0,1})
 elements["PNT_366"] = multiposition_switch_limited("ARC-51 UHF Frequency Mode", devices.RADIO, device_commands.arc51_xmitmode, 366, 3, 1, true, -1, KNOBCLICK_RIGHT_MID)
-elements["PNT_367"] = multiposition_switch_limited("ARC-51 UHF Manual Frequency 10 MHz", devices.RADIO, device_commands.arc51_freq_XXxxx, 367, 18, 0.05, false, 0, KNOBCLICK_RIGHT_MID)
-elements["PNT_368"] = multiposition_switch_limited("ARC-51 UHF Manual Frequency 1 MHz", devices.RADIO, device_commands.arc51_freq_xxXxx, 368, 10, 0.1, false, 0, KNOBCLICK_RIGHT_MID)
-elements["PNT_369"] = multiposition_switch_limited("ARC-51 UHF Manual Frequency 50 kHz", devices.RADIO, device_commands.arc51_freq_xxxXX, 369, 20, 0.05, false, 0, KNOBCLICK_RIGHT_MID)
+elements["PNT_367"] = multiposition_switch_limited("ARC-51 UHF Manual Frequency 10 MHz", devices.RADIO, device_commands.arc51_freq_XXooo, 367, 18, 0.05, false, 0, KNOBCLICK_RIGHT_MID)
+elements["PNT_368"] = multiposition_switch_limited("ARC-51 UHF Manual Frequency 1 MHz", devices.RADIO, device_commands.arc51_freq_ooXoo, 368, 10, 0.1, false, 0, KNOBCLICK_RIGHT_MID)
+elements["PNT_369"] = multiposition_switch_limited("ARC-51 UHF Manual Frequency 50 kHz", devices.RADIO, device_commands.arc51_freq_oooXX, 369, 20, 0.05, false, 0, KNOBCLICK_RIGHT_MID)
 elements["PNT_370"] = default_2_position_tumb("ARC-51 UHF Squelch Disable", devices.RADIO, device_commands.arc51_squelch, 370, TOGGLECLICK_RIGHT_MID)
 elements["PNT_372"] = multiposition_switch_limited("ARC-51 UHF Mode", devices.RADIO, device_commands.arc51_mode, 372, 4, 0.1, false, 0, KNOBCLICK_RIGHT_MID)
 
@@ -286,20 +299,23 @@ elements["PNT_511"] = springloaded_3_pos_tumb("Compass heading set knob", device
 elements["PNT_512"] = default_2_position_tumb("Compass Free/Slaved Mode Switch", devices.COMPASS, device_commands.COMPASS_free_slaved_switch, 512, TOGGLECLICK_RIGHT_MID) -- NO COMMAND
 elements["PNT_513"] = default_button("Compass Push to Sync", devices.COMPASS, device_commands.COMPASS_push_to_sync, 513) -- NO COMMAND
 
-
 -- T handles
 elements["PNT_1240"] = default_2_position_tumb("Emergency gear release",devices.GEAR, device_commands.emer_gear_release,1240)
 elements["PNT_1240"].animated        = {true, true}
 elements["PNT_1240"].animation_speed = {15, 15}
+elements["PNT_1240"].sound = {{EMER_GEAR_PULL, EMER_GEAR_RELEASE}}
 elements["PNT_1241"] = default_2_position_tumb("Emergency bomb release",devices.WEAPON_SYSTEM, device_commands.emer_bomb_release,1241)
 elements["PNT_1241"].animated        = {true, true}
 elements["PNT_1241"].animation_speed = {15, 15}
+elements["PNT_1241"].sound = {{EMER_BOMB_PULL, EMER_BOMB_RELEASE}}
 elements["PNT_1242"] = default_2_position_tumb("Manual Flight Control",devices.HYDRAULIC_SYSTEM, device_commands.man_flt_control_override,1242)
 elements["PNT_1242"].animated        = {true, true}
 elements["PNT_1242"].animation_speed = {15, 15}
+elements["PNT_1242"].sound = {{EMER_BOMB_PULL, EMER_BOMB_RELEASE}}
 elements["PNT_1243"] = default_2_position_tumb("Emergency generator deploy",devices.ELECTRIC_SYSTEM, device_commands.emer_gen_deploy,1243)
 elements["PNT_1243"].animated        = {true, true}
 elements["PNT_1243"].animation_speed = {15, 15}
+elements["PNT_1243"].sound = {{EMER_BOMB_PULL, EMER_BOMB_RELEASE}}
 
 -- ECM panel
 elements["PNT_503"] = default_2_position_tumb("Audio APR/25 - APR/27",devices.RWR,device_commands.ecm_apr25_audio,	503,TOGGLECLICK_LEFT_MID)
@@ -323,9 +339,11 @@ elements["PNT_226"] = default_axis_limited("Cabin Temp Knob", devices.ELECTRIC_S
 elements["PNT_24"] = default_2_position_tumb("Shoulder Harness Inertia Reel Control", devices.AVIONICS ,device_commands.CPT_shoulder_harness, 24, nil)
 elements["PNT_24"].animated        = {true, true}
 elements["PNT_24"].animation_speed = {7, 7}
+elements["PNT_24"].sound = {{HARNESS_LOCK, HARNESS_UNLOCK}}
 elements["PNT_25"] = default_2_position_tumb("Secondary Ejection Handle", devices.AVIONICS ,device_commands.CPT_secondary_ejection_handle, 25, nil)
 elements["PNT_25"].animated        = {true, true}
 elements["PNT_25"].animation_speed = {7, 7}
+elements["PNT_25"].sound = {{EJECTION_PULL, EJECTION_PULL}}
 
 -- Commented out because it doesn't seem to be required anymore [HECLAK]
 -- Can be removed if someone figures out what the original requirement was

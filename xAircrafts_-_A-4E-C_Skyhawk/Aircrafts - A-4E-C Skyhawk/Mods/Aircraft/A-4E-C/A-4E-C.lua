@@ -71,6 +71,12 @@ local function get_outboard_weapons( side )
     end
 
     local tbl = {
+	
+		--AIR AIR--
+        { CLSID = "{GAR-8}",                                 connector = rocketConnector, arg_value = 0.2 },  -- AIM-9B, aligned to -3deg armament datum
+        { CLSID = "{AIM-9P-ON-ADAPTER}",                     connector = rocketConnector, arg_value = 0.2 },  -- AIM-9P
+        { CLSID = "{AIM-9P5-ON-ADAPTER}",                    connector = rocketConnector, arg_value = 0.2 },  -- AIM-9P5
+	
         --ROCKETS--
         --{ CLSID =   "{FD90A1DC-9147-49FA-BF56-CB83EF0BD32B}" }, -- LAU-61, M151 HE
         --{ CLSID =   "{174C6E6D-0C3D-42ff-BCB3-0853CB371F5C}" }, -- LAU 68, MK5 HE
@@ -111,6 +117,9 @@ local function get_outboard_weapons( side )
 		{ CLSID = "{A4BCC903-06C8-47bb-9937-A30FEDB4E745}", connector = rocketConnector, arg_value = 0.2 }, -- Smoke Pod Yellow
 		{ CLSID = "{A4BCC903-06C8-47bb-9937-A30FEDB4E746}", connector = rocketConnector, arg_value = 0.2 }, -- Smoke Pod Orange
 
+        -- ILLUMINATION POD --
+        { CLSID = "{CAE48299-A294-4bad-8EE6-89EFC5DCDF00}", connector = rocketConnector, arg_value = 0.2},
+
 		-- CLEAN --
 		{ CLSID = "<CLEAN>", arg_value = 1 },
 	}
@@ -133,8 +142,10 @@ local function get_inboard_weapons( side )
     local tbl = {
         --FUEL TANKS--
         { CLSID = "{DFT-300gal_LR}" },
+        { CLSID = "{DFT-300gal_LR_EMPTY}" },
         -- { CLSID = "{DFT-300gal_LR}",attach_point_position = { -0.10, -0.008, 0.0}},  --another (proper?) posibility to fix 300 gal tank position/angle ?
         { CLSID = "{DFT-150gal}" },
+        { CLSID = "{DFT-150gal_EMPTY}" },
 
         --AIR AIR--
         { CLSID = "{GAR-8}",                                 connector = rocketConnector, arg_value = 0.2 },  -- AIM-9B, aligned to -3deg armament datum
@@ -212,6 +223,10 @@ local function get_inboard_weapons( side )
 		{CLSID = "{A4BCC903-06C8-47bb-9937-A30FEDB4E745}", connector = rocketConnector, arg_value = 0.2 }, -- Smoke Pod Yellow
 		{CLSID = "{A4BCC903-06C8-47bb-9937-A30FEDB4E746}", connector = rocketConnector, arg_value = 0.2 }, -- Smoke Pod Orange
 
+        -- ILLUMINATION POD --
+        { CLSID = "{CAE48299-A294-4bad-8EE6-89EFC5DCDF00}", connector = rocketConnector, arg_value = 0.2},
+
+
 		-- CLEAN --
 		{ CLSID = "<CLEAN>", arg_value = 1 },
     }
@@ -226,6 +241,10 @@ local function get_centerline_weapons( side )
         { CLSID = "{DFT-400gal}" },
         { CLSID = "{DFT-300gal}" },
         { CLSID = "{DFT-150gal}" },
+
+        { CLSID = "{DFT-400gal_EMPTY}" },
+        { CLSID = "{DFT-300gal_EMPTY}" },
+        { CLSID = "{DFT-150gal_EMPTY}" },
         -- { CLSID = "{D-704_BUDDY_POD}" },
 
         --ROCKETS--
@@ -307,6 +326,9 @@ local function get_centerline_weapons( side )
 		{ CLSID = "{A4BCC903-06C8-47bb-9937-A30FEDB4E745}", connector = rocketConnector, arg_value = 0.2 }, -- Smoke Pod Yellow
 		{ CLSID = "{A4BCC903-06C8-47bb-9937-A30FEDB4E746}", connector = rocketConnector, arg_value = 0.2 }, -- Smoke Pod Orange
 
+        -- ILLUMINATION POD --
+        { CLSID = "{CAE48299-A294-4bad-8EE6-89EFC5DCDF00}", connector = rocketConnector, arg_value = 0.2},
+
 
 		-- CLEAN --
 		{ CLSID = "<CLEAN>", arg_value = 1 },
@@ -327,7 +349,7 @@ A_4E_C =  {
     ViewSettings        = ViewSettings,
 
     -- enable A-4 for all countries.  It is CHEAP and easy to maintain
-	Countries = {"Abkhazia","Argentina","Australia","Austria","Belarus","Belgium","Brazil","Bulgaria","Canada","China","Croatia",
+	Countries = {"Abkhazia","Argentina","Australia","Austria","Belarus","Belgium","Brazil","Bulgaria","Canada","China", "Chile","Croatia",
                  "Czech Republic","Denmark","Egypt","Finland","France","Georgia","Germany","Greece","Hungary",
                  "India","Insurgents","Iran","Iraq","Israel","Italy","Japan","Kazakhstan","The Netherlands","North Korea",
                  "Norway","Pakistan","Poland","Romania","Russia","Saudi Arabia","Serbia","Slovakia","South Korea",
@@ -451,7 +473,7 @@ A_4E_C =  {
     range                       =  3200,                  -- Max range in km (for AI)
 
     thrust_sum_max              =  9300*POUNDS_TO_KG,     -- thrust in kg (J52 P8A: 9300 lb)**
-    has_afteburner              =  true,
+    has_afteburner              =  false,
     has_differential_stabilizer =  false,
     thrust_sum_ab               =  9300*POUNDS_TO_KG,     -- thrust in kg (kN)**
     average_fuel_consumption    =  0.86,                  -- 0.86 TSFC
@@ -459,9 +481,12 @@ A_4E_C =  {
     tanker_type                 =  2,                     -- Tanker type if the plane is tanker
     air_refuel_receptacle_pos   =  {6.966, -0.366, 0.486},
 
+    launch_bar_connected_arg_value	= 0.87,
+
 	-----------------------------------------------------------------------
 	----------------- SUSPENSION CODE BEGINS
 	-----------------------------------------------------------------------
+    tand_gear_max = math.rad(90.0), --turns out we actually need this for the animation to line up
 	--[[
     nose_gear_pos                            = {2.72, -2.78, 0}, -- {2.72, -2.37, 0},    --      2.72,       -2.28,    0
     main_gear_pos                            = {-0.79, -2.86, 1.18}, -- {-0.79, -2.42, 1.18},    --  0.79,   -2.35,    1.18
@@ -523,6 +548,40 @@ A_4E_C =  {
 			g_suit 			   =  5.0 -- I'm assuming there are different levels of suits which black you out at different G's. We should try and experiment with different ones.
         }, -- end of [1]
     }, -- end of crew_members
+
+    mechanimations = {
+        Door0 = {
+            {Transition = {"Close", "Open"},  Sequence = {{C = {{"Arg", 38, "to", 0.9, "in", 9.5},},},}, Flags = {"Reversible"},},
+            {Transition = {"Open", "Close"},  Sequence = {{C = {{"Arg", 38, "to", 0.0, "in", 5.0},},},}, Flags = {"Reversible", "StepsBackwards"},},
+            {Transition = {"Any", "Bailout"}, Sequence = {{C = {{"JettisonCanopy", 0},},},},},
+        },
+        -- dummy animation for carrier ops. array sizes need to match or the animator will throw an error.
+        -- animations need to be defined with a dummy arg even if they are not applicable.
+        -- both launchbar and foldable wings are required.
+        LaunchBar = { 
+			{Transition = {"Retract", "Extend"}, Sequence = {{C = {{"ChangeDriveTo", "HydraulicGravityAssisted"}, {"VelType", 3}, {"Arg", 85, "to", 0.881, "in", 4.4}}}}},
+			{Transition = {"Retract", "Stage"},  Sequence = {{C = {{"ChangeDriveTo", "HydraulicGravityAssisted"}, {"VelType", 3}, {"Arg", 85, "to", 0.815, "in", 4.4}}}}},
+			{Transition = {"Any", "Retract"},  Sequence = {{C = {{"ChangeDriveTo", "Hydraulic"}, {"VelType", 2}, {"Arg", 85, "to", 0.000, "in", 4.5}}}}},
+			{Transition = {"Extend", "Stage"},   Sequence = {
+					{C = {{"ChangeDriveTo", "Mechanical"}, {"Sleep", "for", 0.000}}},
+					{C = {{"Arg", 85, "from", 0.881, "to", 0.766, "in", 0.600}}},
+					{C = {{"Arg", 85, "from", 0.766, "to", 0.753, "in", 0.200}}},
+					{C = {{"Sleep", "for", 0.15}}},
+					{C = {{"Arg", 85, "from", 0.753, "to", 0.784, "in", 0.1, "sign", 2}}},
+					{C = {{"Arg", 85, "from", 0.784, "to", 0.881, "in", 1.0}}},
+				},
+			},
+			{Transition = {"Stage", "Pull"},  Sequence = {
+					{C = {{"ChangeDriveTo", "Mechanical"}, {"VelType", 2}, {"Arg", 85,"from", 0.881, "to", launch_bar_connected_arg_value_, "in", 0.27}}},
+					}
+			},
+			{Transition = {"Stage", "Extend"},   Sequence = {{C = {{"ChangeDriveTo", "HydraulicGravityAssisted"}, {"VelType", 3}, {"Arg", 85, "from", 0.815, "to", 0.881, "in", 0.2}}}}},
+		},
+        FoldableWings = {
+            {Transition = {"Retract", "Extend"}, Sequence = {{C = {{"Arg", 85, "to", 0.0, "in", 5.0}}}}, Flags = {"Reversible"}},
+            {Transition = {"Extend", "Retract"}, Sequence = {{C = {{"Arg", 85, "to", 1.0, "in", 5.0}}}}, Flags = {"Reversible", "StepsBackwards"}},
+        },
+    },
 ---------------------------------------------------------------------------------------------------------------------------------------------
     fires_pos =
     {
@@ -826,8 +885,8 @@ A_4E_C =  {
         --aircraft_task(Reconnaissance),
         aircraft_task(GroundAttack),        -- Task #32
         aircraft_task(AFAC),                -- Task #16
-        --aircraft_task(RunwayAttack),
-        --aircraft_task(AntishipStrike),
+        aircraft_task(RunwayAttack),
+        aircraft_task(AntishipStrike),
         aircraft_task(Refueling),           -- Task #13
     },
     DefaultTask = aircraft_task(CAS),

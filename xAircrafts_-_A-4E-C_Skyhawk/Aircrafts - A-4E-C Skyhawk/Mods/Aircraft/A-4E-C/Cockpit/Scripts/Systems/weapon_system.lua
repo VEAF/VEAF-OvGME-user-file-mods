@@ -47,7 +47,7 @@ local FUNC_GM_UNARM = 2
 local FUNC_SPRAY_TANK = 3
 local FUNC_LABS = 4
 local FUNC_BOMBS_GM_ARM = 5
-local FUNC_CMPTR = 4 --change to 6 when we its animated
+local FUNC_CMPTR = 6 --change to 6 when we its animated
 local selector_debug_text={"OFF","ROCKETS","GM UNARM","SPRAY TANK","LABS","BOMBS & GM ARM"}
 
 -- emergency selector switch constants
@@ -187,6 +187,13 @@ WeaponSystem:listen_command(Keys.Station5)
 WeaponSystem:listen_command(Keys.ArmsFuncSelectorCCW)
 WeaponSystem:listen_command(Keys.ArmsFuncSelectorCW)
 WeaponSystem:listen_command(Keys.GunsReadyToggle)
+
+WeaponSystem:listen_command(Keys.MissileVolumeInc)
+WeaponSystem:listen_command(Keys.MissileVolumeDec)
+WeaponSystem:listen_command(Keys.MissileVolumeStartUp)
+WeaponSystem:listen_command(Keys.MissileVolumeStartDown)
+WeaponSystem:listen_command(Keys.MissileVolumeStop)
+
 WeaponSystem:listen_command(device_commands.shrike_sidewinder_volume)
 WeaponSystem:listen_command(device_commands.shrike_selector)
 
@@ -209,6 +216,8 @@ WeaponSystem:listen_command(device_commands.JATO_jettison)
 WeaponSystem:listen_command(Keys.JATOFiringButton)
 
 local shrike_sidewinder_volume = get_param_handle("SHRIKE_SIDEWINDER_VOLUME")
+local missile_volume_pos = 0
+local missile_volume_moving = 0
 
 local cbu1a_quantity = get_param_handle("CBU1A_QTY")
 local cbu2a_quantity = get_param_handle("CBU2A_QTY")
@@ -222,7 +231,8 @@ local cbu2ba_quantity_array_pos = 0
 local this_weapon_ptr = get_param_handle("THIS_WEAPON_PTR")
 
 function post_initialize()
-	this_weapon_ptr:set(string.sub(tostring(WeaponSystem.link),10))
+    --print_message_to_user(find_lua_device_ptr(WeaponSystem))
+	this_weapon_ptr:set(find_lua_device_ptr(WeaponSystem))
     startup_print("weapon_system: postinit start")
 
     sndhost = create_sound_host("COCKPIT_ARMS","HEADPHONES",0,0,0)
@@ -284,6 +294,8 @@ end
 local time_ticker = 0 -- total time passed, in seconds
 local weapon_release_ticker = 0 -- time passed since last release
 local weapon_release_count = 0 -- number of weapons that have been released
+local smoke_enable_count = 0
+local max_smoke_enable_count = 0
 local max_weapon_release_count = 0  -- number of weapons to release with each pulse
 local last_weapon_released = false -- true when last weapon in sequence has been released
 local ripple_sequence_position = 0 -- number of ripples that have been released
@@ -300,11 +312,20 @@ local fuel_tank_capacity = {
     ["{DFT-300gal}"] = GALLON_TO_KG * 300,
     ["{DFT-300gal_LR}"] = GALLON_TO_KG * 300,
     ["{DFT-150gal}"] = GALLON_TO_KG * 150,
+
+    --EMPTY FUEL TANK CAPACITY
+    --EMPTY tanks have negative capacity, this is so the EFM
+    --knows to empty the fuel when they are loaded in.
+    ["{DFT-400gal_EMPTY}"] = -GALLON_TO_KG * 400,
+    ["{DFT-300gal_EMPTY}"] = -GALLON_TO_KG * 300,
+    ["{DFT-300gal_LR_EMPTY}"] = -GALLON_TO_KG * 300,
+    ["{DFT-150gal_EMPTY}"] = -GALLON_TO_KG * 150,
 }
 
 
 function prepare_weapon_release()
     weapon_release_count = 0
+    smoke_enable_count = 0
     max_weapon_release_count = 0
     if AWRS_mode == AWRS_mode_ripple_salvo or AWRS_mode == AWRS_mode_step_salvo then
         -- check number of readied stations
@@ -321,6 +342,40 @@ function prepare_weapon_release()
     elseif AWRS_mode == AWRS_mode_ripple_pairs or AWRS_mode == AWRS_mode_step_pairs then
         max_weapon_release_count = 2
     end
+
+end
+
+function check_smoke_for_enable()
+    smoke_enable_count = 0
+    max_smoke_enable_count = 0
+
+    for i = 1, num_stations do
+
+        local station_info = WeaponSystem:get_station_info(i-1)
+
+        if station_info.weapon.level2 == wsType_GContainer and station_info.weapon.level3 == wsType_Smoke_Cont and station_states[i] == STATION_READY and station_info.count > 0 then
+            max_smoke_enable_count = max_smoke_enable_count + 1
+        end
+    end
+
+end
+
+function enable_smoke()
+
+
+    for i = 1, num_stations do
+        if smoke_enable_count >= max_smoke_enable_count then
+            return
+        end
+
+        local station_info = WeaponSystem:get_station_info(i-1)
+
+        if station_info.weapon.level2 == wsType_GContainer and station_info.weapon.level3 == wsType_Smoke_Cont and station_states[i] == STATION_READY and station_info.count > 0 then
+            smoke_enable_count = smoke_enable_count + 1
+            WeaponSystem:launch_station(i-1)
+        end
+    end
+
 end
 
 local ir_missile_lock_param = get_param_handle("WS_IR_MISSILE_LOCK")
@@ -356,6 +411,8 @@ function update_fuel_tanks()
         if tank ~= nil and tank.weapon.level3 == wsType_FuelTank then
             local type = tank["CLSID"]
             efm_data_bus.fm_setTankState(i, fuel_tank_capacity[type])
+        else
+            efm_data_bus.fm_setTankState(i, 0.0)
         end
     end
 end
@@ -393,10 +450,13 @@ end
 function updateComputerSolution(weapons_released)
 	--Only restrict pickle if Computer is used. (COMPUTER is currently using LABS selector).
 	valid_solution = true
-	if (function_selector == FUNC_CMPTR) then
+	if function_selector == FUNC_CMPTR then
+        efm_data_bus.fm_setCP741Power(1.0)
 		valid_solution = efm_data_bus.fm_getValidSolution()
 		glare_labs_annun_state = efm_data_bus.fm_getTargetSet() and bombing_computer_target_set
-	end
+    else
+        efm_data_bus.fm_setCP741Power(0.0)
+    end
 	
 	return valid_solution
 end
@@ -457,9 +517,11 @@ function update()
 
     if _master_arm and (pickle_engaged or trigger_engaged) and valid_solution then
 	
+        --[[
 		 if function_selector == FUNC_CMPTR then
 			 labs_tone:play_continue()
 		 end
+         ]]--
 		
         local weap_release = false
         
@@ -472,22 +534,13 @@ function update()
         if weapon_release_ticker >= weapon_interval then
             weapon_release_ticker = 0
             prepare_weapon_release()
+            check_smoke_for_enable()
         end
 
         -- check that number of weapons released in current sequence has not exceeded total number of weapons to be released
         if weapon_release_count < max_weapon_release_count then
             weap_release = true
         end
-
-        -- this was used to output the station info. only used for debugging.
-        -- if not once then
-        --     print_message_to_user("once")
-        --     once=true
-        --     for i=1, num_stations, 1 do
-        --         local station = WeaponSystem:get_station_info(i-1)
-        --         print_message_to_user("station "..tostring(i)..": count="..tostring(station.count)..",state="..tostring(station_states[i])..",l2="..tostring(station.weapon.level2)..",l3="..tostring(station.weapon.level3)..",l4="..tostring(station.weapon.level4))
-        --     end
-        -- end
 
         -- check if readied weapon stations are empty. check for number of readied stations which are cbu
         local readied_stations_empty = true
@@ -508,11 +561,14 @@ function update()
             ripple_sequence_end()
             -- break
         end
-		
+
+        --Acutally turn on smoke if we have any prepared.
+        enable_smoke()
+        
         for py = 1, num_stations, 1 do
 
             if weapon_release_count >= max_weapon_release_count and function_selector ~= FUNC_OFF then
-				break
+                break
 				  
             end
 
@@ -544,7 +600,7 @@ function update()
                     break
                 end
             end
-            
+
             if station_states[i] == STATION_READY then
                 if station.count > 0 and (
                 (station.weapon.level2 == wsType_NURS and ((trigger_engaged and function_selector == FUNC_ROCKETS) or (pickle_engaged and function_selector == FUNC_GM_UNARM)) and weap_release) or -- launch unguided rockets
@@ -672,6 +728,11 @@ function update()
             end
             -- print_message_to_user("lock az:"..tostring(ir_missile_az_param:get())..",el:"..tostring(ir_missile_el_param:get()))
         end
+    end
+
+    -- coninous volume knob movement
+    if missile_volume_moving ~= 0 then
+        WeaponSystem:performClickableAction(device_commands.shrike_sidewinder_volume, clamp(missile_volume_pos + 0.005 * missile_volume_moving, 0, 1), false)
     end
 
     release_cbu_bomblets()
@@ -963,7 +1024,7 @@ function SetCommand(command,value)
         pickle_engaged = true
         
         -- if AWRS is setup for bombs or rockets
-        if ( function_selector == FUNC_BOMBS_GM_ARM or function_selector == FUNC_GM_UNARM ) and _master_arm then
+        if ( function_selector == FUNC_BOMBS_GM_ARM or function_selector == FUNC_GM_UNARM or function_selector == FUNC_CMPTR ) and _master_arm then
 
             -- PAIRS mode conditional logic checks
             if (AWRS_mode == AWRS_mode_ripple_pairs or AWRS_mode == AWRS_mode_step_pairs) then
@@ -1234,6 +1295,7 @@ function SetCommand(command,value)
         debug_print("shrike_sidewinder_volume: "..value)
         shrike_sidewinder_volume:set(value)
         aim9seek:update(nil, LinearTodB(shrike_sidewinder_volume:get()), nil)
+        missile_volume_pos = value
     elseif command == device_commands.shrike_selector then
         -- print_message_to_user(value)
 	elseif command == Keys.JATOFiringButton then
@@ -1241,7 +1303,17 @@ function SetCommand(command,value)
 	elseif command == device_commands.JATO_arm then
 		check_jato_armed_and_full(value)
 	elseif command == device_commands.JATO_jettison then
-		
+
+    elseif command == Keys.MissileVolumeInc then
+        WeaponSystem:performClickableAction(device_commands.shrike_sidewinder_volume, clamp(missile_volume_pos + 0.05, 0, 1), false)
+    elseif command == Keys.MissileVolumeDec then
+        WeaponSystem:performClickableAction(device_commands.shrike_sidewinder_volume, clamp(missile_volume_pos - 0.05, 0, 1), false)
+    elseif command == Keys.MissileVolumeStartUp then
+        missile_volume_moving = 1
+    elseif command == Keys.MissileVolumeStartDown then
+        missile_volume_moving = -1
+    elseif command == Keys.MissileVolumeStop then
+        missile_volume_moving = 0
     end
 end
 

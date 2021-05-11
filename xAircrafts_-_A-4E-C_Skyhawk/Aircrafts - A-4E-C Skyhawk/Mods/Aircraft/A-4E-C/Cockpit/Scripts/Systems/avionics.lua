@@ -6,6 +6,7 @@ dofile(LockOn_Options.script_path.."command_defs.lua")
 dofile(LockOn_Options.script_path.."Systems/electric_system_api.lua")
 dofile(LockOn_Options.script_path.."utils.lua")
 dofile(LockOn_Options.script_path.."EFM_Data_Bus.lua")
+dofile(LockOn_Options.script_path.."sound_params.lua") 
 
 local update_time_step = 0.05
 make_default_activity(update_time_step)--update will be called 20 times per second
@@ -14,6 +15,8 @@ startup_print("avionics: load")
 
 local once_per_second_refresh = 1/update_time_step
 local once_per_second = once_per_second_refresh
+local five_times_per_second_refresh = 1/update_time_step
+local five_times_per_second = five_times_per_second_refresh
 
 local sensor_data = get_efm_sensor_data_overrides()
 local efm_data_bus = get_efm_data_bus()
@@ -48,6 +51,16 @@ local iCommandPlaneEject = 83
 --local ias = get_param_handle("D_IAS")
 
 -----------------------------------------------------------------------------
+-- AVIONICS SUITE POWER-UP WHINE
+function update_avionics_power()
+    if get_elec_primary_ac_ok() and get_elec_external_power() then
+        sound_params.snd_inst_avionics_whine:set(1.0)
+    else
+        sound_params.snd_inst_avionics_whine:set(0.0)
+    end
+end
+
+-----------------------------------------------------------------------------
 -- AN/AJB-3A All-Attitude Indicator (gauge #19)
 
 local adi_pitch = get_param_handle("ADI_PITCH")
@@ -75,7 +88,7 @@ local alt_adj_xxNx = get_param_handle("ALT_ADJ_xxNx") -- 3rd digit, 0-10 input
 local alt_adj_xxxN = get_param_handle("ALT_ADJ_xxxN") -- 4th digit, 0-10 input
 
 local alt_setting = ALT_PRESSURE_STD
-
+local alt_pressure_moving = 0
 -----------------------------------------------------------------------------
 -- fuel gauge (gauge #29)
 
@@ -92,6 +105,7 @@ local fuelLastQtyExternal = 0 -- used to pin the external fuel amount when engin
 
 local totalFuel = 0
 local lastFuel = 0
+local slowFuel = 10000
 
 local initINT = 0
 local initEXT = 0
@@ -130,6 +144,9 @@ local lo2_flag = get_param_handle("D_OXYGEN_OFF")
 local oxygen_reset = 9.7
 local oxygen = oxygen_reset
 local oxygen_gauge_val = WMA(0.15,oxygen)
+--plusnine oxygen system
+--enabled variable for system use (switch on)
+local oxygen_enabled = false
 
 -----------------------------------------------------------------------------
 -- glareshield wheels light (arg #154)
@@ -237,6 +254,12 @@ dev:listen_command(Keys.IntLightWhiteFlood)
 dev:listen_command(Keys.IntLightInstruments)
 dev:listen_command(Keys.IntLightConsole)
 dev:listen_command(Keys.IntLightBrightness)
+--plusnine oxygen system
+dev:listen_command(device_commands.oxygen_switch)
+dev:listen_command(Keys.OxygenToggle)
+dev:listen_command(Keys.AltPressureStartUp)
+dev:listen_command(Keys.AltPressureStartDown)
+dev:listen_command(Keys.AltPressureStop)
 
 function dump_table(t)
     for key,value in pairs(t) do
@@ -271,6 +294,15 @@ function enumerate_fueltanks()
 end
 
 function post_initialize()
+
+    local abstime = get_absolute_model_time()
+    local hours = abstime / 3600.0
+
+    if hours <= 6 or hours >= 17 then
+        dev:performClickableAction(device_commands.intlight_console, 1.0, false)
+        dev:performClickableAction(device_commands.intlight_instruments, 1.0, false)
+    end
+
     startup_print("avionics: postinit start")
 
     local dev = GetSelf()
@@ -280,7 +312,13 @@ function post_initialize()
     dev:performClickableAction(device_commands.stby_att_index_knob, standby_val, false)
     dev:performClickableAction(device_commands.AOA_dimming_wheel_AXIS, AOA_indexer_brightness, false)
 
+    -- add hot or cold start differences here
+    if birth == "GROUND_HOT" or birth == "AIR_HOT" then
+    elseif birth == "GROUND_COLD" then
+    end
+
     startup_print("avionics: postinit end")
+
 end
 
 
@@ -317,6 +355,12 @@ function SetCommand(command,value)
         elseif alt_setting <= ALT_PRESSURE_MIN then
             alt_setting = ALT_PRESSURE_MIN
         end
+    elseif command == Keys.AltPressureStartUp then
+        alt_pressure_moving = 1
+    elseif command == Keys.AltPressureStartDown then
+        alt_pressure_moving = -1
+    elseif command == Keys.AltPressureStop then
+        alt_pressure_moving = 0
     elseif command == device_commands.ias_index_button then
         IAS_index_pushed=true and value==1 or false
     elseif command == device_commands.ias_index_knob then
@@ -445,6 +489,17 @@ function SetCommand(command,value)
         end
     elseif command == device_commands.AOA_dimming_wheel_AXIS then
         AOA_indexer_brightness = LinearTodB((value + 1) / 2)
+    --plusnine oxygen system
+    elseif command == device_commands.oxygen_switch then
+        oxygen_enabled = (value == 1.0)
+        --more verbose version
+        --if value == 1.0 then
+        --    oxygen_enabled = true
+        --  else
+        --    oxygen_enabled = false
+        --  end
+    elseif command == Keys.OxygenToggle then
+        dev:performClickableAction(device_commands.oxygen_switch,oxygen_enabled and 0 or 1,false)
     else
         print("Unknown command:"..command.." Value:"..value)
     end
@@ -465,6 +520,7 @@ function update_fuel_gauge()
     if flow == 0 and tas == 0 and lastFuel ~= totalFuel then
         -- limited to changes in fuel levels when motionless with no fuel flow
         local delta = lastFuel - totalFuel  -- negative delta means fuel was removed during refueling
+
         if math.abs(delta) >= refueling_rate_lower_limit and math.abs(delta) <= refueling_rate_upper_limit then
             -- internal refueling in progress, update as normally
             refuelingOccurred = 1 -- trigger full recalc on engine restart
@@ -473,6 +529,11 @@ function update_fuel_gauge()
             fuelLastQtyExternal = fuelLastQtyExternal - delta
             refuelingOccurred = 1 -- trigger full recalc on engine restart
         end
+    end
+
+    if slowFuel < lastFuel then
+        -- fuel is flowing in, begin fuel sloshing
+        sound_params.snd_cont_fuel_intake:set(1.0)
     end
 
     lastFuel = totalFuel
@@ -527,6 +588,14 @@ function update_fuel_gauge()
     end
 
     fuelflowgauge:set(gauge_fuel_flow:get_WMA(flow))
+end
+
+function update_fuel_5s()
+    --fuel intake dropoff, release fuel sloshing
+    if slowFuel >= lastFuel then
+        sound_params.snd_cont_fuel_intake:set(0.0)
+    end    
+    slowFuel = totalFuel
 end
 
 function update_ias_mach()
@@ -689,6 +758,11 @@ function update_altimeter()
     alt_1k:set((alt+alt_adj) % 10000)
     alt_100s:set((alt+alt_adj) % 1000)
     alt_needle:set((alt+alt_adj) % 1000)
+
+    --continuous knob motion
+    if alt_pressure_moving ~= 0 then
+        alt_setting = clamp(alt_setting + 0.005 * alt_pressure_moving, ALT_PRESSURE_MIN, ALT_PRESSURE_MAX)
+    end
 end
 
 
@@ -782,6 +856,7 @@ function update_oxygen_1s()
     else
         lo2_flag:set(0)
     end
+
 end
 
 local oxygen_test=0
@@ -812,7 +887,6 @@ function update_oxygen()
         end
     end
 end
-
 
 local wf_counter = 0
 local wf_fpmin = 120
@@ -852,6 +926,37 @@ function update_wheels_light()
     glareshield_WHEELS:set(glareshield_wheels_value)
 end
 
+function update_gear_wow()
+    -- landing touchdown wheel noise
+    local wown = sensor_data.getWOW_NoseLandingGear()
+    local wowl = sensor_data.getWOW_LeftMainLandingGear()
+    local wowr = sensor_data.getWOW_RightMainLandingGear()
+    if wown == 1 then
+        --print_message_to_user("N: ".. wown)
+        sound_params.snd_inst_wheels_touchdown_n:set(1.0)
+    end
+    if wowl == 1 then
+        --print_message_to_user("L: ".. wown)
+        sound_params.snd_inst_wheels_touchdown_l:set(1.0)
+    end
+    if wowr == 1 then
+        --print_message_to_user("R: ".. wown)
+        sound_params.snd_inst_wheels_touchdown_r:set(1.0)
+    end
+end
+
+function update_gear_wow_1s()
+    -- landing touchdown wheel noise
+    local wown = sensor_data.getWOW_NoseLandingGear()
+    local wowl = sensor_data.getWOW_LeftMainLandingGear()
+    local wowr = sensor_data.getWOW_RightMainLandingGear()
+    if wown == 0 and wowl == 0 and wowr == 0 then
+        sound_params.snd_inst_wheels_touchdown_n:set(0.0)
+        sound_params.snd_inst_wheels_touchdown_l:set(0.0)
+        sound_params.snd_inst_wheels_touchdown_r:set(0.0)
+    end
+end
+
 -- temporary functions to deal with master test of lights that aren't handled elsewhere yet
 local test_glare_labs       = get_param_handle("D_GLARE_LABS")
 local test_glare_iff        = get_param_handle("D_GLARE_IFF")
@@ -875,22 +980,24 @@ function update_test()
         test_glare_iff:set(1)
         test_glare_fire:set(1)
         glareshield_WHEELS:set(1)
-        test_ladder_fuelboost:set(1)
-        test_ladder_fueltrans:set(1)
+        --test_ladder_fuelboost:set(1)
+        --test_ladder_fueltrans:set(1)
         test_oil_low:set(1)
         test_advisory_inrange:set(1)
         test_advisory_setrange:set(1)
         test_advisory_dive:set(1)
 		
     else
-        test_glare_labs:set(0)
+        --Commented out lights which are updated by other systems
+        --This is to prevent flicker.
+        --test_glare_labs:set(0)
 	    test_glare_iff:set(0)
         test_glare_fire:set(0)
-        glareshield_WHEELS:set(glareshield_wheels_value)
-        test_ladder_fuelboost:set(0)
-        test_ladder_fueltrans:set(0)
+        --glareshield_WHEELS:set(glareshield_wheels_value)
+        --test_ladder_fuelboost:set(0)
+        --test_ladder_fueltrans:set(0)
         test_oil_low:set(0)
-        test_advisory_inrange:set(0)
+        --test_advisory_inrange:set(0)
         test_advisory_setrange:set(0)
         test_advisory_dive:set(0)
     end
@@ -1089,6 +1196,10 @@ function update_vvi()
     vvi:set(vvi_wma:get_WMA(v))
 end
 
+function update_fuel_lights()
+
+end
+
 local LADDER_BRIGHTNESS_HIGH = 1.0
 local LADDER_BRIGHTNESS_LOW = 0.2
 local GLARESHIELD_BRIGHTNESS_HIGH = 1.0
@@ -1097,8 +1208,10 @@ local GLARESHIELD_BRIGHTNESS_LOW = 0.5
 -- master update function for all avionics
 ---
 function update()
+    efm_data_bus.fm_setGForce(sensor_data.getVerticalAcceleration())
 	efm_data_bus.fm_setRadarAltitude(sensor_data.getRadarAltitude())
 
+    update_avionics_power()
     update_altimeter()
     update_accelerometer()
     update_vvi()
@@ -1110,6 +1223,7 @@ function update()
     update_oxygen()
     update_test()
     update_wheels_light()
+    update_gear_wow()
     update_aoa_ladder()
     update_int_lights()
 
@@ -1132,10 +1246,19 @@ function update()
     -- group once-per-second updates into a single call conditional for efficiency, to be used for slowly-updating gauges
     once_per_second = once_per_second - 1
     if once_per_second % 20 == 0 then
-        --print_message_to_user("anim: "..get_cockpit_draw_argument_value(111)) -- flood light animation arg
+        -- print_message_to_user("1 time per second!")
         update_oxygen_1s()
+        update_gear_wow_1s()
         -- add others here
         once_per_second = once_per_second_refresh
+    end
+
+    five_times_per_second = five_times_per_second - 1
+    if five_times_per_second % 4 == 0 then
+        --print_message_to_user("5 times per second!")
+        update_fuel_5s()
+        -- add others here
+        five_times_per_second = five_times_per_second_refresh
     end
 
     if refuelingOccurred then

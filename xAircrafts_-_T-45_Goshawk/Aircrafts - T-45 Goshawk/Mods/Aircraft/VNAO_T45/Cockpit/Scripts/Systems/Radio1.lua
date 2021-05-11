@@ -1,0 +1,29 @@
+dofile(LockOn_Options.common_script_path..'Radio.lua')
+dofile(LockOn_Options.script_path.."devices.lua")
+dofile(LockOn_Options.script_path.."command_defs.lua")
+
+local dev = GetSelf()
+local update_time_step = 1 --update will be called once per second
+device_timer_dt = update_time_step
+
+function post_initialize()
+  dev:set_frequency(256E6) -- Sochi
+  dev:set_modulation(MODULATION_AM) 
+  local intercom = GetDevice(devices.INTERCOM)
+  intercom:set_communicator(devices.RADIO1)
+end
+
+--[[
+["SetCommand"] 
+["listen_command"] 
+["performClickableAction"] 
+["listen_event"]
+["is_frequency_in_range"]  
+["set_frequency"] 
+["get_frequency"]   
+["set_modulation"]  
+["get_modulation"] 
+["set_channel"]  
+["is_on"] 
+--]]
+need_to_be_closed = false

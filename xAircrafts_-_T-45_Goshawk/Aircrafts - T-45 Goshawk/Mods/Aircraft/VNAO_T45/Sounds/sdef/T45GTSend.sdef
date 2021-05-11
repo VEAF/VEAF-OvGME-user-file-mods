@@ -1,0 +1,6 @@
+wave = "Effects/T45GTSend"
+inner_radius = 10
+outer_radius = 100
+gain = 2.0
+pitch = 1.0
+detached = true

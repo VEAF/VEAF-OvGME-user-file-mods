@@ -75,6 +75,10 @@ enum Control
 	BRAKE_RIGHT_STOP = 10183,
 	RADIO_MENU = 179, //iCommandToggleCommandMenu
 	RADIO_PTT = 10179,
+
+	//If the comms menu is changed these need to be found again.
+	LOCK_SLATS_RADIO_MENU = 966,
+	UNLOCK_SLATS_RADIO_MENU = 967,
 };
 
 class Input : public BaseComponent
@@ -99,6 +103,8 @@ public:
 		m_throttle = 0.0;
 		m_brakeLeft = 0.0;
 		m_brakeRight = 0.0;
+
+		m_FFBEnabled = false;
 
 		m_hook = false;
 		m_nosewheelSteering = false;
@@ -211,7 +217,7 @@ public:
 	}
 	inline void brakeLeft(double value)
 	{
-		return m_leftBrakeAxis.updateAxis(value);
+		return m_leftBrakeAxis.updateAxis(normalise(-value));
 	}
 	inline const double& brakeRight() const
 	{
@@ -219,7 +225,7 @@ public:
 	}
 	inline void brakeRight(double value)
 	{
-		return m_rightBrakeAxis.updateAxis(value);
+		return m_rightBrakeAxis.updateAxis(normalise(-value));
 	}
 	inline double getFFBPitchFactor()
 	{
@@ -245,6 +251,17 @@ public:
 	{
 		return m_FFBRollFrequency;
 	}
+
+	inline bool getFFBEnabled()
+	{
+		return m_FFBEnabled;
+	}
+
+	inline void setFFBEnabled( bool enabled )
+	{
+		m_FFBEnabled = enabled;
+	}
+
 	inline const bool& hook() const
 	{
 		return m_hook;
@@ -328,6 +345,7 @@ private:
 	double m_FFBRollFactor = 1.0;
 	double m_FFBRollAmplitude = 0.0;
 	double m_FFBRollFrequency = 0.0;
+	bool m_FFBEnabled = false;
 
 
 	bool m_hook = false;

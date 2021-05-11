@@ -1,0 +1,6 @@
+wave = "Effects/T45Switch2"
+inner_radius = 100
+outer_radius = 200
+pitch_random = 0.015
+gain_random = 0.15
+gain = 0.3

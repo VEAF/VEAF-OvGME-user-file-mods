@@ -262,14 +262,14 @@ public:
 	};
 
 	//Don't touch this it's order dependent you will break the tank code.
-	enum Tank
-	{
-		INTERNAL,
-		LEFT_EXT,
-		CENTRE_EXT,
-		RIGHT_EXT,
-		DONT_TOUCH //Seriously don't touch it.
-	};
+	//enum Tank
+	//{
+	//	INTERNAL,
+	//	LEFT_EXT,
+	//	CENTRE_EXT,
+	//	RIGHT_EXT,
+	//	DONT_TOUCH //Seriously don't touch it.
+	//};
 
 
 	Airframe(AircraftState& state, Input& controls, Engine2& engine);
@@ -288,18 +288,14 @@ public:
 	inline void setSlatLPosition(double position);
 	inline void setSlatRPosition(double position);
 	inline void setAirbrakePosition(double position);
-	inline void setFuelState(Tank tank, Vec3 pos, double fuel);
 	void addFuel( double fuel );
 	inline void setAngle(double angle);
 	inline void setMass(double angle);
 	inline void setFuelCapacity( double l, double c, double r );
 
 	inline void setNoseCompression( double x );
-
-	inline void setSelectedTank( Tank selected );
-	inline void setFuelPrevious( Tank tank );
 	
-	inline void setDumpingFuel( bool dumping );
+	//inline void setDumpingFuel( bool dumping );
 
 	inline double setAileron( double dt );
 	inline double setElevator( double dt );
@@ -307,14 +303,6 @@ public:
 	inline double setStabilizer( double dt );
 
 	inline void setNoseWheelAngle( double angle );
-
-
-	inline double getFuelPrevious( Tank tank ) const;
-
-	inline const Vec3& getFuelPos(Tank tank) const;
-	inline double getFuelQty(Tank tank) const;
-	inline double getFuelQtyExternal() const;
-	inline double getFuelQtyDelta(Tank tank) const;
 
 	inline double getGearLPosition() const; //returns gear pos
 	inline double getGearRPosition() const; //returns gear pos
@@ -328,7 +316,6 @@ public:
 	inline double getSlatRPosition() const;
 	inline double getCatMoment() const;
 	inline double getCatForce() const;
-	inline Tank getSelectedTank() const;
 	inline double getMass() const;
 	inline double getAileron() const;
 	inline double getElevator() const;
@@ -353,6 +340,8 @@ public:
 	inline float getIntegrityElement(Damage element);
 	inline void setDamageDelta( Damage element, float delta );
 	inline bool processDamageStack( Damage& element, float& damage );
+	inline void setSlatsLocked( bool locked );
+	inline void toggleSlatsLocked();
 
 	void resetDamage();
 
@@ -379,6 +368,9 @@ public:
 	inline float getSpeedbrakeDamage() const;
 	inline float getFlapDamage() const;
 	inline double getNoseCompression() const;
+
+	inline double getElevatorZeroForceDeflection() const;
+	inline bool getSlatsLocked() const;
 
 private:
 
@@ -409,14 +401,16 @@ private:
 	Actuator m_actuatorAil;
 	Actuator m_actuatorRud;
 
+	double m_elevatorZeroForceDeflection = 0.0;
 
-	Tank m_selected = Tank::INTERNAL;
 
-	double m_fuel[4] = { 0.0, 0.0, 0.0, 0.0 };
+	//Tank m_selected = Tank::INTERNAL;
+
+	/*double m_fuel[4] = { 0.0, 0.0, 0.0, 0.0 };
 	double m_fuelPrev[4] = { 0.0, 0.0, 0.0, 0.0 };
 	Vec3 m_fuelPos[4] = { Vec3(), Vec3(), Vec3(), Vec3() };
 	bool m_hasFuelTank[4] = { true, false, false, false };
-	double m_fuelCapacity[4] = { 0.0, 0.0, 0.0, 0.0 };
+	double m_fuelCapacity[4] = { 0.0, 0.0, 0.0, 0.0 };*/
 
 	bool m_dumpingFuel = false;
 
@@ -426,6 +420,7 @@ private:
 
 	CatapultState m_catapultState = OFF_CAT;
 	bool m_catStateSent = false;
+	bool m_slatsLocked = false;
 	double m_catMoment = 0.0;
 	double m_catForce = 0.0;
 	double m_catMomentVelocity = 0.0;
@@ -441,34 +436,6 @@ private:
 	std::vector<DamageDelta> m_damageStack;
 };
 
-void Airframe::setDumpingFuel( bool dumping )
-{
-	m_dumpingFuel = dumping;
-}
-
-void Airframe::setSelectedTank(Tank selected)
-{
-	m_selected = selected;
-}
-
-void Airframe::setFuelPrevious( Tank tank )
-{
-
-	m_fuelPrev[tank] = m_fuel[tank];
-}
-
-void Airframe::setFuelState(Tank tank, Vec3 pos, double fuel)
-{
-	m_fuel[tank] = fuel;
-	m_fuelPos[tank] = pos;
-}
-
-void Airframe::setFuelCapacity( double l, double c, double r )
-{
-	m_fuelCapacity[Tank::LEFT_EXT] = l;
-	m_fuelCapacity[Tank::CENTRE_EXT] = c;
-	m_fuelCapacity[Tank::RIGHT_EXT] = r;
-}
 
 double Airframe::setAileron(double dt)
 {
@@ -484,7 +451,10 @@ double Airframe::setElevator(double dt)
 	double speedbrakeTrim = -0.15 * m_speedBrakePosition;
 	m_actuatorElev.setActuatorSpeed(clamp(1.0 - 1.2 * pow(m_state.getMach(), 3.0), 0.1, 1.0));
 	//printf("factor: %lf\n", clamp(1.0 - 1.2 * pow(m_state.getMach(), 3.0), 0.1, 1.0));
-	double input = m_controls.pitch() + bungeeTrimStick + speedbrakeTrim;
+
+	m_elevatorZeroForceDeflection = bungeeTrimStick + speedbrakeTrim;
+
+	double input = m_controls.pitch() + m_elevatorZeroForceDeflection;
 	return m_actuatorElev.inputUpdate(input, dt);
 }
 
@@ -551,6 +521,16 @@ void Airframe::setCatAngle( double angle )
 	m_catAngle = angle;
 }
 
+void Airframe::setSlatsLocked( bool locked )
+{
+	m_slatsLocked = locked;
+}
+
+void Airframe::toggleSlatsLocked()
+{
+	m_slatsLocked = ! m_slatsLocked;
+}
+
 double Airframe::getNoseWheelAngle() const
 {
 	return m_noseWheelAngle;
@@ -561,10 +541,11 @@ double Airframe::getCatForce() const
 	return m_catForce;
 }
 
-double Airframe::getFuelPrevious( Tank tank ) const
-{
-	return m_fuelPrev[tank];
-}
+//double Airframe::getFuelPrevious( Tank tank ) const
+//{
+//	return m_fuelSystem.
+//	//return m_fuelPrev[tank];
+//}
 
 double Airframe::getGearLPosition() const
 {
@@ -644,6 +625,11 @@ double Airframe::getRudder() const
 	return m_rudder;
 }
 
+double Airframe::getElevatorZeroForceDeflection() const
+{
+	return m_elevatorZeroForceDeflection;
+}
+
 double Airframe::aileronAngle()
 {
 	return 	m_aileronLeft > 0.0 ? c_aileronUp * m_aileronLeft : -c_aileronDown * m_aileronLeft;
@@ -711,26 +697,6 @@ void Airframe::setCatStateFromKey()
 	}
 }
 
-const Vec3& Airframe::getFuelPos(Tank tank) const
-{
-	return m_fuelPos[tank];
-}
-
-double Airframe::getFuelQty(Tank tank) const
-{
-	return m_fuel[tank];
-}
-
-double Airframe::getFuelQtyExternal() const
-{
-	return m_fuel[Tank::LEFT_EXT] + m_fuel[Tank::CENTRE_EXT] + m_fuel[Tank::RIGHT_EXT];
-}
-
-double Airframe::getFuelQtyDelta(Tank tank) const
-{
-	return m_fuel[tank] - m_fuelPrev[tank];
-}
-
 double Airframe::getCatMoment() const
 {
 	return m_catMoment;
@@ -739,11 +705,6 @@ double Airframe::getCatMoment() const
 double Airframe::getMass() const
 {
 	return m_mass;
-}
-
-inline Airframe::Tank Airframe::getSelectedTank() const
-{
-	return m_selected;
 }
 
 inline void Airframe::setIntegrityElement(Damage element, float integrity)
@@ -841,6 +802,11 @@ inline float Airframe::getFlapDamage() const
 double Airframe::getNoseCompression() const
 {
 	return m_noseCompression;
+}
+
+bool Airframe::getSlatsLocked() const
+{
+	return m_slatsLocked;
 }
 
 } // end namespace

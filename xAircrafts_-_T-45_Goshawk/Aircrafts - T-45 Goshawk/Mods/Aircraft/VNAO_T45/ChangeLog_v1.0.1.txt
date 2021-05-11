@@ -1,0 +1,38 @@
+v1.0.1
+Fixed TACAN bug when there is a carrier with only 1 waypoint
+Improved TACAN so it won't fail if carrier or mission isn't loaded correctly
+Fixed AI getting stuck at end of catapult launch
+Fixed Right MFD ADI roll pointer not showing up
+Removed SRS script from download; the T-45 is now integrated into the latest SRS update
+Fixed night instant action mission not showing up
+Fixed rear MFD rocker controls only affecting right side
+Fixed MFD alignment so right side isn't cut off
+Fixed engine thrust not decreased enough at high altitude
+Added/Fixed keybindings for:	
+	- DEP/UFC
+	- Battery switches
+	- Engine switch
+	- HYD 2 reset
+	- Rudder pedals
+	- Throttle
+	- Gear down and up
+	- Anti-skid
+	- Hook
+	- Launch bar
+	- Canopy
+	- Generator Switch
+	- HUD power and brightness
+Fixed ADI page slip ball moving too far
+Improved HUD/MFD font
+Added seat arming handle and ejection handle
+Fixed External lights master switch
+Fixed cabin altitude needle being incorrect
+Fixed cage HUD button on MFD
+Fixed rear seat altimeter knob
+Revised Ejection seat materials to support seat arm
+Added the revised ejection seat mats to the external model
+Fixed ejection seats that would persist in the pit after ejection
+Updated the clickable interaction on various knobs and switches that were incorrect
+Revised the pit shadow shell to mask the external light leak into the pit more
+Updated the overall pit base materials to be lighter so the pit isn't so dark in shadow
+Updated the right console mats as they were missing the correct weathering and base mats
