@@ -10,6 +10,7 @@ Official VEAF-14.735 F/A-18C liveries customized with pilot name.
 - Perka
 - Phebus
 - Swoob
+- Sharko
 - Teken
 - Ti'rco
 - Trob
@@ -17,9 +18,9 @@ Official VEAF-14.735 F/A-18C liveries customized with pilot name.
 
 Skins officielles VEAF-14.735 pour le F/A-18C, avec le nom du pilote.
 
----------------------------------------
--- Tested with DCS World 2.5.6.45915 --
----------------------------------------
+--------------------------------------
+-- Tested with DCS World 2.7.0.5659 --
+--------------------------------------
 
 By Perka (https://community.veaf.org/topic/309/skin-f-a-18c)
 
