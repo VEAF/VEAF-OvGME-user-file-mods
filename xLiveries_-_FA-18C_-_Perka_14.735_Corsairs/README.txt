@@ -1,6 +1,6 @@
 Official VEAF-14.735 F/A-18C liveries customized with pilot name.
 - VEAF (default skin)
-- CoubyStark
+- Chipmunk
 - Darthmoul
 - Dilixo
 - FGhouse
