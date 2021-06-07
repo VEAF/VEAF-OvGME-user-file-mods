@@ -6,7 +6,7 @@ echo ========================================
 echo.
 
 rem FTP setup
-set url=http://aggressors.free.fr/repos_ovgme/VEAF_user_mods/
+set url=http://mods.veaf.org/dcs/user-files/
 rem Create build folder if needed
 mkdir .\build
 
@@ -25,13 +25,13 @@ for /f "tokens=*" %%i in ('DIR /a:d /b _*') DO (
 
 rem Build xml file
 setlocal enabledelayedexpansion
-echo ^<?xml version="1.0"?^> >.\build\veaf_user_mods.xml
-echo ^<mod_list^> >>.\build\veaf_user_mods.xml
+echo ^<?xml version="1.0"?^> >.\build\repository.xml
+echo ^<mod_list^> >>.\build\repository.xml
 for /f "tokens=*" %%i in ('DIR /a:d /b x*') DO (
     rem -- add the mod to the xml file
     call :xml_lines "%%i"
 )
-echo ^</mod_list^> >>.\build\veaf_user_mods.xml
+echo ^</mod_list^> >>.\build\repository.xml
 
 rem -- Pack built !
 echo.
@@ -77,8 +77,8 @@ rem Routine to build xml line for each mod
  set filename=!modname:_=%%20!
  set /p version=< .\%temp%\VERSION.txt
  set /p description=< .\%temp%\README.txt
- echo|set /p="<mod name="%modnamecleaned%" version="%version%" url="%url%%filename%.zip">%description%</mod>" >>.\build\veaf_user_mods.xml
- echo. >>.\build\veaf_user_mods.xml
+ echo|set /p="<mod name="%modnamecleaned%" version="%version%" url="%url%%filename%.zip">%description%</mod>" >>.\build\repository.xml
+ echo. >>.\build\repository.xml
  GOTO :eof
 
 
